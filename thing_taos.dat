@@ -1,0 +1,838 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!-- This file contains the assortment of skills for the game system. Note that each
+      skill is linked to an associated attribute for the character. This linkage allows
+      the value of the skill to easily incorporate the effects of the linked attribute
+      via a script on the component.
+-->
+
+<document signature="Hero Lab Data">
+
+<!-- Six Directions -->
+	<thing
+		id="taSixDir"
+		name="Tao of the Six Directions"
+		compset="Tao"
+		isunique="yes"
+		description="This Tao relates to skill in movement, not only on the horizontal plane, but also on the vertical plane, including jumping and diving. Remember that in any given round, a character can move a distance in yards equal to his Water value by using one action. This Tao not only increases the speed of his movement, but enables the character to move while carrying out another action such as fighting. In short, the Tao of the Six Directions allows a character to combine a movement with another action.\n\n With this Tao, a character can run quickly, jump high, or leap impressive distances, but only on solid, flat and stable surfaces, and generally only when he can see the end point of his movement. Where a character is on more difficult terrain, such as a muddy field or a sloping roof, or balancing on a rope, he will need to add an effect from the Tao of the Light Step.\n\n In a combat situation, while this Tao enables a character to engage in or escape from close combat more easily, these two effects cannot be combined in a single action. So while a character may move and strike an opponent in one action, he will need another action to escape from close combat again. Where a character has the right Tao Level and spends sufficient Chi points to execute a movement permitted by this Tao, the movement is an automatic success.\n\n For example, where a character uses the Tao of the Six Directions to move quickly to engage an opponent in close combat and launch an attack, he spends the necessary number of Chi points for the movement and need only perform his Attack Test. Or say a character wants to jump onto the roof a house without being seen or heard. If the roof is six yards off the ground, and the character has Tao Level 3 and a Water value of 4, he can use one action to jump onto a windowsill and a second action to jump onto the roof. Since both movements are automatic successes, the Game Master need only ask the player to perform a Stealth Test for each action.\n\n The Game Master may allow a character to go beyond his maximum distance and move an extra distance in yards equal to his Tao Level, in any direction. But if so, the character will have to succeed in a Test involving the various Skills needed for the action, and use his weakest Skill Level for that Test. Taking the same example of the roof-jumper, if the character has Tao Level 3 and a Water value of 4, he can jump seven yards in a single action. But in order not to be seen or heard, the character must perform a Test combining Stealth and Acrobatics, using whichever Skill in which he has the lowest Skill Level.\n\n It is not possible to combine several effects of the Tao of the Six Directions in a single action.">
+		<fieldval field="trtAbbrev" value="Six"/>
+
+
+		<!-- If tao effects can stack (i.e., be active at the same time) uncomment
+		<tag group="Helper" tag="Stack"/>
+		-->
+		<tag group="TaoGroup" tag="SixDir"/>
+		<child
+			entity="entTao">
+			<bootstrap thing="teRunLgJp1">
+				<containerreq phase="Initialize" priority="9000" name="Req Bootstrap"><![CDATA[
+					!Helper.NoEffects & val:Level.? >= 1
+				]]></containerreq>
+				<autotag group="TaoGroup" tag="SixDir"/>
+			</bootstrap>
+			<bootstrap thing="teRunLgJp2">
+				<containerreq phase="Initialize" priority="9000" name="Req Bootstrap"><![CDATA[
+					!Helper.NoEffects & val:Level.? >= 2
+				]]></containerreq>
+				<autotag group="TaoGroup" tag="SixDir"/>
+			</bootstrap>
+			<bootstrap thing="teRunLgJp3">
+				<containerreq phase="Initialize" priority="9000" name="Req Bootstrap"><![CDATA[
+					!Helper.NoEffects & val:Level.? >= 3
+				]]></containerreq>
+				<autotag group="TaoGroup" tag="SixDir"/>
+			</bootstrap>
+			<bootstrap thing="teRunLgJp4">
+				<containerreq phase="Initialize" priority="9000" name="Req Bootstrap"><![CDATA[
+					!Helper.NoEffects & val:Level.? >= 4
+				]]></containerreq>
+				<autotag group="TaoGroup" tag="SixDir"/>
+			</bootstrap>
+			<bootstrap thing="teDefyGr1">
+				<containerreq phase="Initialize" priority="9000" name="Req Bootstrap"><![CDATA[
+					!Helper.NoEffects & val:Level.? >= 2
+				]]></containerreq>
+				<autotag group="TaoGroup" tag="SixDir"/>
+			</bootstrap>
+			<bootstrap thing="teDefyGr2">
+				<containerreq phase="Initialize" priority="9000" name="Req Bootstrap"><![CDATA[
+					!Helper.NoEffects & val:Level.? >= 3
+				]]></containerreq>
+				<autotag group="TaoGroup" tag="SixDir"/>
+			</bootstrap>
+			<bootstrap thing="teDefyGr3">
+				<containerreq phase="Initialize" priority="9000" name="Req Bootstrap"><![CDATA[
+					!Helper.NoEffects & val:Level.? >= 4
+				]]></containerreq>
+				<autotag group="TaoGroup" tag="SixDir"/>
+			</bootstrap>
+			<bootstrap thing="teJupJdn1">
+				<containerreq phase="Initialize" priority="9000" name="Req Bootstrap"><![CDATA[
+					!Helper.NoEffects & val:Level.? >= 3
+				]]></containerreq>
+				<autotag group="TaoGroup" tag="SixDir"/>
+			</bootstrap>
+			<bootstrap thing="teJupJdn2">
+				<containerreq phase="Initialize" priority="9000" name="Req Bootstrap"><![CDATA[
+					!Helper.NoEffects & val:Level.? >= 4
+				]]></containerreq>
+				<autotag group="TaoGroup" tag="SixDir"/>
+			</bootstrap>
+			<bootstrap thing="teRunLgJp5">
+				<containerreq phase="Initialize" priority="9000" name="Req Bootstrap"><![CDATA[
+					!Helper.NoEffects & val:Level.? >= 5 & hero#source.qinLegends
+				]]></containerreq>
+				<autotag group="TaoGroup" tag="SixDir"/>
+			</bootstrap>
+			<bootstrap thing="teDefyGr4">
+				<containerreq phase="Initialize" priority="9000" name="Req Bootstrap"><![CDATA[
+					!Helper.NoEffects & val:Level.? >= 5 & hero#source.qinLegends
+				]]></containerreq>
+				<autotag group="TaoGroup" tag="SixDir"/>
+			</bootstrap>
+			<bootstrap thing="teJupJdn3">
+				<containerreq phase="Initialize" priority="9000" name="Req Bootstrap"><![CDATA[
+					!Helper.NoEffects & val:Level.? >= 5 & hero#source.qinLegends
+				]]></containerreq>
+				<autotag group="TaoGroup" tag="SixDir"/>
+			</bootstrap>
+			<bootstrap thing="teRunLgJp6">
+				<containerreq phase="Initialize" priority="9000" name="Req Bootstrap"><![CDATA[
+					!Helper.NoEffects & val:Level.? >= 6 & hero#source.qinLegends
+				]]></containerreq>
+				<autotag group="TaoGroup" tag="SixDir"/>
+			</bootstrap>
+			<bootstrap thing="teDefyGr5">
+				<containerreq phase="Initialize" priority="9000" name="Req Bootstrap"><![CDATA[
+					!Helper.NoEffects & val:Level.? >= 6 & hero#source.qinLegends
+				]]></containerreq>
+				<autotag group="TaoGroup" tag="SixDir"/>
+			</bootstrap>
+			<bootstrap thing="teJupJdn4">
+				<containerreq phase="Initialize" priority="9000" name="Req Bootstrap"><![CDATA[
+					!Helper.NoEffects & val:Level.? >= 6 & hero#source.qinLegends
+				]]></containerreq>
+				<autotag group="TaoGroup" tag="SixDir"/>
+			</bootstrap>
+		</child>
+	</thing>
+	
+<!-- Tao of the Light Step -->
+	<thing
+		id="taLtStep"
+		name="Tao of the Light Step"
+		compset="Tao"
+		isunique="yes"
+		description="The character understands the heavenly forces that control stability and gravity, and use his understanding to defy the normal principles of balance. This allows him to remain upright, and indeed to remain in all sorts of positions, in the most unlikely and apparently impossible situations. His balance, stability and poise is unaffected by difficult conditions. For so long as a character applies an effect of the Tao of the Light Step, he acts as if he were standing with both feet on solid ground.\n\nHowever, this Tao cannot in itself be used for movement. If a character wishes to pursue an opponent to the top of a bamboo forest in order to engage him in combat, he will need to combine this Tao with a normal movement action or the Tao of the Six Directions.">
+		<fieldval field="trtAbbrev" value="Step"/>
+
+		<!-- If tao effects can stack (i.e., be active at the same time) uncomment
+		<tag group="Helper" tag="Stack"/>
+		-->
+		<tag group="TaoGroup" tag="LightStep"/>
+		<child
+			entity="entTao">
+			<bootstrap thing="teSureFtd">
+				<containerreq phase="Initialize" priority="9000" name="Req Bootstrap"><![CDATA[
+					!Helper.NoEffects & val:Level.? >= 1 
+				]]></containerreq>
+				<autotag group="TaoGroup" tag="LightStep"/>
+			</bootstrap>
+			<bootstrap thing="teRockStdy">
+				<containerreq phase="Initialize" priority="9000" name="Req Bootstrap"><![CDATA[
+					!Helper.NoEffects & val:Level.? >= 2
+				]]></containerreq>
+				<autotag group="TaoGroup" tag="LightStep"/>
+			</bootstrap>
+			<bootstrap thing="teTiptoe">
+				<containerreq phase="Initialize" priority="9000" name="Req Bootstrap"><![CDATA[
+					!Helper.NoEffects & val:Level.? >= 3
+				]]></containerreq>
+				<autotag group="TaoGroup" tag="LightStep"/>
+			</bootstrap>
+			<bootstrap thing="tePerfBal">
+				<containerreq phase="Initialize" priority="9000" name="Req Bootstrap"><![CDATA[
+					!Helper.NoEffects & val:Level.? >= 4
+				]]></containerreq>
+				<autotag group="TaoGroup" tag="LightStep"/>
+			</bootstrap>
+			<bootstrap thing="tePathSpid">
+				<containerreq phase="Initialize" priority="9000" name="Req Bootstrap"><![CDATA[
+					!Helper.NoEffects & val:Level.? >= 5 & hero#source.qinLegends
+				]]></containerreq>
+				<autotag group="TaoGroup" tag="LightStep"/>
+			</bootstrap>
+			<bootstrap thing="teUltAgil">
+				<containerreq phase="Initialize" priority="9000" name="Req Bootstrap"><![CDATA[
+					!Helper.NoEffects & val:Level.? >= 6 & hero#source.qinLegends
+				]]></containerreq>
+				<autotag group="TaoGroup" tag="LightStep"/>
+			</bootstrap>
+		</child>		
+	</thing>
+	
+<!-- Tao of the Strengthened Body -->
+	<thing
+		id="taStrBdy"
+		name="Tao of the Strengthened Body"
+		compset="Tao"
+		isunique="yes"
+		description="The character is in touch with the divine energy flowing through his body, and while he cannot harness it for the magic of Internal Alchemy, he has learnt to use it to enhance his innate physical abilities. This Tao allows a character to increase his natural resistance by means of a mysterious and intangible natural body armor. A hero who masters this Tao can survive highly challenging conditions, and is extremely resistant to injury. A fearsome opponent indeed.">
+		<fieldval field="trtAbbrev" value="Str"/>
+
+
+		<!-- If tao effects can stack (i.e., be active at the same time) uncomment -->
+		<tag group="Helper" tag="Stack"/>
+		<tag group="TaoGroup" tag="Strengthen"/>
+		<child
+			entity="entTao">
+			<bootstrap thing="teCloakChi">
+				<containerreq phase="Initialize" priority="9000" name="Req Bootstrap"><![CDATA[
+					!Helper.NoEffects & val:Level.? >= 1
+				]]></containerreq>
+				<autotag group="TaoGroup" tag="Strengthen"/>
+			</bootstrap>
+			<bootstrap thing="teNoPain">
+				<containerreq phase="Initialize" priority="9000" name="Req Bootstrap"><![CDATA[
+					!Helper.NoEffects & val:Level.? >= 2
+				]]></containerreq>
+				<autotag group="TaoGroup" tag="Strengthen"/>
+			</bootstrap>
+			<bootstrap thing="teClnsBld">
+				<containerreq phase="Initialize" priority="9000" name="Req Bootstrap"><![CDATA[
+					!Helper.NoEffects & val:Level.? >= 3
+				]]></containerreq>
+				<autotag group="TaoGroup" tag="Strengthen"/>
+			</bootstrap>
+			<bootstrap thing="teHardhide">
+				<containerreq phase="Initialize" priority="9000" name="Req Bootstrap"><![CDATA[
+					!Helper.NoEffects & val:Level.? >= 4
+				]]></containerreq>
+				<autotag group="TaoGroup" tag="Strengthen"/>
+			</bootstrap>
+			<bootstrap thing="teMetalBdy">
+				<containerreq phase="Initialize" priority="9000" name="Req Bootstrap"><![CDATA[
+					!Helper.NoEffects & val:Level.? >= 5 & hero#source.qinLegends
+				]]></containerreq>
+				<autotag group="TaoGroup" tag="Strengthen"/>
+			</bootstrap>
+			<bootstrap thing="teTotalImm">
+				<containerreq phase="Initialize" priority="9000" name="Req Bootstrap"><![CDATA[
+					!Helper.NoEffects & val:Level.? >= 6 & hero#source.qinLegends
+				]]></containerreq>
+				<autotag group="TaoGroup" tag="Strengthen"/>
+			</bootstrap>
+		</child>
+	</thing>
+	
+<!-- Tao of the Destructive Breath -->
+	<thing
+		id="taDesBrth"
+		name="Tao of the Destructive Breath"
+		compset="Tao"
+		isunique="yes"
+		description="When a warrior understands the elements used in creating an object or structure, and the forces that ensure its solidity, he may know the weakest point in the structure and direct his energy toward that point through the most direct and powerful strike possible. He may use this Tao to focus his blow, to transmit the power of the Chi through his body or his weapon, and destroy inanimate objects. In combat, the Tao is mainly used to shatter weapons, armor, or obstacles that protect an opponent. It may also be used to increase the strength of a blow.\n\nWhere a Tao effect enables a character to destroy a structure automatically, this means that he need inflict no damage on it. It also means that he can destroy a fixed structure without the need for a Test. A Test is only necessary where the target is moving (eg. being carried by an opponent), far away (eg. when firing an arrow) or very small (eg. a ring).\n\nThe Tao of the Destructive Breath may be used to break an opponent’s weapon more easily. The character must first use the Trap Technique, and should he then decide to break his opponent’s weapon, he gains a bonus equal to his Tao Level on his Metal Test.">
+		<fieldval field="trtAbbrev" value="Des"/>
+
+		<tag group="TaoGroup" tag="Destruct"/>
+		<child
+			entity="entTao">
+			<bootstrap thing="teGntlBrz">
+				<containerreq phase="Initialize" priority="9000" name="Req Bootstrap"><![CDATA[
+					!Helper.NoEffects & val:Level.? >= 1
+				]]></containerreq>
+				<autotag group="TaoGroup" tag="Destruct"/>
+			</bootstrap>
+			<bootstrap thing="teSdnGust">
+				<containerreq phase="Initialize" priority="9000" name="Req Bootstrap"><![CDATA[
+					!Helper.NoEffects & val:Level.? >= 2
+				]]></containerreq>
+				<autotag group="TaoGroup" tag="Destruct"/>
+			</bootstrap>
+			<bootstrap thing="teSdnQk">
+				<containerreq phase="Initialize" priority="9000" name="Req Bootstrap"><![CDATA[
+					!Helper.NoEffects & val:Level.? >= 3
+				]]></containerreq>
+				<autotag group="TaoGroup" tag="Destruct"/>
+			</bootstrap>
+			<bootstrap thing="teScgStl">
+				<containerreq phase="Initialize" priority="9000" name="Req Bootstrap"><![CDATA[
+					!Helper.NoEffects & val:Level.? >= 4
+				]]></containerreq>
+				<autotag group="TaoGroup" tag="Destruct"/>
+			</bootstrap>
+			<bootstrap thing="teUnchGate">
+				<containerreq phase="Initialize" priority="9000" name="Req Bootstrap"><![CDATA[
+					!Helper.NoEffects & val:Level.? >= 5 & hero#source.qinLegends
+				]]></containerreq>
+				<autotag group="TaoGroup" tag="Destruct"/>
+			</bootstrap>
+			<bootstrap thing="teFearTyph">
+				<containerreq phase="Initialize" priority="9000" name="Req Bootstrap"><![CDATA[
+					!Helper.NoEffects & val:Level.? >= 6 & hero#source.qinLegends
+				]]></containerreq>
+				<autotag group="TaoGroup" tag="Destruct"/>
+			</bootstrap>
+		</child>
+	</thing>
+
+<!-- Tao of Inspired Creation -->
+	<thing
+		id="taInsCreat"
+		name="Tao of Inspired Creation"
+		compset="Tao"
+		isunique="yes"
+		description="A character who has command of this Tao understands the elements and forces of the universe sufficiently to be able to create objects of great practical utility or aesthetic charm. The most highly-skilled and renowned craftsmen and artists possess this Tao at a high level. It is used in creative contexts, usually Continuous Tests involving craft or artistic Skills, but note that a character need only invest his Chi and obtain the relevant effect once during the creative process.">
+		<fieldval field="trtAbbrev" value="Crn"/>
+		
+		<tag group="TaoGroup" tag="Inspired"/>
+		<child
+			entity="entTao">
+			<bootstrap thing="teHndMend">
+				<containerreq phase="Initialize" priority="9000" name="Req Bootstrap"><![CDATA[
+					!Helper.NoEffects & val:Level.? >= 1
+				]]></containerreq>
+				<autotag group="TaoGroup" tag="Inspired"/>
+			</bootstrap>
+			<bootstrap thing="teHndCrt">
+				<containerreq phase="Initialize" priority="9000" name="Req Bootstrap"><![CDATA[
+					!Helper.NoEffects & val:Level.? >= 2
+				]]></containerreq>
+				<autotag group="TaoGroup" tag="Inspired"/>
+			</bootstrap>
+			<bootstrap thing="teHndAct">
+				<containerreq phase="Initialize" priority="9000" name="Req Bootstrap"><![CDATA[
+					!Helper.NoEffects & val:Level.? >= 3
+				]]></containerreq>
+				<autotag group="TaoGroup" tag="Inspired"/>
+			</bootstrap>
+			<bootstrap thing="teHndIns">
+				<containerreq phase="Initialize" priority="9000" name="Req Bootstrap"><![CDATA[
+					!Helper.NoEffects & val:Level.? >= 4
+				]]></containerreq>
+				<autotag group="TaoGroup" tag="Inspired"/>
+			</bootstrap>
+			<bootstrap thing="teLegHand">
+				<containerreq phase="Initialize" priority="9000" name="Req Bootstrap"><![CDATA[
+					!Helper.NoEffects & val:Level.? >= 5 & hero#source.qinLegends
+				]]></containerreq>
+				<autotag group="TaoGroup" tag="Inspired"/>
+			</bootstrap>
+			<bootstrap thing="teCelHand">
+				<containerreq phase="Initialize" priority="9000" name="Req Bootstrap"><![CDATA[
+					!Helper.NoEffects & val:Level.? >= 6 & hero#source.qinLegends
+				]]></containerreq>
+				<autotag group="TaoGroup" tag="Inspired"/>
+			</bootstrap>
+		</child>
+	</thing>
+
+<!-- Tao of the Sudden Lightning -->
+	<thing
+		id="taSdnLtng"
+		name="Tao of the Sudden Lightning"
+		compset="Tao"
+		isunique="yes"
+		description="Through his ability in this Tao, a character is able to anticipate and predict the movements of an opponent. He becomes keenly aware of danger and risks to his safety. His ability to guess his opponents’ intentions in combat improves his ability to counter their attacks. Even if he loses the initiative at the start of a combat round, he is able to retake the lead, turn an apparently poor situation to his advantage, and snatch victory from the jaws of defeat.">
+		<fieldval field="trtAbbrev" value="Sdn"/>
+		
+		<tag group="TaoGroup" tag="Sudden"/>
+		<child
+			entity="entTao">
+			<bootstrap thing="teVigil">
+				<containerreq phase="Initialize" priority="9000" name="Req Bootstrap"><![CDATA[
+					!Helper.NoEffects & val:Level.? >= 1 
+				]]></containerreq>
+				<autotag group="TaoGroup" tag="Sudden"/>
+			</bootstrap>
+			<bootstrap thing="teSpeed">
+				<containerreq phase="Initialize" priority="9000" name="Req Bootstrap"><![CDATA[
+					!Helper.NoEffects & val:Level.? >= 2
+				]]></containerreq>
+				<autotag group="TaoGroup" tag="Sudden"/>
+			</bootstrap>
+			<bootstrap thing="teJumpStrt">
+				<containerreq phase="Initialize" priority="9000" name="Req Bootstrap"><![CDATA[
+					!Helper.NoEffects & val:Level.? >= 3
+				]]></containerreq>
+				<autotag group="TaoGroup" tag="Sudden"/>
+			</bootstrap>
+			<bootstrap thing="teFrstMove">
+				<containerreq phase="Initialize" priority="9000" name="Req Bootstrap"><![CDATA[
+					!Helper.NoEffects & val:Level.? >= 4
+				]]></containerreq>
+				<autotag group="TaoGroup" tag="Sudden"/>
+			</bootstrap>
+			<bootstrap thing="teImpAnt">
+				<containerreq phase="Initialize" priority="9000" name="Req Bootstrap"><![CDATA[
+					!Helper.NoEffects & val:Level.? >= 5 & hero#source.qinLegends
+				]]></containerreq>
+				<autotag group="TaoGroup" tag="Sudden"/>
+			</bootstrap>
+			<bootstrap thing="teAbsSeq">
+				<containerreq phase="Initialize" priority="9000" name="Req Bootstrap"><![CDATA[
+					!Helper.NoEffects & val:Level.? >= 6 & hero#source.qinLegends
+				]]></containerreq>
+				<autotag group="TaoGroup" tag="Sudden"/>
+			</bootstrap>
+		</child>
+	</thing>
+
+<!-- Tao of the Invisible Shield  -->
+	<thing
+		id="taInvShld"
+		name="Tao of the Invisible Shield"
+		compset="Tao"
+		isunique="yes"
+		description="This Tao denotes an appreciation of the geometric and rhythmic aspects of combat, an ability to follow the trajectory of an opponent’s strikes, and the corresponding ability to dodge or block them. The greater a character’s command of this Tao, the harder he is to hit and injure. His constant movement, his swift actions and the power of his blocks are sufficient to frustrate most attacks.">
+		<fieldval field="trtAbbrev" value="Inv"/>
+		
+		<tag group="TaoGroup" tag="Invisible"/>
+		<child
+			entity="entTao">
+			<bootstrap thing="teStrDef">
+				<containerreq phase="Initialize" priority="9000" name="Req Bootstrap"><![CDATA[
+					!Helper.NoEffects & val:Level.? >= 1
+				]]></containerreq>
+				<autotag group="TaoGroup" tag="Invisible"/>
+			</bootstrap>
+			<bootstrap thing="teChiDef">
+				<containerreq phase="Initialize" priority="9000" name="Req Bootstrap"><![CDATA[
+					!Helper.NoEffects & val:Level.? >= 2
+				]]></containerreq>
+				<autotag group="TaoGroup" tag="Invisible"/>
+			</bootstrap>
+			<bootstrap thing="teStrBlck">
+				<containerreq phase="Initialize" priority="9000" name="Req Bootstrap"><![CDATA[
+					!Helper.NoEffects & val:Level.? >= 3
+				]]></containerreq>
+				<autotag group="TaoGroup" tag="Invisible"/>
+			</bootstrap>
+			<bootstrap thing="teChiBlck">
+				<containerreq phase="Initialize" priority="9000" name="Req Bootstrap"><![CDATA[
+					!Helper.NoEffects & val:Level.? >= 4
+				]]></containerreq>
+				<autotag group="TaoGroup" tag="Invisible"/>
+			</bootstrap>
+			<bootstrap thing="teMultShld">
+				<containerreq phase="Initialize" priority="9000" name="Req Bootstrap"><![CDATA[
+					!Helper.NoEffects & val:Level.? >= 5 & hero#source.qinLegends
+				]]></containerreq>
+				<autotag group="TaoGroup" tag="Invisible"/>
+			</bootstrap>
+			<bootstrap thing="teSeqDef">
+				<containerreq phase="Initialize" priority="9000" name="Req Bootstrap"><![CDATA[
+					!Helper.NoEffects & val:Level.? >= 6 & hero#source.qinLegends
+				]]></containerreq>
+				<autotag group="TaoGroup" tag="Invisible"/>
+			</bootstrap>
+		</child>
+	</thing>	
+	
+<!-- Tao of the Ten Thousand Hands  -->
+	<thing
+		id="taThHnds"
+		name="Tao of the Ten Thousand Hands"
+		compset="Tao"
+		isunique="yes"
+		description="This Tao represents understanding of the essence of movement, a superior level of control over one's own movements, and an extraordinary degree of measure in each movement. Each movement by a character with this Tao has a definite purpose, and none of his movements are wasted. The character has such control over his body that he is able to perform a sequence of actions, each flowing easily and naturally from each other, in a single fluid movement. His deftness, poise and grace make him an unpredictable and dangerous opponent.">
+		<fieldval field="trtAbbrev" value="Ten"/>
+
+		<tag group="TaoGroup" tag="TenThou"/>
+		<child
+			entity="entTao">
+			<bootstrap thing="teSndHand">
+				<containerreq phase="Initialize" priority="9000" name="Req Bootstrap"><![CDATA[
+					!Helper.NoEffects & val:Level.? >= 1
+				]]></containerreq>
+				<autotag group="TaoGroup" tag="TenThou"/>
+			</bootstrap>
+			<bootstrap thing="teSndBrth">
+				<containerreq phase="Initialize" priority="9000" name="Req Bootstrap"><![CDATA[
+					!Helper.NoEffects & val:Level.? >= 2
+				]]></containerreq>
+				<autotag group="TaoGroup" tag="TenThou"/>
+			</bootstrap>
+			<bootstrap thing="teSndStk">
+				<containerreq phase="Initialize" priority="9000" name="Req Bootstrap"><![CDATA[
+					!Helper.NoEffects & val:Level.? >= 3
+				]]></containerreq>
+				<autotag group="TaoGroup" tag="TenThou"/>
+			</bootstrap>
+			<bootstrap thing="teSndBld">
+				<containerreq phase="Initialize" priority="9000" name="Req Bootstrap"><![CDATA[
+					!Helper.NoEffects & val:Level.? >= 4
+				]]></containerreq>
+				<autotag group="TaoGroup" tag="TenThou"/>
+			</bootstrap>
+			<bootstrap thing="teThouBlad">
+				<containerreq phase="Initialize" priority="9000" name="Req Bootstrap"><![CDATA[
+					!Helper.NoEffects & val:Level.? >= 5 & hero#source.qinLegends
+				]]></containerreq>
+				<autotag group="TaoGroup" tag="TenThou"/>
+			</bootstrap>
+			<bootstrap thing="teTenBlad">
+				<containerreq phase="Initialize" priority="9000" name="Req Bootstrap"><![CDATA[
+					!Helper.NoEffects & val:Level.? >= 6 & hero#source.qinLegends
+				]]></containerreq>
+				<autotag group="TaoGroup" tag="TenThou"/>
+			</bootstrap>
+		</child>
+	</thing>
+
+<!-- Tao of the Inner Eye  -->
+	<thing
+		id="taInEye"
+		name="Tao of the Inner Eye"
+		compset="Tao"
+		isunique="yes"
+		description="Most warriors rely mainly on their vision to take in their surroundings and anticipate the intentions of their opponents. But he who commands the Tao of the Inner Eye perceives the world in a quite different way, seeing far beyond his normal field of vision. By noticing every last physical and material detail, and connecting it instantly to his inner understanding of the world, such a hero can deploy the information relayed by his senses in flushing out his enemies and fending off their attacks. In a non-combat situation, this Tao enables a character to perceive things invisible to the mortal eye.">
+		<fieldval field="trtAbbrev" value="Eye"/>
+		<tag group="TaoGroup" tag="Inner"/>
+		<child
+			entity="entTao">
+			<bootstrap thing="teKnEye">
+				<containerreq phase="Initialize" priority="9000" name="Req Bootstrap"><![CDATA[
+					!Helper.NoEffects & val:Level.? >= 1
+				]]></containerreq>
+				<autotag group="TaoGroup" tag="Inner"/>
+			</bootstrap>
+			<bootstrap thing="teShrpSns">
+				<containerreq phase="Initialize" priority="9000" name="Req Bootstrap"><![CDATA[
+					!Helper.NoEffects & val:Level.? >= 2
+				]]></containerreq>
+				<autotag group="TaoGroup" tag="Inner"/>
+			</bootstrap>
+			<bootstrap thing="teOuterEye">
+				<containerreq phase="Initialize" priority="9000" name="Req Bootstrap"><![CDATA[
+					!Helper.NoEffects & val:Level.? >= 3
+				]]></containerreq>
+				<autotag group="TaoGroup" tag="Inner"/>
+			</bootstrap>
+			<bootstrap thing="teHvnlyEye">
+				<containerreq phase="Initialize" priority="9000" name="Req Bootstrap"><![CDATA[
+					!Helper.NoEffects & val:Level.? >= 4
+				]]></containerreq>
+				<autotag group="TaoGroup" tag="Inner"/>
+			</bootstrap>
+			<bootstrap thing="teDistEye">
+				<containerreq phase="Initialize" priority="9000" name="Req Bootstrap"><![CDATA[
+					!Helper.NoEffects & val:Level.? >= 5 & hero#source.qinLegends
+				]]></containerreq>
+				<autotag group="TaoGroup" tag="Inner"/>
+			</bootstrap>
+			<bootstrap thing="teAbsEye">
+				<containerreq phase="Initialize" priority="9000" name="Req Bootstrap"><![CDATA[
+					!Helper.NoEffects & val:Level.? >= 6 & hero#source.qinLegends
+				]]></containerreq>
+				<autotag group="TaoGroup" tag="Inner"/>
+			</bootstrap>
+		</child>
+	</thing>
+
+<!-- Tao of the Hidden Shadow  -->
+	<thing
+		id="taHdShadow"
+		name="Tao of the Hidden Shadow"
+		compset="Tao"
+		isunique="yes"
+		description="Many use this Tao to become skilled spies or formidable assassins. For it enables them to cover not just their tracks, but their very presence, and act in complete impunity. A true master of the Tao of the Hidden Shadow can deceive the senses of others and evade the gaze of all, even in clear, well-lit environments.">
+		<fieldval field="trtAbbrev" value="Shad"/>
+
+		<tag group="TaoGroup" tag="Hidden"/>
+		<child
+			entity="entTao">
+			<bootstrap thing="teDarkVeil">
+				<containerreq phase="Initialize" priority="9000" name="Req Bootstrap"><![CDATA[
+					!Helper.NoEffects & val:Level.? >= 1
+				]]></containerreq>
+				<autotag group="TaoGroup" tag="Hidden"/>
+			</bootstrap>
+			<bootstrap thing="teSecVeil">
+				<containerreq phase="Initialize" priority="9000" name="Req Bootstrap"><![CDATA[
+					!Helper.NoEffects & val:Level.? >= 2
+				]]></containerreq>
+				<autotag group="TaoGroup" tag="Hidden"/>
+			</bootstrap>
+			<bootstrap thing="tePathShad">
+				<containerreq phase="Initialize" priority="9000" name="Req Bootstrap"><![CDATA[
+					!Helper.NoEffects & val:Level.? >= 3
+				]]></containerreq>
+				<autotag group="TaoGroup" tag="Hidden"/>
+			</bootstrap>
+			<bootstrap thing="tePathGst">
+				<containerreq phase="Initialize" priority="9000" name="Req Bootstrap"><![CDATA[
+					!Helper.NoEffects & val:Level.? >= 4
+				]]></containerreq>
+				<autotag group="TaoGroup" tag="Hidden"/>
+			</bootstrap>
+			<bootstrap thing="teClkShad">
+				<containerreq phase="Initialize" priority="9000" name="Req Bootstrap"><![CDATA[
+					!Helper.NoEffects & val:Level.? >= 5 & hero#source.qinLegends
+				]]></containerreq>
+				<autotag group="TaoGroup" tag="Hidden"/>
+			</bootstrap>
+			<bootstrap thing="teWalkShad">
+				<containerreq phase="Initialize" priority="9000" name="Req Bootstrap"><![CDATA[
+					!Helper.NoEffects & val:Level.? >= 6 & hero#source.qinLegends
+				]]></containerreq>
+				<autotag group="TaoGroup" tag="Hidden"/>
+			</bootstrap>
+		</child>
+	</thing>
+	
+<!-- Tao of the Thousand Bees  -->
+	<thing
+		id="taThBees"
+		name="Tao of the Thousand Bees"
+		compset="Tao"
+		isunique="yes"
+		description="The mark of an accomplished warrior is his ability to use his surroundings to gain an advantage in combat. Everyday objects, together with the basic components of buildings and natural environments, become powerful weapons in his hands. A master of this Tao needs only a fraction of a second to scan the objects within his reach, evaluate their potential, and choose how best to use them. Once he holds an object in his hands, he can throw or propel it with formidable power and accuracy. A character may use this Tao to convert a simple everyday object into a deadly missile, particularly by combining several Levels in a single throw. Where a character chooses to use his action in an exchange to throw an object, and uses this Tao to assist him, he performs a Test of Metal + Throwing against the Passive Defense score of his target. If the Test is successful, the target may still use an action to attempt an Active Defense.\n\nAn attack using this Tao will have a range of (Metal x 3) yards.">
+		<fieldval field="trtAbbrev" value="Bees"/>
+		
+		<tag group="TaoGroup" tag="Thousand"/>
+		<child
+			entity="entTao">
+			<bootstrap thing="teDarkVeil">
+				<containerreq phase="Initialize" priority="9000" name="Req Bootstrap"><![CDATA[
+					!Helper.NoEffects & val:Level.? >= 1
+				]]></containerreq>
+				<autotag group="TaoGroup" tag="Thousand"/>
+			</bootstrap>
+			<bootstrap thing="teSecVeil">
+				<containerreq phase="Initialize" priority="9000" name="Req Bootstrap"><![CDATA[
+					!Helper.NoEffects & val:Level.? >= 2
+				]]></containerreq>
+				<autotag group="TaoGroup" tag="Thousand"/>
+			</bootstrap>
+			<bootstrap thing="tePathShad">
+				<containerreq phase="Initialize" priority="9000" name="Req Bootstrap"><![CDATA[
+					!Helper.NoEffects & val:Level.? >= 3
+				]]></containerreq>
+				<autotag group="TaoGroup" tag="Thousand"/>
+			</bootstrap>
+			<bootstrap thing="tePathGst">
+				<containerreq phase="Initialize" priority="9000" name="Req Bootstrap"><![CDATA[
+					!Helper.NoEffects & val:Level.? >= 4
+				]]></containerreq>
+				<autotag group="TaoGroup" tag="Thousand"/>
+			</bootstrap>
+			<bootstrap thing="teCtlMiss">
+				<containerreq phase="Initialize" priority="9000" name="Req Bootstrap"><![CDATA[
+					!Helper.NoEffects & val:Level.? >= 5 & hero#source.qinLegends
+				]]></containerreq>
+				<autotag group="TaoGroup" tag="Thousand"/>
+			</bootstrap>
+			<bootstrap thing="teMastMiss">
+				<containerreq phase="Initialize" priority="9000" name="Req Bootstrap"><![CDATA[
+					!Helper.NoEffects & val:Level.? >= 6 & hero#source.qinLegends
+				]]></containerreq>
+				<autotag group="TaoGroup" tag="Thousand"/>
+			</bootstrap>
+		</child>
+	</thing>
+	
+<!-- Tao of Yin and Yang  -->
+	<thing
+		id="taYinYang"
+		name="Tao of Yin and Yang"
+		compset="Tao"
+		isunique="yes"
+		description="Each and every being and thing in the universe possesses Yin and Yang. A hero that commands the Tao of this name is able to visualize the flow of these primordial forces, and control their flow in order to turn action into non-action, passivity into attack. One who has understood the deepest implications of the interconnectedness of all things learns how to turn this to his own advantage; the elements appear to bend to his every desire.\n\n This Tao does not allow you to get a critical success or cancel a critical failure (double zero). A player need not state his intention to use this Tao before performing a Test. He may wait until after the Test and then decide whether to adjust its result.">
+		<fieldval field="trtAbbrev" value="Yy"/>
+
+		<tag group="TaoGroup" tag="YinAndYang"/>
+		<child
+			entity="entTao">
+			<bootstrap thing="teStrkLck">
+				<containerreq phase="Initialize" priority="9000" name="Req Bootstrap"><![CDATA[
+					!Helper.NoEffects & val:Level.? >= 1
+				]]></containerreq>
+				<autotag group="TaoGroup" tag="YinAndYang"/>
+			</bootstrap>
+			<bootstrap thing="teContEner">
+				<containerreq phase="Initialize" priority="9000" name="Req Bootstrap"><![CDATA[
+					!Helper.NoEffects & val:Level.? >= 2
+				]]></containerreq>
+				<autotag group="TaoGroup" tag="YinAndYang"/>
+			</bootstrap>
+			<bootstrap thing="teContFlw">
+				<containerreq phase="Initialize" priority="9000" name="Req Bootstrap"><![CDATA[
+					!Helper.NoEffects & val:Level.? >= 3
+				]]></containerreq>
+				<autotag group="TaoGroup" tag="YinAndYang"/>
+			</bootstrap>
+			<bootstrap thing="teMstEner">
+				<containerreq phase="Initialize" priority="9000" name="Req Bootstrap"><![CDATA[
+					!Helper.NoEffects & val:Level.? >= 4
+				]]></containerreq>
+				<autotag group="TaoGroup" tag="YinAndYang"/>
+			</bootstrap>
+			<bootstrap thing="teMastEner">
+				<containerreq phase="Initialize" priority="9000" name="Req Bootstrap"><![CDATA[
+					!Helper.NoEffects & val:Level.? >= 5 & hero#source.qinLegends
+				]]></containerreq>
+				<autotag group="TaoGroup" tag="YinAndYang"/>
+			</bootstrap>
+			<bootstrap thing="teMastMiss">
+				<containerreq phase="Initialize" priority="9000" name="Req Bootstrap"><![CDATA[
+					!Helper.NoEffects & val:Level.? >= 6 & hero#source.qinLegends
+				]]></containerreq>
+				<autotag group="TaoGroup" tag="YinAndYang"/>
+			</bootstrap>
+		</child>
+	</thing>
+	
+<!-- Tao of the Breath of Power  -->
+	<thing
+		id="taBrPwr"
+		name="Tao of the Breath of Power"
+		compset="Tao"
+		isunique="yes"
+		description="A hero with this Tao has the ability to breathe his own Chi into inanimate objects to make them stronger or change their properties. He can turn a simple tool into a potent weapon or humble rags into sturdy armor. This uncanny and unpredictable power makes a character armed with this Tao a mysterious and dangerous enemy. The Tao of the Breath of Power is particularly popular among spies, who must work under cover, and women, who must cultivate the appearance of weakness. An object that has been transformed by applying this Tao must be used with the Skill of Improvisation. When wielding his improvised weapon, the character may not normally use a Combat Technique or any other Tao. Unless stated otherwise, the effects of this Tao last only as long as the current combat round.">
+		<fieldval field="trtAbbrev" value="Pwr"/>
+
+		<tag group="TaoGroup" tag="BreathPwr"/>
+		<child
+			entity="entTao">
+			<bootstrap thing="teImpShld">
+				<containerreq phase="Initialize" priority="9000" name="Req Bootstrap"><![CDATA[
+					!Helper.NoEffects & val:Level.? >= 1
+				]]></containerreq>
+				<autotag group="TaoGroup" tag="BreathPwr"/>
+			</bootstrap>
+			<bootstrap thing="teHiddenBd">
+				<containerreq phase="Initialize" priority="9000" name="Req Bootstrap"><![CDATA[
+					!Helper.NoEffects & val:Level.? >= 2
+				]]></containerreq>
+				<autotag group="TaoGroup" tag="BreathPwr"/>
+			</bootstrap>
+			<bootstrap thing="teInvisArm">
+				<containerreq phase="Initialize" priority="9000" name="Req Bootstrap"><![CDATA[
+					!Helper.NoEffects & val:Level.? >= 3
+				]]></containerreq>
+				<autotag group="TaoGroup" tag="BreathPwr"/>
+			</bootstrap>
+			<bootstrap thing="teMartSkl">
+				<containerreq phase="Initialize" priority="9000" name="Req Bootstrap"><![CDATA[
+					!Helper.NoEffects & val:Level.? >= 4
+				]]></containerreq>
+				<autotag group="TaoGroup" tag="BreathPwr"/>
+			</bootstrap>
+			<bootstrap thing="teImprvWpn">
+				<containerreq phase="Initialize" priority="9000" name="Req Bootstrap"><![CDATA[
+					!Helper.NoEffects & val:Level.? >= 5 & hero#source.qinLegends
+				]]></containerreq>
+				<autotag group="TaoGroup" tag="BreathPwr"/>
+			</bootstrap>
+			<bootstrap thing="teStkDist">
+				<containerreq phase="Initialize" priority="9000" name="Req Bootstrap"><![CDATA[
+					!Helper.NoEffects & val:Level.? >= 6 & hero#source.qinLegends
+				]]></containerreq>
+				<autotag group="TaoGroup" tag="BreathPwr"/>
+			</bootstrap>
+		</child>
+	</thing>
+	
+<!-- Tao of the Clear Mind -->
+	<thing
+		id="taClMind"
+		name="Tao of the Clear Mind"
+		compset="Tao"
+		isunique="yes"
+		description="This Tao is far more widespread in the world of universities and libraries than that of arms and armor. It enables scholars and wise men to focus their attention on mental and intellectual challenges and attain a high level of concentration. By shielding them from the troubles and tumult of the outside world, it frees them to concentrate on the task at hand.">
+		<fieldval field="trtAbbrev" value="Clr"/>
+
+		<tag group="TaoGroup" tag="ClearMind"/>
+		<child
+			entity="entTao">
+			<bootstrap thing="teShrpMnd">
+				<containerreq phase="Initialize" priority="9000" name="Req Bootstrap"><![CDATA[
+					!Helper.NoEffects & val:Level.? >= 1
+				]]></containerreq>
+				<autotag group="TaoGroup" tag="ClearMind"/>
+			</bootstrap>
+			<bootstrap thing="teTrqMnd">
+				<containerreq phase="Initialize" priority="9000" name="Req Bootstrap"><![CDATA[
+					!Helper.NoEffects & val:Level.? >= 2
+				]]></containerreq>
+				<autotag group="TaoGroup" tag="ClearMind"/>
+			</bootstrap>
+			<bootstrap thing="teLibMnd">
+				<containerreq phase="Initialize" priority="9000" name="Req Bootstrap"><![CDATA[
+					!Helper.NoEffects & val:Level.? >= 3
+				]]></containerreq>
+				<autotag group="TaoGroup" tag="ClearMind"/>
+			</bootstrap>
+			<bootstrap thing="teVisMnd">
+				<containerreq phase="Initialize" priority="9000" name="Req Bootstrap"><![CDATA[
+					!Helper.NoEffects & val:Level.? >= 4
+				]]></containerreq>
+				<autotag group="TaoGroup" tag="ClearMind"/>
+			</bootstrap>
+			<bootstrap thing="teWillStl">
+				<containerreq phase="Initialize" priority="9000" name="Req Bootstrap"><![CDATA[
+					!Helper.NoEffects & val:Level.? >= 5 & hero#source.qinLegends
+				]]></containerreq>
+				<autotag group="TaoGroup" tag="ClearMind"/>
+			</bootstrap>
+			<bootstrap thing="tePerfHarm">
+				<containerreq phase="Initialize" priority="9000" name="Req Bootstrap"><![CDATA[
+					!Helper.NoEffects & val:Level.? >= 6 & hero#source.qinLegends
+				]]></containerreq>
+				<autotag group="TaoGroup" tag="ClearMind"/>
+			</bootstrap>
+		</child>
+	</thing>
+	
+<!-- Tao of the Serene Presence -->
+	<thing
+		id="taSrPres"
+		name="Tao of the Serene Presence"
+		compset="Tao"
+		isunique="yes"
+		description="This Tao governs social interactions and nonverbal communication in the world of men, from the reading of facial expressions to the correct interpretation of mental signals.\n\n A character who possesses this Tao distinguishes himself from ordinary mortals by the degree to which he can influence the reactions of those around him. He can give his mortal form an attractive or threatening appearance, and see through the motives of others. Such skills are of great value for diplomats.">		
+		<fieldval field="trtAbbrev" value="Pre"/>
+
+		<tag group="TaoGroup" tag="SerenePres"/>
+		<child
+			entity="entTao">
+			<bootstrap thing="teShrpMnd">
+				<containerreq phase="Initialize" priority="9000" name="Req Bootstrap"><![CDATA[
+					!Helper.NoEffects & val:Level.? >= 1
+				]]></containerreq>
+				<autotag group="TaoGroup" tag="SerenePres"/>
+			</bootstrap>
+			<bootstrap thing="teTrqMnd">
+				<containerreq phase="Initialize" priority="9000" name="Req Bootstrap"><![CDATA[
+					!Helper.NoEffects & val:Level.? >= 2
+				]]></containerreq>
+				<autotag group="TaoGroup" tag="SerenePres"/>
+			</bootstrap>
+			<bootstrap thing="teLibMnd">
+				<containerreq phase="Initialize" priority="9000" name="Req Bootstrap"><![CDATA[
+					!Helper.NoEffects & val:Level.? >= 3
+				]]></containerreq>
+				<autotag group="TaoGroup" tag="SerenePres"/>
+			</bootstrap>
+			<bootstrap thing="teVisMnd">
+				<containerreq phase="Initialize" priority="9000" name="Req Bootstrap"><![CDATA[
+					!Helper.NoEffects & val:Level.? >= 4
+				]]></containerreq>
+				<autotag group="TaoGroup" tag="SerenePres"/>
+			</bootstrap>
+			<bootstrap thing="teMaskDom">
+				<containerreq phase="Initialize" priority="9000" name="Req Bootstrap"><![CDATA[
+					!Helper.NoEffects & val:Level.? >= 5 & hero#source.qinLegends
+				]]></containerreq>
+				<autotag group="TaoGroup" tag="SerenePres"/>
+			</bootstrap>
+			<bootstrap thing="teMaskThEm">
+				<containerreq phase="Initialize" priority="9000" name="Req Bootstrap"><![CDATA[
+					!Helper.NoEffects & val:Level.? >= 6 & hero#source.qinLegends
+				]]></containerreq>
+				<autotag group="TaoGroup" tag="SerenePres"/>
+			</bootstrap>
+		</child>
+	</thing>
+</document>

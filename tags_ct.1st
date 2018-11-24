@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!-- This file contains the definitions of all tag groups and tags that are used
+      throughout the Skeleton data files. These elements relied upon by numerous
+      other facets of the data files and must be processed first during compilation,
+      so they are placed in a file with a ".1st" extension.
+-->
+
+<document signature="Hero Lab Structure">
+
+   <!-- 
+	ctCost group - dynamic tags applied to skill things to indicate combat techniques and cost.
+  -->
+	<group
+		id="ComTchCost">
+		<value id="ctKnock1" name="Knock-out (the bear strike)"/>
+		<value id="ctKnock2" name="Knock-out (the bear strike)"/>
+		<value id="ctKnock3" name="Knock-out (the bear strike)"/>
+		<value id="ctKnock4" name="Knock-out (the bear strike)"/>
+		<value id="ctKnock5" name="Knock-out (the bear strike)"/>
+		<value id="ctKnock6" name="Knock-out (the bear strike)"/>
+		<value id="ctTrap1" name="Trap (the snared blade)"/>
+		<value id="ctTrap2" name="Trap (the snared blade)"/>
+		<value id="ctTrap3" name="Trap (the snared blade)"/>
+		<value id="ctTrap4" name="Trap (the snared blade)"/>
+		<value id="ctTrap5" name="Trap (the snared blade)"/>
+		<value id="ctTrap6" name="Trap (the snared blade)"/>
+		<value id="ctCharge1" name="Charge (the ox charge)"/>
+		<value id="ctCharge2" name="Charge (the ox charge)"/>
+		<value id="ctCharge3" name="Charge (the ox charge)"/>
+		<value id="ctCharge4" name="Charge (the ox charge)"/>
+		<value id="ctCharge5" name="Charge (the ox charge)"/>
+		<value id="ctCharge6" name="Charge (the ox charge)"/>
+		<value id="ctCombin1" name="Combination (the way of all possibility)"/>
+		<value id="ctCombin2" name="Combination (the way of all possibility)"/>
+		<value id="ctCombin3" name="Combination (the way of all possibility)"/>
+		<value id="ctCombin4" name="Combination (the way of all possibility)"/>
+		<value id="ctCombin5" name="Combination (the way of all possibility)"/>
+		<value id="ctCombin6" name="Combination (the way of all possibility)"/>
+		<value id="ctDblBlow1" name="Double Blow (the dragon's claw and tail)"/>
+		<value id="ctDblBlow2" name="Double Blow (the dragon's claw and tail)"/>
+		<value id="ctDblBlow3" name="Double Blow (the dragon's claw and tail)"/>
+		<value id="ctDblBlow4" name="Double Blow (the dragon's claw and tail)"/>
+		<value id="ctDblBlow5" name="Double Blow (the dragon's claw and tail)"/>
+		<value id="ctDblBlow6" name="Double Blow (the dragon's claw and tail)"/>
+		<value id="ctDirect1" name="Direct Hit (the sharp thorn)"/>
+		<value id="ctDirect2" name="Direct Hit (the sharp thorn)"/>
+		<value id="ctDirect3" name="Direct Hit (the sharp thorn)"/>
+		<value id="ctDirect4" name="Direct Hit (the sharp thorn)"/>
+		<value id="ctDirect5" name="Direct Hit (the sharp thorn)"/>
+		<value id="ctDirect6" name="Direct Hit (the sharp thorn)"/>
+		<value id="ctDisarm1" name="Disarm (the way of peace)"/>
+		<value id="ctDisarm2" name="Disarm (the way of peace)"/>
+		<value id="ctDisarm3" name="Disarm (the way of peace)"/>
+		<value id="ctDisarm4" name="Disarm (the way of peace)"/>
+		<value id="ctDisarm5" name="Disarm (the way of peace)"/>
+		<value id="ctDisarm6" name="Disarm (the way of peace)"/>
+		<value id="ctDblBlk1" name="Double Block (halt the rain of blades)"/>
+		<value id="ctDblBlk2" name="Double Block (halt the rain of blades)"/>
+		<value id="ctDblBlk3" name="Double Block (halt the rain of blades)"/>
+		<value id="ctDblBlk4" name="Double Block (halt the rain of blades)"/>
+		<value id="ctDblBlk5" name="Double Block (halt the rain of blades)"/>
+		<value id="ctDblBlk6" name="Double Block (halt the rain of blades)"/>
+		<value id="ctDblSht1" name="Double Shot (teeth of the snake)"/>
+		<value id="ctDblSht2" name="Double Shot (teeth of the snake)"/>
+		<value id="ctDblSht3" name="Double Shot (teeth of the snake)"/>
+		<value id="ctDblSht4" name="Double Shot (teeth of the snake)"/>
+		<value id="ctDblSht5" name="Double Shot (teeth of the snake)"/>
+		<value id="ctDblSht6" name="Double Shot (teeth of the snake)"/>
+		<value id="ctDblTrg1" name="Double Target (the deadly breeze)"/>
+		<value id="ctDblTrg2" name="Double Target (the deadly breeze)"/>
+		<value id="ctDblTrg3" name="Double Target (the deadly breeze)"/>
+		<value id="ctDblTrg4" name="Double Target (the deadly breeze)"/>
+		<value id="ctDblTrg5" name="Double Target (the deadly breeze)"/>
+		<value id="ctDblTrg6" name="Double Target (the deadly breeze)"/>
+		<value id="ctFeint1" name="Feint (false carelessness)"/>
+		<value id="ctFeint2" name="Feint (false carelessness)"/>
+		<value id="ctFeint3" name="Feint (false carelessness)"/>
+		<value id="ctFeint4" name="Feint (false carelessness)"/>
+		<value id="ctFeint5" name="Feint (false carelessness)"/>
+		<value id="ctFeint6" name="Feint (false carelessness)"/>
+		<value id="ctHold1" name="Hold at Bay (the hedge of thorns)"/>
+		<value id="ctHold2" name="Hold at Bay (the hedge of thorns)"/>
+		<value id="ctHold3" name="Hold at Bay (the hedge of thorns)"/>
+		<value id="ctHold4" name="Hold at Bay (the hedge of thorns)"/>
+		<value id="ctHold5" name="Hold at Bay (the hedge of thorns)"/>
+		<value id="ctHold6" name="Hold at Bay (the hedge of thorns)"/>
+		<value id="ctIndSht1" name="Indirect Shot (the curve of death)"/>
+		<value id="ctIndSht2" name="Indirect Shot (the curve of death)"/>
+		<value id="ctIndSht3" name="Indirect Shot (the curve of death)"/>
+		<value id="ctIndSht4" name="Indirect Shot (the curve of death)"/>
+		<value id="ctIndSht5" name="Indirect Shot (the curve of death)"/>
+		<value id="ctIndSht6" name="Indirect Shot (the curve of death)"/>
+		<value id="ctLngSht1" name="Long Shot (the cry of the falcon)"/>
+		<value id="ctLngSht2" name="Long Shot (the cry of the falcon)"/>
+		<value id="ctLngSht3" name="Long Shot (the cry of the falcon)"/>
+		<value id="ctLngSht4" name="Long Shot (the cry of the falcon)"/>
+		<value id="ctLngSht5" name="Long Shot (the cry of the falcon)"/>
+		<value id="ctLngSht6" name="Long Shot (the cry of the falcon)"/>
+		<value id="ctMastrSk1" name="Masterstroke (the eye of the master)"/>
+		<value id="ctMastrSk2" name="Masterstroke (the eye of the master)"/>
+		<value id="ctMastrSk3" name="Masterstroke (the eye of the master)"/>
+		<value id="ctMastrSk4" name="Masterstroke (the eye of the master)"/>
+		<value id="ctMastrSk5" name="Masterstroke (the eye of the master)"/>
+		<value id="ctMastrSk6" name="Masterstroke (the eye of the master)"/>
+		<value id="ctMystif1" name="Mystification (the torrent of blades)"/>
+		<value id="ctMystif2" name="Mystification (the torrent of blades)"/>
+		<value id="ctMystif3" name="Mystification (the torrent of blades)"/>
+		<value id="ctMystif4" name="Mystification (the torrent of blades)"/>
+		<value id="ctMystif5" name="Mystification (the torrent of blades)"/>
+		<value id="ctMystif6" name="Mystification (the torrent of blades)"/>
+		<value id="ctRepel1" name="Repel (the advancing storm)"/>
+		<value id="ctRepel2" name="Repel (the advancing storm)"/>
+		<value id="ctRepel3" name="Repel (the advancing storm)"/>
+		<value id="ctRepel4" name="Repel (the advancing storm)"/>
+		<value id="ctRepel5" name="Repel (the advancing storm)"/>
+		<value id="ctRepel6" name="Repel (the advancing storm)"/>
+		<value id="ctRicoch1" name="Ricochet (the blind assassin)"/>
+		<value id="ctRicoch2" name="Ricochet (the blind assassin)"/>
+		<value id="ctRicoch3" name="Ricochet (the blind assassin)"/>
+		<value id="ctRicoch4" name="Ricochet (the blind assassin)"/>
+		<value id="ctRicoch5" name="Ricochet (the blind assassin)"/>
+		<value id="ctRicoch6" name="Ricochet (the blind assassin)"/>
+		<value id="ctSnpSht1" name="Snapshot (the lightning of Heaven)"/>
+		<value id="ctSnpSht2" name="Snapshot (the lightning of Heaven)"/>
+		<value id="ctSnpSht3" name="Snapshot (the lightning of Heaven)"/>
+		<value id="ctSnpSht4" name="Snapshot (the lightning of Heaven)"/>
+		<value id="ctSnpSht5" name="Snapshot (the lightning of Heaven)"/>
+		<value id="ctSnpSht6" name="Snapshot (the lightning of Heaven)"/>
+		<value id="ctStrang1" name="Strangle (the boa constrictor)"/>
+		<value id="ctStrang2" name="Strangle (the boa constrictor)"/>
+		<value id="ctStrang3" name="Strangle (the boa constrictor)"/>
+		<value id="ctStrang4" name="Strangle (the boa constrictor)"/>
+		<value id="ctStrang5" name="Strangle (the boa constrictor)"/>
+		<value id="ctStrang6" name="Strangle (the boa constrictor)"/>
+		<value id="ctStrkThr1" name="Strike Through (eye of the needle)"/>
+		<value id="ctStrkThr2" name="Strike Through (eye of the needle)"/>
+		<value id="ctStrkThr3" name="Strike Through (eye of the needle)"/>
+		<value id="ctStrkThr4" name="Strike Through (eye of the needle)"/>
+		<value id="ctStrkThr5" name="Strike Through (eye of the needle)"/>
+		<value id="ctStrkThr6" name="Strike Through (eye of the needle)"/>
+		<value id="ctThrow1" name="Throw (the way of the tornado)"/>
+		<value id="ctThrow2" name="Throw (the way of the tornado)"/>
+		<value id="ctThrow3" name="Throw (the way of the tornado)"/>
+		<value id="ctThrow4" name="Throw (the way of the tornado)"/>
+		<value id="ctThrow5" name="Throw (the way of the tornado)"/>
+		<value id="ctThrow6" name="Throw (the way of the tornado)"/>
+		<value id="ctTotBlk1" name="Total Block (the citadel)"/>
+		<value id="ctTotBlk2" name="Total Block (the citadel)"/>
+		<value id="ctTotBlk3" name="Total Block (the citadel)"/>
+		<value id="ctTotBlk4" name="Total Block (the citadel)"/>
+		<value id="ctTotBlk5" name="Total Block (the citadel)"/>
+		<value id="ctTotBlk6" name="Total Block (the citadel)"/>
+		<value id="ctTwoWpns1" name="Two Weapons (the whirlwind of blades)"/>
+		<value id="ctTwoWpns2" name="Two Weapons (the whirlwind of blades)"/>
+		<value id="ctTwoWpns3" name="Two Weapons (the whirlwind of blades)"/>
+		<value id="ctTwoWpns4" name="Two Weapons (the whirlwind of blades)"/>
+		<value id="ctTwoWpns5" name="Two Weapons (the whirlwind of blades)"/>
+		<value id="ctTwoWpns6" name="Two Weapons (the whirlwind of blades)"/>
+		<value id="ctWhirl1" name="Whirlwind Block (the cyclone of blood)"/>
+		<value id="ctWhirl2" name="Whirlwind Block (the cyclone of blood)"/>
+		<value id="ctWhirl3" name="Whirlwind Block (the cyclone of blood)"/>
+		<value id="ctWhirl4" name="Whirlwind Block (the cyclone of blood)"/>
+		<value id="ctWhirl5" name="Whirlwind Block (the cyclone of blood)"/>
+		<value id="ctWhirl6" name="Whirlwind Block (the cyclone of blood)"/>
+		<value id="ctSuicAtk1" name="Suicide Attack (the ultimate sacrifice)"/>
+		<value id="ctSuicAtk2" name="Suicide Attack (the ultimate sacrifice)"/>
+		<value id="ctSuicAtk3" name="Suicide Attack (the ultimate sacrifice)"/>
+		<value id="ctSuicAtk4" name="Suicide Attack (the ultimate sacrifice)"/>
+		<value id="ctSuicAtk5" name="Suicide Attack (the ultimate sacrifice)"/>
+		<value id="ctSuicAtk6" name="Suicide Attack (the ultimate sacrifice)"/>
+		<value id="ctBlind1" name="Blinding (sand and sun) requires {i}Qin Legends{/i}"/>
+		<value id="ctBlind2" name="Blinding (sand and sun) requires {i}Qin Legends{/i}"/>
+		<value id="ctBlind3" name="Blinding (sand and sun) requires {i}Qin Legends{/i}"/>
+		<value id="ctBlind4" name="Blinding (sand and sun) requires {i}Qin Legends{/i}"/>
+		<value id="ctBlind5" name="Blinding (sand and sun) requires {i}Qin Legends{/i}"/>
+		<value id="ctBlind6" name="Blinding (sand and sun) requires {i}Qin Legends{/i}"/>
+		<value id="ctMounted1" name="Mounted Combat (the speed of the kilin) requires {i}Qin Legends{/i}"/>
+		<value id="ctMounted2" name="Mounted Combat (the speed of the kilin) requires {i}Qin Legends{/i}"/>
+		<value id="ctMounted3" name="Mounted Combat (the speed of the kilin) requires {i}Qin Legends{/i}"/>
+		<value id="ctMounted4" name="Mounted Combat (the speed of the kilin) requires {i}Qin Legends{/i}"/>
+		<value id="ctMounted5" name="Mounted Combat (the speed of the kilin) requires {i}Qin Legends{/i}"/>
+		<value id="ctMounted6" name="Mounted Combat (the speed of the kilin) requires {i}Qin Legends{/i}"/>
+		<value id="ctRedDis1" name="Reducing the Distance (the boxer’s step) requires {i}Qin Legends{/i}"/>
+		<value id="ctRedDis2" name="Reducing the Distance (the boxer’s step) requires {i}Qin Legends{/i}"/>
+		<value id="ctRedDis3" name="Reducing the Distance (the boxer’s step) requires {i}Qin Legends{/i}"/>
+		<value id="ctRedDis4" name="Reducing the Distance (the boxer’s step) requires {i}Qin Legends{/i}"/>
+		<value id="ctRedDis5" name="Reducing the Distance (the boxer’s step) requires {i}Qin Legends{/i}"/>
+		<value id="ctRedDis6" name="Reducing the Distance (the boxer’s step) requires {i}Qin Legends{/i}"/>
+		<value id="ctMtRngAt1" name="Mounted Combat - Ranged (the flight of the Kilin) requires {i}Qin Legends{/i}"/>
+		<value id="ctMtRngAt2" name="Mounted Combat - Ranged (the flight of the Kilin) requires {i}Qin Legends{/i}"/>
+		<value id="ctMtRngAt3" name="Mounted Combat - Ranged (the flight of the Kilin) requires {i}Qin Legends{/i}"/>
+		<value id="ctMtRngAt4" name="Mounted Combat - Ranged (the flight of the Kilin) requires {i}Qin Legends{/i}"/>
+		<value id="ctMtRngAt5" name="Mounted Combat - Ranged (the flight of the Kilin) requires {i}Qin Legends{/i}"/>
+		<value id="ctMtRngAt6" name="Mounted Combat - Ranged (the flight of the Kilin) requires {i}Qin Legends{/i}"/>
+		<value id="ctDisRng1" name="Disarm - Ranged(the way of peace) requires {i}Qin Legends{/i}"/>
+		<value id="ctDisRng2" name="Disarm - Ranged(the way of peace) requires {i}Qin Legends{/i}"/>
+		<value id="ctDisRng3" name="Disarm - Ranged(the way of peace) requires {i}Qin Legends{/i}"/>
+		<value id="ctDisRng4" name="Disarm - Ranged(the way of peace) requires {i}Qin Legends{/i}"/>
+		<value id="ctDisRng5" name="Disarm - Ranged(the way of peace) requires {i}Qin Legends{/i}"/>
+		<value id="ctDisRng6" name="Disarm - Ranged(the way of peace) requires {i}Qin Legends{/i}"/>
+		<value id="ctTrapRng1" name="Trap - Ranged (the patience of the falcon) requires {i}Qin Legends{/i}"/>
+		<value id="ctTrapRng2" name="Trap - Ranged (the patience of the falcon) requires {i}Qin Legends{/i}"/>
+		<value id="ctTrapRng3" name="Trap - Ranged (the patience of the falcon) requires {i}Qin Legends{/i}"/>
+		<value id="ctTrapRng4" name="Trap - Ranged (the patience of the falcon) requires {i}Qin Legends{/i}"/>
+		<value id="ctTrapRng5" name="Trap - Ranged (the patience of the falcon) requires {i}Qin Legends{/i}"/>
+		<value id="ctTrapRng6" name="Trap - Ranged (the patience of the falcon) requires {i}Qin Legends{/i}"/>
+	</group>
+	</document>

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!-- This file contains the assortment of skills for the game system. Note that each
+      skill is linked to an associated attribute for the character. This linkage allows
+      the value of the skill to easily incorporate the effects of the linked attribute
+      via a script on the component.
+-->
+
+<document signature="Hero Lab Data">
+
+<!--
+	***************************************************************
+		External Alchemy Techniques - Qin Legends
+	***************************************************************
+-->
+
+<!-- On the Plumes of the Phoenix (potion) -->
+	<thing
+		id="maPlumes"
+		name="On the Plumes of the Phoenix"
+		compset="Magic"
+		isunique="yes"
+		description="This potion, once swallowed, allows the Alchemist to rise up in the air and move at the speed and altitude desired, without suffering from a lack of oxygen. He changes neither weight nor shape but seems no longer to have any thought for the laws of gravity and moves in the air at will.{br}{br} However, he cannot exceed a certain speed: Earth x 60 miles an hour. After 180 miles an hour, he suffers damage from the friction of the air (two points a turn on average), damage which can be temporarily countered with an ointment (Hide of the Ox, page 104 in the core rulebook).">
+		<fieldval field="trtAbbrev" value="Plume"/>
+		
+		<fieldval field="trtUser" value="5"/>
+		<fieldval field="maPrep" value="One month"/>
+		<fieldval field="maPrepST" value="13"/>
+		<fieldval field="maDur" value="One day"/>
+		<fieldval field="chiCost" value="15"/>
+		<fieldval field="maImprove" value="For each additional cost of 7 Chi points, the period of the effect is lengthened by one day."/>
+		
+		<usesource source="qinLegends"/>
+		
+		<tag group="Way" tag="ExtAlchemy"/>
+		<tag group="User" tag="Potion"/>
+		
+		<link linkage="magicskill" thing="skExtAlch"/>
+
+    </thing>
+	
+<!-- Transparency of the Pure Wave (potion) -->
+	<thing
+		id="maTranPrWa"
+		name="Transparency of the Pure Wave"
+		compset="Magic"
+		isunique="yes"
+		description="The Alchemist can, by ingesting this potion, become as invisible as the purest water. He leaves neither footprints nor reflections, nor does body odor give him away. His movements are completely silent and he does not stir the air. No Test aimed at fi nding him can succeed, not even if a Yin/Yang Balance is obtained.{br}{br} However, he can use no object or weapon, as this would reveal his presence. If someone collides with him, his consistency is that of still, icy air.">
+		<fieldval field="trtAbbrev" value="PuWav"/>
+		
+		<fieldval field="trtUser" value="6"/>
+		<fieldval field="maPrep" value="One month"/>
+		<fieldval field="maPrepST" value="13"/>
+		<fieldval field="maDur" value="One day"/>
+		<fieldval field="chiCost" value="16"/>
+		<fieldval field="maImprove" value="For each additional cost of 3 Chi points, the period of the effect is lengthened by a double hour."/>
+		
+		<usesource source="qinLegends"/>
+		
+		<tag group="Way" tag="ExtAlchemy"/>
+		<tag group="User" tag="Potion"/>
+		
+		<link linkage="magicskill" thing="skExtAlch"/>
+
+    </thing>
+	
+<!-- The Golden Lotus (elixir) -->
+	<thing
+		id="maGoldLot"
+		name="The Golden Lotus"
+		compset="Magic"
+		isunique="yes"
+		description="The person who takes it does not grow old any more and no longer needs to eat, drink or even breathe to stay alive. He does not become the equal of a god but changes into an immortal, those who live in the Eternal Isles or on the Kunlun Mountains.{br}{br} Nothing can touch the Alchemist, neither illness, nor poison. He can still be wounded and even killed but his wounds heal at the rate of one Breath of Life box per minute without causing pain. This Elixir is the ultimate goal and dream of every Alchemist.">
+		<fieldval field="trtAbbrev" value="GdLot"/>
+		
+		<fieldval field="trtUser" value="6"/>
+		<fieldval field="maPrep" value="One month"/>
+		<fieldval field="maPrepST" value="15"/>
+		<fieldval field="maDur" value="Eternal"/>
+		<fieldval field="chiCost" value="50"/>
+		<fieldval field="maImprove" value="N/A"/>
+		
+		<usesource source="qinLegends"/>
+		
+		<tag group="Way" tag="ExtAlchemy"/>
+		<tag group="User" tag="Elixir"/>
+		
+		<link linkage="magicskill" thing="skExtAlch"/>
+
+    </thing>
+</document>

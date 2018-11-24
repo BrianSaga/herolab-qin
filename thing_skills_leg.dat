@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!-- This file contains the assortment of skills for the game system. Note that each
+      skill is linked to an associated attribute for the character. This linkage allows
+      the value of the skill to easily incorporate the effects of the linked attribute
+      via a script on the component.
+-->
+
+<document signature="Hero Lab Data">
+<!--
+	***************************************************************
+		Metal Skills (Martial) from Qin Legends
+	***************************************************************
+-->
+
+<!-- Bianshu (Flexible weapons) Skill -->
+	<thing
+		id="skBianshu"
+		name="Bianshu"
+		compset="Skill"
+		isunique="yes"
+		description="This Skill allows a character to use flexible weapons, such as whips, chains, flying guillotines, flails, etc.">
+		<fieldval field="sklAlias" value="flexible weapons"/>
+		
+		<usesource source="qinLegends"/>
+		
+		<!-- Tags -->
+		<tag group="SkillType" tag="Weapon"/>
+		
+		<!-- Identify combat technique things and level -->
+		<tag group="ComTchCost" tag="ctHold1"/>
+		<tag group="ComTchCost" tag="ctStrang1"/>
+		<tag group="ComTchCost" tag="ctDisarm2"/>
+		<tag group="ComTchCost" tag="ctTrap2"/>
+		<tag group="ComTchCost" tag="ctMystif3"/>
+		<tag group="ComTchCost" tag="ctDirect3"/>
+		<tag group="ComTchCost" tag="ctDirect4"/>
+		<tag group="ComTchCost" tag="ctWhirl4"/>
+		<tag group="ComTchCost" tag="ctRepel5"/>
+		<tag group="ComTchCost" tag="ctTotBlk5"/>
+		<tag group="ComTchCost" tag="ctMtRngAt6"/>
+		<tag group="ComTchCost" tag="ctSuicAtk6"/>
+
+		
+		<!-- Specify the attribute to which this skill is linked -->
+		<link linkage="attribute" thing="attrMetal"/>
+    </thing>
+	
+</document>

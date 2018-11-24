@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!-- This file contains the assortment of attributes possessed by every actor for the
+      game system. The display order of attributes is controlled via the assignment of
+      an "explicit" tag with the relative position of each.
+-->
+
+<document signature="Hero Lab Data">
+
+<!-- Metal attribute -->
+	<thing
+		id="attrMetal"
+		name="Metal"
+		compset="Attribute"
+		isunique="yes"
+		description="Metal (Yin) is the martial attribute, a measure of a character's readiness to fight, including his strength, his resilience and his warlike spirit.">
+		<fieldval field="trtAbbrev" value="Metal"/>
+		<tag group="explicit" tag="1"/>
+		
+		<!-- Set the cost for advancement -->
+		<eval index="1" phase="Setup" priority="1000"><![CDATA[
+		~we only worry about this on actual advances - not traits added at creation
+		doneif (tagis[Advance.Gizmo] = 0)
+		
+		var cost as number
+		cost = 0
+		
+		~we're only ever increasing Aspects, and the aspect will be filtered
+		~out of the chooser if it's at maximum
+		cost = linkage[basis].field[trtUser].value + 1
+		origin.parent.field[advCost].value = cost * 5
+      ]]></eval>
+	</thing>
+
+	<!-- Water attribute -->
+	<thing
+		id="attrWater"
+		name="Water"
+		compset="Attribute"
+		isunique="yes"
+		description="Water (Yin) is the physical attribute, the measure of a character's agility, speed, and suppleness.">
+		<fieldval field="trtAbbrev" value="Water"/>
+		<tag group="explicit" tag="2"/>
+		
+		<!-- Set the cost for advancement -->
+		<eval index="1" phase="Setup" priority="1000"><![CDATA[
+		~we only worry about this on actual advances - not traits added at creation
+		doneif (tagis[Advance.Gizmo] = 0)
+		
+		var cost as number
+		cost = 0
+		
+		~we're only ever increasing Aspects, and the aspect will be filtered
+		~out of the chooser if it's at maximum
+		cost = linkage[basis].field[trtUser].value + 1
+		origin.parent.field[advCost].value = cost * 5
+      ]]></eval>
+	</thing>
+	
+<!-- Fire attribute -->
+	<thing
+		id="attrFire"
+		name="Fire"
+		compset="Attribute"
+		isunique="yes"
+		description="Fire (Yang) is the social attribute, the flame that burns deep within a character, his charisma, intuition and artistic inspiration.">
+		<fieldval field="trtAbbrev" value="Fire"/>
+		<tag group="explicit" tag="3"/>
+		
+		<!-- Set the cost for advancement -->
+		<eval index="1" phase="Setup" priority="1000"><![CDATA[
+		~we only worry about this on actual advances - not traits added at creation
+		doneif (tagis[Advance.Gizmo] = 0)
+		
+		var cost as number
+		cost = 0
+		
+		~we're only ever increasing Aspects, and the aspect will be filtered
+		~out of the chooser if it's at maximum
+		cost = linkage[basis].field[trtUser].value + 1
+		origin.parent.field[advCost].value = cost * 5
+      ]]></eval>
+	</thing>
+	
+<!-- Wood attribute -->
+	<thing
+		id="attrWood"
+		name="Wood"
+		compset="Attribute"
+		isunique="yes"
+		description="Wood (Yang) is the mental attribute, representing the intelligence, ingenuity, memory and perceptiveness of a character, as well as his ability to concentrate and think deeply.">
+		<fieldval field="trtAbbrev" value="Wood"/>
+		<tag group="explicit" tag="4"/>
+		
+		<!-- Set the cost for advancement -->
+		<eval index="1" phase="Setup" priority="1000"><![CDATA[
+		~we only worry about this on actual advances - not traits added at creation
+		doneif (tagis[Advance.Gizmo] = 0)
+		
+		var cost as number
+		cost = 0
+		
+		~we're only ever increasing Aspects, and the aspect will be filtered
+		~out of the chooser if it's at maximum
+		cost = linkage[basis].field[trtUser].value + 1
+		origin.parent.field[advCost].value = cost * 5
+      ]]></eval>
+	</thing>
+	
+<!-- Earth attribute -->
+	<thing
+		id="attrEarth"
+		name="Earth"
+		compset="Attribute"
+		isunique="yes"
+		description="Earth (Balance) is the mystical attribute, equivalent to the sixth sense, will and inner strength, the link between the character and the metaphysical forces of the universe, and the Tao itself..">
+		<fieldval field="trtAbbrev" value="Earth"/>
+		<tag group="explicit" tag="5"/>
+		
+		<!-- Set the cost for advancement -->
+		<eval index="1" phase="Setup" priority="1000"><![CDATA[
+		~we only worry about this on actual advances - not traits added at creation
+		doneif (tagis[Advance.Gizmo] = 0)
+		
+		var cost as number
+		cost = 0
+		
+		~we're only ever increasing Aspects, and the aspect will be filtered
+		~out of the chooser if it's at maximum
+		cost = linkage[basis].field[trtUser].value + 1
+		origin.parent.field[advCost].value = cost * 5
+      ]]></eval>
+	</thing>
+  </document>

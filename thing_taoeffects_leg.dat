@@ -1,0 +1,606 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!-- This file contains the assortment of skills for the game system. Note that each
+      skill is linked to an associated attribute for the character. This linkage allows
+      the value of the skill to easily incorporate the effects of the linked attribute
+      via a script on the component.
+-->
+
+<document signature="Hero Lab Data">
+
+<!-- TAO OF THE SIX DIRECTIONS -->
+
+	<thing
+		id="teRunLgJp5"
+		name="Run/Long Jump V"
+		compset="TaoEffect"
+		isunique="yes"
+		description="As above only the distance covered during an action goes up to (Water x 4) yards per action. Whatever the movement he is making, the character now need only use support once every two actions in order to continue his movement; this means that he must put his foot on a solid surface only once in the course of two consecutive actions. For example, when using a high jump at the end of his action, the hero can continue his progress and will have to use support only at the end of the following action.">
+		<fieldval field="trtAbbrev" value="RnJp5"/>
+		<usesource source="qinLegends"/>
+		<tag group="Level" tag="5"/>
+
+		<!-- Set chi cost, which is based on Tao level -->
+		<eval index="1" phase="Setup" priority="100"><![CDATA[
+			field[chiCost].value = tagvalue[Level.?]
+		]]></eval>		
+	</thing>
+	
+	<thing
+		id="teDefyGr4"
+		name="Defy Gravity IV"
+		compset="TaoEffect"
+		isunique="yes"
+		description="The character can add to his action a vertical movement along a wall of a distance of (Water x 4) yards per action. Whatever the movement he is making, the character now need only use support once every two actions in order to continue his movement; this means that he must put his foot on a solid surface only once in the course of two consecutive actions. For example, when using a high jump at the end of his action, the hero can continue his progress and will have to use support only at the end of the following action.">
+		<fieldval field="trtAbbrev" value="Defy4"/>
+		<usesource source="qinLegends"/>
+		<tag group="Level" tag="5"/>
+
+		<!-- Set chi cost, which is based on Tao level -->
+		<eval index="1" phase="Setup" priority="100"><![CDATA[
+			field[chiCost].value = tagvalue[Level.?]
+		]]></eval>		
+	</thing>
+	
+	<thing
+		id="teJupJdn3"
+		name="Jump up / Drop down III"
+		compset="TaoEffect"
+		isunique="yes"
+		description="Vertical movement of a maximum height of (Water x 3) yards per action can be achieved. The character can also fall the same distance without being injured. Whatever the movement he is making, the character now need only use support once every two actions in order to continue his movement; this means that he must put his foot on a solid surface only once in the course of two consecutive actions. For example, when using a high jump at the end of his action, the hero can continue his progress and will have to use support only at the end of the following action.">
+		<fieldval field="trtAbbrev" value="JuDd2"/>
+		<usesource source="qinLegends"/>
+		<tag group="Level" tag="5"/>
+
+		<!-- Set chi cost, which is based on Tao level -->
+		<eval index="1" phase="Setup" priority="100"><![CDATA[
+			field[chiCost].value = tagvalue[Level.?]
+		]]></eval>		
+	</thing>
+	
+	<thing
+		id="teRunLgJp6"
+		name="Run/Long Jump VI"
+		compset="TaoEffect"
+		isunique="yes"
+		description="As above only the distance covered during an action goes up to (Water x 4) yards per action. Whatever the movement he is making, the character now need only use support once every two actions in order to continue his movement; this means that he must put his foot on a solid surface only once in the course of two consecutive actions. For example, when using a high jump at the end of his action, the hero can continue his progress and will have to use support only at the end of the following action.">
+		<fieldval field="trtAbbrev" value="RnJp5"/>
+		<usesource source="qinLegends"/>
+		<tag group="Level" tag="6"/>
+
+		<!-- Set chi cost, which is based on Tao level -->
+		<eval index="1" phase="Setup" priority="100"><![CDATA[
+			field[chiCost].value = tagvalue[Level.?]
+		]]></eval>		
+	</thing>
+	
+	<thing
+		id="teDefyGr5"
+		name="Defy Gravity V"
+		compset="TaoEffect"
+		isunique="yes"
+		description="The character can climb along a vertical wall over a maximum distance of (Water x 4) yards per action. Whatever the movement he is making, the character now need only use support once every two actions in order to continue his movement; this means that he must put his foot on a solid surface only once in the course of two consecutive actions. For example, when using a high jump at the end of his action, the hero can continue his progress and will have to use support only at the end of the following action.">
+		<fieldval field="trtAbbrev" value="Defy5"/>
+		<usesource source="qinLegends"/>
+		<tag group="Level" tag="6"/>
+
+		<!-- Set chi cost, which is based on Tao level -->
+		<eval index="1" phase="Setup" priority="100"><![CDATA[
+			field[chiCost].value = tagvalue[Level.?]
+		]]></eval>		
+	</thing>
+	
+	<thing
+		id="teJupJdn4"
+		name="Jump up / Drop down IV"
+		compset="TaoEffect"
+		isunique="yes"
+		description="Vertical movement of a maximum height of (Water x 4) yards per action can be achieved. The character can also fall the same distance without being injured.Whatever the movement he is making, the character now need only use support once every two actions in order to continue his movement; this means that he must put his foot on a solid surface only once in the course of two consecutive actions. For example, when using a high jump at the end of his action, the hero can continue his progress and will have to use support only at the end of the following action."> 		
+		<fieldval field="trtAbbrev" value="JuDd2"/>
+		<usesource source="qinLegends"/>
+		<tag group="Level" tag="6"/>
+
+		<!-- Set chi cost, which is based on Tao level -->
+		<eval index="1" phase="Setup" priority="100"><![CDATA[
+			field[chiCost].value = tagvalue[Level.?]
+		]]></eval>		
+	</thing>
+	
+<!-- TAO OF THE LIGHT STEP -->
+
+	<thing
+		id="tePathSpid"
+		name="The path of the spider"
+		compset="TaoEffect"
+		isunique="yes"
+		description="The character can now keep a seemingly impossible vertical position, such as staying without diffi culty on a solid surface (wall, tree, etc), clinging to a smooth wall, etc. He can take advantage of this effect for the same number of minutes as his Water level, during which time he can continue to act without penalty."> 		<fieldval field="trtAbbrev" value="Path"/>
+		<usesource source="qinLegends"/>		
+		<tag group="Level" tag="5"/>
+
+		<!-- Set chi cost, which is based on Tao level -->
+		<eval index="1" phase="Setup" priority="100"><![CDATA[
+			field[chiCost].value = tagvalue[Level.?]
+		]]></eval>		
+	</thing>
+
+	<thing
+		id="teUltAgil"
+		name="Ultimate agility"
+		compset="TaoEffect"
+		isunique="yes"
+		description="The character knows how to remain fi xed to any surface (flexible or solid) without falling, whatever his position. From now on, he can hang head down under a roof beam, lie under a ceiling, etc. He can take advantage of this effect for the same number of minutes as his Wood level, during which time he can continue to act without penalty.">
+ 		<fieldval field="trtAbbrev" value="UltAg"/>
+		<usesource source="qinLegends"/>		
+		<tag group="Level" tag="6"/>
+
+		<!-- Set chi cost, which is based on Tao level -->
+		<eval index="1" phase="Setup" priority="100"><![CDATA[
+			field[chiCost].value = tagvalue[Level.?]
+		]]></eval>		
+	</thing>
+
+<!-- Tao of the Strengthened Body -->
+
+	<thing
+		id="teMetalBdy"
+		name="Metal body"
+		compset="TaoEffect"
+		isunique="yes"
+		description="By channeling his inner energy, the character transforms his body, and his skin becomes as solid as metal for the same number of turns as his level in this Tao. During this time, all weapons striking him whose resilience is less than 9 shatter automatically without infl icting the slightest injury. Those having a resilience of 9 or more must succeed in a Resilience Test against an ST equal to the Resistance of the character or break themselves on impact. Even so, whatever the outcome of this Test, they cause their usual damage.{br}{br}{B}The character adds two boxes to his Seriously Injured Breath of Life Level.{/B}.">
+		<fieldval field="trtAbbrev" value="MtBdy"/>
+		<usesource source="qinLegends"/>		
+		<tag group="Level" tag="5"/>
+
+		<!-- Set chi cost, which is based on Tao level -->
+		<eval index="1" phase="Setup" priority="100"><![CDATA[
+			field[chiCost].value = tagvalue[Level.?]
+		]]></eval>
+
+		<!-- This Tao adjusts breath of life levels -->
+		<eval value="2" phase="Traits" priority="5060">
+			<before name="Derived trtFinal"/>
+			<after name="Calc trtFinal"/><![CDATA[
+				
+				~ Adjust the BoL level in the gizmo appropriately when active
+				var active as number
+				active = field[actActive].value
+				
+				if (active <> 0) then
+					hero.childfound[trBol].gizmo.childfound[trBolSeInj].field[trtBonus].value += 2
+				endif
+		]]></eval>			
+	</thing>
+
+	<thing
+		id="teTotalImm"
+		name="Total immunity"
+		compset="TaoEffect"
+		isunique="yes"
+		description="At this level, the character can automatically cancel out the effects of any harmful substance (poison, air, contamination etc) which threaten him, for the same number of turns as his level in this Tao. For example, if the character has been poisoned, by using this effect from the Strengthened Body Tao, he eliminates all trace of poison in him and, moreover, remains immune for the following turns.{br}{br}{B}The character adds two boxes to his Fatally Injured Breath of Life Level.{/B}">
+		<fieldval field="trtAbbrev" value="TotIm"/>
+		<usesource source="qinLegends"/>		
+		<tag group="Level" tag="6"/>
+
+		<!-- Set chi cost, which is based on Tao level -->
+		<eval index="1" phase="Setup" priority="100"><![CDATA[
+			field[chiCost].value = tagvalue[Level.?]
+		]]></eval>
+
+		<!-- This Tao adjusts breath of life levels -->
+		<eval value="2" phase="Traits" priority="5060">
+			<before name="Derived trtFinal"/>
+			<after name="Calc trtFinal"/><![CDATA[
+				
+				~ Adjust the BoL level in the gizmo appropriately when active
+				var active as number
+				active = field[actActive].value
+				
+				if (active <> 0) then
+					hero.childfound[trBol].gizmo.childfound[trBolFaInj].field[trtBonus].value += 2
+				endif
+		]]></eval>		
+	</thing>
+	
+<!-- Tao of the Destructive Breath -->
+
+	<thing
+		id="teUnchGate"
+		name="Unchanging gate"
+		compset="TaoEffect"
+		isunique="yes"
+		description="The character may, with a blow, create a hole in any structure of a thickness less than, or equal to, his Metal level in yards. This gap is big enough for a very fat man to pass through, but the character can choose to reduce the size of it to that of a fist. If this opening suddenly weakens the structure in question (wall, ramparts, cave walls, earthworks, etc), there is no risk of its collapsing."> 		
+		<fieldval field="trtAbbrev" value="Gate"/>
+		<usesource source="qinLegends"/>		
+		<tag group="Level" tag="5"/>
+
+		<!-- Set chi cost, which is based on Tao level -->
+		<eval index="1" phase="Setup" priority="100"><![CDATA[
+			field[chiCost].value = tagvalue[Level.?]
+		]]></eval>		
+	</thing>
+
+	<thing
+		id="teFearTyph"
+		name="Fearsome typhoon"
+		compset="TaoEffect"
+		isunique="yes"
+		description="This effect allows the character to enhance the force of the foregoing abilities; it must, therefore, be used together with one of them (the cost in Chi points is, of course, added). The size and weight of the objects able to be destroyed are multiplied by the value of the character’s Earth level. When added to the effects of Level 5 of this Tao, the character can now cause the collapse of a structure equal in volume to his Metal level in cubic meters. He is, therefore, definitely capable of destroying a large stone statue or causing the collapse of a whole section of ramparts."> 		
+		<fieldval field="trtAbbrev" value="Typh"/>
+		<usesource source="qinLegends"/>		
+		<tag group="Level" tag="6"/>
+
+		<!-- Set chi cost, which is based on Tao level -->
+		<eval index="1" phase="Setup" priority="100"><![CDATA[
+			field[chiCost].value = tagvalue[Level.?]
+		]]></eval>		
+	</thing>
+	
+<!-- Tao of Inspired Creation -->
+
+	<thing
+		id="teLegHand"
+		name="The legendary hand"
+		compset="TaoEffect"
+		isunique="yes"
+		description="The character can create a legendary object (for the rules about the creation of such objects see {I}Qin Legends{/I} page 25).{br} The character can equally re-energise an object which he, himself, has created. For this, he draws upon his own Chi reserve and makes a Test using Earth + Meditation against a ST equal to the number of Chi points that he wants to put into it. However, such an object can only receive the maximum number of Chi points equal to three times its creator’s Earth level. In addition, the character becomes capable of completely determining the characteristics of a legendary object.">
+		<fieldval field="trtAbbrev" value="LegHd"/>
+		<usesource source="qinLegends"/>
+		<tag group="Level" tag="5"/>
+		
+		<!-- Set chi cost, which is based on Tao level -->
+		<eval index="1" phase="Setup" priority="100"><![CDATA[
+			field[chiCost].value = tagvalue[Level.?]
+		]]></eval>			
+	</thing>
+
+	<thing
+		id="teCelHand"
+		name="The celestial hand"
+		compset="TaoEffect"
+		isunique="yes"
+		description="The character can now create objects of great power, similar to heavenly objects and breathe into them a portion of his own Chi (for the rules about the creation of such objects see {I}Qin Legends{/I} page 29).{br} The character can equally re-energise an object created by himself or another. For this, he draws on his own Chi reserve and makes a Test of Earth + Meditation against an ST equal to the number of Chi points he wants to breathe into it. However, such an object can only receive the maximum number of Chi points equal to three times its creator’s Earth level.">
+		<fieldval field="trtAbbrev" value="CelHd"/>
+		<usesource source="qinLegends"/>
+		<tag group="Level" tag="6"/>
+		
+		<!-- Set chi cost, which is based on Tao level -->
+		<eval index="1" phase="Setup" priority="100"><![CDATA[
+			field[chiCost].value = tagvalue[Level.?]
+		]]></eval>			
+	</thing>
+	
+<!-- Tao of the Sudden Lightning -->
+
+	<thing
+		id="teImpAnt"
+		name="Improved anticipation"
+		compset="TaoEffect"
+		isunique="yes"
+		description="If he does not gain initiative at the start of a combat round, the character can not only choose to act first (his new level of initiative being considered one point better than that of the fastest opponent in the turn) but, in addition, at the start of each combat round, all the other opponents in the fight must declare the action they are going to take before he himself chooses the way in which he is going to act.">
+		<fieldval field="trtAbbrev" value="ImAnt"/>
+		<usesource source="qinLegends"/>		
+		<tag group="Level" tag="5"/>
+
+		<!-- Set chi cost, which is based on Tao level -->
+		<eval index="1" phase="Setup" priority="100"><![CDATA[
+			field[chiCost].value = tagvalue[Level.?]
+		]]></eval>		
+	</thing>
+
+	<thing
+		id="teAbsSeq"
+		name="Absolute sense of sequences"
+		compset="TaoEffect"
+		isunique="yes"
+		description="Each time that the character reacts to an adverse action directed against him, he can, by unleashing this effect, insist the Opposed Test is re-rolled if the first result does not suit him (this might be an Active Defence, a chase or an arm wrestling contest). The number of times he can activate this effect to counter the same action is equal to his Earth level.">
+		<fieldval field="trtAbbrev" value="AbsSq"/>
+		<usesource source="qinLegends"/>		
+		<tag group="Level" tag="6"/>
+
+		<!-- Set chi cost, which is based on Tao level -->
+		<eval index="1" phase="Setup" priority="100"><![CDATA[
+			field[chiCost].value = tagvalue[Level.?]
+		]]></eval>		
+	</thing>
+	
+<!-- Tao of the Invisible Shield  -->
+
+	<thing
+		id="teMultShld"
+		name="Multiple shield"
+		compset="TaoEffect"
+		isunique="yes"
+		description="The character must declare the use of this effect at the start of the initiative Test. He then has at his disposal for this turn a number of free defensive actions equal to his Water level. These active defences can benefit from Combat Techniques and from Taos, except those of the Ten Thousands Hands and the Invisible Shield.">
+		<fieldval field="trtAbbrev" value="MltSd"/>
+		<usesource source="qinLegends"/>		
+		<tag group="Level" tag="5"/>
+
+		<!-- Set chi cost, which is based on Tao level -->
+		<eval index="1" phase="Setup" priority="100"><![CDATA[
+			field[chiCost].value = tagvalue[Level.?]
+		]]></eval>		
+	</thing>
+
+	<thing
+		id="teSeqDef"
+		name="Sequence of the defences"
+		compset="TaoEffect"
+		isunique="yes"
+		description="The character must declare the use of this effect at the start of the initiative Test. When it is his turn, and when the character is successful in an Active Defence Test, the Active Defence does not count as an action for that round. Only if the Active Defence fails is the action expended.">
+		<fieldval field="trtAbbrev" value="SeqDf"/>
+		<usesource source="qinLegends"/>		
+		<tag group="Level" tag="6"/>
+
+		<!-- Set chi cost, which is based on Tao level -->
+		<eval index="1" phase="Setup" priority="100"><![CDATA[
+			field[chiCost].value = tagvalue[Level.?]
+		]]></eval>		
+	</thing>
+	
+<!-- Tao of the Ten Thousand Hands  -->
+
+	<thing
+		id="teThouBlad"
+		name="Thousand blades"
+		compset="TaoEffect"
+		isunique="yes"
+		description="The character now has at his disposal two free actions which he can bring into play after using his normal action. The first free action can be used as in the fourth effect of this Tao. The second free action can used in attack as well as defence, and benefits from Combat Techniques but not from the Tao effects.">
+		<fieldval field="trtAbbrev" value="ScBd"/>
+		<usesource source="qinLegends"/>		
+		<tag group="Level" tag="5"/>
+
+		<!-- Set chi cost, which is based on Tao level -->
+		<eval index="1" phase="Setup" priority="100"><![CDATA[
+			field[chiCost].value = tagvalue[Level.?]
+		]]></eval>		
+	</thing>
+
+	<thing
+		id="teTenBlad"
+		name="Ten thousand blades"
+		compset="TaoEffect"
+		isunique="yes"
+		description="The second free action can, from now on, benefit from Combat Techniques and Taos, except the Ten Thousand Hands Tao.">
+		<fieldval field="trtAbbrev" value="TenBl"/>
+		<usesource source="qinLegends"/>		
+		<tag group="Level" tag="6"/>
+
+		<!-- Set chi cost, which is based on Tao level -->
+		<eval index="1" phase="Setup" priority="100"><![CDATA[
+			field[chiCost].value = tagvalue[Level.?]
+		]]></eval>		
+	</thing>
+	
+<!-- Tao of the Inner Eye  -->
+	<thing
+		id="teDistEye"
+		name="The distant eye"
+		compset="TaoEffect"
+		isunique="yes"
+		description="The character can direct one of his senses (sight, hearing, smell, etc) to a point at a maximum distance from him equal to his Earth level multiplied by one hundred in yards. This effect lasts for the whole of a combat round (about three to five seconds). It also allows the gathering of information over obstacles (walls, hills, etc) or in enclosed spaces.">
+		<fieldval field="trtAbbrev" value="DiEye"/>
+		<usesource source="qinLegends"/>		
+		<tag group="Level" tag="5"/>
+
+		<!-- Set chi cost, which is based on Tao level -->
+		<eval index="1" phase="Setup" priority="100"><![CDATA[
+			field[chiCost].value = tagvalue[Level.?]
+		]]></eval>		
+	</thing>
+	
+	<thing
+		id="teAbsEye"
+		name="The absolute eye"
+		compset="TaoEffect"
+		isunique="yes"
+		description="By concentrating, the character can, henceforth, detect the slightest detail around him within an area of a diameter equal to his Earth level multiplied by five in yards. No detail can escape him during an action in which he unleashes this power. He can also detect heat sources (someone hidden in the dark, traces of recent footprints on the ground, etc), the noise of an ant in the grass, the faintest of smells, etc. In fact, the character completely “searches” the space around him and gets from it the slightest information which is of use. His capabilities become sufficiently acute to retain only the elements relevant to him.">
+		<fieldval field="trtAbbrev" value="AbEye"/>
+		<usesource source="qinLegends"/>		
+		<tag group="Level" tag="6"/>
+
+		<!-- Set chi cost, which is based on Tao level -->
+		<eval index="1" phase="Setup" priority="100"><![CDATA[
+			field[chiCost].value = tagvalue[Level.?]
+		]]></eval>		
+	</thing>
+	
+
+<!-- Tao of the Hidden Shadow  -->
+	<thing
+		id="teClkShad"
+		name="Cloak of shadow"
+		compset="TaoEffect"
+		isunique="yes"
+		description="The character surrounds himself with an aura which renders him practically undetectable. He does not become invisible but people around him no longer seem aware of his presence, even in full daylight. If he is alone, anyone wanting to notice him must succeed in a Test of Wood + Perception against a ST equal to (Fire + level in this Tao) of the character. In the middle of other people or in a crowd, this ST is increased by +3. This effect lasts for the number of rounds equal to the character’s level in this Tao.">
+		<fieldval field="trtAbbrev" value="Cloak"/>
+		<usesource source="qinLegends"/>		
+		<tag group="Level" tag="5"/>
+
+		<!-- Set chi cost, which is based on Tao level -->
+		<eval index="1" phase="Setup" priority="100"><![CDATA[
+			field[chiCost].value = tagvalue[Level.?]
+		]]></eval>		
+	</thing>
+	
+	<thing
+		id="teWalkShad"
+		name="Walking in the shadows"
+		compset="TaoEffect"
+		isunique="yes"
+		description="The character can step into a shadowy area, and step out from another that is in direct line of sight to the one he entered. He enters the first area on his action, and exits the second area just before his action on the next combat round. The two shadow zones must be sufficiently big to allow the character to conceal himself completely. This effect uses a movement action to enter the shadows and another to come out. However, the character can add to it the effects of any other Tao.{br}{br} For example, a character being followed by bandits takes refuge in an old abandoned temple. Noticing a shadow zone sufficiently big to hide in, thanks to this effect, he enters and uses the Tao of the Six Directions so as to be able, in the same action, to come out from another shadow zone located behind the bandit chief. He is now in a perfect position to take this brigand by surprise.">
+		<fieldval field="trtAbbrev" value="WkSha"/>
+		<usesource source="qinLegends"/>		
+		<tag group="Level" tag="6"/>
+
+		<!-- Set chi cost, which is based on Tao level -->
+		<eval index="1" phase="Setup" priority="100"><![CDATA[
+			field[chiCost].value = tagvalue[Level.?]
+		]]></eval>		
+	</thing>
+
+<!-- Tao of the Thousand Bees  -->
+	<thing
+		id="teCtlMiss"
+		name="Controlling missiles"
+		compset="TaoEffect"
+		isunique="yes"
+		description="The character henceforth no longer needs to be in contact with the object he wants to throw. From the moment that he is at a distance equal to his Earth level multiplied by two in yards, the character can fling towards a target a small, ordinary object. This object can weigh no more than (Metal x 3) pounds and its damage is increased to 2.{br}{br} Moreover, the character can, by succeeding in a Water Test + Dodging against an ST of 11, throw back a weapon launched against him (knife, arrow) at a target of his choice. This redirection of an attack towards a second target corresponds to a normal attack Test but does not require the expenditure of an extra action. In order to strike home, this Test must exceed the Passive Defence of the target who may naturally try an Active Defence.">
+		<fieldval field="trtAbbrev" value="Contr"/>
+		<usesource source="qinLegends"/>		
+		<tag group="Level" tag="5"/>
+
+		<!-- Set chi cost, which is based on Tao level -->
+		<eval index="1" phase="Setup" priority="100"><![CDATA[
+			field[chiCost].value = tagvalue[Level.?]
+		]]></eval>		
+	</thing>
+	
+	<thing
+		id="teMastMiss"
+		name="Master of missiles"
+		compset="TaoEffect"
+		isunique="yes"
+		description="The character can fling a maximum number of objects equivalent to his Water level without even needing to touch them, on condition that they are located in a radius around him equal to his Earth level multiplied by two in yards. The character performs only a single attack Test for all of the projectiles, whose ST is equal to the highest Passive Defence among the targeted opponents +1 per opponent in addition to the first. However, the character can throw only small objects, up to the maximum size of a small ball. The damage caused by this attack is equal to the number of missiles striking each target.{br}{br} Moreover, the character can throw back as many weapons or missiles in a single action as his Water level but, for this, must succeed in a Water Test + Dodging per object thrown back. The ST is equal to 11 plus 1 for each weapon thrown back.">
+		<fieldval field="trtAbbrev" value="Miss"/>
+		<usesource source="qinLegends"/>		
+		<tag group="Level" tag="6"/>
+
+		<!-- Set chi cost, which is based on Tao level -->
+		<eval index="1" phase="Setup" priority="100"><![CDATA[
+			field[chiCost].value = tagvalue[Level.?]
+		]]></eval>		
+	</thing>
+	
+<!-- Tao of Yin and Yang  -->
+	<thing
+		id="teMastEner"
+		name="Mastering of the energies"
+		compset="TaoEffect"
+		isunique="yes"
+		description="The character can choose the result of one of the two dice rolled after they have been thrown. However, if he obtains a double thanks to this effect, this does not allow him to benefit from a Yin/Yang Balance because this is artificial, but the number shown on the dice is, all the same, considered as the score.">
+		<fieldval field="trtAbbrev" value="MaMsl"/>
+		<usesource source="qinLegends"/>		
+		<tag group="Level" tag="5"/>
+
+		<!-- Set chi cost, which is based on Tao level -->
+		<eval index="1" phase="Setup" priority="100"><![CDATA[
+			field[chiCost].value = tagvalue[Level.?]
+		]]></eval>		
+	</thing>
+	
+	<thing
+		id="teMastFlux"
+		name="Mastering the flux"
+		compset="TaoEffect"
+		isunique="yes"
+		description="This effect allows an increase in the other powers of this Tao; it must, therefore, be used together with one of these (the cost in Chi points is, of course, added). From now on, the character can benefit from a Yin/Yang Balance by using one of the effects of this Tao.">
+		<fieldval field="trtAbbrev" value="MaFlx"/>
+		<usesource source="qinLegends"/>		
+		<tag group="Level" tag="6"/>
+
+		<!-- Set chi cost, which is based on Tao level -->
+		<eval index="1" phase="Setup" priority="100"><![CDATA[
+			field[chiCost].value = tagvalue[Level.?]
+		]]></eval>		
+	</thing>
+	
+<!-- Tao of the Breath of Power  -->
+	<thing
+		id="teImprvWpn"
+		name="Style of the improvised weapon"
+		compset="TaoEffect"
+		isunique="yes"
+		description="Henceforth, the character can use with an improvised weapon a Martial Technique derived from a style which he knows, or one used as the basis for another style. Once again, this improvised weapon must have some close characteristics of the weapon initially chosen for this style of combat (a rolled up sheet for a whip, a fan for a dagger, etc).">
+		<fieldval field="trtAbbrev" value="ImWpn"/>
+		<usesource source="qinLegends"/>		
+		<tag group="Level" tag="5"/>
+
+		<!-- Set chi cost, which is based on Tao level -->
+		<eval index="1" phase="Setup" priority="100"><![CDATA[
+			field[chiCost].value = tagvalue[Level.?]
+		]]></eval>		
+	</thing>
+	
+	<thing
+		id="teStkDist"
+		name="Striking from a distance"
+		compset="TaoEffect"
+		isunique="yes"
+		description="This effect allows an increase in the other powers of this Tao; it must, therefore, be used together with one of these (the cost in Chi points is, of course, added). From now on, the character can benefit from a Yin/Yang Balance by using one of the effects of this Tao.">
+		<fieldval field="trtAbbrev" value="StDis"/>
+		<usesource source="qinLegends"/>		
+		<tag group="Level" tag="6"/>
+
+		<!-- Set chi cost, which is based on Tao level -->
+		<eval index="1" phase="Setup" priority="100"><![CDATA[
+			field[chiCost].value = tagvalue[Level.?]
+		]]></eval>		
+	</thing>
+	
+
+<!-- Tao of the Clear Mind  -->
+	<thing
+		id="teWillStl"
+		name="Will of steel"
+		compset="TaoEffect"
+		isunique="yes"
+		description="The character benefits from a bonus equal to his level in this Tao for every Test to resist an attempt at mental manipulation or control of his mind (supernatural power of Possession, use of the Tao of the Serene Presence, various spells, hypnosis, etc)">
+		<fieldval field="trtAbbrev" value="WlStl"/>
+		<usesource source="qinLegends"/>		
+		<tag group="Level" tag="5"/>
+
+		<!-- Set chi cost, which is based on Tao level -->
+		<eval index="1" phase="Setup" priority="100"><![CDATA[
+			field[chiCost].value = tagvalue[Level.?]
+		]]></eval>		
+	</thing>
+	
+	<thing
+		id="tePerfHarm"
+		name="Perfect harmony"
+		compset="TaoEffect"
+		isunique="yes"
+		description="The character completely masters the complexities of his mind and perfectly coordinates his thoughts and actions. He can also add a bonus equal to his level in this Tao in any kind of Test (martial, literary, medical, artistic, etc). He must, however, spend a number of Chi points equal to the bonus desired.">
+		<fieldval field="trtAbbrev" value="PfHrm"/>
+		<usesource source="qinLegends"/>		
+		<tag group="Level" tag="6"/>
+
+		<!-- Set chi cost, which is based on Tao level -->
+		<eval index="1" phase="Setup" priority="100"><![CDATA[
+			field[chiCost].value = tagvalue[Level.?]
+		]]></eval>		
+	</thing>
+
+<!-- Tao of the Serene Presence -->
+	<thing
+		id="teMaskDom"
+		name="Mask of Domination"
+		compset="TaoEffect"
+		isunique="yes"
+		description="The character can now verbally give orders which will be followed to the letter by the target. In order to keep his free will, the latter must win a Opposed Resistance Test against Earth + level in this Tao of the Character. If he fails, he obeys all orders given by the character for a period in hours equal to the character’s Fire level. These orders must be given clearly and precisely. The person under control obeys them always to the letter, without trying to deduce the meaning. In a situation of indecision, he then refrains from any action. Finally, if the character wishes to force his victim to commit acts which would put in danger either his life or that of those near him, or which would greatly offend his moral values, the victim may attempt a second Opposed Resistance Test to regain control of himself at the opportune moment.">
+		<fieldval field="trtAbbrev" value="MskDm"/>
+		<usesource source="qinLegends"/>		
+		<tag group="Level" tag="5"/>
+
+		<!-- Set chi cost, which is based on Tao level -->
+		<eval index="1" phase="Setup" priority="100"><![CDATA[
+			field[chiCost].value = tagvalue[Level.?]
+		]]></eval>		
+	</thing>
+	
+	<thing
+		id="teMaskThEm"
+		name="Mask of the Thousand Emotions"
+		compset="TaoEffect"
+		isunique="yes"
+		description="The character can cause, in others, such basic emotions as anger, fear, joy, doubt, hate, sympathy, etc. This effect can be applied to a single person as well as to a crowd, effectively to any person able to notice or hear the character.{br}{br} To initiate this effect, the character must succeed in a Test of Fire + Empathy against an ST of 13. If he succeeds in this, everyone present is subject to the influence of the related emotion for a period in hours equal to the character’s Fire level.{br}{br} All characters or important NPCs subjected to this effect may attempt to resist it by attempting a Resistance Test against an ST equal to the result obtained in the Test to unleash it.">
+		<fieldval field="trtAbbrev" value="ThEmo"/>
+		<usesource source="qinLegends"/>		
+		<tag group="Level" tag="6"/>
+
+		<!-- Set chi cost, which is based on Tao level -->
+		<eval index="1" phase="Setup" priority="100"><![CDATA[
+			field[chiCost].value = tagvalue[Level.?]
+		]]></eval>		
+	</thing>
+</document>

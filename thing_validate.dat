@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!-- This file contains an assortment of things used solely for validation reporting.
+      Each thing has one or more "evalrule" scripts that verify facets of each actor
+      and report appropriate error messages if not satisfied.
+
+     If you prefer, you could instead have a small number of things with numerous
+     "evalrule" scripts associated with each. The approach used below is to have lots
+     of things with scripts targeted at a narrow purpose, but there is no reason you
+     couldn't have a few things with lots of scripts targeted as a wide range of
+     purposes. By having lots of separate things, the name of each can be leveraged
+     for use within the validation error report, which can often improve the clarity
+     and usefulness of the validation messages.
+-->
+
+<document signature="Hero Lab Data">
+
+  <!-- Validate facets of the race -->
+  <thing
+    id="valRace"
+    name="Race"
+    compset="Simple">
+    <tag group="Helper" tag="Bootstrap"/>
+
+    <!-- Make sure that we have a race selected -->
+    <evalrule index="1" phase="Validate" priority="8000" message="Must be selected"><![CDATA[
+      ~if we have a race selected, we're good
+      validif (hero.tagis[Race.?] <> 0)
+      ]]></evalrule>
+
+    </thing>
+
+
+  <!-- Character points thing for validation reporting -->
+  <thing
+    id="valAP"
+    name="Aspect Points"
+    compset="Simple">
+    <tag group="Helper" tag="Bootstrap"/>
+
+    <!-- Make sure that we have all CPs spent -->
+    <evalrule index="1" phase="Validate" priority="8000" severity="warning" message="Unused Aspect Points remain"><![CDATA[
+      ~we have a negative or zero quantity left, we're good
+      validif (#resleft[resAP] <= 0)
+
+      ~mark associated tabs as invalid
+      container.panelvalid[basics] = 0
+      ]]></evalrule>
+
+    <!-- Make sure that we don't have too many CPs spent -->
+    <evalrule index="2" phase="Validate" priority="8000" message="Too many Aspect Points spent"><![CDATA[
+      ~we have a positive or zero quantity left, we're good
+      validif (#resleft[resAP] >= 0)
+
+      ~mark associated tabs as invalid
+      container.panelvalid[basics] = 0
+      ]]></evalrule>
+
+    </thing>
+
+
+  <!-- Skill points thing for validation reporting -->
+  <thing
+    id="valSP"
+    name="Skill Points"
+    compset="Simple">
+    <tag group="Helper" tag="Bootstrap"/>
+
+    <!-- Make sure that we have all SPs spent -->
+    <evalrule index="1" phase="Validate" priority="8000" severity="warning" message="Unused Skill Points remain"><![CDATA[
+      ~we have a negative or zero quantity left, we're good
+      validif (#resleft[resSkill] <= 0)
+
+      ~mark associated tabs as invalid
+      container.panelvalid[basics] = 0
+      ]]></evalrule>
+
+    <!-- Make sure that we don't have too many SPs spent -->
+    <evalrule index="2" phase="Validate" priority="8000" message="Too many Skill Points spent"><![CDATA[
+      ~we have a positive or zero quantity left, we're good
+      validif (#resleft[resSkill] >= 0)
+
+      ~mark associated tabs as invalid
+      container.panelvalid[basics] = 0
+      ]]></evalrule>
+
+    </thing>
+
+
+  <!-- Hands thing for validation reporting -->
+  <thing
+    id="valHands"
+    name="Hands"
+    compset="Simple">
+    <tag group="Helper" tag="Bootstrap"/>
+
+    <!-- Make sure that we don't have too many hands worth of gear equipped -->
+    <evalrule index="1" phase="Validate" priority="8000" message="Equipped gear requires too many hands" name="Check Hands"><![CDATA[
+      ~if we have no more than two hands of gear equipped, we're good
+      validif (hero.tagcount[Hero.Hand] <= herofield[acHands].value)
+
+      ~mark associated tabs as invalid
+      container.panelvalid[armory] = 0
+      ]]></evalrule>
+
+    </thing>
+
+  <!-- Ability points thing for validation reporting -->
+  <thing
+    id="valAbility"
+    name="Tao/Combat Technique/Magic Points"
+    compset="Simple">
+    <tag group="Helper" tag="Bootstrap"/>
+
+    <!-- Make sure that we have all SPs spent -->
+    <evalrule index="1" phase="Validate" priority="8000" severity="warning" message="Unused Ability Points remain"><![CDATA[
+      ~we have a negative or zero quantity left, we're good
+      validif (#resleft[resAbility] <= 0)
+
+      ~mark associated tabs as invalid
+      container.panelvalid[basics] = 0
+      ]]></evalrule>
+
+    <!-- Make sure that we don't have too many SPs spent -->
+    <evalrule index="2" phase="Validate" priority="8000" message="Too many Ability Points spent"><![CDATA[
+      ~we have a positive or zero quantity left, we're good
+      validif (#resleft[resAbility] >= 0)
+
+      ~mark associated tabs as invalid
+      container.panelvalid[basics] = 0
+      ]]></evalrule>
+
+    </thing>
+	
+	
+  <!-- Armor thing for validation reporting -->
+  <thing
+    id="valArmor"
+    name="Armor"
+    compset="Simple">
+    <tag group="Helper" tag="Bootstrap"/>
+
+    <!-- Make sure that we don't have multiple sets of armor equipped -->
+    <evalrule index="1" phase="Validate" priority="8000" message="Multiple suits of armor equipped"><![CDATA[
+      ~if we have no more than one set of armor equipped, we're good
+      validif (hero.tagcount[Armor.?] <= 1)
+
+      ~mark associaated tabs as invalid
+      container.panelvalid[armory] = 0
+      ]]></evalrule>
+
+    </thing>
+
+
+  <!-- Shield thing for validation reporting -->
+  <thing
+    id="valShields"
+    name="Shields"
+    compset="Simple">
+    <tag group="Helper" tag="Bootstrap"/>
+
+    <!-- Make sure that we don't have multiple shields equipped -->
+    <evalrule index="1" phase="Validate" priority="8000" message="Multiple shields equipped"><![CDATA[
+      ~if we have no more than one set of armor equipped, we're good
+      validif (hero.tagcount[Shield.?] <= 1)
+
+      ~mark associated tabs as invalid
+      container.panelvalid[armory] = 0
+      ]]></evalrule>
+
+    </thing>
+
+
+    </document>

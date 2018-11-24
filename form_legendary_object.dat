@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!-- This file contains the definition of the form for creating an advancement.
+-->
+
+<document signature="Hero Lab Data">
+
+  <!-- loObject chooser -->
+  <portal
+    id="loAdjust"
+    style="tblNormal">
+    <table_dynamic
+      component="Adjustment"
+      showtemplate="loAdjust"
+      headertemplate="loAdjust"
+      choosetemplate="LargeItem"
+      showsortset="_CompSeq_"
+      allowuserorder="yes"
+      addthing="loInfo"
+      descwidth="325">
+      <list>Helper.UserAdjust &amp; InPlay.Temporary &amp; Helper.Legendary</list>
+      <candidate>Helper.UserAdjust &amp; InPlay.TempOK &amp; Helper.Legendary</candidate>
+      <autotag group="InPlay" tag="Temporary"/>
+      <titlebar><![CDATA[
+        @text = "Select a Legendary Ability from the List Below"
+        ]]></titlebar>
+      <additem><![CDATA[
+        @text = "Add Legendary Ability"
+        ]]></additem>
+      </table_dynamic>
+    </portal>
+
+  <!-- Legendary checkbox template -->
+  <template
+    id="loIsLeg"
+    name="Legendary"
+    compset="LegObjInfo">	
+	
+	<portal
+      id="chkLegObj"
+      style="chkNormal">
+      <checkbox
+        field="usrIsCheck"
+        dynamicfield="usrChkText">
+        </checkbox>
+    </portal>
+    
+	<position><![CDATA[
+      ~set up our width and height
+      height = portal[chkLegObj].height
+      doneif (issizing <> 0)
+
+      portal[chkLegObj].width = width
+      ]]></position>
+    </template>
+
+  <!-- loAdjust template
+        This template presents a temporary adjustment for the user to configure.
+        Each adjustment can be activated or deactivated via a checkbox. When needed,
+        a menu is shown where the user can select which trait is to be adjusted. The
+        user can also annotate the source and duration details.
+
+        The template is also used as a header for the table. As such, the template
+        includes additional portals that are only used as part of the header (i.e.
+        they are designated by the "isheader" attribute). All header portals are
+        positioned via the "header" script, which is invoked AFTER the normal "position"
+        script. Header portals can therefore be positioned relative to non-header
+        portals, making it easy to align the header portals based on the actual content
+        portals.
+
+        The "menu" portal displays a list of things that is dynamically controlled
+        at run-time. The portal specifies two fields which dictate (a) the tagexpr used
+        to determine which things are shown and (b) whether things or picks are shown
+        for the user to select from. These fields are defined on the adjustment pick
+        itself, allowing separate adjustments to allow the user to select a list of
+        attributes, or a list of skills, or something else entirely.
+
+        NOTE! We CANNOT use a non-zero "marginhorz" attribute for the template to
+        apply an indent on each side. The titlebar inherits the same margin restriction
+        as the contents area, so the title would not span the full width. Consequently,
+        we manually indent everything on either side within the "position" script.
+  -->
+  <template
+    id="loAdjust"
+    name="Adjustment Pick"
+    compset="Adjustment">
+
+    <portal
+      id="activate"
+      style="chkNormal"
+      tiptext="Click to enable or disable this adjustment.">
+      <checkbox
+        field="adjEnabled">
+        </checkbox>
+      </portal>
+
+    <portal
+      id="activename"
+      style="chkNormal"
+      tiptext="Click to enable or disable this adjustment.">
+      <checkbox
+        field="adjEnabled"
+        dynamicfield="name">
+        </checkbox>
+      </portal>
+
+    <portal
+      id="menu"
+      style="menuNormal">
+      <menu_things
+        field="adjChosen"
+        component="none"
+        maxvisible="20"
+        usepicksfield="adjUsePick"
+        candidatefield="adjCandid">
+        </menu_things>
+      </portal>
+
+    <portal
+      id="adjust"
+      style="incrSimple">
+      <incrementer
+        field="adjUser">
+        </incrementer>
+      </portal>
+
+    <portal
+      id="delete"
+      style="actDelete">
+      <action
+        action="delete">
+        </action>
+      </portal>
+
+    <!-- Portals used as the header -->
+    <portal
+      id="hdrtitle"
+      style="lblTitle"
+      isheader="yes">
+      <label
+        istitle="yes"
+        text="Legenday Object Abilities">
+        </label>
+      </portal>
+
+    <portal
+      id="hdradjust"
+      style="lblHeader"
+      isheader="yes">
+      <label
+        text="Adjustment">
+        </label>
+      </portal>
+
+
+    <position><![CDATA[
+      ~we'll want to use a suitable margin around the edges, so choose something
+      var vert as number
+      var horz as number
+      vert = 3
+      horz = 3
+
+      ~set up our height based on our tallest portal
+      ~Note: we manage our own margins, so we must add those to our total height
+      height = portal[adjust].height + vert * 2
+
+      ~if this is a "sizing" calculation, we're done
+      doneif (issizing <> 0)
+
+      ~Note! This script is invoked for both items in the table AND the header.
+      ~When invoked for the header, the scrollbar is NOT present, so the width is
+      ~different. We have to recognize that fact and adjust by the scrollbar width
+      ~within the header so that our positioning calculations below are consistent.
+      ~If we don't do this, our header labels will not be positioned correctly. The
+      ~"inheader" target reference is one if we're in a header and zero if not.
+      var rightdelta as number
+      rightdelta = inheader * scrollbar
+
+      ~position our tallest portal at the effective "top" (allowing for the margin)
+      portal[adjust].top = vert
+
+      ~center the other portals on the tallest one
+      perform portal[activate].centeron[vert,adjust]
+      perform portal[activename].centeron[vert,adjust]
+      perform portal[menu].centeron[vert,adjust]
+      perform portal[delete].centeron[vert,adjust]
+
+      ~position the activation portal on the far left
+      portal[activate].left = horz
+
+      ~position the "checkbox with name" control in the same place
+      perform portal[activename].alignrel[ltol,activate,0]
+
+      ~make sure the checkbox text doesn't take too much space
+      var maxright as number
+      maxright = 300
+      if (portal[activename].right > maxright) then
+        portal[activename].width = maxright - portal[activename].left
+        perform portal[activename].sizetofit[32]
+        perform portal[activename].autosize
+        perform portal[activename].centervert
+        if (portal[activename].right > maxright) then
+          portal[activename].width = maxright - portal[activename].left
+          endif
+        endif
+
+      ~position the menu after the name
+      portal[menu].left = 160
+      portal[menu].width = maxright - portal[menu].left
+
+      ~position the adjust portal to the right of the name portal
+      portal[adjust].left = maxright + 8
+
+      ~position the delete portal on the far right
+      ~Note! Remeber to use our delta to differentiate the header from items.
+      perform portal[delete].alignedge[right,-horz - rightdelta]
+
+      ~determine the remaining gap and split it between the source and length portals
+      var gap as number
+      gap = portal[delete].left - portal[adjust].right - 7 * 2 - 6
+
+      ~hide the adjust portal if not required
+      if (tagis[AdjustShow.Increment] = 0) then
+        portal[adjust].visible = 0
+        endif
+
+      ~if a menu is visible and nothing is chosen yet, flag it in red
+      if (tagis[AdjustShow.Menu] <> 0) then
+        if (field[adjChosen].ischosen = 0) then
+          perform portal[menu].setstyle[menuError]
+          endif
+        endif
+      ]]></position>
+
+    <header><![CDATA[
+      ~our header height is the title plus a gap plus the header text
+      height = portal[hdrtitle].height + portal[hdradjust].height + 3
+
+      ~if this is a "sizing" calculation, we're done
+      doneif (issizing <> 0)
+
+      ~our title spans the full width of the template
+      portal[hdrtitle].width = width
+
+      ~each of our header labels has the same width as the corresponding data beneath
+      portal[hdradjust].width = portal[menu].width
+
+      ~center each header label on the corresponding data beneath
+      ~Note! This is why we have to make sure we get the positions of the item portals
+      ~correct within the position script when it's processed for the header.
+      perform portal[hdradjust].centeron[horz,menu]
+
+      ~align all header labels at the bottom of the header region
+      perform portal[hdradjust].alignedge[bottom,0]
+      ]]></header>
+
+    </template>
+	
+  <layout
+    id="legendary">
+    <portalref portal="loAdjust" taborder="20"/>
+    <templateref template="loIsLeg" thing="loInfo" taborder="10"/>
+    <position><![CDATA[
+      ~setup a width that is generally reasonable
+      width = 475
+
+      ~set the fixed dimensions and render the title template
+    
+      ~position the checkbox to mark us as legendary
+      template[loIsLeg].left = 10
+      template[loIsLeg].top = 10
+      template[loIsLeg].width = 450
+
+      ~position the chooser to add a new adjustment
+      portal[loAdjust].left = 10
+      portal[loAdjust].top = 40
+      portal[loAdjust].width = 450
+	  
+	  ~portal[loAdjust].visible = 0
+	  ~if (container.parent.gizmo.childfound[loInfo].field[usrIsCheck].value <> 0) then
+		~portal[loAdjust].visible = 1
+	  ~endif
+	  
+      ~determine our overall height
+      height = 350
+	  portal[loAdjust].height = height - 10
+      ]]></position>
+
+    </layout>
+
+
+  <form
+    id="loCust"
+    name="Legendary Object"
+    entity="entLegObj">
+    <layoutref layout="legendary"/>
+    <position><![CDATA[
+      ~render the layout to position and size everything
+      perform layout[legendary].render
+
+      ~set the dimensions of the overall form from the layouts
+      width = layout[legendary].width
+      height = layout[legendary].height
+      ]]></position>
+    </form>
+
+
+  </document>

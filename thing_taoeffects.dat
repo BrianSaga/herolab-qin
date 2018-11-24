@@ -1,0 +1,1129 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!-- This file contains the assortment of skills for the game system. Note that each
+      skill is linked to an associated attribute for the character. This linkage allows
+      the value of the skill to easily incorporate the effects of the linked attribute
+      via a script on the component.
+-->
+
+<document signature="Hero Lab Data">
+
+<!-- TAO OF THE SIX DIRECTIONS -->
+	<thing
+		id="teRunLgJp1"
+		name="Run/Long Jump I"
+		compset="TaoEffect"
+		isunique="yes"
+		description="The character can add to his action (even if this is already a movement) a horizontal movement of a distance in yards less than or equal to his Water value.">
+		<fieldval field="trtAbbrev" value="RnJp1"/>
+		
+		<tag group="Level" tag="1"/>
+
+		<!-- Set chi cost, which is based on Tao level -->
+		<eval index="1" phase="Setup" priority="100"><![CDATA[
+			field[chiCost].value = tagvalue[Level.?]
+		]]></eval>		
+	</thing>
+
+	<thing
+		id="teRunLgJp2"
+		name="Run/Long Jump II"
+		compset="TaoEffect"
+		isunique="yes"
+		description="As above only the horizontal movement may be up to (Water x 2) yards per action.">
+		<fieldval field="trtAbbrev" value="RnJp2"/>
+				
+		<tag group="Level" tag="2"/>
+		
+		<!-- Set chi cost, which is based on Tao level -->
+		<eval index="1" phase="Setup" priority="100"><![CDATA[
+			field[chiCost].value = tagvalue[Level.?]
+		]]></eval>			
+	</thing>
+
+	<thing
+		id="teDefyGr1"
+		name="Defy Gravity I"
+		compset="TaoEffect"
+		isunique="yes"
+		description="The character can add to his action a vertical movement along a wall of a distance in yards less than or equal to his Water value.">
+		<fieldval field="trtAbbrev" value="Defy1"/>
+
+				
+		<tag group="Level" tag="2"/>
+
+		<!-- Set chi cost, which is based on Tao level -->
+		<eval index="1" phase="Setup" priority="100"><![CDATA[
+			field[chiCost].value = tagvalue[Level.?]
+		]]></eval>		
+	</thing>	
+	
+	<thing
+		id="teRunLgJp3"
+		name="Run/Long Jump III"
+		compset="TaoEffect"
+		isunique="yes"
+		description="The character can make a horizontal movement of up to (Water x 3) yards per action.">
+		<fieldval field="trtAbbrev" value="RnJp3"/>
+
+		<tag group="Level" tag="3"/>
+
+		<!-- Set chi cost, which is based on Tao level -->
+		<eval index="1" phase="Setup" priority="100"><![CDATA[
+			field[chiCost].value = tagvalue[Level.?]
+		]]></eval>		
+	</thing>
+
+	<thing
+		id="teDefyGr2"
+		name="Defy Gravity II"
+		compset="TaoEffect"
+		isunique="yes"
+		description="The character can add to his action a movement along a vertical surface of a distance in yards of up to twice his Water value.">
+		<fieldval field="trtAbbrev" value="Defy2"/>
+
+		<tag group="Level" tag="3"/>
+
+		<!-- Set chi cost, which is based on Tao level -->
+		<eval index="1" phase="Setup" priority="100"><![CDATA[
+			field[chiCost].value = tagvalue[Level.?]
+		]]></eval>		
+	</thing>
+
+	<thing
+		id="teJupJdn1"
+		name="Jump up / Drop down I"
+		compset="TaoEffect"
+		isunique="yes"
+		description="Similarly, the character can in the course of his action use a vertical movement of (Water) yards, up or down. He does not need a run-up, but he must have a place to land on or hang onto at the end point of his movement. He may also fall the same distance without being injured.">
+		<fieldval field="trtAbbrev" value="JuDd1"/>
+
+		<tag group="Level" tag="3"/>
+
+		<!-- Set chi cost, which is based on Tao level -->
+		<eval index="1" phase="Setup" priority="100"><![CDATA[
+			field[chiCost].value = tagvalue[Level.?]
+		]]></eval>		
+	</thing>
+
+	<thing
+		id="teRunLgJp4"
+		name="Run/Long Jump IV"
+		compset="TaoEffect"
+		isunique="yes"
+		description="As above only the horizontal movement may be up to (Water x 4) yards per action.">
+		<fieldval field="trtAbbrev" value="RnJp4"/>
+
+		<tag group="Level" tag="4"/>
+
+		<!-- Set chi cost, which is based on Tao level -->
+		<eval index="1" phase="Setup" priority="100"><![CDATA[
+			field[chiCost].value = tagvalue[Level.?]
+		]]></eval>		
+	</thing>
+
+	<thing
+		id="teDefyGr3"
+		name="Defy Gravity III"
+		compset="TaoEffect"
+		isunique="yes"
+		description="As above only the maximum vertical movement is (Water x 3) yards.">
+		<fieldval field="trtAbbrev" value="Defy3"/>
+
+		<tag group="Level" tag="4"/>
+
+		<!-- Set chi cost, which is based on Tao level -->
+		<eval index="1" phase="Setup" priority="100"><![CDATA[
+			field[chiCost].value = tagvalue[Level.?]
+		]]></eval>		
+	</thing>
+
+	<thing
+		id="teJupJdn2"
+		name="Jump up / Drop down II"
+		compset="TaoEffect"
+		isunique="yes"
+		description="The character’s vertical movement in the course of his action may be up to twice his Water value. He may also fall this distance without being hurt.">
+		<fieldval field="trtAbbrev" value="JuDd2"/>
+
+		<tag group="Level" tag="4"/>
+
+		<!-- Set chi cost, which is based on Tao level -->
+		<eval index="1" phase="Setup" priority="100"><![CDATA[
+			field[chiCost].value = tagvalue[Level.?]
+		]]></eval>		
+	</thing>
+	
+<!-- TAO OF THE LIGHT STEP -->
+	<thing
+		id="teSureFtd"
+		name="Sure-footed"
+		compset="TaoEffect"
+		isunique="yes"
+		description="This Level permits a character to cancel out the penalty caused by difficult terrain for a period in minutes equal to his Water value. This applies to slippery surfaces, such as ones affected by oil or ice, steep sloping surfaces such as temple roofs, and treacherous surfaces such as the deck of a boat during a storm.{br}{br}In addition, a character with any Level of this Tao may use it to obtain a bonus in any Test to avoid falling. The bonus will be equal to his Tao Level, and the character must spend a corresponding number of Chi points to obtain it.">
+		<fieldval field="trtAbbrev" value="Sure"/>
+		
+		<tag group="Level" tag="1"/>
+
+		<!-- Set chi cost, which is based on Tao level -->
+		<eval index="1" phase="Setup" priority="100"><![CDATA[
+			field[chiCost].value = tagvalue[Level.?]
+		]]></eval>		
+	</thing>
+	
+	<thing
+		id="teRockStdy"
+		name="Rock steady"
+		compset="TaoEffect"
+		isunique="yes"
+		description="The character has no difficulty in standingon a narrow surface (4 inches wide), such as a rock or abeam, provided that it is solid and stable. He can fight orcarry out other actions without any penalty. He may alsouse such a narrow, solid surface as a support to hold himselfin any position.">
+		<fieldval field="trtAbbrev" value="Rock"/>
+		
+		<tag group="Level" tag="2"/>
+
+		<!-- Set chi cost, which is based on Tao level -->
+		<eval index="1" phase="Setup" priority="100"><![CDATA[
+			field[chiCost].value = tagvalue[Level.?]
+		]]></eval>		
+	</thing>
+	
+	<thing
+		id="teTiptoe"
+		name="Tip toe"
+		compset="TaoEffect"
+		isunique="yes"
+		description="The character can stand on surfaces that are asnarrow, weak and unstable as ropes or rolls of cloth 1 to 2 inches wide, and suffer no penalty. He may also usesuch surfaces as support to hold himself in any position.">
+		<fieldval field="trtAbbrev" value="TipTo"/>
+		
+		<tag group="Level" tag="3"/>
+
+		<!-- Set chi cost, which is based on Tao level -->
+		<eval index="1" phase="Setup" priority="100"><![CDATA[
+			field[chiCost].value = tagvalue[Level.?]
+		]]></eval>		
+	</thing>
+	
+	<thing
+		id="tePerfBal"
+		name="Perfect balance"
+		compset="TaoEffect"
+		isunique="yes"
+		description="At this Level, the character can find aperfectly-balanced position on a single point, such as thepoint of a spear, the tip of a stalk of bamboo or the top of a military standard, and continue to act without anypenalty. He may use such a position to stand, or to adoptany other position.">
+		<fieldval field="trtAbbrev" value="PrBal"/>
+		
+		<tag group="Level" tag="4"/>
+
+		<!-- Set chi cost, which is based on Tao level -->
+		<eval index="1" phase="Setup" priority="100"><![CDATA[
+			field[chiCost].value = tagvalue[Level.?]
+		]]></eval>		
+	</thing>
+
+<!-- Tao of the Strengthened Body -->
+	<thing
+		id="teCloakChi"
+		name="The cloak of Chi"
+		compset="TaoEffect"
+		isunique="yes"
+		description="The character channels his Chi in sucha way as to be able to withstand heat up to 70° C and colddown to -40° C. Such conditions cause him neither damagenor penalty for a period in hours equal to his Tao Level.{br}{br}{B}The character adds two boxes to his Normal Breath of Life Level.{/B}">
+		<fieldval field="trtAbbrev" value="ClChi"/>
+		
+		<tag group="Level" tag="1"/>
+
+		<!-- Set chi cost, which is based on Tao level -->
+		<eval index="1" phase="Setup" priority="100"><![CDATA[
+		
+			~ Chi cost equals the level of the Tao Effect
+			field[chiCost].value = tagvalue[Level.?]
+			
+		]]></eval>	
+	
+		<!-- This Tao adjusts breath of life levels -->
+		<eval value="2" phase="Traits" priority="5060">
+			<before name="Derived trtFinal"/>
+			<after name="Calc trtFinal"/><![CDATA[
+				
+				~ Adjust the BoL level in the gizmo appropriately when active
+				var active as number
+				active = field[actActive].value
+				
+				if (active <> 0) then
+					hero.childfound[trBol].gizmo.childfound[trBolNorm].field[trtBonus].value += 2
+				endif
+		]]></eval>		
+	</thing>
+	
+	<thing
+		id="teNoPain"
+		name="Feel no pain"
+		compset="TaoEffect"
+		isunique="yes"
+		description="By spending the requisite number of Chi points, the character may ignore any penalties caused byloss of Breath of Life and the seriousness of his injuries for a number of rounds equal to his Tao Level.{br}{br}{B}The character adds two boxes to his Normal Breath of Life Level.{/B}">
+		<fieldval field="trtAbbrev" value="NoPn"/>
+		
+		<tag group="Level" tag="2"/>
+
+		<!-- Set chi cost, which is based on Tao level -->
+		<eval index="1" phase="Setup" priority="100"><![CDATA[
+			field[chiCost].value = tagvalue[Level.?]
+		]]></eval>
+
+		<!-- This Tao adjusts breath of life levels -->
+		<eval value="2" phase="Traits" priority="5060">
+			<before name="Derived trtFinal"/>
+			<after name="Calc trtFinal"/><![CDATA[
+				
+				~ Adjust the BoL level in the gizmo appropriately when active
+				var active as number
+				active = field[actActive].value
+				
+				if (active <> 0) then
+					hero.childfound[trBol].gizmo.childfound[trBolNorm].field[trtBonus].value += 2
+				endif
+		]]></eval>			
+	</thing>
+	
+	<thing
+		id="teClnsBld"
+		name="Cleanse the blood"
+		compset="TaoEffect"
+		isunique="yes"
+		description="The character can use his Chi to fight against sickness, and gains a bonus equal to his Earth value in any Resistance Test against a disease or a poison. As soon as he needs to perform such a Test, he becomes immediately aware of the risk to his health and can use the Tao to fight the infection. He will not necessarily be able to identify the precise cause of his sickness, but will know whether it is a disease or a poison.{br}{br}{B}The character adds two boxes to his Bruised Breath of Life Level.{/B}">
+		
+		<fieldval field="trtAbbrev" value="Clns"/>
+		
+		<tag group="Level" tag="3"/>
+
+		<!-- Set chi cost, which is based on Tao level -->
+		<eval index="1" phase="Setup" priority="100"><![CDATA[
+			field[chiCost].value = tagvalue[Level.?]
+		]]></eval>
+
+		<!-- This Tao adjusts breath of life levels -->
+		<eval value="2" phase="Traits" priority="5060">
+			<before name="Derived trtFinal"/>
+			<after name="Calc trtFinal"/><![CDATA[
+				
+				~ Adjust the BoL level in the gizmo appropriately when active
+				var active as number
+				active = field[actActive].value
+				
+				if (active <> 0) then
+					hero.childfound[trBol].gizmo.childfound[trBolBruis].field[trtBonus].value += 2
+				endif
+		]]></eval>			
+	</thing>
+	
+	<thing
+		id="teHardhide"
+		name="Hard hide"
+		compset="TaoEffect"
+		isunique="yes"
+		description="The character can draw on his inner force and convert it into natural armor. He subtracts a number of damage points equal to his Metal value from the effects of any successful attack for a number of rounds equal to his Tao Level.{br}{br}{B}The character adds two boxes to his Slightly Injured Breath of Life Level{/B}.">
+		<fieldval field="trtAbbrev" value="HrHd"/>
+		
+		<tag group="Level" tag="4"/>
+
+		<!-- Set chi cost, which is based on Tao level -->
+		<eval index="1" phase="Setup" priority="100"><![CDATA[
+			field[chiCost].value = tagvalue[Level.?]
+		]]></eval>
+
+		<!-- This Tao adjusts breath of life levels -->
+		<eval value="2" phase="Traits" priority="5060">
+			<before name="Derived trtFinal"/>
+			<after name="Calc trtFinal"/><![CDATA[
+				
+				~ Adjust the BoL level in the gizmo appropriately when active
+				var active as number
+				active = field[actActive].value
+				
+				if (active <> 0) then
+					hero.childfound[trBol].gizmo.childfound[trBolSlInj].field[trtBonus].value += 2
+				endif
+		]]></eval>			
+	</thing>
+	
+<!-- Tao of the Destructive Breath -->
+	<thing
+		id="teGntlBrz"
+		name="Gentle breeze"
+		compset="TaoEffect"
+		isunique="yes"
+		description="The character may automatically destroy a wooden structure about the size of a chair, by a perfect strike which finds the weak point of the structure and upsets its internal balance.{br}{br}In addition, a character with any Level of this Tao may use it to obtain a bonus to any damage he inflicts. The bonus will be equal to his Tao Level, and the character must spend a corresponding number of Chi points to obtain it.">
+		<fieldval field="trtAbbrev" value="GlBz"/>
+		
+		<tag group="Level" tag="1"/>
+
+		<!-- Set chi cost, which is based on Tao level -->
+		<eval index="1" phase="Setup" priority="100"><![CDATA[
+			field[chiCost].value = tagvalue[Level.?]
+		]]></eval>		
+	</thing>
+	
+	<thing
+		id="teSdnGust"
+		name="Sudden gust"
+		compset="TaoEffect"
+		isunique="yes"
+		description="The character may automatically destroy large wooden structures such as scaffolding, doors, and supporting beams. His perfect strike finds the point which destroys the target from within. Where the target has a significant volume, as with scaffolding, it collapses in the exchange directly after the strike.">
+		<fieldval field="trtAbbrev" value="SdGs"/>
+		
+		<tag group="Level" tag="2"/>
+
+		<!-- Set chi cost, which is based on Tao level -->
+		<eval index="1" phase="Setup" priority="100"><![CDATA[
+			field[chiCost].value = tagvalue[Level.?]
+		]]></eval>		
+	</thing>
+	
+	<thing
+		id="teSdnQk"
+		name="Sudden quake"
+		compset="TaoEffect"
+		isunique="yes"
+		description="The character may automatically destroy large stone objects such as funerary steles. In addition, a character with this Level may obtain the effects included in the lower Levels against stone targets.">
+		<fieldval field="trtAbbrev" value="SdQk"/>
+		
+		<tag group="Level" tag="3"/>
+
+		<!-- Set chi cost, which is based on Tao level -->
+		<eval index="1" phase="Setup" priority="100"><![CDATA[
+			field[chiCost].value = tagvalue[Level.?]
+		]]></eval>		
+	</thing>
+
+	<thing
+		id="teScgStl"
+		name="Scourge of steel"
+		compset="TaoEffect"
+		isunique="yes"
+		description="The character may automatically destroy a metal object the size of an anvil. In addition, a character with this Level may obtain the effects included in the lower Levels against metal targets.">
+		<fieldval field="trtAbbrev" value="SgSt"/>
+		
+		<tag group="Level" tag="4"/>
+
+		<!-- Set chi cost, which is based on Tao level -->
+		<eval index="1" phase="Setup" priority="100"><![CDATA[
+			field[chiCost].value = tagvalue[Level.?]
+		]]></eval>		
+	</thing>
+	
+<!-- Tao of Inspired Creation -->
+	<thing
+		id="teHndMend"
+		name="The hand that mends"
+		compset="TaoEffect"
+		isunique="yes"
+		description="The character knows how to find and reconstruct the inner balance of a damaged object or work of art. In any Test involving repair or restoration, such as fixing a chariot wheel, sharpening a blade, or restoring a decayed painting, he receives a bonus equal to his Earth value.">
+		<fieldval field="trtAbbrev" value="HdMd"/>
+
+		
+		<tag group="Level" tag="1"/>
+		
+		<!-- Set chi cost, which is based on Tao level -->
+		<eval index="1" phase="Setup" priority="100"><![CDATA[
+			field[chiCost].value = tagvalue[Level.?]
+		]]></eval>			
+	</thing>
+	
+	<thing
+		id="teHndCrt"
+		name="The hand that creates"
+		compset="TaoEffect"
+		isunique="yes"
+		description="The character knows how to combine disparate elements into complex objects. In any Test involving the creation of an object or work of art, such as making a tool, forging a blade, or producing a fine sculpture, he receives a bonus equal to his Tao Level.">
+		<fieldval field="trtAbbrev" value="HdCr"/>
+
+		
+		<tag group="Level" tag="2"/>
+		
+		<!-- Set chi cost, which is based on Tao level -->
+		<eval index="1" phase="Setup" priority="100"><![CDATA[
+			field[chiCost].value = tagvalue[Level.?]
+		]]></eval>			
+	</thing>
+	
+	<thing
+		id="teHndAct"
+		name="The hand that acts"
+		compset="TaoEffect"
+		isunique="yes"
+		description="The character knows the secrets of the deep structure of matter, and overcomes all manner of apparent obstacles to the creative process. In any Continuous Test of this kind, both the Interval between two Tests and the Difficulty Threshold are halved.">
+		<fieldval field="trtAbbrev" value="HdAt"/>
+
+		<tag group="Level" tag="3"/>
+		
+		<!-- Set chi cost, which is based on Tao level -->
+		<eval index="1" phase="Setup" priority="100"><![CDATA[
+			field[chiCost].value = tagvalue[Level.?]
+		]]></eval>			
+	</thing>
+	
+	<thing
+		id="teHndIns"
+		name="The hand of inspiration"
+		compset="TaoEffect"
+		isunique="yes"
+		description="The character’s command of his Chi is such that he is able to use it not just as a tool but a material in the creative process. He can breathe his Chi into any object or work of art he creates, giving it exceptional qualities, resulting in a bonus to be agreed with the GM. If the bonus is quantifiable, it will rarely exceed +2. The result may be a sword which inflicts greater damage, a more resilient weapon, a more robust piece of furniture, a captivating sculpture, or calligraphy guaranteed to soothe the mind of any that sees it.">
+		<fieldval field="trtAbbrev" value="HdIn"/>
+
+		<tag group="Level" tag="4"/>
+		
+		<!-- Set chi cost, which is based on Tao level -->
+		<eval index="1" phase="Setup" priority="100"><![CDATA[
+			field[chiCost].value = tagvalue[Level.?]
+		]]></eval>			
+	</thing>
+	
+<!-- Tao of the Sudden Lightning -->
+
+	<thing
+		id="teVigil"
+		name="Vigilance"
+		compset="TaoEffect"
+		isunique="yes"
+		description="The character cannot be taken by surprise in an ambush or any other type of surprise attack. While he cannot say where his opponents are or what their objectives might be, he reacts immediately on being attacked. When using this Tao, the character is free of any surprise penalty for a period in hours equal to his Wood value.">
+		<fieldval field="trtAbbrev" value="Vigil"/>
+		
+		<tag group="Level" tag="1"/>
+
+		<!-- Set chi cost, which is based on Tao level -->
+		<eval index="1" phase="Setup" priority="100"><![CDATA[
+			field[chiCost].value = tagvalue[Level.?]
+		]]></eval>		
+	</thing>
+
+	<thing
+		id="teSpeed"
+		name="Speed"
+		compset="TaoEffect"
+		isunique="yes"
+		description="The character may apply to the result of his Initiative Test a bonus equal to his Tao Level, by spending a corresponding number of Chi points.">
+		<fieldval field="trtAbbrev" value="Speed"/>
+		
+		<tag group="Level" tag="2"/>
+
+		<!-- Set chi cost, which is based on Tao level -->
+		<eval index="1" phase="Setup" priority="100"><![CDATA[
+			field[chiCost].value = tagvalue[Level.?]
+		]]></eval>		
+	</thing>
+
+	<thing
+		id="teJumpStrt"
+		name="Jump start"
+		compset="TaoEffect"
+		isunique="yes"
+		description="Where the character wins the Initiative Test at the beginning of a combat round, he may perform two actions in the first exchange. He does not gain an extra action, but can use two of his actions in a single exchange. Where appropriate, the character may even add to these two actions another Active Defense action. The second action takes place immediately after the first, before any opponents have the chance to act.">
+		<fieldval field="trtAbbrev" value="Jump"/>
+		
+		<tag group="Level" tag="3"/>
+
+		<!-- Set chi cost, which is based on Tao level -->
+		<eval index="1" phase="Setup" priority="100"><![CDATA[
+			field[chiCost].value = tagvalue[Level.?]
+		]]></eval>		
+	</thing>
+
+	<thing
+		id="teFrstMove"
+		name="First move"
+		compset="TaoEffect"
+		isunique="yes"
+		description="Even where the character does not win the Initiative Test at the beginning of an exchange, he may nonetheless choose to act first. His initiative level for that exchange is considered to be one point higher than that of the party who normally has the initiative for that round.">
+		<fieldval field="trtAbbrev" value="FrMv"/>
+		
+		<tag group="Level" tag="4"/>
+
+		<!-- Set chi cost, which is based on Tao level -->
+		<eval index="1" phase="Setup" priority="100"><![CDATA[
+			field[chiCost].value = tagvalue[Level.?]
+		]]></eval>		
+	</thing>
+
+<!-- Tao of the Invisible Shield  -->
+	<thing
+		id="teStrDef"
+		name="Strong defense"
+		compset="TaoEffect"
+		isunique="yes"
+		description="The character may adopt a special defensive stance enabling him to dissipate some of the damage caused by a blow, using his Chi to provide a temporary boost to his suppleness and resistance to injury. The reduction in damage will be equal to his Tao Level, but he must spend a corresponding number of Chi points to obtain it.">
+		<fieldval field="trtAbbrev" value="StDf"/>
+		
+		<tag group="Level" tag="1"/>
+
+		<!-- Set chi cost, which is based on Tao level -->
+		<eval index="1" phase="Setup" priority="100"><![CDATA[
+			field[chiCost].value = tagvalue[Level.?]
+		]]></eval>		
+	</thing>
+
+	<thing
+		id="teChiDef"
+		name="Chi defense"
+		compset="TaoEffect"
+		isunique="yes"
+		description="By focussing his mind and his inner energy on his guard, the character may increase his Passive Defense total for the duration of the current exchange. The increase will be equal to his Tao Level, but he must spend a corresponding number of Chi points to obtain it.">
+		<fieldval field="trtAbbrev" value="StDf"/>
+		
+		<tag group="Level" tag="2"/>
+
+		<!-- Set chi cost, which is based on Tao level -->
+		<eval index="1" phase="Setup" priority="100"><![CDATA[
+			field[chiCost].value = tagvalue[Level.?]
+		]]></eval>		
+	</thing>
+
+	<thing
+		id="teStrBlck"
+		name="Strong block"
+		compset="TaoEffect"
+		isunique="yes"
+		description="The character can float like a butterfly and sway like the breeze. He obtains a bonus equal to his Wood value in any Active Defense Test.">
+		<fieldval field="trtAbbrev" value="StBl"/>
+		
+		<tag group="Level" tag="3"/>
+
+		<!-- Set chi cost, which is based on Tao level -->
+		<eval index="1" phase="Setup" priority="100"><![CDATA[
+			field[chiCost].value = tagvalue[Level.?]
+		]]></eval>		
+	</thing>
+
+	<thing
+		id="teChiBlck"
+		name="Chi block"
+		compset="TaoEffect"
+		isunique="yes"
+		description="By choosing to channel his Chi through the Tao of the Invisible Shield, the character may obtain an immediate opportunity for an Active Defense action. This enables him to defend himself from a blow even where he has no actions left in the current combat round, or to do so while still holding onto actions for the next exchange. This Active Defense may be combined with another Tao or Combat Technique.">
+		<fieldval field="trtAbbrev" value="ChBl"/>
+		
+		<tag group="Level" tag="4"/>
+
+		<!-- Set chi cost, which is based on Tao level -->
+		<eval index="1" phase="Setup" priority="100"><![CDATA[
+			field[chiCost].value = tagvalue[Level.?]
+		]]></eval>		
+	</thing>
+	
+<!-- Tao of the Ten Thousand Hands  -->
+	<thing
+		id="teSndHand"
+		name="The second hand"
+		compset="TaoEffect"
+		isunique="yes"
+		description="Just after performing one action, the character may perform a second action, which may not be an attack or a movement, and which may not be enhanced by the effects of a Tao. This second action takes effect immediately after the first, occurring in the same exchange and before anyone else has the chance to act. Examples of possible second actions include drawing a sword, taking aim with a bow, or any other appropriate use of a Skill.">
+		<fieldval field="trtAbbrev" value="ScHd"/>
+		
+		<tag group="Level" tag="1"/>
+
+		<!-- Set chi cost, which is based on Tao level -->
+		<eval index="1" phase="Setup" priority="100"><![CDATA[
+			field[chiCost].value = tagvalue[Level.?]
+		]]></eval>		
+	</thing>
+
+	<thing
+		id="teSndBrth"
+		name="The second breath"
+		compset="TaoEffect"
+		isunique="yes"
+		description="The character’s second action may be a movement and, if so, may be enhanced by one of the effects of the Tao of the Six Directions or the Tao of the Light Step.">
+		<fieldval field="trtAbbrev" value="ScBr"/>
+		
+		<tag group="Level" tag="2"/>
+
+		<!-- Set chi cost, which is based on Tao level -->
+		<eval index="1" phase="Setup" priority="100"><![CDATA[
+			field[chiCost].value = tagvalue[Level.?]
+		]]></eval>		
+	</thing>
+	
+	<thing
+		id="teSndStk"
+		name="The second strike"
+		compset="TaoEffect"
+		isunique="yes"
+		description="At this Level, the character’s second action may be an attack. However, he may only attack with part of his body, and may not use a weapon. He might for example follow up a blow with a sword with a powerful uppercut. The second action may not be enhanced by the effects of a Tao or a Combat Technique.">
+		<fieldval field="trtAbbrev" value="ScSk"/>
+		
+		<tag group="Level" tag="3"/>
+
+		<!-- Set chi cost, which is based on Tao level -->
+		<eval index="1" phase="Setup" priority="100"><![CDATA[
+			field[chiCost].value = tagvalue[Level.?]
+		]]></eval>		
+	</thing>
+
+	<thing
+		id="teSndBld"
+		name="The second blade"
+		compset="TaoEffect"
+		isunique="yes"
+		description="The character may use his second action to fight with two weapons or one weapon and a shield. He may brandish both a sword and a dagger, or combine his sharp saber with a stout shield. The character’s second action can be used to strike with his second weapon or block with his shield, and corresponds to a free attack or a free Active Defense. But the second action may not be enhanced by the effects of a Tao or a Combat Technique.">
+		<fieldval field="trtAbbrev" value="ScBd"/>
+		
+		<tag group="Level" tag="4"/>
+
+		<!-- Set chi cost, which is based on Tao level -->
+		<eval index="1" phase="Setup" priority="100"><![CDATA[
+			field[chiCost].value = tagvalue[Level.?]
+		]]></eval>		
+	</thing>
+	
+<!-- Tao of the Inner Eye  -->
+	<thing
+		id="teKnEye"
+		name="The keen eye"
+		compset="TaoEffect"
+		isunique="yes"
+		description="In any Test involving perception in a general sense, such as looking for clues, searching a room or an individual, or tracking an escaped convict, the character receives a bonus equal to his Earth value. The player decides whether to use this effect while performing his Test and immediately spends one Chi point. The bonus only applies for the duration of that Test.">
+		<fieldval field="trtAbbrev" value="KnEy"/>
+		
+		<tag group="Level" tag="1"/>
+
+		<!-- Set chi cost, which is based on Tao level -->
+		<eval index="1" phase="Setup" priority="100"><![CDATA[
+			field[chiCost].value = tagvalue[Level.?]
+		]]></eval>		
+	</thing>
+
+	<thing
+		id="teShrpSns"
+		name="The sharp sense"
+		compset="TaoEffect"
+		isunique="yes"
+		description="The character can focus his powers by homing in on information supplied by one of his five senses, nominated by the player. In any Test involving that sense, the character may obtain a bonus equal to his Tao Level, but must spend a corresponding number of Chi points.">
+		<fieldval field="trtAbbrev" value="ShSn"/>
+
+		<tag group="Level" tag="2"/>
+
+		<!-- Set chi cost, which is based on Tao level -->
+		<eval index="1" phase="Setup" priority="100"><![CDATA[
+			field[chiCost].value = tagvalue[Level.?]
+		]]></eval>		
+	</thing>
+
+	<thing
+		id="teOuterEye"
+		name="The outer eye"
+		compset="TaoEffect"
+		isunique="yes"
+		description="At this Level, the character appears to have a mysterious sixth sense which makes up for any weakness in another. He may cancel out any penalty caused by blindness, deafness or other temporary loss of a sense, for a period in minutes equal to his Tao Level.">
+		<fieldval field="trtAbbrev" value="Outr"/>
+
+		<tag group="Level" tag="3"/>
+
+		<!-- Set chi cost, which is based on Tao level -->
+		<eval index="1" phase="Setup" priority="100"><![CDATA[
+			field[chiCost].value = tagvalue[Level.?]
+		]]></eval>		
+	</thing>
+
+	<thing
+		id="teHvnlyEye"
+		name="The heavenly eye"
+		compset="TaoEffect"
+		isunique="yes"
+		description="Any character who has lost one of his senses either temporarily or permanently may effectively replace it by using his remaining four senses to the full. For example, a deaf person may “hear” sounds by “reading” vibrations caused by the sound on his skin. Similarly, a blind man will hear sound so well as to be able to create an accurate image of his immediate environment. This effect lasts for a number of hours equal to the character’s Tao Level.">
+		<fieldval field="trtAbbrev" value="Heav"/>
+
+		<tag group="Level" tag="4"/>
+
+		<!-- Set chi cost, which is based on Tao level -->
+		<eval index="1" phase="Setup" priority="100"><![CDATA[
+			field[chiCost].value = tagvalue[Level.?]
+		]]></eval>		
+	</thing>
+
+<!-- Tao of the Hidden Shadow  -->
+	<thing
+		id="teDarkVeil"
+		name="The dark veil"
+		compset="TaoEffect"
+		isunique="yes"
+		description="The character can blur his appearance, and by staying still and at least partly hidden, obtain a bonus equal to his Fire value on any Stealth Test.">
+		<fieldval field="trtAbbrev" value="DkVl"/>
+
+		<tag group="Level" tag="1"/>
+
+		<!-- Set chi cost, which is based on Tao level -->
+		<eval index="1" phase="Setup" priority="100"><![CDATA[
+			field[chiCost].value = tagvalue[Level.?]
+		]]></eval>		
+	</thing>
+
+	<thing
+		id="teSecVeil"
+		name="The secret veil"
+		compset="TaoEffect"
+		isunique="yes"
+		description="The character can hide about his person a number of relatively small objects (daggers, chopsticks, bolts of silk) equal to his Tao Level. Even a thorough search will not reveal what he is carrying. This effect lasts until the character uses his hidden objects, changes his clothes, or is unmasked.">
+		<fieldval field="trtAbbrev" value="ScVl"/>
+
+		<tag group="Level" tag="2"/>		
+
+		<!-- Set chi cost, which is based on Tao level -->
+		<eval index="1" phase="Setup" priority="100"><![CDATA[
+			field[chiCost].value = tagvalue[Level.?]
+		]]></eval>
+	</thing>
+
+	<thing
+		id="tePathShad"
+		name="The path of shadows"
+		compset="TaoEffect"
+		isunique="yes"
+		description="The character can move with the stealth of a shadow, using every piece of darkness and cover available to him. He obtains a bonus equal to his Fire value on a Stealth Test whenever he attempts to move without being noticed. Where such a movement requires a Test involving Stealth and another Skill (eg. Climbing or Acrobatics), he always uses his Stealth Skill, even if he has a lower Skill Level in the other Skill.">
+		<fieldval field="trtAbbrev" value="PhSh"/>
+
+		<tag group="Level" tag="3"/>
+
+		<!-- Set chi cost, which is based on Tao level -->
+		<eval index="1" phase="Setup" priority="100"><![CDATA[
+			field[chiCost].value = tagvalue[Level.?]
+		]]></eval>		
+	</thing>
+	
+	<thing
+		id="tePathGst"
+		name="The path of ghosts"
+		compset="TaoEffect"
+		isunique="yes"
+		description="The character is as silent as a ghost. He obtains a bonus equal to his Fire value on a Stealth Test whenever he attempts any type of action involving subtlety and stealth (eg. attacking an opponent, searching a room, or stealing a horse). Where such an action involves Stealth and another Skill, he always uses his Stealth Skill, even if he has a lower Skill Level in the other Skill. However the character chooses to carry out his action, he remains completely silent and extremely difficult to spot. He may, for example, cut the throat of a sentry while avoiding the attentions of another sentry just a few yards away.">
+		<fieldval field="trtAbbrev" value="PhGs"/>
+		
+		<tag group="Level" tag="4"/>
+
+		<!-- Set chi cost, which is based on Tao level -->
+		<eval index="1" phase="Setup" priority="100"><![CDATA[
+			field[chiCost].value = tagvalue[Level.?]
+		]]></eval>		
+	</thing>
+
+<!-- Tao of the Thousand Bees  -->
+	<thing
+		id="teThrow"
+		name="Throw"
+		compset="TaoEffect"
+		isunique="yes"
+		description="The character may throw any object he has in his hands as if it were an improvised weapon, even if it was not designed for that purpose. The object may not be heavier than (Metal) pounds. If it hits its target, it inflicts 1 damage point.">
+		<fieldval field="trtAbbrev" value="Thrw"/>
+		
+		<tag group="Level" tag="1"/>
+
+		<!-- Set chi cost, which is based on Tao level -->
+		<eval index="1" phase="Setup" priority="100"><![CDATA[
+			field[chiCost].value = tagvalue[Level.?]
+		]]></eval>		
+	</thing>
+
+	<thing
+		id="tePropel"
+		name="Propel"
+		compset="TaoEffect"
+		isunique="yes"
+		description="The character may propel an object even when he does not hold it in his hands. Provided that it is within reach, he can use his hand, foot, or weapon to launch it at great speed towards an opponent. Again the object is treated as an improvised weapon from a rules point of view. The object may not be heavier than (Metal x 3) pounds. If it hits its target, it inflicts 2 damage points.{br}{br}Moreover, the character may catch an everyday object thrown towards him, such as a stool, a bowl, or chopsticks. To do so he must perform a successful Test of Water + Dodging.">
+		<fieldval field="trtAbbrev" value="Prop"/>
+		
+		<tag group="Level" tag="2"/>
+
+		<!-- Set chi cost, which is based on Tao level -->
+		<eval index="1" phase="Setup" priority="100"><![CDATA[
+			field[chiCost].value = tagvalue[Level.?]
+		]]></eval>		
+	</thing>
+
+	<thing
+		id="teWallMsl"
+		name="The wall of missiles"
+		compset="TaoEffect"
+		isunique="yes"
+		description="The character may throw or propel a number of objects equal to his Water value in a singleaction. Only one Attack Test is required for all the missiles. He may only attack one opponent, who must be within his field of vision, and the objects in question mustbe no larger than a small ball. Damage is equal to the number of objects used.{br}{br}Moreover, the character may catch a weapon thrown towards him, such as a dart, a knife or an arrow. To do so he must perform a successful Test of Water + Dodging.">
+		<fieldval field="trtAbbrev" value="Wall"/>
+		
+		<tag group="Level" tag="3"/>		
+
+		<!-- Set chi cost, which is based on Tao level -->
+		<eval index="1" phase="Setup" priority="100"><![CDATA[
+			field[chiCost].value = tagvalue[Level.?]
+		]]></eval>
+	</thing>
+
+	<thing
+		id="teWhrlMsl"
+		name="The whirlwind of missiles"
+		compset="TaoEffect"
+		isunique="yes"
+		description="The character may throw or propel a number of objects equal to twice his Water value in a single action. By spinning on the spot and flinging objects as he spins, he is able to aim his missiles at a number of opponents situated anywhere around him, and therefore chooses how to divide up the missiles between his several targets. Only one Attack Test is needed to attack all of the targets, and the ST is equal to the highest Passive Defense score among his targets plus 1 for each target after the first. Where an attack succeeds, the first missile that hits a target causes no damage, but each additional missile that hits the same target causes one damage point. Note that the whirlwind only lifts small objects, such as bowls, pitchers and coins.{br}{br}Moreover, the character may catch a number of objects or weapons thrown towards him equal to his Water value. To do so he must perform a successful Test of Water + Dodging in respect of each object to be caught.">
+		<fieldval field="trtAbbrev" value="Whrl"/>
+		
+		<tag group="Level" tag="4"/>		
+
+		<!-- Set chi cost, which is based on Tao level -->
+		<eval index="1" phase="Setup" priority="100"><![CDATA[
+			field[chiCost].value = tagvalue[Level.?]
+		]]></eval>		
+	</thing>
+	
+<!-- Tao of Yin and Yang  -->
+	<thing
+		id="teStrkLck"
+		name="Stroke of luck"
+		compset="TaoEffect"
+		isunique="yes"
+		description="The character may adjust the result on EITHER his Yin die OR his Yang die by one point in either direction. This adjustment may lead to a double : the character may not benefit from the effect of a Yin/Yang Balance, since the balance is artificial, but the result on the dice is still taken as the result of the roll.">
+		<fieldval field="trtAbbrev" value="Strk"/>
+		
+		<tag group="Level" tag="1"/>		
+
+		<!-- Set chi cost, which is based on Tao level -->
+		<eval index="1" phase="Setup" priority="100"><![CDATA[
+			field[chiCost].value = tagvalue[Level.?]
+		]]></eval>
+	</thing>
+	
+	<thing
+		id="teContEner"
+		name="Controller of energy"
+		compset="TaoEffect"
+		isunique="yes"
+		description="The character may reverse the result on the dice, by turning the Yin result into the Yang result or vice versa. This may be used among other things to alter the power of blows and influence the levels of damage they cause.">
+		<fieldval field="trtAbbrev" value="CtEn"/>
+		
+		<tag group="Level" tag="2"/>
+
+		<!-- Set chi cost, which is based on Tao level -->
+		<eval index="1" phase="Setup" priority="100"><![CDATA[
+			field[chiCost].value = tagvalue[Level.?]
+		]]></eval>		
+	</thing>
+
+	<thing
+		id="teContFlw"
+		name="Controller of flow"
+		compset="TaoEffect"
+		isunique="yes"
+		description="The character may adjust the result of BOTH his Yin die AND his Yang die by one point in either direction. Again, where this adjustment leads to a double the character may not benefit from the effect of a Yin/Yang Balance, since the balance is artificial, but the result on the dice is still taken as the result of the roll.">
+		<fieldval field="trtAbbrev" value="CtFl"/>
+		
+		<tag group="Level" tag="3"/>
+
+		<!-- Set chi cost, which is based on Tao level -->
+		<eval index="1" phase="Setup" priority="100"><![CDATA[
+			field[chiCost].value = tagvalue[Level.?]
+		]]></eval>		
+	</thing>
+	
+	<thing
+		id="teMstEner"
+		name="Master of energy"
+		compset="TaoEffect"
+		isunique="yes"
+		description="After rolling the two dice, the character may re-roll either one of them, and choose between the two results.">
+		<fieldval field="trtAbbrev" value="MtEn"/>
+		
+		<tag group="Level" tag="4"/>
+
+		<!-- Set chi cost, which is based on Tao level -->
+		<eval index="1" phase="Setup" priority="100"><![CDATA[
+			field[chiCost].value = tagvalue[Level.?]
+		]]></eval>		
+	</thing>
+	
+<!-- Tao of the Breath of Power  -->
+	<thing
+		id="teImpShld"
+		name="The improvised shield"
+		compset="TaoEffect"
+		isunique="yes"
+		description="The character may take any everyday object which does not inflict damage, such as a sheet, a fan, a cloak or a piece of silk, and use it to block an attack. Whether the attack is with bare hands or a weapon, the character obtains a bonus of +2 in his Active Defense Test. But he must use an action for the block.">
+		<fieldval field="trtAbbrev" value="ImSl"/>
+		
+		<tag group="Level" tag="1"/>
+
+		<!-- Set chi cost, which is based on Tao level -->
+		<eval index="1" phase="Setup" priority="100"><![CDATA[
+			field[chiCost].value = tagvalue[Level.?]
+		]]></eval>		
+	</thing>
+
+	<thing
+		id="teHiddenBd"
+		name="The hidden blade"
+		compset="TaoEffect"
+		isunique="yes"
+		description="The character may now use a harmless everyday object to launch an attack. The character transforms the object into a dangerous weapon capable of inflicting 2 basic damage points.">
+		<fieldval field="trtAbbrev" value="HdBd"/>
+		
+		<tag group="Level" tag="2"/>
+
+		<!-- Set chi cost, which is based on Tao level -->
+		<eval index="1" phase="Setup" priority="100"><![CDATA[
+			field[chiCost].value = tagvalue[Level.?]
+		]]></eval>		
+	</thing>
+
+	<thing
+		id="teInvisArm"
+		name="The invisible armor"
+		compset="TaoEffect"
+		isunique="yes"
+		description="The character has learnt to breathe part of his inner force into any clothing that he wears next to the skin. Such clothing is thus transformed from mere cloth into stout armor, and its protection passes from zero to 3.">
+		<fieldval field="trtAbbrev" value="InAr"/>
+		
+		<tag group="Level" tag="3"/>
+
+		<!-- Set chi cost, which is based on Tao level -->
+		<eval index="1" phase="Setup" priority="100"><![CDATA[
+			field[chiCost].value = tagvalue[Level.?]
+		]]></eval>		
+	</thing>
+
+	<thing
+		id="teMartSkl"
+		name="Martial Skill of the improvised weapon"
+		compset="TaoEffect"
+		isunique="yes"
+		description="At this Level, the character can use a Combat Technique with his improvised weapon. He must possess the relevant Combat Technique, and the improvised weapon must resemble the relevant real weapon sufficiently in order to permit use of the Technique. The character may also use other Tao effects in the action he undertakes with his new weapon.">
+		<fieldval field="trtAbbrev" value="MSkl"/>
+		
+		<tag group="Level" tag="4"/>
+
+		<!-- Set chi cost, which is based on Tao level -->
+		<eval index="1" phase="Setup" priority="100"><![CDATA[
+			field[chiCost].value = tagvalue[Level.?]
+		]]></eval>		
+	</thing>
+
+<!-- Tao of the Clear Mind  -->
+	<thing
+		id="teShrpMnd"
+		name="The sharp mind"
+		compset="TaoEffect"
+		isunique="yes"
+		description="The character has an impressive capacity for concentration on intellectual tasks. The energy of the Tao gives him a bonus of +2 in any Test involving a Skill from the mental domain.">
+		<fieldval field="trtAbbrev" value="ShMd"/>
+
+		<tag group="Level" tag="1"/>
+
+		<!-- Set chi cost, which is based on Tao level -->
+		<eval index="1" phase="Setup" priority="100"><![CDATA[
+			field[chiCost].value = tagvalue[Level.?]
+		]]></eval>		
+	</thing>
+	
+	<thing
+		id="teTrqMnd"
+		name="The tranquil mind"
+		compset="TaoEffect"
+		isunique="yes"
+		description="The character is able to clear his mind of any distractions in order to focus completely on a task. Whatever the levels of noise or however uncomfortable the environment, the character suffers no penalty caused by external circumstances. This effect lasts for a period in minutes equal to his Tao Level.">
+		<fieldval field="trtAbbrev" value="Tranq"/>
+
+		<tag group="Level" tag="2"/>
+
+		<!-- Set chi cost, which is based on Tao level -->
+		<eval index="1" phase="Setup" priority="100"><![CDATA[
+			field[chiCost].value = tagvalue[Level.?]
+		]]></eval>		
+	</thing>
+	
+	<thing
+		id="teLibMnd"
+		name="The library of the mind"
+		compset="TaoEffect"
+		isunique="yes"
+		description="The character has trained his memory to such a degree that he is able to store and retrieve large quantities of information with extreme accuracy. By concentrating on a book, a speech of a few minutes, an image, or a scene, he can fix every detail in his mind. Thereafter, he can remember the matter perfectly for a period in months equal to his Wood Level.">
+		<fieldval field="trtAbbrev" value="Libry"/>
+
+		<tag group="Level" tag="3"/>
+
+		<!-- Set chi cost, which is based on Tao level -->
+		<eval index="1" phase="Setup" priority="100"><![CDATA[
+			field[chiCost].value = tagvalue[Level.?]
+		]]></eval>		
+	</thing>
+
+	<thing
+		id="teVisMnd"
+		name="The visionary mind"
+		compset="TaoEffect"
+		isunique="yes"
+		description="The character’s mind is open, and his thoughts flow like a river. In any Test involving reasoning (eg. connecting facts, solving a puzzle, or analyzing scientific data), the character obtains a bonus equal to his Water Level.">
+		<fieldval field="trtAbbrev" value="Visn"/>
+
+		<tag group="Level" tag="4"/>
+
+		<!-- Set chi cost, which is based on Tao level -->
+		<eval index="1" phase="Setup" priority="100"><![CDATA[
+			field[chiCost].value = tagvalue[Level.?]
+		]]></eval>		
+	</thing>
+
+<!-- Tao of the Serene Presence -->
+	<thing
+		id="teBhndMask"
+		name="Behind the mask"
+		compset="TaoEffect"
+		isunique="yes"
+		description="To fully understand a person, one must first discover his feelings and his motivations. The character obtains a bonus equal to his Tao Level in any Empathy Test, or any other Test involving finding out information about someone or assessing them, such as judging their mood, guessing at their feelings, or spotting psychological problems.">
+		<fieldval field="trtAbbrev" value="BdMk"/>
+
+		<tag group="Level" tag="1"/>
+
+		<!-- Set chi cost, which is based on Tao level -->
+		<eval index="1" phase="Setup" priority="100"><![CDATA[
+			field[chiCost].value = tagvalue[Level.?]
+		]]></eval>		
+	</thing>
+
+	<thing
+		id="teMaskSer"
+		name="The mask of serenity"
+		compset="TaoEffect"
+		isunique="yes"
+		description="The character has a confident and reassuring air that attracts the attention of all those around him. For a period in hours equal to his Fire value, he becomes the center of attention, his opinion is solicited in meetings, his advice sought in private. Throughout this period, he obtains a bonus equal to his Tao Level in all social Tests involving pleasing someone or winning their confidence. This includes Eloquence, Seduction and Diplomacy.">
+		<fieldval field="trtAbbrev" value="MkSr"/>
+
+		<tag group="Level" tag="2"/>
+
+		<!-- Set chi cost, which is based on Tao level -->
+		<eval index="1" phase="Setup" priority="100"><![CDATA[
+			field[chiCost].value = tagvalue[Level.?]
+		]]></eval>		
+	</thing>
+	
+	<thing
+		id="teMaskTer"
+		name="The mask of terror"
+		compset="TaoEffect"
+		isunique="yes"
+		description="The character can generate a terrifying aura which obliges people to keep their distance. For a period in hours equal to his Fire value he will be treated as an outsider, the one whom everyone suspects but whom no-one dares to challenge openly. Throughout this period, the character obtains a bonus equal to his Tao Level in all social Tests involving impressing someone or making them feel uneasy. This includes not only Eloquence and Intimidation, but also Diplomacy and more.">
+		<fieldval field="trtAbbrev" value="MkTr"/>
+
+		<tag group="Level" tag="3"/>
+
+		<!-- Set chi cost, which is based on Tao level -->
+		<eval index="1" phase="Setup" priority="100"><![CDATA[
+			field[chiCost].value = tagvalue[Level.?]
+		]]></eval>		
+	</thing>
+
+	<thing
+		id="teMirror"
+		name="The mirror"
+		compset="TaoEffect"
+		isunique="yes"
+		description="The character is a master of the games people play. He obtains a bonus equal to his Earth value in any Test involving identifying an attempt to manipulate him psychologically, such as spotting a liar or working out whether he is being seduced for ulterior motives. He obtains the same bonus in any Test needed to fight such an attempt, such as resisting intimidation.">
+		<fieldval field="trtAbbrev" value="Mirr"/>
+
+		<tag group="Level" tag="4"/>
+
+		<!-- Set chi cost, which is based on Tao level -->
+		<eval index="1" phase="Setup" priority="100"><![CDATA[
+			field[chiCost].value = tagvalue[Level.?]
+		]]></eval>		
+	</thing>
+</document>

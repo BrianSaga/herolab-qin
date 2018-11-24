@@ -1,0 +1,454 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!-- This file contains the assortment of derived traits for the game system. Derived
+      traits are calculated via scripts and based on the attributes from which they
+      are derived.
+
+      Since derived traits are based upon other traits, we have a "chicken-and-egg"
+      situation with respect to script evaluation timing. The "Trait" component
+      auto-calculates the final value for the traits derived FROM, while the "Derived"
+      component provides a second calculation after that to incorporate the results of
+      the special calculation for each derived trait. Each derived trait must then
+      calculate the new derived value between those two times, which is what we
+      accomplish below within the eval script for each derived trait. The script is
+      timed to occur at Traits/4000 to splice it between the two other scripts that
+      mentioned above and performed by the component.
+
+      We calculate the derived value as a "bonus" for the trait, allowing it to be
+      added in appropriately by the component script. Trait bonuses can arise from
+      multiple sources, so we need to ADD our calculated amount instead of setting the
+      amount.
+
+      All trait values are rounded down, so we apply the proper rounding as needed.
+      Rounding must be performed BEFORE we add the adjustment.
+
+      Appropriate tags are assigned to each derived trait to control where the trait
+      is displayed to the user and the order in which the traits are displayed.
+-->
+
+<document signature="Hero Lab Data">
+
+  <!-- STPen Trait -->
+  <thing
+    id="trSTMod"
+    name="ST Mod"
+    compset="Trait"
+    isunique="yes"
+    description="Cumulative addition to ST for this character.">
+    <fieldval field="trtAbbrev" value="STMod"/>
+    <tag group="explicit" tag="1"/>
+    <tag group="User" tag="Combat"/>
+
+    </thing>  
+
+  <!-- Protection Trait -->
+  <thing
+    id="trProtect"
+    name="Protection"
+    compset="Trait"
+    isunique="yes"
+    description="Protection represents the degree to which armor reduces the force of a blow, and therefore the number of damage points to be subtracted from the damage caused by a blow.">
+    <fieldval field="trtAbbrev" value="Prot"/>
+    <tag group="explicit" tag="1"/>
+    <tag group="User" tag="Combat"/>
+
+    </thing>
+
+  <!-- Chi Trait -->
+  <thing
+    id="trChi"
+    name="Chi"
+    compset="Trait"
+    isunique="yes"
+    description="Chi is the essential, universal and eternal force. It is the breath of creation that emerged from the Tao and flows through the universe and each of the ten thousand beings and things. Each character has a particular quantity of Chi, which orders and energizes the microcosm of the universe that is his body and which he can actively use. A player can use his Chi points to perform actions within the scope of his Taos or Combat Techniques, or to master the mysterious ways of the Tao. But should a character’s stock of Chi become negative, the consequences are very serious.">
+    <fieldval field="trtAbbrev" value="Chi"/>
+    <tag group="explicit" tag="1"/>
+    <tag group="User" tag="Power"/>
+    
+    <!-- Calculate the Chi trait as appropriate -->
+    <eval value="1" phase="Traits" priority="4000">
+      <before name="Derived trtFinal"/>
+      <after name="Calc trtFinal"/><![CDATA[
+	  var chi as number
+	  var balance as number
+	  var highskill as number
+	  
+	  call getHighSkl
+	  call getBalance
+	  
+	  if (balance > 5) then
+		chi = 1
+	  elseif (balance > 2) then
+		chi = 2
+	  elseif (balance > 0) then
+		chi = 3
+	  else
+	    chi = 4
+	  endif
+		
+      field[trtBonus].value = (chi * #trait[attrEarth]) * highskill
+      ]]></eval>
+    </thing>
+	
+	
+  <!-- Health Trait -->
+  <thing
+    id="trBol"
+    name="Breath of Life"
+    compset="Trait"
+    isunique="yes"
+    description="The Breath of Life is the basic life force of any character, the inner breath that protects his health and enables him to endure pain and injury throughout his life. There are five Breath of Life Levels, which reflect the current state of health and general physical condition of a character. They are as follows: Normal, Bruised, Slightly Injured, Seriously Injured and Fatally Injured.">
+    
+	<fieldval field="trtAbbrev" value="BrLf"/>
+	<fieldval field="trtMinimum" value="11"/>
+	<fieldval field="trtMaximum" value="25"/>
+    
+	<tag group="Hide" tag="Basics"/>
+	<tag group="explicit" tag="2"/>
+ 
+	
+    <!-- Calculate the Health trait as appropriate -->
+    <eval value="1" phase="Traits" priority="4000">
+      <before name="Derived trtFinal"/>
+      <after name="Calc trtFinal"/><![CDATA[
+		var bol as number
+		call getBol
+		field[trtBonus].value = bol
+      ]]></eval>
+	  
+	  <child entity="entBreath">
+		<bootstrap thing="trBolNorm"/>
+		<bootstrap thing="trBolBruis"/>
+		<bootstrap thing="trBolSlInj"/>
+		<bootstrap thing="trBolSeInj"/>
+		<bootstrap thing="trBolFaInj"/>
+	  </child>
+    </thing>
+
+  <!-- Health Threshold Trait -->
+  <thing
+    id="trBolNorm"
+    name="Normal"
+    compset="Breath"
+    isunique="yes"
+    description="The Breath of Life is the basic life force of any character, the inner breath that protects his health and enables him to endure pain and injury throughout his life. There are five Breath of Life Levels, which reflect the current state of health and general physical condition of a character. They are as follows: Normal, Bruised, Slightly Injured, Seriously Injured and Fatally Injured.">
+    <fieldval field="trtAbbrev" value="Norm"/>
+   
+	<tag group="explicit" tag="3"/>
+	<tag group="Hide" tag="Statblock"/>
+	<tag group="STPen" tag="0"/>
+    <tag group="User" tag="Power"/>
+	
+    <!-- Calculate the Health trait as appropriate -->
+    <eval value="1" phase="Traits" priority="5050">
+      <before name="Derived trtFinal"/>
+      <after name="Calc trtFinal"/><![CDATA[
+		var bol as number
+		var lvl as number
+		bol = hero.herofield[acBoLMax].value 
+	
+		if (bol = 11) then
+			lvl = 3
+		elseif (bol = 13) then
+			lvl = 4
+		elseif (bol = 15) then
+			lvl = 5
+		elseif (bol = 17) then
+			lvl = 6
+		elseif (bol = 19) then
+			lvl = 7
+		elseif (bol = 21) then
+			lvl = 7
+		elseif (bol = 23) then
+			lvl = 8
+		elseif (bol = 25) then
+			lvl = 8
+		endif
+		field[trtBonus].value = lvl
+		
+      ]]></eval>
+    </thing>	
+	
+  <!-- Health Threshold Trait -->
+  <thing
+    id="trBolBruis"
+    name="Bruised"
+    compset="Breath"
+    isunique="yes"
+    description="The Breath of Life is the basic life force of any character, the inner breath that protects his health and enables him to endure pain and injury throughout his life. There are five Breath of Life Levels, which reflect the current state of health and general physical condition of a character. They are as follows: Normal, Bruised, Slightly Injured, Seriously Injured and Fatally Injured.">
+    <fieldval field="trtAbbrev" value="Bruis"/>
+    
+    <tag group="explicit" tag="4"/>
+	<tag group="Hide" tag="Statblock"/>
+	<tag group="STPen" tag="0"/>
+    <tag group="User" tag="Power"/>
+	
+    <!-- Calculate the Health trait as appropriate -->
+    <eval value="1" phase="Traits" priority="5050">
+      <before name="Derived trtFinal"/>
+      <after name="Calc trtFinal"/><![CDATA[
+		var bol as number
+		var lvl as number
+		bol = hero.herofield[acBoLMax].value 
+
+		if (bol = 11) then
+			lvl = 3
+		elseif (bol = 13) then
+			lvl = 3
+		elseif (bol = 15) then
+			lvl = 4
+		elseif (bol = 17) then
+			lvl = 5
+		elseif (bol = 19) then
+			lvl = 5
+		elseif (bol = 21) then
+			lvl = 5
+		elseif (bol = 23) then
+			lvl = 6
+		elseif (bol = 25) then
+			lvl = 6
+		endif
+		field[trtBonus].value = lvl
+		
+      ]]></eval>
+    </thing>
+	
+  <!-- Health Threshold Trait -->
+  <thing
+    id="trBolSlInj"
+    name="Slightly Inj"
+    compset="Breath"
+    isunique="yes"
+    description="The Breath of Life is the basic life force of any character, the inner breath that protects his health and enables him to endure pain and injury throughout his life. There are five Breath of Life Levels, which reflect the current state of health and general physical condition of a character. They are as follows: Normal, Bruised, Slightly Injured, Seriously Injured and Fatally Injured.">
+    <fieldval field="trtAbbrev" value="Sltly"/>
+	
+    <tag group="explicit" tag="5"/>
+	<tag group="Hide" tag="Statblock"/>
+	<tag group="STPen" tag="1"/>
+    <tag group="User" tag="Power"/>
+
+	<!-- Calculate the Health trait as appropriate -->
+    <eval value="1" phase="Traits" priority="5050">
+      <before name="Derived trtFinal"/>
+      <after name="Calc trtFinal"/><![CDATA[
+		var bol as number
+		var lvl as number
+		bol = hero.herofield[acBoLMax].value 
+
+		if (bol = 11) then
+			lvl = 2
+		elseif (bol = 13) then
+			lvl = 3
+		elseif (bol = 15) then
+			lvl = 3
+		elseif (bol = 17) then
+			lvl = 3
+		elseif (bol = 19) then
+			lvl = 4
+		elseif (bol = 21) then
+			lvl = 4
+		elseif (bol = 23) then
+			lvl = 4
+		elseif (bol = 25) then
+			lvl = 5
+		endif
+		field[trtBonus].value = lvl
+		
+      ]]></eval>
+    </thing>
+
+  <!-- Health Threshold Trait -->
+  <thing
+    id="trBolSeInj"
+    name="Seriously Inj"
+    compset="Breath"
+    isunique="yes"
+    description="The Breath of Life is the basic life force of any character, the inner breath that protects his health and enables him to endure pain and injury throughout his life. There are five Breath of Life Levels, which reflect the current state of health and general physical condition of a character. They are as follows: Normal, Bruised, Slightly Injured, Seriously Injured and Fatally Injured.">
+    <fieldval field="trtAbbrev" value="Srsly"/>
+    
+	<tag group="explicit" tag="6"/>
+	<tag group="Hide" tag="Statblock"/>
+	<tag group="STPen" tag="3"/>
+    <tag group="User" tag="Power"/>
+	
+    <!-- Calculate the Health trait as appropriate -->
+    <eval value="1" phase="Traits" priority="5050">
+      <before name="Derived trtFinal"/>
+      <after name="Calc trtFinal"/><![CDATA[
+		var bol as number
+		var lvl as number
+		bol = hero.herofield[acBoLMax].value 
+
+		if (bol = 11) then
+			lvl = 2
+		elseif (bol = 13) then
+			lvl = 2
+		elseif (bol = 15) then
+			lvl = 2
+		elseif (bol = 17) then
+			lvl = 2
+		elseif (bol = 19) then
+			lvl = 2
+		elseif (bol = 21) then
+			lvl = 3
+		elseif (bol = 23) then
+			lvl = 3
+		elseif (bol = 25) then
+			lvl = 4
+		endif
+		field[trtBonus].value = lvl
+		
+      ]]></eval>
+    </thing>
+
+  <!-- Health Threshold Trait -->
+  <thing
+    id="trBolFaInj"
+    name="Fatally Inj"
+    compset="Breath"
+    isunique="yes"
+    description="The Breath of Life is the basic life force of any character, the inner breath that protects his health and enables him to endure pain and injury throughout his life. There are five Breath of Life Levels, which reflect the current state of health and general physical condition of a character. They are as follows: Normal, Bruised, Slightly Injured, Seriously Injured and Fatally Injured.">
+    <fieldval field="trtAbbrev" value="Fatal"/>
+   
+	<tag group="explicit" tag="7"/>
+	<tag group="Hide" tag="Statblock"/>
+	<tag group="STPen" tag="5"/>
+    <tag group="User" tag="Power"/>
+    
+	<!-- Calculate the Health trait as appropriate -->
+    <eval value="1" phase="Traits" priority="5050">
+      <before name="Derived trtFinal"/>
+      <after name="Calc trtFinal"/><![CDATA[
+		var bol as number
+		var lvl as number
+		bol = hero.herofield[acBoLMax].value 
+
+		if (bol = 11) then
+			lvl = 1
+		elseif (bol = 13) then
+			lvl = 1
+		elseif (bol = 15) then
+			lvl = 1
+		elseif (bol = 17) then
+			lvl = 1
+		elseif (bol = 19) then
+			lvl = 1
+		elseif (bol = 21) then
+			lvl = 2
+		elseif (bol = 23) then
+			lvl = 2
+		elseif (bol = 25) then
+			lvl = 2
+		endif
+		field[trtBonus].value = lvl
+		
+      ]]></eval>
+    </thing>
+	
+  <!-- Initiative Trait -->
+  <thing
+    id="trInit"
+    name="Initiative"
+    compset="Trait"
+    isunique="yes"
+    description="Each party involved in a combat round must determine his initiative score for the round. Whoever obtains the highest result has the initiative in that round and in each exchange within it. A character’s initiative score is calculated by an Initiative Test using his Water value.">
+    <fieldval field="trtAbbrev" value="Init"/>
+    <tag group="explicit" tag="8"/>
+    <tag group="User" tag="Combat"/>
+    <tag group="DashTacCon" tag="Combat"/>
+    <tag group="DashTacCon" tag="Traits"/>
+
+    <!-- Calculate the Initiative trait as appropriate -->
+    <eval value="1" phase="Traits" priority="4000">
+      <before name="Derived trtFinal"/>
+      <after name="Calc trtFinal"/><![CDATA[
+      field[trtBonus].value = #trait[attrWater]
+      ]]></eval>
+    </thing>
+
+  <!-- Passive Defense Trait -->
+  <thing
+    id="trPassDef"
+    name="Passive Defense"
+    compset="Trait"
+    isunique="yes"
+    description="According to Taoist philosophy, to not act is a form of action. Thus the warrior who is not consciously defending himself will still instinctively dodge and block blows, sometimes without even noticing. Each character has a value for Passive Defense, which represents how difficult it is to hit him. It is equivalent to a Success Threshold to be met or surpassed by the opponent’s Attack Test. A character’s Passive Defense value is equal to the sum of his Water value and his Wood value plus 2.">
+    <fieldval field="trtAbbrev" value="PD"/>
+    <tag group="explicit" tag="9"/>
+    <tag group="User" tag="Combat"/>
+    <tag group="DashTacCon" tag="Combat"/>
+
+    <!-- Calcualte the Defense trait as appropriate -->
+    <eval value="1" phase="Traits" priority="4000">
+      <before name="Derived trtFinal"/>
+      <after name="Calc trtFinal"/><![CDATA[
+      field[trtBonus].value = #trait[attrWater] + #trait[attrWood] + 2
+      ]]></eval>
+    </thing>
+
+  <!-- Resistance Trait -->
+  <thing
+    id="trResist"
+    name="Resistance"
+    compset="Trait"
+    isunique="yes"
+    description="Description goes here">
+    <fieldval field="trtAbbrev" value="Res"/>
+    <tag group="explicit" tag="10"/>
+    <tag group="User" tag="Resistance"/>
+    <tag group="DashTacCon" tag="Traits"/>
+
+    <!-- Calculate the Resistance trait as appropriate -->
+    <eval value="1" phase="Traits" priority="4000">
+      <before name="Derived trtFinal"/>
+      <after name="Calc trtFinal"/><![CDATA[
+		var resist as number
+		call getResist
+		field[trtBonus].value = resist
+      ]]></eval>
+    </thing>
+
+  <!-- Balance Trait -->
+  <thing
+    id="trBalance"
+    name="Balance"
+    compset="Trait"
+    isunique="yes"
+    description="A measure of how balanced a character's attributes are.">
+    <fieldval field="trtAbbrev" value="Bal"/>
+    <tag group="explicit" tag="11"/>
+    
+
+    <!-- Calculate the Health trait as appropriate -->
+    <eval value="1" phase="Traits" priority="4000">
+      <before name="Derived trtFinal"/>
+      <after name="Calc trtFinal"/><![CDATA[
+	  var balance as number
+	  
+	  call getBalance
+	  
+      field[trtBonus].value = balance
+      ]]></eval>
+    </thing>
+	
+  <!-- Actions Trait -->
+  <thing
+    id="trActions"
+    name="# Actions"
+    compset="Trait"
+    isunique="yes"
+    description="Actions per round based on equipped weapon skill.">
+    <fieldval field="trtAbbrev" value="Act"/>
+	<fieldval field="trtMinimum" value="1"/>
+    <tag group="explicit" tag="12"/>
+    <tag group="User" tag="Combat"/>
+	<tag group="DashTacCon" tag="Traits"/>
+	
+	 <eval phase="Initialize" priority="5000"><![CDATA[
+		if (field[trtFinal].value < 1) then
+			field[trtBonus].value = 1
+		endif
+     ]]></eval>
+    </thing>
+	
+  </document>

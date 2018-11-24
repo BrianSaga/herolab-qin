@@ -1,0 +1,528 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!-- This file contains the assortment of skills for the game system. Note that each
+      skill is linked to an associated attribute for the character. This linkage allows
+      the value of the skill to easily incorporate the effects of the linked attribute
+      via a script on the component.
+-->
+
+<document signature="Hero Lab Data">
+
+<!--
+	***************************************************************
+		Exorcism Techniques
+	***************************************************************
+-->
+
+<!-- Blessing of Wood -->
+	<thing
+		id="maBlWood"
+		name="Blessing of Wood"
+		compset="Magic"
+		isunique="yes"
+		description="A willow sword is an exorcist’s most valued possession, his weapon of last resort against supernatural creatures. By breathing his Yang energy into the wood and following the proper rite, the exorcist can transform the sword into a powerful weapon able to injure even ghosts and formless spirits. To invest his sword with the power of the Chi, the exorcist must bless it three times, meditate holding the sword for a small hour, and spend 4 Chi points. The result will be a weapon that he can wield with Jianshu Skill and inflict 2 damage points. The sacred weapon can cut through the Natural Armor of any supernatural creature, and injure even those creatures with the power of Invulnerability.">
+		<fieldval field="trtAbbrev" value="BlWd"/>
+		
+		<fieldval field="trtUser" value="1"/>
+		<fieldval field="maPrep" value="One small hour"/>
+		<fieldval field="maPrepST" value="N/A"/>
+		<fieldval field="maDur" value="Until the next sunrise"/>
+		<fieldval field="maArea" value="Close combat zone"/>
+		<fieldval field="chiCost" value="4"/>
+		<fieldval field="maImprove" value="For every 2 extra Chi points that the exorcist invests in blessing his sword, damage caused by the sword is increased by 1, up to a maximum equal to his Metal value."/>
+		
+
+		<tag group="Way" tag="Exorcism"/>
+		<link linkage="magicskill" thing="skExor"/>
+		
+		<!-- Uncomment for prerequisites
+		<exprreq message="Calligraphy 1+ required."><![CDATA[
+			#traitfound[skCall] >= 1
+		]]></exprreq>
+		-->
+    </thing>
+	
+<!-- Power of the Sun -->
+	<thing
+		id="maPwrSon"
+		name="Power of the Sun"
+		compset="Magic"
+		isunique="yes"
+		description="A polished bronze mirror filled with the energy of the sun and transformed by the Chi of the exorcist can be used to release rays of pure light with the power to injure ghosts, demons, and the undead. The mirror must be left exposed to the sun for a double hour in order to absorb its energy, and the exorcist must use 4 Chi points to enable it to release this energy. The mirror will hold a number of “charges” equal to the number of double hours during which it was exposed to the sun, up to a maximum of twelve charges. To release the light within the mirror and use it to strike a creature, the exorcist must perform a successful Test of Wood + Exorcism against his target’s Passive Defense score. In combat, this counts as an action and can be countered by an Active Defense. The mirror’s rays cause damage equal to the exorcist’s Fire value, plus any extra damage due to an extra investment of Chi, and can burn even creatures with the power of Invulnerability or Formlessness.">
+		<fieldval field="trtAbbrev" value="PrSn"/>
+		
+		<fieldval field="trtUser" value="1"/>
+		<fieldval field="maPrep" value="At least one double hour’s exposure to the sun"/>
+		<fieldval field="maPrepST" value="N/A"/>
+		<fieldval field="maDur" value="One charge for each double hour’s exposure to the sun, up to a maximum of twelve charges"/>
+		<fieldval field="maArea" value="Field of vision"/>
+		<fieldval field="chiCost" value="4"/>
+		<fieldval field="maImprove" value="For every 2 extra Chi points that the exorcist spends when using the mirror, damage caused by the mirror’s rays is increased by 1, up to a maximum equal to his Fire value."/>
+		
+				<tag group="Way" tag="Exorcism"/>
+		<link linkage="magicskill" thing="skExor"/>
+		
+		<!-- Uncomment for prerequisites
+		<exprreq message="Calligraphy 1+ required."><![CDATA[
+			#traitfound[skCall] >= 1
+		]]></exprreq>
+		-->
+    </thing>
+	
+	<!-- The Compass of the Spirits -->
+	<thing
+		id="maCmpSpr"
+		name="The Compass of the Spirits"
+		compset="Magic"
+		isunique="yes"
+		description="The exorcist places an iron needle into a small circular box and transfers his Yang energy into the needle. By a process of 'spiritual magnetism', the needle will point towards the most powerful source of Yin energy in the area. The source will generally be a ghost, a haunted place, or the hiding-place of a demon. To create the compass, the exorcist must transfer his blood to an iron needle by pricking his fingertip. To make it active, he must spend 3 Chi points. Once active, the compass indicates the sources of Yin energy located within a radius of (100 x Earth) yards, plus any additional distance earned by an additional investment of Chi. It remains active for one whole day.">
+		<fieldval field="trtAbbrev" value="Comp"/>
+		
+		<fieldval field="trtUser" value="1"/>
+		<fieldval field="maPrep" value="One action"/>
+		<fieldval field="maPrepST" value="N/A"/>
+		<fieldval field="maDur" value="One day"/>
+		<fieldval field="maArea" value="Indicates the sources of Yin energy located within a radius of (100 x Earth) yards, plus any additional distance due to an additional investment of Chi"/>
+		<fieldval field="chiCost" value="3"/>
+		<fieldval field="maImprove" value="For every extra 2 Chi points spent when using the compass, the active radius is increased by 10 yards."/>
+		
+				<tag group="Way" tag="Exorcism"/>
+		<link linkage="magicskill" thing="skExor"/>
+		
+		<!-- Uncomment for prerequisites
+		<exprreq message="Calligraphy 1+ required."><![CDATA[
+			#traitfound[skCall] >= 1
+		]]></exprreq>
+		-->
+    </thing>
+
+	<!-- The Mirror of Truth -->
+	<thing
+		id="maMrTruth"
+		name="The Mirror of Truth"
+		compset="Magic"
+		isunique="yes"
+		description="A mirror that has been blessed and filled with Yang energy will reflect more than the surface of reality. It will show the true nature of objects and beings, unmask a shapeshifting creature, reveal a mirage, and show the original shape of objects. The device is simple to prepare. The exorcist must hold the mirror in front of him, consider his own reflection for a small hour, and spend 4 Chi points. For a whole day, anything reflected in the mirror will be shown in its true form. A demon or Yao with the power of Shape-Shift will be reflected in its original shape, an illusion will produce no reflection, and the reflection of a Magic weapon or other object will show its hidden powers.">
+		<fieldval field="trtAbbrev" value="Mirr"/>
+		
+		<fieldval field="trtUser" value="1"/>
+		<fieldval field="maPrep" value="One small hour"/>
+		<fieldval field="maPrepST" value="N/A"/>
+		<fieldval field="maDur" value="One day"/>
+		<fieldval field="maArea" value="Anything reflected in the mirror"/>
+		<fieldval field="chiCost" value="4"/>
+		<fieldval field="maImprove" value="N/A"/>
+
+				<tag group="Way" tag="Exorcism"/>
+		<link linkage="magicskill" thing="skExor"/>
+		
+		<!-- Uncomment for prerequisites
+		<exprreq message="Calligraphy 1+ required."><![CDATA[
+			#traitfound[skCall] >= 1
+		]]></exprreq>
+		-->
+    </thing>
+	
+	<!-- Sense of the Yin -->
+	<thing
+		id="maSenseYin"
+		name="Sense of the Yin"
+		compset="Magic"
+		isunique="yes"
+		description="The exorcist is able to use his powers of concentration to channel his sixth sense into identifying any supernatural events that may have occurred in his immediate environment. Such events may take many forms, including the invocation of a demon, the birth of a jiang shi, the opening of a passage to Feng Du, or a murder or suicide which created a ghost. But only events which took place less than a century ago can be identified. To use this technique, the exorcist must close his eyes and focus his mind on picking up the traces of supernatural energy in the area. He must perform a successful Test of Earth + Exorcism, whose ST will depend on the power of the supernatural event which took place in the effective area. Generally, the ST will be 5 for something as dramatic as a passage to the Ten Hells, but as high as 11 for the simple invocation of a minor spirit. If he passes the Test he succeeds in finding the precise location of the unearthly event and, through partial visions of the past, gains a general idea of what occurred and when. The higher the Success Margin, the clearer his vision of the event.">
+		<fieldval field="trtAbbrev" value="SoYn"/>
+		
+		<fieldval field="trtUser" value="1"/>
+		<fieldval field="maPrep" value="One minute"/>
+		<fieldval field="maPrepST" value="N/A"/>
+		<fieldval field="maDur" value="Instantaneous"/>
+		<fieldval field="maArea" value="A radius equal to the exorcist’s Earth value in yards, plus any additional distance caused by an additional investment in Chi"/>
+		<fieldval field="chiCost" value="4"/>
+		<fieldval field="maImprove" value="For every 2 extra Chi points spend during the concentration, the radius of the effective area is increased by 1 yard."/>
+
+				<tag group="Way" tag="Exorcism"/>
+		<link linkage="magicskill" thing="skExor"/>
+		<!-- Uncomment for prerequisites
+		<exprreq message="Calligraphy 1+ required."><![CDATA[
+			#traitfound[skCall] >= 1
+		]]></exprreq>
+		-->
+    </thing>
+	
+	<!-- Music of the Heavens -->
+	<thing
+		id="maMusicHn"
+		name="Music of the Heavens"
+		compset="Magic"
+		isunique="yes"
+		description="By ringing a bell filled with his Yang energy, the exorcist can generate a sound capable of disturbing and even paralyzing supernatural beings. To bless the bell requires an hour-long ritual ; to use it requires 5 Chi points. Using the bell counts as an action, and in a combat situation, as an attack. In such a situation it requires an Opposition Test of Earth + Exorcism against the Resistance of any creatures who can hear the bell. If the exorcist wins, then all such creatures suffer a penalty on their next action equal to the difference between the Test results, plus any increased penalty caused by an additional investment of Chi.">
+		<fieldval field="trtAbbrev" value="MuHn"/>
+		
+		<fieldval field="trtUser" value="2"/>
+		<fieldval field="maPrep" value="One double hour"/>
+		<fieldval field="maPrepST" value="N/A"/>
+		<fieldval field="maDur" value="One day"/>
+		<fieldval field="maArea" value="Within earshot"/>
+		<fieldval field="chiCost" value="5"/>
+		<fieldval field="maImprove" value="For every 3 extra Chi points spent during the ringing of the bell, the target’s penalty is increased by 1, up to a maximum equal to the exorcist’s Fire value."/>
+		<tag group="Way" tag="Exorcism"/>
+		<link linkage="magicskill" thing="skExor"/>
+		<!-- Uncomment for prerequisites
+		<exprreq message="Calligraphy 1+ required."><![CDATA[
+			#traitfound[skCall] >= 1
+		]]></exprreq>
+		-->
+    </thing>
+	
+	<!-- Beyond the Veil -->
+	<thing
+		id="maBydVeil"
+		name="Beyond the Veil"
+		compset="Magic"
+		isunique="yes"
+		description="By wiping his eyes with willow leaves soaked in fresh water, the exorcist is able to see invisible and hidden things. To use the technique, the exorcist passes the purified leaves over his eyes and spends 4 Chi points. This gives him the ability to see any being using the power of Invisibility, and to know whether a person, place or object is being possessed by a creature using the power of Possession. In this case, he sees the silhouette of the creature superimposed on the image of the person, place or object.">
+		<fieldval field="trtAbbrev" value="BdVl"/>
+		
+		<fieldval field="trtUser" value="2"/>
+		<fieldval field="maPrep" value="One action"/>
+		<fieldval field="maPrepST" value="N/A"/>
+		<fieldval field="maDur" value="One double hour, plus any small hours due to an additional investment of Chi"/>
+		<fieldval field="maArea" value="The exorcist"/>
+		<fieldval field="chiCost" value="4"/>
+		<fieldval field="maImprove" value="For every 2 extra Chi points, the time during which the exorcist can see the invisible is extended by one small hour."/>
+		<tag group="Way" tag="Exorcism"/>
+		<link linkage="magicskill" thing="skExor"/>
+		<!-- Uncomment for prerequisites
+		<exprreq message="Calligraphy 1+ required."><![CDATA[
+			#traitfound[skCall] >= 1
+		]]></exprreq>
+		-->
+    </thing>
+	
+	<!-- Shield the Body and the Soul -->
+	<thing
+		id="maShldBdSl"
+		name="Shield the Body and the Soul"
+		compset="Magic"
+		isunique="yes"
+		description="The exorcist can use jade powder to protect himself or another from spiritual attacks by evil spirits. The exorcist finds a finger-sized piece of jade and spends a small hour grinding it into a fine powder, which he then stores in a small bag or box. He spends 5 Chi points to give the powder the ability to shield its wearer. A person covered with the powder gains a bonus equal to the exorcist’s Exorcism Level, plus any additional bonus from an additional investment of Chi, to any Resistance Test involving fighting a vampire or resisting an attempt to possess him. In a combat situation, the act of covering a person with jade powder is treated as an action not requiring a Test, unless the person tries to resist, in which case the exorcist must succeed in a Test of Water + Throwing against the person’s Passive Defense score.">
+		<fieldval field="trtAbbrev" value="BdSl"/>
+		
+		<fieldval field="trtUser" value="2"/>
+		<fieldval field="maPrep" value="One small hour"/>
+		<fieldval field="maPrepST" value="N/A"/>
+		<fieldval field="maDur" value="For so long as the jade powder covers the person"/>
+		<fieldval field="maArea" value="One person"/>
+		<fieldval field="chiCost" value="5"/>
+		<fieldval field="maImprove" value="For every 2 extra Chi points spent during the preparation of the jade powder, the bonus on the Resistance Test of the person covered with it is increased by 1."/>
+		<tag group="Way" tag="Exorcism"/>
+		<link linkage="magicskill" thing="skExor"/>
+		<!-- Uncomment for prerequisites
+		<exprreq message="Calligraphy 1+ required."><![CDATA[
+			#traitfound[skCall] >= 1
+		]]></exprreq>
+		-->
+    </thing>
+	
+	<!-- The Talisman of Control of Lost Spirits -->
+	<thing
+		id="maTalisman"
+		name="The Talisman of Control of Lost Spirits"
+		compset="Magic"
+		isunique="yes"
+		description="By writing a ritualistic formula in red ink on a sheet of bamboo, the exorcist can create a talisman which, when placed on a creature's forehead, can paralyze the creature and even bring it under the exorcist's control. In creating the talisman, the exorcist must specify which type of creature it will be effective against : the undead (including ghouls and jiang shi), ghosts, demons, Yao, or other types of spirits. The more precise the definition, the more limited the range of the talisman, but the more effective the talisman. If the exorcist writes the precise name of a particular demon, then his talisman will cause great problems for that demon, but will not work against any others. Once the talisman has been drawn, the exorcist must breathe his will into it by spending 6 Chi points. Atalisman will only work when placed on the forehead of the target creature. To place the talisman counts as an action. In combat it is an attack that requires a successful Test of Water + Hand-to-Hand against the target’s Passive Defense score. Once the talisman has been placed on the forehead of the target, and for so long as it remains there, all of the creature’s independent actions suffer a penalty equal to the exorcist’s Earth value (or double that value if the talisman bears the exact name of the creature), plus any additional penalty caused by an additional investment of Chi. In addition, the exorcist may attempt to control the creature’s actions. To do so, he must spend 5 Chi points and succeed in a Test of Earth + Exorcism, whose ST is equal to double the creature’s Earth value. If the exorcist succeeds, the creature is at his command for a number of minutes equal to his Success Margin, plus any additional time earned by an additional investment of Chi. At the end of this period, the exorcist must spend another 5 + Chi points and perform another Test. Of course, depending on the intelligence of the creature, it may not understand what it is asked to do.">
+		<fieldval field="trtAbbrev" value="Talm"/>
+		
+		<fieldval field="trtUser" value="2"/>
+		<fieldval field="maPrep" value="One round"/>
+		<fieldval field="maPrepST" value="N/A"/>
+		<fieldval field="maDur" value="For so long as the talisman remains attached to the creature"/>
+		<fieldval field="maArea" value="One creature"/>
+		<fieldval field="chiCost" value="6 + to create the talisman, 5 + to control a creature"/>
+		<fieldval field="maImprove" value="For every 3 extra Chi points spent during the creation of the talisman, the target’s penalty is increased by 1, up to a maximum equal to the exorcist’s Wood value, or the time during which the creature is controlled by the exorcist is increased by 1 minute."/>
+		<tag group="Way" tag="Exorcism"/>
+		<link linkage="magicskill" thing="skExor"/>
+		<!-- Uncomment for prerequisites-->
+		<exprreq message="Calligraphy 1+ required."><![CDATA[
+			#traitfound[skCall] >= 1
+		]]></exprreq>
+		
+    </thing>
+	
+	<!-- Disperse Spirits -->
+	<thing
+		id="maDispSprt"
+		name="Disperse Spirits"
+		compset="Magic"
+		isunique="yes"
+		description="With the aid of a sacred fan, the exorcist may generate a mystical wind capable of dispersing for a time the presence of formless creatures. He must first bless the fan in an hour-long ritual and transfer his Yang energy to it by spending 5 Chi points. Using the fan is treated as an action. In combat it is an attack, requiring a successful Test of Earth + Exorcism against the Passive Defense of the target, and which can be countered by an Active Defense. If the target creature fails to defend itself against the purifying wind, it is dispersed into the air for a period in double hours equal to the exorcist’s Success Margin, plus any small hours due to an additional investment in Chi. For the duration of the fan’s effects, a creature that has been dispersed loses all of its powers. At the end of that period, the creature reforms at the exact spot where it was attacked by the exorcist. Only creatures using the power of Formlessness can be dispersed in this manner">
+		<fieldval field="trtAbbrev" value="Disp"/>
+		
+		<fieldval field="trtUser" value="2"/>
+		<fieldval field="maPrep" value="One small hour"/>
+		<fieldval field="maPrepST" value="N/A"/>
+		<fieldval field="maDur" value="Until the next sunrise"/>
+		<fieldval field="maArea" value="A formless creature within the range of the wind"/>
+		<fieldval field="chiCost" value="5"/>
+		<fieldval field="maImprove" value="For every 2 extra Chi points spent during the blessing of the fan, the time during which the creature is dispersed is extended by one small hour."/>
+		<tag group="Way" tag="Exorcism"/>
+		<link linkage="magicskill" thing="skExor"/>
+		<!-- Uncomment for prerequisites
+		<exprreq message="Calligraphy 1+ required."><![CDATA[
+			#traitfound[skCall] >= 1
+		]]></exprreq>
+		-->
+    </thing>
+	
+	<!-- From Water to Fire -->
+	<thing
+		id="maWtrFire"
+		name="From Water to Fire"
+		compset="Magic"
+		isunique="yes"
+		description="The might of Water is the greatest ally in the fight against demons, for its Yin power is in such perfect phase with the essence of such beings that it is best able to strike at their heart. To harness this power, the exorcist must bless a liquid (usually water, but some prefer to use alcohol) in a vessel the size of a bowl or bamboo tube. The blessed liquid can then be thrown at a creature, inflicting terrible burns and damage equal to the exorcist’s Water value (plus any damage deriving from an additional investment of Chi). This damage occurs during each round that the creature fails to remove the liquid from its body. The liquid runs through any Natural Armor that the creature may have, and can harm even creatures with the power of Invulnerability. Throwing the liquid is an action that counts as an attack requiring a successful Test of Water + Exorcism against the Passive Defense of the target, and which can be countered by an Active Defense.">
+		<fieldval field="trtAbbrev" value="WtoF"/>
+		
+		<fieldval field="trtUser" value="3"/>
+		<fieldval field="maPrep" value="One action"/>
+		<fieldval field="maPrepST" value="N/A"/>
+		<fieldval field="maDur" value="Until used"/>
+		<fieldval field="maArea" value="Throwing range"/>
+		<fieldval field="chiCost" value="5"/>
+		<fieldval field="maImprove" value="For every 3 extra Chi points spent during the blessing of the liquid, the continuous damage inflicted by the liquid is increased by 1, up to a maximum equal to the exorcist’s Fire value."/>
+		<tag group="Way" tag="Exorcism"/>
+		<link linkage="magicskill" thing="skExor"/>
+		<!-- Uncomment for prerequisites
+		<exprreq message="Calligraphy 1+ required."><![CDATA[
+			#traitfound[skCall] >= 1
+		]]></exprreq>
+		-->
+    </thing>
+	
+<!-- Vengeance of the Gods -->
+	<thing
+		id="maVengGods"
+		name="Vengeance of the Gods"
+		compset="Magic"
+		isunique="yes"
+		description="By covering his face with a wooden mask bearing the image of a god hostile to demons, such as Nezha, Zhu Rong or Er Lang, the exorcist may sow panic among the creatures he is fighting.\n\n The mask should be carved from willow and decorated with vivid colors, often enhanced by the use of the artist’s blood. The exorcist grants the mask power by wearing it during an hour’s meditation and breathing 5 Chi points into it.\n\n Once this is done, every time the exorcist wears the mask, he inspires a boundless fear in any supernatural being that he confronts. For so long as he keeps the mask on, his Terror power is considered to be equal to his (Fire + Exorcism), plus any increase due to an additional investment of Chi. Wearing the mask also completely shields the exorcist from any Terror power that is less than or equal to his own.">
+		<fieldval field="trtAbbrev" value="Veng"/>
+		
+		<fieldval field="trtUser" value="3"/>
+		<fieldval field="maPrep" value="One double hour"/>
+		<fieldval field="maPrepST" value="N/A"/>
+		<fieldval field="maDur" value="Until next sunrise"/>
+		<fieldval field="maArea" value="Field of vision"/>
+		<fieldval field="chiCost" value="5"/>
+		<fieldval field="maImprove" value="For every 3 extra Chi points spent during the blessing of the mask, the Terror power obtained by the exorcist is increased by 1, up to a maximum equal to the exorcist’s Wood value."/>
+		<tag group="Way" tag="Exorcism"/>
+		<link linkage="magicskill" thing="skExor"/>
+		<!-- Uncomment for prerequisites
+		<exprreq message="Calligraphy 1+ required."><![CDATA[
+			#traitfound[skCall] >= 1
+		]]></exprreq>
+		-->
+    </thing>
+
+<!-- The Evil Curse -->
+	<thing
+		id="maEvilCurs"
+		name="The Evil Curse"
+		compset="Magic"
+		isunique="yes"
+		description="A little-used technique, now largely the preserve of Taoists who have strayed from the true path, the Evil Curse enables a person to place a curse on another by directing negative energies toward him. To use the technique, the exorcist must possess some basic information about his intended victim (including, as a bare minimum, his real name), and at least one object belonging to him. He must then meditate for a double hour, filling his mind with the image of his target and all the harm he wishes to cause him. Finally, he must perform an Opposition Test of Earth + Exorcism against the Resistance of his target. If he wins, he can place his victim under a curse of his own design, which amounts in practical terms to the imposition of a Weakness (see p.40). But if the target wins the Test, he is completely protected for one year against any further attempt by the same exorcist to place him under a curse. An exorcist cannot place two or more curses on any one person ; where he has placed a person under a curse, he cannot do so again until the first curse has run its course.">
+		<fieldval field="trtAbbrev" value="Curs"/>
+		
+		<fieldval field="trtUser" value="3"/>
+		<fieldval field="maPrep" value="One double hour"/>
+		<fieldval field="maPrepST" value="N/A"/>
+		<fieldval field="maDur" value="A number of months equal to the exorcist’s (Fire + Exorcism)"/>
+		<fieldval field="maArea" value="One person"/>
+		<fieldval field="chiCost" value="8"/>
+		<fieldval field="maImprove" value="For every 4 extra Chi points spent during the placing of the curse, the effects last an extra month."/>
+		<tag group="Way" tag="Exorcism"/>
+		<link linkage="magicskill" thing="skExor"/>
+		<!-- Uncomment for prerequisites
+		<exprreq message="Calligraphy 1+ required."><![CDATA[
+			#traitfound[skCall] >= 1
+		]]></exprreq>
+		-->
+    </thing>
+
+<!-- The Amulet of Protection -->
+	<thing
+		id="maAmProt"
+		name="The Amulet of Protection"
+		compset="Magic"
+		isunique="yes"
+		description="An amulet made of noble material (jade, gold, or a rare and precious wood) and blessed by an exorcist can protect its bearer against physical injuries caused by evil spirits and creatures.\n\nTo arm the amulet and draw to it the protective blessing of the gods hostile to demons, the exorcist must meditate for a double hour while wearing the amulet and spend 7 Chi points.\n\nOnce this has been done, and for one whole day, damage inflicted on any person wearing the amulet by physical attacks by supernatural creatures is reduced by a number of points equal to the exorcist’s Earth value, plus any additional reduction from an additional investment of Chi.">
+		<fieldval field="trtAbbrev" value="Amlt"/>
+		
+		<fieldval field="trtUser" value="3"/>
+		<fieldval field="maPrep" value="One double hour"/>
+		<fieldval field="maPrepST" value="N/A"/>
+		<fieldval field="maDur" value="One day"/>
+		<fieldval field="maArea" value="The person wearing the amulet"/>
+		<fieldval field="chiCost" value="8"/>
+		<fieldval field="maImprove" value="For every 4 extra Chi points spent during the preparation of the amulet, the reduction in damage inflicted by creatures is increased by 1."/>
+		<tag group="Way" tag="Exorcism"/>
+		<link linkage="magicskill" thing="skExor"/>
+		<!-- Uncomment for prerequisites
+		<exprreq message="Calligraphy 1+ required."><![CDATA[
+			#traitfound[skCall] >= 1
+		]]></exprreq>
+		-->
+    </thing>
+	
+<!-- Shield from the Souls of Sinners -->
+	<thing
+		id="maShSlSn"
+		name="Shield from the Souls of Sinners"
+		compset="Magic"
+		isunique="yes"
+		description="The experienced exorcist has the ability to create talismans to protect temples and dwelling-houses against intrusions by malevolent beings of the world beyond. To do so, he must write the appropriate ritual formula in red ink on a bamboo sheet, and so create a talisman with the power to repel supernatural creatures. When placed above the main entrance to a building, the talisman will prevent any such creature from entering. In creating the talisman, the exorcist must specify which type of creature it will be effective against : the undead (including ghouls and jiang shi), ghosts, demons, Yao, or other types of spirits. The more precise the definition, the more limited the range of the talisman, but the more effective the talisman. If the exorcist writes the precise name of a particular demon, then his talisman will cause great problems for that demon, but will not work against any others. Once the talisman has been drawn, the exorcist must breathe his will into it by spending 6 Chi points. A talisman will only work when placed above the main entrance to the building or property to be protected. An extremely large dwelling with several entrances will need several talismans : each pavilion in a palace complex or outbuilding within a manor is treated as a separate building for these purposes. Each talisman only works for one day. But the power of the sacred language embodied in the talisman works in all directions, so it is possible to enclose a creature in a building and use a talisman at the exit to prevent it leaving. For so long as the talisman remains in place above the entrance, each creature covered by the sacred formula who attempts to pass through its shield must perform an Earth Test against an ST of the exorcist’s (Earth + Exorcism), or the exorcist’s (Earth x 2 + Exorcism) if the talisman refers to it by name. The ST may be increased where the exorcist has invested extra Chi. Should the creature succeed, it defeats the force of the talisman and passes through the shield. Should it fail, not only does it fail to enter the building, but it also suffers damage equal to the difference between its result and the ST. This damage cannot be reduced by Invulnerability or Natural Armor, and may be increased where the exorcist has invested extra Chi. A creature may only try to pass through a talisman of protection once per hour.">
+		<fieldval field="trtAbbrev" value="Snnr"/>
+		
+		<fieldval field="trtUser" value="3"/>
+		<fieldval field="maPrep" value="One round"/>
+		<fieldval field="maPrepST" value="N/A"/>
+		<fieldval field="maDur" value="One day"/>
+		<fieldval field="maArea" value="A fair-sized building"/>
+		<fieldval field="chiCost" value="6"/>
+		<fieldval field="maImprove" value="For every 3 extra Chi points spent during the creation of the talisman, the ST of the Earth Test of any creature who tries to get past the talisman is increased by 1, or the damage inflicted on the creature is increased by 1."/>
+		<tag group="Way" tag="Exorcism"/>
+		<link linkage="magicskill" thing="skExor"/>
+		<!-- Uncomment for prerequisites-->
+		<exprreq message="Calligraphy 1+ required."><![CDATA[
+			#traitfound[skCall] >= 1
+		]]></exprreq>
+		
+    </thing>
+	
+<!-- Confine Evil Spirits -->
+	<thing
+		id="maConfine"
+		name="Confine Evil Spirits"
+		compset="Magic"
+		isunique="yes"
+		description="An exorcist can confine formless spirits such as ghosts and some demons, provided that they have not taken possession of a person or object, in any vessel that can be closed. To do so, the exorcist must spend 7 Chi points and meditate for a double hour, holding the vessel close to him in order to transfer his Yang energy to it. Thereafter, whenever he finds himself in the presence of a formless creature (such as one using the power of Formlessness), he need only open the vessel and it will generate such a powerful attraction for Yin energy in the atmosphere that the creature will be drawn towards it. To escape confinement, the creature may attempt an Earth Test against an ST determined by the nature and solidity of the vessel used (see table) plus any increase due to an extra investment of Chi. Once the creature is confined in the vessel, its powers become ineffective, and it may not attempt to escape for a period of days equal to the exorcist’s (Earth + Exorcism). At the end of this period, the creature may attempt another Test against the same ST as the first Test, but may find that the wise exorcist has sealed the vessel with Shield from the Souls of Sinners.\n\nST of the creature’s Earth Test: Umbrella or parasol 3\nLeather purse 5\nBamboo tube 7\nTerracotta jar 9\nJade box 11.">
+
+		<fieldval field="trtAbbrev" value="Conf"/>
+		
+		<fieldval field="trtUser" value="4"/>
+		<fieldval field="maPrep" value="One double hour"/>
+		<fieldval field="maPrepST" value="N/A"/>
+		<fieldval field="maDur" value="Until used"/>
+		<fieldval field="maArea" value="One formless creature"/>
+		<fieldval field="chiCost" value="7"/>
+		<fieldval field="maImprove" value="For every 3 extra Chi points spent during meditation, the ST of the Earth Test of any creature trying to escape from confinement is increased by 1."/>
+		<tag group="Way" tag="Exorcism"/>
+		<link linkage="magicskill" thing="skExor"/>
+		<!-- Uncomment for prerequisites
+		<exprreq message="Calligraphy 1+ required."><![CDATA[
+			#traitfound[skCall] >= 1
+		]]></exprreq>
+		-->
+    </thing>
+	
+<!-- Combat Curses-->
+	<thing
+		id="maCombtCur"
+		name="Combat Curses"
+		compset="Magic"
+		isunique="yes"
+		description="An exorcist can sense negative energy directed toward a person and disperse that energy to defeat curses and evil spells. To perform this technique, the exorcist must be in the presence of the person suffering from the curse. Facing that person and meditating for an hour, he performs a Test of Earth + Exorcism with an ST determined by the power of the spell to be defeated, often the result of the Test required to create the curse. Where the exorcist succeeds the curse is immediately lifted, but where he fails, he too suffers the effects of the curse for a number of weeks equal to the difference between his Test result and the ST.">
+		<fieldval field="trtAbbrev" value="Comb"/>
+		
+		<fieldval field="trtUser" value="4"/>
+		<fieldval field="maPrep" value="One double hour"/>
+		<fieldval field="maPrepST" value="N/A"/>
+		<fieldval field="maDur" value="Instantaneous"/>
+		<fieldval field="maArea" value="One person"/>
+		<fieldval field="chiCost" value="7"/>
+		<fieldval field="maImprove" value="For every 3 extra Chi points spent during the attempt to disperse the curse, the number of weeks during which the exorcist suffers its effects is reduced by 1."/>
+		<tag group="Way" tag="Exorcism"/>
+		<link linkage="magicskill" thing="skExor"/>
+		<!-- Uncomment for prerequisites
+		<exprreq message="Calligraphy 1+ required."><![CDATA[
+			#traitfound[skCall] >= 1
+		]]></exprreq>
+		-->
+    </thing>
+	
+<!-- The Trap of Heaven and Earth -->
+	<thing
+		id="maTrapHvn"
+		name="The Trap of Heaven and Earth"
+		compset="Magic"
+		isunique="yes"
+		description="By sketching a pictogram depicting a trap in a precise location, and placing his own blood in it, the exorcist can create a zone in which any supernatural creature that passes through will be trapped and suffer terrible tortures. The exorcist draws the pictogram in dust or dye while invoking the vengeance of Heaven, then places a few drops of his own blood and spends 8 Chi points. The trap thus set extends in a circle whose radius in yards is equal to his Wood value, plus any additional distance deriving from an additional investment of Chi. Once the trap is set, any creature who sets foot within its perimeter, even one with the power of Formlessness, will be trapped. It can only escape by succeeding in an Earth Test whose ST will be equal to the exorcist’s (Earth + Exorcism) plus any increase due to an extra investment of Chi. Such a Test can only be attempted once per hour. While the creature is caught in the trap, it can move freely within the perimeter, but will be faced with an invisible barrier that prevents it from leaving. With the creature at his command, the exorcist can then call on the rage of Heaven against this impudent creature which dares to trespass on the world of men, by invoking the fire of Zhu Rong, god of vengeance. By spending 7 more Chi points, he can strike the creature with a mighty lightning bolt, inflicting damage of twice his Fire value plus any extra damage earned by an extra investment of Chi. The lightning strikes regardless of Formlessness, and slices through both Invulnerability and Natural Armor. In a combat situation, this action counts as an automatically successful attack.">
+		<fieldval field="trtAbbrev" value="Trp"/>
+		
+		<fieldval field="trtUser" value="4"/>
+		<fieldval field="maPrep" value="One round"/>
+		<fieldval field="maPrepST" value="N/A"/>
+		<fieldval field="maDur" value="One day"/>
+		<fieldval field="maArea" value="A radius of (Wood) yards around the pictogram, plus any additional distance deriving from an additional investment of Chi"/>
+		<fieldval field="chiCost" value="8 + to set the trap, 7 + to invoke the rage of Heaven"/>
+		<fieldval field="maImprove" value="For every 3 extra Chi points spent during the setting of the trap, EITHER the radius of its effective area is increased by 1 yard, OR the ST of the Earth Test of any creature trying to escape is increased by 1, OR the damage inflicted on the creature by the lightning bolt is increased by 1."/>
+		<tag group="Way" tag="Exorcism"/>
+		<link linkage="magicskill" thing="skExor"/>
+		<!-- Uncomment for prerequisites -->
+		<exprreq message="Calligraphy 1+ required."><![CDATA[
+			#traitfound[skCall] >= 1
+		]]></exprreq>
+		
+    </thing>
+	
+<!-- Question the World Beyond -->
+	<thing
+		id="maQstnWldB"
+		name="Question the World Beyond"
+		compset="Magic"
+		isunique="yes"
+		description="Once he has a creature at his command, the learned and experienced exorcist can bring his tremendous will to bear on the creature and force it to respond to his questions. Before this technique can be used, the creature to be questioned must be under the control of the exorcist, whether imprisoned in an object, paralyzed by a talisman, or caught in a trap. Once this is done, the exorcist focuses all his will on the creature and asks a question. He must perform a successful Opposition Test of Fire + Exorcism against the creature’s Earth value. Should he succeed, the creature is obliged either to give the correct response or, where appropriate, admit its ignorance. But should he fail, the creature’s mind takes over that of the exorcist, causing him to lose a number of Breath of Life boxes equal to the difference between the two Test results, less any protection provided by any additional investment of Chi. Many exorcists use this technique to learn the true name of the demon they are fighting.">
+		<fieldval field="trtAbbrev" value="Ques"/>
+		
+		<fieldval field="trtUser" value="4"/>
+		<fieldval field="maPrep" value="Instantaneous"/>
+		<fieldval field="maPrepST" value="N/A"/>
+		<fieldval field="maDur" value="Instantaneous"/>
+		<fieldval field="maArea" value="One creature"/>
+		<fieldval field="chiCost" value="5+ per question"/>
+		<fieldval field="maImprove" value="For every 3 extra Chi points spent per question, the damage suffered by the exorcist after losing the Opposition Test is reduced by 1."/>
+		<tag group="Way" tag="Exorcism"/>
+		<link linkage="magicskill" thing="skExor"/>
+		<!-- Uncomment for prerequisites 
+		<exprreq message="Calligraphy 1+ required."><![CDATA[
+			#traitfound[skCall] >= 1
+		]]></exprreq>
+		-->
+    </thing>
+
+<!-- The Rite of Exorcism -->
+	<thing
+		id="maRtExor"
+		name="The Rite of Exorcism"
+		compset="Magic"
+		isunique="yes"
+		description="This complex, sacred and mysterious ritual is the preserve of only the greatest exorcists. For it has the power to destroy the very essence and soul of a supernatural creature. However, it can only be performed in respect of intangible creatures that have taken possession of a person, who haunt a dwelling, or who have been made prisoner of an object. The exorcist solemnly prepares the ritual by arranging incense, talismans, blood and eggs on an altar. If the creature to be exorcised dwells in a building, the altar must be placed in that building. If the creature is inside a person or moveable object, then it must be brought to the altar. Then the exorcist pronounces a long litany of prayers, incantations and invocations, bringing all the force of his will to bear on the evil creature in an attempt to break its spirit and dismantle its very essence. The exorcist performs a Test of Earth + Exorcism against an ST equal to the creature’s Resistance, and spends 5 Chi points. If he succeeds, the creature suffers damage equal to the Success Margin plus any additional damage caused by an additional investment of Chi. But if he fails, the exorcist feels the full force of the evil of the creature, suffering damage equal to the difference between his result and the ST, less any protection supplied by an additional investment of Chi. Each spiritual attack, representing the desperate struggle between the soul of the exorcist and the essence of the creature, lasts a small hour. Any damage suffered by the creature is not normal damage, for it is the essence of the creature that the exorcist is dismantling piece by piece. So even if the creature escapes during the ritual, its Breath of Life will be permanently diminished. And if it fails to escape, it will be wiped from the face of the world, its soul destroyed forever, with all hope of reincarnation lost.">
+		<fieldval field="trtAbbrev" value="Rite"/>
+		
+		<fieldval field="trtUser" value="4"/>
+		<fieldval field="maPrep" value="One double hour to prepare the altar"/>
+		<fieldval field="maPrepST" value="N/A"/>
+		<fieldval field="maDur" value="Until the creature is destroyed or escapes"/>
+		<fieldval field="maArea" value="A person, object or building possessed by a creature"/>
+		<fieldval field="chiCost" value="5+ per spiritual attack"/>
+		<fieldval field="maImprove" value="For every 3 extra Chi points spent per spiritual attack, EITHER the damage caused is increased by 1, OR the damage suffered by the exorcist after losing his Earth + Exorcism Test is reduced by 1."/>
+		<tag group="Way" tag="Exorcism"/>
+		<link linkage="magicskill" thing="skExor"/>
+		<!-- Uncomment for prerequisites 
+		<exprreq message="Calligraphy 1+ required."><![CDATA[
+			#traitfound[skCall] >= 1
+		]]></exprreq>
+		-->
+    </thing>
+	
+</document>

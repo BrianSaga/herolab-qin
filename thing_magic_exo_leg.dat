@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!-- This file contains the assortment of skills for the game system. Note that each
+      skill is linked to an associated attribute for the character. This linkage allows
+      the value of the skill to easily incorporate the effects of the linked attribute
+      via a script on the component.
+-->
+
+<document signature="Hero Lab Data">
+
+<!--
+	***************************************************************
+		Exorcism Techniques
+	***************************************************************
+-->
+
+<!-- Dazzling Light of the Ultimate Yang -->
+	<thing
+		id="maDazLt"
+		name="Dazzling Light of the Ultimate Yang"
+		compset="Magic"
+		isunique="yes"
+		description="The exorcist can concentrate in himself the light of the sun, harmful to supernatural creatures, and release it when he thinks fit in order to blind his enemies.{br}{br} The exorcist must meditate in the sun for a small hour. Then, when he so wishes, he releases the entire Yang light stored up. For this, he must spend 8 Chi points, and use an action in a combat situation.{br}{br} Any supernatural creature finding itself dazzled by this light becomes blind (even its supernatural senses such as the capability of a jiang shi to detect breath are wiped out) for the period of minutes equal to the exorcist’s Fire level, plus any length of time from an extra investment of Chi. A creature so blinded is subject to all the related penalties and very often finds itself impotent and at the mercy of the exorcist.{br}{br} A supernatural creature expecting to suffer this technique could attempt to avoid its effects by succeeding in a Resistance Test against an ST equal to (Fire + Exorcism) of the exorcist.">
+		<fieldval field="trtAbbrev" value="DzLt"/>
+		
+		<fieldval field="trtUser" value="5"/>
+		<fieldval field="maPrep" value="One small hour"/>
+		<fieldval field="maPrepST" value="N/A"/>
+		<fieldval field="maDur" value="The number of minutes equal to the exorcist’s Fire level"/>
+		<fieldval field="maArea" value="On sight"/>
+		<fieldval field="chiCost" value="8"/>
+		<fieldval field="maImprove" value="For each additional cost of 3 Chi points spent, when this technique is used, the exorcist can prolong it by one minute."/>
+		
+		<usesource source="qinLegends"/>
+
+		<tag group="Way" tag="Exorcism"/>
+		<link linkage="magicskill" thing="skExor"/>
+		
+		<!-- Uncomment for prerequisites
+		<exprreq message="Calligraphy 1+ required."><![CDATA[
+			#traitfound[skCall] >= 1
+		]]></exprreq>
+		-->
+    </thing>
+	
+<!-- Cloak of the Moon -->
+	<thing
+		id="maClkMoon"
+		name="Cloak of the Moon"
+		compset="Magic"
+		isunique="yes"
+		description="The exorcist can concentrate in himself the light of the moon and release it when he thinks fit in order to hide his presence.{br}{br} The exorcist must meditate under the moon for a small hour. Then, when he so wishes, he releases the Yin light to hide his Yang energy. For this, he must spend 8 Chi points, and use an action in a combat situation. An exorcist under the protection of the Cloak of the Moon becomes undetectable by the senses of supernatural creatures (even to supernatural senses, such as the ability of a jiang shi to detect breath) for a period in minutes equal to his Earth level, plus any time which may come from an extra investment in Chi.{br}{br} A supernatural creature suspecting the presence of the exorcist is able to attempt to locate him by carrying out an Opposition Test of Wood + Perception against Earth + Exorcism of the exorcist.">
+		<fieldval field="trtAbbrev" value="CkMn"/>
+		
+		<fieldval field="trtUser" value="5"/>
+		<fieldval field="maPrep" value="One small hour"/>
+		<fieldval field="maPrepST" value="N/A"/>
+		<fieldval field="maDur" value="The number of minutes equal to the exorcist's Water Level"/>
+		<fieldval field="maArea" value="On sight"/>
+		<fieldval field="chiCost" value="8"/>
+		<fieldval field="maImprove" value="For each additional cost of 3 Chi points spent, spent when this technique is used, the exorcist can prolong it by one minute."/>
+		
+		<usesource source="qinLegends"/>
+
+		<tag group="Way" tag="Exorcism"/>
+		<link linkage="magicskill" thing="skExor"/>
+		
+		<!-- Uncomment for prerequisites
+		<exprreq message="Calligraphy 1+ required."><![CDATA[
+			#traitfound[skCall] >= 1
+		]]></exprreq>
+		-->
+    </thing>
+	
+<!-- Destruction of the Po Soul -->
+	<thing
+		id="maPoSoul"
+		name="Destruction of the Po Soul"
+		compset="Magic"
+		isunique="yes"
+		description="The living-dead, like zombies, {i}jiang shi{/i} or ghouls, are given life only by the earthly {i}Po{/i} soul, a crude and incomplete spirit.{br}{br} Facing such living-dead, the exorcist can directly attack this {i}Po{/i} soul to render these creatures powerless. Spending 9 Chi points and succeeding in an Opposition Test of Earth + Exorcism (which counts as an action in a combat situation) against the Resistance of the livingdead, he can inflict damage equal to three times his Earth level (plus any damage which may come from an extra investment in Chi), damage which ignores natural Armor or possible Invulnerability because it directly strikes the {i}Po{/i} soul.">
+		
+		<fieldval field="trtAbbrev" value="PoSo"/>
+		<fieldval field="trtUser" value="5"/>
+		<fieldval field="maPrep" value="One action"/>
+		<fieldval field="maPrepST" value="N/A"/>
+		<fieldval field="maDur" value="Instantaneous"/>
+		<fieldval field="maArea" value="A creature of the living-dead kind"/>
+		<fieldval field="chiCost" value="9"/>
+		<fieldval field="maImprove" value="For each additional cost of 4 Chi points spent when this technique is used, the damage inflicted on the creature is increased by 1."/>
+		
+		<usesource source="qinLegends"/>
+
+		<tag group="Way" tag="Exorcism"/>
+		
+		<link linkage="magicskill" thing="skExor"/>
+		
+		<!-- Uncomment for prerequisites
+		<exprreq message="Calligraphy 1+ required."><![CDATA[
+			#traitfound[skCall] >= 1
+		]]></exprreq>
+		-->
+    </thing>
+	
+<!-- Annihilating the power of the Yin -->
+	<thing
+		id="maAnPwYin"
+		name="Annihilating the power of the Yin"
+		compset="Magic"
+		isunique="yes"
+		description="The exorcist, in order to balance the forces in a combat against the forces of evil, can prevent a creature from using some of its power.{br}{br} For this, he must spend 10 Chi points then succeed in an Opposition Test of Earth + Exorcism (which counts as an action in a combat situation) against the Resistance of the creature. If successful, he can decide to deprive his target of any one of its powers (plus the number of powers which may come from an extra investment in Chi), and this for a duration of turns, equal to his Exorcism level.">
+		
+		<fieldval field="trtAbbrev" value="AnPw"/>
+		<fieldval field="trtUser" value="6"/>
+		<fieldval field="maPrep" value="One action"/>
+		<fieldval field="maPrepST" value="N/A"/>
+		<fieldval field="maDur" value="Instantaneous"/>
+		<fieldval field="maArea" value="On sight"/>
+		<fieldval field="chiCost" value="10"/>
+		<fieldval field="maImprove" value="For each additional 5 Chi points spent when this technique is used, the exorcist can deprive the supernatural creature of one additional power or increase the period of the technique by 1 turn."/>
+		
+		<usesource source="qinLegends"/>
+
+		<tag group="Way" tag="Exorcism"/>
+		
+		<link linkage="magicskill" thing="skExor"/>
+		
+		<!-- Uncomment for prerequisites
+		<exprreq message="Calligraphy 1+ required."><![CDATA[
+			#traitfound[skCall] >= 1
+		]]></exprreq>
+		-->
+    </thing>
+	
+<!-- Judgment of the Ten Kings of Hell -->
+	<thing
+		id="maTenKings"
+		name="Judgment of the Ten Kings of Hell"
+		compset="Magic"
+		isunique="yes"
+		description="When confronted by a demon, the exorcist can appeal to the court of the {i}Feng Du{/i} in order to send this cursed soul back to Hell.{br}{br} Facing a creature such as an Emo, a Taotie, a succubus or an evil spirit, the exorcist spends 12 Chi points and carries out an Opposition Test of Earth + Exorcism against the Resistance of the creature, this Test being counted as an action in a combat situation. If he succeeds, he draws the attention of the Kings of Hell to the unjustified presence, in the world of men, of a demon who is at once dragged before the {i}Feng Du{/i}, disappearing from the Earth forever.">
+		
+		<fieldval field="trtAbbrev" value="10Kg"/>
+		<fieldval field="trtUser" value="6"/>
+		<fieldval field="maPrep" value="One action"/>
+		<fieldval field="maPrepST" value="N/A"/>
+		<fieldval field="maDur" value="Instantaneous"/>
+		<fieldval field="maArea" value="On sight"/>
+		<fieldval field="chiCost" value="12"/>
+		<fieldval field="maImprove" value="For each additional 5 Chi points spent when this technique is used, the exorcist increases the result of his Test of Earth + Exorcism by 1."/>
+		
+		<usesource source="qinLegends"/>
+
+		<tag group="Way" tag="Exorcism"/>
+		
+		<link linkage="magicskill" thing="skExor"/>
+		
+		<!-- Uncomment for prerequisites
+		<exprreq message="Calligraphy 1+ required."><![CDATA[
+			#traitfound[skCall] >= 1
+		]]></exprreq>
+		-->
+    </thing>
+	
+<!-- Judgment of Heaven -->
+	<thing
+		id="maJudHvn"
+		name="Judgment of Heaven"
+		compset="Magic"
+		isunique="yes"
+		description="Facing a creature not yet corrupted by evil, the exorcist can submit it to the judgment of the gods of the Celestial Court for a ruling on the case.{br}{br} Confronted by a creature like a ghost or a {i}Yao{/i}, the exorcist spends 12 Chi points and carries out an Opposition Test of Earth + Exorcism against the Resistance of the creature, this Test being counted as an action in a combat situation. If the creature, of its own free will, submits itself to the Judgment of Heaven, the Test can be ignored, but the exorcist still spends his Chi.{br}{br} A ghost without any evil intent, brought before the court of the celestial gods, has its curse removed and goes back directly to the Wheel of Reincarnation in order to be quickly reborn. A ghost who has fallen into evil, however, is delivered into the hands of the Judges of Hell and suffers a thousands tortures in the {i}Feng Du{/i} before it can be reincarnated, once purified.{br}{br} A peaceful {i}Yao{/i} submitted to the Judgment of Heaven earns the right to live as a human; it loses all its abilities and all its supernatural powers but its soul becomes fully human, thus making him impervious to the spells and techniques that target creatures and allowing it to integrate into the world of men without fearing, one day, being unmasked and rejected. An evil Yao, on the other hand, regresses and reverts to its original animal shape, losing as a consequence all its abilities and all its supernatural powers. It becomes a simple animal again and has to live the rest of its life as such.">
+		
+		<fieldval field="trtAbbrev" value="JdHn"/>
+		<fieldval field="trtUser" value="6"/>
+		<fieldval field="maPrep" value="One action"/>
+		<fieldval field="maPrepST" value="N/A"/>
+		<fieldval field="maDur" value="Instantaneous"/>
+		<fieldval field="maArea" value="On sight"/>
+		<fieldval field="chiCost" value="12"/>
+		<fieldval field="maImprove" value="For each additional 5 Chi points spent when this technique is used, the exorcist increases the result of his Test of Earth + Exorcism by 1."/>
+		
+		<usesource source="qinLegends"/>
+
+		<tag group="Way" tag="Exorcism"/>
+		
+		<link linkage="magicskill" thing="skExor"/>
+		
+		<!-- Uncomment for prerequisites
+		<exprreq message="Calligraphy 1+ required."><![CDATA[
+			#traitfound[skCall] >= 1
+		]]></exprreq>
+		-->
+    </thing>
+	
+</document>

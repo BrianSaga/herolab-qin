@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!-- This file contains the assortment of adjustments that can be applied to actors
+      for the game system. The behaviors of adjustments are varied and configured via
+      the assignment of tags. Additionally, many adjustments can target a type of trait
+      that the user can select, so fields are used to constrain the valid options. The
+      actual net effect of each adjustment is applied via the script associated with
+      the adjustment. All of these scripts are applied at a timing of Setup/8000 to
+      ensure that they occur at an appropriate point in the overall evaluation cycle.
+
+      The visual behavior of each adjustment is controlled via the various "AdjustShow"
+      tags that are assigned, such as whether to show an incrementer and/or a menu for
+      user selection. The "Helper.UserAdjust" tag is used to identify an adjustment
+      that is controllable by the user. Suitable "InPlay" tags are assigned to control
+      whether an adjustment can be permanent or temporary, governing where the actual
+      adjustment appears for selection and how its effects are applied.
+-->
+
+<document signature="Hero Lab Data">
+
+  <!-- Define the assortment of adjustments for the game system. Adjustments are
+        selected on the Personal and In-Play tabs and applied to the character.
+  -->
+
+  <!-- Attribute Adjustment -->
+  <thing
+    id="adjLoAttr"
+    name="Attribute"
+    compset="Adjustment"
+    description="Legendary Object ability. Select this adjustment to change one of your attributes.">
+    <fieldval field="adjUsePick" value="2"/>
+    <fieldval field="adjCandid" value="component.Attribute"/>
+    <tag group="AdjustShow" tag="Increment"/>
+    <tag group="AdjustShow" tag="Menu"/>
+    <tag group="Helper" tag="UserAdjust"/>
+    <tag group="Helper" tag="Legendary"/>
+    <tag group="InPlay" tag="PermOK"/>
+    <tag group="InPlay" tag="TempOK"/>
+    <eval phase="Setup" priority="8000">
+      <before name="Calc trtFinal"/><![CDATA[
+      if (tagis[Helper.Activated] <> 0) then
+        field[adjChosen].chosen.field[trtInPlay].value += field[adjUser].value
+        endif
+      ]]></eval>
+    </thing>
+
+  <!-- Skill Adjustment -->
+  <thing
+    id="adjLoSkill"
+    name="Skill"
+    compset="Adjustment"
+    description="Legendary Object ability. Select this adjustment to change one of your skills.">
+    <fieldval field="adjUsePick" value="2"/>
+    <fieldval field="adjCandid" value="component.Skill"/>
+    <tag group="AdjustShow" tag="Increment"/>
+    <tag group="AdjustShow" tag="Menu"/>
+    <tag group="Helper" tag="UserAdjust"/>
+    <tag group="Helper" tag="Legendary"/>
+    <tag group="InPlay" tag="PermOK"/>
+    <tag group="InPlay" tag="TempOK"/>
+    <eval phase="Setup" priority="8000">
+      <before name="Calc trtFinal"/><![CDATA[
+      if (tagis[Helper.Activated] <> 0) then
+        field[adjChosen].chosen.field[trtInPlay].value += field[adjUser].value
+        endif
+      ]]></eval>
+    </thing>
+
+  <!-- Derived Trait Adjustment -->
+  <thing
+    id="adjLoDeriv"
+    name="Derived Trait"
+    compset="Adjustment"
+    description="Legendary Object ability. Select this adjustment to change one of your derived traits.">
+    <fieldval field="adjUsePick" value="2"/>
+    <fieldval field="adjCandid" value="component.Derived"/>
+    <tag group="AdjustShow" tag="Increment"/>
+    <tag group="AdjustShow" tag="Menu"/>
+    <tag group="Helper" tag="UserAdjust"/>
+    <tag group="Helper" tag="Legendary"/>
+    <tag group="InPlay" tag="PermOK"/>
+    <tag group="InPlay" tag="TempOK"/>
+    <eval phase="Setup" priority="8000">
+      <before name="Calc trtFinal"/><![CDATA[
+      if (tagis[Helper.Activated] <> 0) then
+        field[adjChosen].chosen.field[trtInPlay].value += field[adjUser].value
+        endif
+      ]]></eval>
+    </thing>
+
+  <!-- Weapon To-Hit Adjustment -->
+  <thing
+    id="adjLoWpn"
+    name="Weapon Hit"
+    compset="Adjustment"
+    description="Legendary Object ability. Select this adjustment to apply a bonus/penalty to a specific weapon.">
+    <fieldval field="adjUsePick" value="2"/>
+    <fieldval field="adjCandid" value="component.WeaponBase"/>
+    <tag group="AdjustShow" tag="Increment"/>
+    <tag group="AdjustShow" tag="Menu"/>
+    <tag group="Helper" tag="UserAdjust"/>
+    <tag group="Helper" tag="Legendary"/>
+    <tag group="InPlay" tag="TempOK"/>
+    <eval phase="Setup" priority="8000">
+      <before name="Calc wpNetAtk"/><![CDATA[
+      if (tagis[Helper.Activated] <> 0) then
+        field[adjChosen].chosen.field[wpBonus].value += field[adjUser].value
+        endif
+      ]]></eval>
+    </thing>
+
+  <!-- Weapon Damage Adjustment -->
+  <thing
+    id="adjLoWpnDm"
+    name="Weapon Damage"
+    compset="Adjustment"
+    description="Legendary Object ability. Select this adjustment to apply a bonus/penalty to a specific weapon's damage.">
+    <fieldval field="adjUsePick" value="2"/>
+    <fieldval field="adjCandid" value="component.WeaponBase"/>
+    <tag group="AdjustShow" tag="Increment"/>
+    <tag group="AdjustShow" tag="Menu"/>
+    <tag group="Helper" tag="UserAdjust"/>
+    <tag group="Helper" tag="Legendary"/>
+    <tag group="InPlay" tag="TempOK"/>
+    <eval phase="Setup" priority="8000">
+      <before name="Calc wpNetAtk"/><![CDATA[
+      if (tagis[Helper.Activated] <> 0) then
+        field[adjChosen].chosen.field[wpDamage].value += field[adjUser].value
+        endif
+      ]]></eval>
+    </thing>
+
+  <!-- Weapon Reslience Adjustment -->
+  <thing
+    id="adjLoWpnRs"
+    name="Weapon Resilience"
+    compset="Adjustment"
+    description="Legendary Object ability. Select this adjustment to apply a bonus/penalty to a specific weapon's resilience.">
+    <fieldval field="adjUsePick" value="2"/>
+    <fieldval field="adjCandid" value="component.WeaponBase"/>
+    <tag group="AdjustShow" tag="Increment"/>
+    <tag group="AdjustShow" tag="Menu"/>
+    <tag group="Helper" tag="UserAdjust"/>
+    <tag group="Helper" tag="Legendary"/>
+    <tag group="InPlay" tag="TempOK"/>
+    <eval phase="Setup" priority="8000">
+      <before name="Calc wpNetAtk"/><![CDATA[
+      if (tagis[Helper.Activated] <> 0) then
+        field[adjChosen].chosen.field[grResil].value += field[adjUser].value
+        endif
+      ]]></eval>
+    </thing>
+
+  <!-- Chi Points Adjustment -->
+  <thing
+    id="adjLoChi"
+    name="Chi Points"
+    compset="Adjustment"
+    description="Legendary Object ability. Select this adjustment to apply a bonus/penalty to your total Chi Points.">
+    <tag group="AdjustShow" tag="Increment"/>
+    <tag group="Helper" tag="UserAdjust"/>
+    <tag group="InPlay" tag="PermOK"/>
+    <eval phase="Setup" priority="8000">
+      <before name="Calc wpNetAtk"/><![CDATA[
+      if (tagis[Helper.Activated] <> 0) then
+        #traitinplay[trChi] += field[adjUser].value
+        endif
+      ]]></eval>
+    </thing>
+
+  <!-- Counter Adjustment -->
+  <thing
+    id="adjLoCount"
+    name="Counter"
+    compset="Adjustment"
+    description="Legendary Object ability. Select this adjustment to keep track of a value that can go up or down.">
+    <fieldval field="adjMinimum" value="-99"/>
+    <fieldval field="adjMaximum" value="99"/>
+    <tag group="AdjustShow" tag="Increment"/>
+    <tag group="Helper" tag="UserAdjust"/>
+    <tag group="InPlay" tag="TempOK"/>
+    </thing>
+
+  <!-- Gift Adjustment -->
+  <thing
+    id="adjLoGift"
+    name="Gift"
+    compset="Adjustment"
+    description="Legendary Object ability. Select this adjustment to add a Gift">
+    <fieldval field="adjUsePick" value="0"/>
+    <fieldval field="adjCandid" value="User.Gift"/>
+    <tag group="AdjustShow" tag="Menu"/>
+    <tag group="Helper" tag="UserAdjust"/>
+    <tag group="InPlay" tag="PermOK"/>
+    <tag group="InPlay" tag="TempOK"/>
+    <eval phase="Setup" priority="8000">
+      <before name="Calc trtFinal"/><![CDATA[
+      ~if (tagis[Helper.Activated] <> 0) then
+      ~  field[adjChosen].chosen.field[trtInPlay].value += field[adjUser].value
+      ~  endif
+      ]]></eval>
+    </thing>
+	
+  <!-- Weakness Adjustment -->
+  <thing
+    id="adjLoWeak"
+    name="Weakness"
+    compset="Adjustment"
+    description="Legendary Object ability. Select this adjustment to add a Weakness">
+    <fieldval field="adjUsePick" value="0"/>
+    <fieldval field="adjCandid" value="User.Weakness"/>
+    <tag group="AdjustShow" tag="Menu"/>
+    <tag group="Helper" tag="UserAdjust"/>
+    <tag group="InPlay" tag="PermOK"/>
+    <tag group="InPlay" tag="TempOK"/>
+    <eval phase="Setup" priority="8000">
+      <before name="Calc trtFinal"/><![CDATA[
+      ~if (tagis[Helper.Activated] <> 0) then
+      ~  field[adjChosen].chosen.field[trtInPlay].value += field[adjUser].value
+      ~  endif
+      ]]></eval>
+    </thing>
+	
+  </document>

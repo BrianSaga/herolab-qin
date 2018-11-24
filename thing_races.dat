@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!-- This file contains the assortment of races for the game system. The special
+      advantages of each race are conferred through a combination of scripts and
+      automatic assignment of special abilities. All special abilities are assigned
+      via the bootstrapping of the ability, resulting in the ability being
+      automatically assigned to the actor whenever the race is selected. If an ability
+      is both user-selected AND conferred by a race, the ability only appears a single
+      time because it all abilities are "unique".
+-->
+
+<document signature="Hero Lab Data">
+
+  <!-- Human Race -->
+  <thing
+    id="racHuman"
+    name="Human"
+    compset="Race"
+    isunique="yes"
+    description="Sometimes, around the fire, the village elders tell another story of how the world was made, one you should know…\n\nIn the beginning there was nothing, only an egg, floating in the void. After many thousands of years, the egg hatched and the being within, the giant named Pangu, awoke from a long, deep sleep.\n\nFrom the shattered fragments of the eggshell came the universe, the light rising and becoming Heaven, the heavy matter falling and becoming the Earth. Pangu planted his feet on the Earth and caused it to sink yet further. He stretched, touched Heaven with his fingertips and raised it still higher. The giant stayed in this position for ten thousand years or more, and at las Heaven and Earth were divided forever.\n\nPangu became tired and decided to sleep. Before falling into sleep, he divided his own body. His breath rose and became the wind. His deep, powerful voice became the growl of thunder. He threw his left eye to the Heaven and made the Sun. His right eye followed, and became the Moon. His four limbs marked the four corners of the world. His torso was divided and became the five sacred mountains.\n\nAnd so it was that the ten thousand beings and things all proceeded from the body of the giant Pangu. Pearl and jade came from his marrow, stone and metal from his teeth and bones. His blood became the rivers, his sweat the rain and the marshes. And man, so proud and arrogant, emerged from the countless parasites crawling on the skin of the First Being.">
+
+    <!-- If the race confers any special abilities, bootstrap them here
+    <bootstrap thing="abSample"/>
+    -->
+
+    <!-- Define any script needed to apply changes to traits or other mechanisms
+    <eval value="1" phase="PreTraits" priority="5000">
+      <before name="Calc trtFinal"/><![CDATA[
+      ~apply whatever adjustment(s) are needed here
+      ~hero.child[resAbility].field[resMax].value += 1
+      ~#traitbonus[attrWater] += 1
+      ]]></eval>
+    -->
+
+    </thing>
+
+  <!-- Ban Yao -->
+  <thing
+    id="racBanYao"
+    name="Ban Yao"
+    compset="Race"
+    isunique="yes"
+    description="When a yao mates with a human, the fruit of such a union is known as a ban yao: half-yao or almost-yao.{br}{br} With a foot in each world, the ban yao inherit many gifts but are nevertheless limited by their half-human condition. They possess supernatural powers, and a much longer life span than most humans, but are still recognisable by a morphological detail betraying their true nature (and which can make them pass for true yao!); and, most of all, they are vulnerable to Exorcism techniques.{br}{br} Many ban yao do not find a place in the world, too human for yao but too strange to live among men. Solitary, many prefer the easy path of retreating from the world, but a great majority attempt to mix in society, hiding their nature and attempting to live like everyone else, moving frequently so that no one notices their abnormally long lifespan. A few profit from their gifts to search for glory and honour – after all, is their paternity not divine and are they not gods walking the earth?">
+
+	<usesource source="qinBeast"/>
+    <!-- If the race confers any special abilities, bootstrap them here
+    <bootstrap thing="abSample"/>
+    -->
+
+    <!-- Define any script needed to apply changes to traits or other mechanisms
+    <eval value="1" phase="PreTraits" priority="5000">
+      <before name="Calc trtFinal"/><![CDATA[
+      ~apply whatever adjustment(s) are needed here
+      ~hero.child[resAbility].field[resMax].value += 1
+      ~#traitbonus[attrWater] += 1
+      ]]></eval>
+    -->
+
+    </thing>
+
+
+  </document>

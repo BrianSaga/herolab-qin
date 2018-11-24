@@ -1,0 +1,1082 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!-- This file contains the definitions of components associated with traits such as
+      attributes, skills, special abilities, etc.
+-->
+
+<document signature="Hero Lab Structure">
+
+  <!-- Trait component
+        All traits derive from this component and share these mechanisms in common
+  -->
+  <component
+    id="Trait"
+    name="Trait"
+    autocompset="no"
+    hasshortname="yes"
+    ispublic="no">
+
+    <!-- Abbreviation for use in places like the TacCon -->
+    <field
+      id="trtAbbrev"
+      name="Abbreviation"
+      type="static"
+      maxlength="5">
+      </field>
+    
+	<!-- Menu name -->
+    <field
+      id="trtAltName"
+      name="Alt Name"
+      type="user"
+	  maxlength="100">
+      </field>
+	  
+    <!-- Minimum user-assigned value for the trait -->
+    <field
+      id="trtMinimum"
+      name="Minimum Value"
+      type="derived">
+      </field>
+
+    <!-- Maximum user-assigned value for the trait -->
+    <field
+      id="trtMaximum"
+      name="Maximum Value"
+      type="derived"
+      defvalue="10">
+      </field>
+
+    <!-- User value assigned for the trait -->
+    <field
+      id="trtUser"
+      name="User Value"
+      type="user"
+      usedelta="yes"
+      maxfinal="50">
+      <!-- Bound the user value to the limits established for the trait -->
+      <bound phase="Traits" priority="1000" name="Bound trtUser">
+        <before name="Calc trtFinal"/><![CDATA[
+        @minimum = field[trtMinimum].value
+        @maximum = field[trtMaximum].value
+        ]]></bound>
+      <!-- Final value for display is the fully adjusted net value that incorporates
+            all adjustments from other sources
+      -->
+      <finalize><![CDATA[
+        ~if we're in creation mode and not autonomous, we can't be modified
+        if (hero.tagis[mode.creation] + !autonomous + tagis[Advance.Gizmo] >= 2) then
+          @text = "{bmp forbidden_up}"
+        else
+          @text = field[trtFinal].value
+          endif
+        ]]></finalize>
+      </field>
+
+    <!-- Bonuses applied to the trait (e.g. from other abilities) -->
+    <field
+      id="trtBonus"
+      name="Bonus Value"
+      type="derived">
+      </field>
+
+    <!-- In-play bonuses applied to the trait -->
+    <field
+      id="trtInPlay"
+      name="In-Play Bonus"
+      type="derived">
+      </field>
+
+    <!-- Final value for the trait -->
+    <field
+      id="trtFinal"
+      name="Final Value"
+      type="derived">
+      <!-- Calculate the final value from the three distinct pieces -->
+      <calculate phase="Traits" priority="3000" name="Calc trtFinal"><![CDATA[
+        ~Note! If you change this calculation, you may need to change the similar
+        ~       calculation in the "Derived" component.
+        @value = field[trtUser].value + field[trtBonus].value + field[trtInPlay].value
+        ]]></calculate>
+      </field>
+
+    <!-- Set the delta for the user value to be the current bonuses
+        NOTE! This is necessary so incrementers have proper values when edited by the user.
+        -->
+    <eval index="1" phase="Render" priority="5000"><![CDATA[
+      field[trtUser].delta = field[trtBonus].value + field[trtInPlay].value
+      ]]></eval>
+
+    <!-- If the trait is at its minimum/maximum, assign a tag to preclude further advancements -->
+    <eval index="2" phase="Final" priority="5000"><![CDATA[
+      ~base our test on the adjusted trait value, sans any in-play adjustments
+      var trait as number
+      trait = field[trtUser].value + field[trtBonus].value
+      if (trait <= field[trtMinimum].value) then
+        perform assign[Helper.Minimum]
+      elseif (trait >= field[trtMaximum].value) then
+        perform assign[Helper.Maximum]
+        endif
+      ]]></eval>
+	  
+
+    </component>
+
+
+  <!-- Attribute component
+        Each attribute possessed by the actor derives from this component
+  -->
+  <component
+    id="Attribute"
+    name="Attribute"
+    autocompset="no">
+
+    <!-- Attributes have a minimum trait value of 1 -->
+    <eval index="1" phase="Initialize" priority="3000"><![CDATA[
+      field[trtMinimum].value = 1
+	  field[trtMaximum].value = 5
+      ]]></eval>
+
+    <!-- Each attribute point above one that is allocated by the user costs 1 AP -->
+    <eval index="2" phase="Traits" priority="10000">
+      <before name="Calc resLeft"/>
+      <after name="Bound trtUser"/><![CDATA[
+	  doneif (origin.ishero = 0)
+      hero.child[resAP].field[resSpent].value += (field[trtUser].value)
+      ]]></eval>
+
+    </component>
+
+<!-- Combat Technique component
+        Each Combat Technique derives from this component
+  -->
+  <component
+    id="CombTech"
+    name="Combat Technique"
+    autocompset="no">
+	  
+	<field
+      id="ctAlias"
+      name="Alias"
+      type="static"
+	  defvalue="N/A"
+	  maxlength="50">
+      </field>
+	  
+    <!-- Each technique needs its own identity tag so existing skills can be identified during advancement -->
+    <identity group="CombTech"/>
+
+    <!-- All abilities get the same tag for sorting purposes -->
+    <tag group="SpecialTab" tag="CombTech"/>
+	
+    <!-- Track the on the actor -->
+    <eval index="1" phase="Setup" priority="5000"><![CDATA[
+		field[trtMinimum].value = 1
+		if (state.iscreate <> 0) then
+			field[trtMaximum].value = 3
+		else
+			field[trtMaximum].value = 6
+		endif
+		perform forward[CombTech.?]
+      ]]></eval>
+	  
+   <!-- Each point that is allocated by the user costs 1/4/10 Skill Point -->
+    <eval index="3" phase="Traits" priority="1000">
+      <before name="Calc resLeft"/>
+      <after name="Bound trtUser"/><![CDATA[
+		  ~if this skill is not added directly to the hero (i.e. an advance), skip it entirely
+		  doneif (origin.ishero = 0)
+			
+		  ~adjust the resource appropriately
+		  var cost as number
+		  var skllevel as number
+		  var tagval as number
+		  var thisid as string
+		  var tagref as string
+		  var sklid as string
+		  
+		  cost = 0
+		  tagval = 0
+	  
+		  if (field[usrChosen1].ischosen <> 0) then
+			thisid = idstring
+			sklid = field[usrChosen1].chosen.idstring
+			tagref = "ComTchCost." & thisid & "?"
+			
+			foreach pick in hero from Skill where "SkillType.Weapon"
+				var isuniq as number
+				isuniq = eachpick.taguniquestr[tagref]
+				if (isuniq <> 0) then
+					tagval = eachpick.tagvaluestr[tagref]
+				endif
+			nexteach
+		  
+			if (tagval = 1) then
+				cost = 1
+			  elseif (tagval = 2) then
+				cost = 3
+			  elseif (tagval = 3) then
+				cost = 6
+			endif
+		endif
+		field[trtBonus].value = tagval
+		hero.child[resAbility].field[resSpent].value += cost
+      ]]></eval>
+	
+    </component>
+	
+	
+  <!-- Magic Technique component
+        Each Technique derives from this component
+  -->
+  <component
+    id="Magic"
+    name="Magical Technique"
+    autocompset="no"
+	panellink="magic">
+		
+	<field
+      id="maPrep"
+      name="Preparation Time"
+      type="static"
+	  defvalue="N/A">
+      </field>
+
+	<field
+      id="maDur"
+      name="Duration"
+      type="static"
+	  defvalue="N/A"
+	  maxlength="300">
+      </field>
+
+	<field
+      id="maArea"
+      name="Effective Area"
+      type="static"
+	  defvalue="N/A"
+	  maxlength="300">
+	  </field>
+	  
+	<field
+      id="maPrepST"
+      name="Preparation ST"
+      type="static"
+	  defvalue="N/A">
+      </field>
+	  
+	<field
+      id="maImprove"
+      name="Improvements"
+      type="static"
+	  defvalue="N/A"
+	  maxlength="300">
+      </field>
+
+	<linkage linkage="magicskill" optional="no"/>
+	  
+    <!-- Each technique needs its own identity tag so existing skills can be identified during advancement -->
+    <identity group="Magic"/>
+
+    <!-- All abilities get the same tag for sorting purposes -->
+    <tag group="SpecialTab" tag="Magic"/>
+	
+    <!-- Track the on the actor -->
+    <eval index="1" phase="Setup" priority="5000"><![CDATA[
+      perform forward[Magic.?]
+      ]]></eval>
+
+   <!-- Each point that is allocated by the user costs 1/4/10 Skill Point -->
+    <eval index="2" phase="Traits" priority="10000">
+      <before name="Calc resLeft"/>
+      <after name="Bound trtUser"/><![CDATA[
+      ~if this skill is not added directly to the hero (i.e. an advance), skip it entirely
+      doneif (origin.ishero = 0)
+
+      ~adjust the resource appropriately
+	  var cost as number
+
+	  if (field[trtUser].value = 1) then
+		cost = 1
+	  elseif (field[trtUser].value = 2) then
+		cost = 3
+	  elseif (field[trtUser].value = 3) then
+		cost = 6
+	  endif
+      hero.child[resAbility].field[resSpent].value += cost
+      ]]></eval>
+	
+    <prereq message="Skill prerequisite(s) not met.">
+      <validate><![CDATA[
+			var isvalid as number
+			isvalid = 0
+			~All magic needs Taoism
+			if (#traitfound[skTao] <> 0) then
+				~All magic things tagged by Esoteric Way
+				if (altthing.tagis[Way.ExtAlchemy] <> 0) then
+					~Ext Alch needs Calligraphy and Herbalism
+					if (#traitfound[skExtAlch] >= altthing.field[trtUser].value) then
+						if (#traitfound[skCall] > 0) then
+							if (#traitfound[skHerb] > 0) then
+								isvalid = 1
+							endif
+						endif
+					endif
+				elseif (altthing.tagis[Way.IntAlchemy] <> 0) then
+					~Int Alch needs Meditation and Medicine
+					if (#traitfound[skIntAlch] >= altthing.field[trtUser].value) then
+						if (#traitfound[skMed] > 0) then
+							if (#traitfound[skMedit] > 0) then
+								isvalid = 1
+							endif
+						endif
+					endif
+				elseif (altthing.tagis[Way.Divination] <> 0) then
+					~Divination needs Theology. Other reqs are in magic things
+					if (#traitfound[skDivin] >= altthing.field[trtUser].value) then
+						if (#traitfound[skTheo] > 0) then
+							isvalid = 1
+						endif
+					endif
+				elseif (altthing.tagis[Way.Exorcism] <> 0) then
+					~Exorcism needs Theology and Legends. Calligraphy reqs are in magic things
+					if (#traitfound[skExor] >= altthing.field[trtUser].value) then
+						if (#traitfound[skTheo] > 0) then
+							if (#traitfound[skLeg] > 0) then
+								isvalid = 1
+							endif
+						endif
+					endif
+				endif
+			endif	
+			@valid = isvalid
+        ]]></validate>
+      </prereq>
+  
+    </component>
+	
+  <!-- Tao component
+        Each Tao derives from this component
+  -->
+  <component
+    id="Tao"
+    name="Tao"
+    autocompset="no"
+	panellink="taos">
+
+	<!-- Need this field to save the derive trtBonus value so it can be available earlier in the eval cycle 
+		 for the purpose of processing tao effect bootstraps
+	-->
+	<field
+      id="taBonusSav"
+      name="Saved Bonus"
+      type="user"
+	  defvalue="0">
+      </field>
+	
+    <!-- Each tao needs its own identity tag so existing skills can be identified during advancement -->
+    <identity group="Tao"/>
+	
+		<!-- Report out -->
+    <creation><![CDATA[
+
+
+      ]]></creation>
+	
+    <tag group="Hide" tag="Special"/>
+    <tag group="Hide" tag="Tracker"/>
+	
+	<!-- Advancement is cumulative -->
+	<tag group="Advance" tag="Cumulative"/>
+	
+    <!-- Track the skill on the actor -->
+    <eval index="1" phase="Setup" priority="5000"><![CDATA[
+	  field[trtMinimum].value = 0
+	  if (state.iscreate <> 0) then
+		field[trtMaximum].value = 3
+	  else
+		field[trtMaximum].value = 6
+	  endif
+      perform forward[Tao.?]
+      ]]></eval>
+
+    <!-- Each point that is allocated by the user costs 1/4/10 Skill Point -->
+    <eval index="2" phase="Traits" priority="10000">
+      <before name="Calc resLeft"/>
+      <after name="Bound trtUser"/><![CDATA[
+      ~if this skill is not added directly to the hero (i.e. an advance), skip it entirely
+      doneif (origin.ishero = 0)
+
+      ~adjust the resource appropriately
+	  var cost as number
+	  
+	  if (field[trtUser].value = 1) then
+		cost = 1
+	  elseif (field[trtUser].value = 2) then
+		cost = 4
+	  elseif (field[trtUser].value = 3) then
+		cost = 10
+	  elseif (field[trtUser].value = 4) then
+		cost = 16
+	  endif
+      hero.child[resAbility].field[resSpent].value += cost	  
+      ]]></eval>
+	  
+    <eval index="3" phase="Initialize" priority="1500" name="Tag Gizmo"><![CDATA[
+		    
+	  ~only do this on picks
+      doneif (ispick = 0)
+	    
+	  ~only do this on gizmos
+	  doneif (isgizmo = 0)
+	  
+	  ~ tally up the current user value and the user value from the last
+	  ~ eval cycle, stored in the taBonusSav field, so we know which
+	  ~ tao effect bootstraps go live -- assign this total to the gizmo
+	  ~ as a tag
+	  
+	  var traitval as number
+	  traitval = field[trtUser].value + field[taBonusSav].value
+	  perform gizmo.assignstr["Level." & traitval]
+	  if (container.ishero = 0) then
+		perform gizmo.assign[Helper.NoEffects] 
+	  endif
+	  
+	  ~count how many active effects we have
+	  var activeeff as number
+	  activeeff = 0
+	  
+	  foreach pick in gizmo where "TaoEffect.?"
+		activeeff += eachpick.field[actActive].value
+	  nexteach
+	  
+	  if (activeeff > 1) then
+		if (tagis[Helper.Stack] = 0) then
+			perform assign[Helper.NotValid]
+		endif
+	  endif
+	  
+      ]]></eval>
+	  
+    <eval index="4" phase="Final" priority="10000" name="Save trtBonus"><![CDATA[
+       ~so we can access it early in the eval cycle
+	   trustme
+	   field[taBonusSav].value = field[trtBonus].value
+      ]]></eval>
+    </component>
+
+  <!-- TaoEffect component
+        Each special Tao Effect derives from this component
+  -->
+  <component
+    id="TaoEffect"
+    name="Tao Effect"
+    autocompset="no"
+    panellink="taos">
+	
+	  <!-- Each ability needs its own identity tag to detect cascading dependencies via prereqs -->
+    <identity group="TaoEffect"/>
+	
+	<!-- Shadow to the hero -->
+	<shadow target="hero"/>
+	
+	<!-- Report out -->
+    <creation><![CDATA[
+      ~debug field[name].text & " parent.displaced is " & parent.displaced & " at creation."
+      ]]></creation>
+		
+    <!-- All abilities get the same tag for sorting purposes -->
+    <tag group="SpecialTab" tag="TaoEffect"/>
+	<tag group="User" tag="CreateOnly"/>
+	
+    <!-- Track the ability on the actor -->
+    <eval index="2" phase="Setup" priority="5000" name="TaoEffect"><![CDATA[
+      perform forward[TaoEffect.?,shadow]
+      ]]></eval>
+	  
+    <!-- Verify we don't have too many Tao Effects active -->
+    <prereq message="Too many Tao effects active.">
+      <validate><![CDATA[
+        ~we only report this as a failure on picks
+        validif (@ispick = 0)
+		
+		if (parent.tagis[Helper.NotValid] = 0) then
+			@valid = 1
+		else
+			@valid = 0
+		endif
+       
+        ]]></validate>
+      </prereq>
+	  
+    <!-- Verify abilities that are only available at creation -->
+    <prereq message="Only available during character creation.">
+      <validate><![CDATA[
+        ~we only report this as a failure things (once added, we assume the user knows best)
+        validif (@ispick <> 0)
+
+        ~if we are not designated as creation only, we're valid
+        validif (altthing.tagis[User.CreateOnly] = 0)
+
+        ~if the mode is creation, we're valid
+        validif (state.iscreate <> 0)
+        ]]></validate>
+      </prereq>
+    </component>
+	
+  <!-- TaoLink component
+        Bridges Tao and TaoEffects
+  -->
+  <component
+    id="TaoLink"
+    name="Tao Link">
+  </component>	 
+  
+  <!-- Combat style component
+        Each combat style derives from this component
+  -->
+  <component
+    id="CombStyle"
+    name="Combat Style"
+    autocompset="no"
+	panellink="combstyles">
+	
+	<linkage linkage="CombSkill" optional="no"/>
+	
+    <!-- Each style needs its own identity tag so existing skills can be identified during advancement -->
+    <identity group="CombStyle"/>
+	
+    <tag group="Hide" tag="Special"/>
+    <tag group="Hide" tag="Tracker"/>
+	
+    <!-- Track the style on the actor -->
+    <eval index="1" phase="Setup" priority="5000"><![CDATA[
+	  field[trtMinimum].value = 1
+	  field[trtMaximum].value = 4
+      perform forward[CombStyle.?]
+      ]]></eval>
+	  
+    </component>
+
+  <!-- Martial Technique component
+        Each special Martial Technique derives from this component
+  -->
+  <component
+    id="MartialTch"
+    name="Martial Technique"
+    autocompset="no"
+    panellink="combstyles">
+
+	<linkage linkage="CombStyle" optional="no"/>
+	
+	<!-- Each ability needs its own identity tag to detect cascading dependencies via prereqs -->
+    <identity group="MartialTch"/>
+	
+    <!-- All abilities get the same tag for sorting purposes -->
+    <tag group="SpecialTab" tag="MartialTch"/>
+	
+    <!-- Track the ability on the actor -->
+    <eval index="2" phase="Setup" priority="5000" name="TaoEffect"><![CDATA[
+      perform forward[MartialTch.?]
+      ]]></eval>
+	 
+    </component>
+	
+  <!-- StyleLink component
+        Bridges Combat Styles and Martial Techniques
+  -->
+  <component
+    id="StyleLink"
+    name="Style Link">
+  </component>  
+  
+  <!-- Chi component
+        All things that cost Chi derive from this component
+  -->
+  <component
+    id="ChiCost"
+    name="Chi Cost"
+	autocompset="no">
+	
+	<field
+      id="chiCost"
+      name="Chi Cost"
+      type="derived"
+	  defvalue="1"
+	  maxfinal="30">
+	  <finalize><![CDATA[
+	    var chi as number
+		chi = @value
+		@text = "{b}Chi cost: {/b}" & chi
+	   ]]></finalize>
+      </field>
+  </component>	
+
+  <!-- Breath of Life component
+  -->
+  <component
+    id="Breath"
+    name="Breath of Live Level"
+	autocompset="no">
+	
+    <!-- Setup an identity tag group to track all activated abilities and adjustments -->
+    <identity group="Breath"/>
+	
+	<!-- Shadow to the hero -->
+	<shadow target="hero"/>
+    <!-- If the ability is activated, designate it appropriately -->
+    <eval index="3" phase="Setup" priority="100"><![CDATA[
+		if (shadowed = 0) then
+			perform forward[Breath.?]
+		else
+			perform forward[Breath.?,shadow]
+		endif
+
+      ]]></eval>
+  </component>
+
+  
+ <!-- Activation component
+        For things what get turned on/off
+  -->
+  <component
+    id="Activation"
+    name="Activation">
+	
+	<!-- Activation state of the effect - we're not activated by default -->
+    <field
+      id="actActive"
+      name="Is Activated?"
+      type="user"
+      minvalue="0"
+      maxvalue="1">
+      </field>
+
+
+    <!-- Setup an identity tag group to track all activated abilities and adjustments -->
+    <identity group="Activated"/>
+	<tag group="User" tag="Activation"/>
+	
+    <!-- If the ability is activated, designate it appropriately -->
+    <eval index="3" phase="Setup" priority="100"><![CDATA[
+      ~if we're not able to be activated, we don't qualify
+      doneif (tagis[User.Activation] = 0)
+	  
+      ~if we've been activated by the user, mark ourselves as activated; in addition,
+      ~forward our identity tag to our parent actor; this allows the actor to track
+      ~when abilities are activated and reflect the state to the user
+      if (field[actActive].value <> 0) then
+        perform assign[Helper.Activated]
+		if (shadowed = 0) then
+			perform forward[Activated.?]
+		else
+			perform forward[Activated.?,shadow]
+		endif
+      endif
+      ]]></eval>
+	  
+    <!-- Verify abilities that are only available at creation -->
+    <prereq message="Only available during character creation.">
+      <validate><![CDATA[
+        ~we only report this as a failure things (once added, we assume the user knows best)
+        validif (@ispick <> 0)
+
+        ~if we are not designated as creation only, we're valid
+        validif (altthing.tagis[User.CreateOnly] = 0)
+
+        ~if the mode is creation, we're valid
+        validif (state.iscreate <> 0)
+        ]]></validate>
+      </prereq>
+  </component>	
+  
+  <!-- Skill component
+        Each skill derives from this component
+  -->
+  <component
+    id="Skill"
+    name="Skill"
+    autocompset="no"
+	addbehavior="never"
+	panellink="skills">
+
+    <!-- Net final roll that includes the value of the linked attribute -->
+    <field
+      id="sklRoll"
+      name="Net Skill Roll"
+      type="derived">
+      <calculate phase="Final" priority="5000">
+        <after name="Calc trtFinal"/><![CDATA[
+        ~only access the linkage if the skill is directly on the hero; if not, it is
+        ~likely within an advancement gizmo and no linkage will exist there
+        if (container.ishero <> 0) then
+			if (islinkage[attribute] <> 0) then
+			  @value = field[trtFinal].value + linkage[attribute].field[trtFinal].value
+			else
+				@value = field[trtFinal].value
+			endif
+		endif
+        ]]></calculate>
+      </field>
+
+	  <field
+		id="sklAlias"
+		name="Skill alias"
+		type="static"
+		maxlength="100">
+	  </field>
+		
+    <!-- Each skill is associated with a specific attribute that must be identified -->
+    <linkage linkage="attribute" optional="yes"/>
+
+    <!-- Each skill needs its own identity tag so existing skills can be identified during advancement -->
+    <identity group="Skill"/>
+
+    <!-- Every skill is shown on the "Rolls" mouse-over on the Dashboard/TacCon -->
+    <tag group="DashTacCon" tag="Rolls"/>
+	
+	<!-- Advancement is cumulative -->
+	<tag group="Advance" tag="Cumulative"/>
+
+    <!-- Track the skill on the actor -->
+    <eval index="1" phase="Setup" priority="5000"><![CDATA[
+	  field[trtMinimum].value = 1
+		if (state.iscreate <> 0) then
+			field[trtMaximum].value = 3
+		else
+			field[trtMaximum].value = 6
+		endif
+      perform forward[Skill.?]
+      ]]></eval>
+
+    <!-- Each skill point that is allocated by the user costs 1/4/10 Skill Point -->
+    <eval index="2" phase="Traits" priority="10000">
+      <before name="Calc resLeft"/>
+      <after name="Bound trtUser"/><![CDATA[
+	  	  
+      ~if this skill is not added directly to the hero (i.e. an advance), skip it entirely
+      doneif (origin.ishero = 0)
+
+      ~adjust the resource appropriately
+	  var cost as number
+
+	  if (field[trtUser].value = 1) then
+		cost = 1
+	  elseif (field[trtUser].value = 2) then
+		cost = 4
+	  elseif (field[trtUser].value = 3) then
+		cost = 10
+	  endif
+      hero.child[resSkill].field[resSpent].value += cost
+      ]]></eval>
+
+    </component>
+
+  <!-- GiftWk component
+        Each Gift or Weakness derives from this component
+  -->
+  <component
+    id="GiftWk"
+    name="Gift or Weakness"
+    autocompset="no">
+
+    <!-- Each ability needs its own identity tag to detect cascading dependencies via prereqs -->
+    <identity group="GiftWk"/>
+
+    <!-- All abilities get the same tag for sorting purposes -->
+    <tag group="SpecialTab" tag="GftWk"/>
+
+    <!-- Each ability that is added by the user costs 1 slot -->
+    <eval index="1" phase="Setup" priority="5000"><![CDATA[
+      ~we must ignore bootstrapped abilities from races and abilities added via advances
+      if (isuser + origin.ishero >= 2) then
+        hero.child[resGftWk].field[resSpent].value += 1
+        endif
+      ]]></eval>
+
+    <!-- Track the ability on the actor -->
+    <eval index="2" phase="Setup" priority="5000"><![CDATA[
+      perform forward[GiftWk.?]
+      ]]></eval>
+
+    <!-- If the ability is activated, designate it appropriately -->
+    <eval index="3" phase="Setup" priority="100"><![CDATA[
+      ~if we're not able to be activated, we don't qualify
+      doneif (tagis[User.Activation] = 0)
+
+      ~if we've been activated by the user, mark ourselves as activated; in addition,
+      ~forward our identity tag to our parent actor; this allows the actor to track
+      ~when abilities are activated and reflect the state to the user
+      if (field[actActive].value <> 0) then
+        perform assign[Helper.Activated]
+        perform forward[Activated.?]
+        endif
+      ]]></eval>
+
+    <!-- Verify we have only one Gift and one Weakness -->
+    <prereq message="Only one Gift and one Weakness allowed.">
+      <validate><![CDATA[
+		var gcount as number
+		var wcount as number
+		
+		gcount = 0
+		wcount = 0
+		
+		if (altthing.tagis[User.Gift] <> 0) then
+			foreach pick in hero from GiftWk where "User.Gift"
+				gcount += 1
+			nexteach
+		
+			if (gcount = 1) then
+				@valid = @ispick
+			elseif (gcount = 0) then
+				@valid = !@ispick
+			endif
+		endif
+		
+		if (altthing.tagis[User.Weakness] <> 0) then
+			foreach pick in hero from GiftWk where "User.Weakness"
+				perform eachpick.delete[DashTacCon.Special]
+				wcount += 1
+			nexteach
+			
+			if (wcount = 1) then
+				@valid = @ispick
+			elseif (wcount = 0) then
+				@valid = !@ispick
+			endif
+		endif
+		
+		
+		
+        ]]></validate>
+      </prereq>
+
+    </component>
+	
+	<!-- Power component
+        Each Power derives from this component
+  -->
+  <component
+    id="Power"
+    name="Power"
+    autocompset="no">
+
+    <!-- Each ability needs its own identity tag to detect cascading dependencies via prereqs -->
+    <identity group="Power"/>
+
+    <!-- All abilities get the same tag for sorting purposes -->
+    <tag group="SpecialTab" tag="Power"/>
+
+	<!-- Don't change the pick name -->
+	<tag group="User" tag="NoAutoName" />
+	
+    <!-- Track the ability on the actor -->
+    <eval index="2" phase="Setup" priority="5000"><![CDATA[
+	  field[trtMinimum].value = 1
+	  field[trtMaximum].value = 6
+      perform forward[Power.?]
+      ]]></eval>
+
+    <!-- If the ability is activated, designate it appropriately -->
+    <eval index="3" phase="Setup" priority="100"><![CDATA[
+      ~if we're not able to be activated, we don't qualify
+      doneif (tagis[User.Activation] = 0)
+
+      ~if we've been activated by the user, mark ourselves as activated; in addition,
+      ~forward our identity tag to our parent actor; this allows the actor to track
+      ~when abilities are activated and reflect the state to the user
+      if (field[actActive].value <> 0) then
+        perform assign[Helper.Activated]
+        perform forward[Activated.?]
+        endif
+      ]]></eval>
+
+    </component>
+
+
+  <!-- Derived component
+        Each derived trait (calculated from other traits) is based upon this component
+  -->
+  <component
+    id="Derived"
+    name="Derived Trait"
+    autocompset="no">
+
+    <!-- Derived traits are based on other traits. The "calculate" script on the
+        "trtFinal" field value will work great for most traits, but NOT for derived
+        traits. Consequently, derived traits need to re-calculate the field value AFTER
+        the traits derived from are properly calculated. So the individual calculation
+        scripts for each derived trait must occur AFTER the initial "trtFinal"
+        calculation and BEFORE this derived calculation. We can also omit any "user"
+        value from the calculation since derived traits have no user-defined facet.
+        -->
+    <eval index="1" phase="Traits" priority="6000" name="Derived trtFinal"><![CDATA[
+      field[trtFinal].value = field[trtBonus].value + field[trtInPlay].value
+      ]]></eval>
+
+    </component>
+
+
+  <!-- Race component
+        Each race derives from this component
+  -->
+  <component
+    id="Race"
+    name="Race"
+    autocompset="no">
+
+    <!-- Each race needs its own identity tag to configure the hero appropriately -->
+    <identity group="Race"/>
+
+    <!-- Track the race on the actor by assigning the appropriate tag -->
+    <eval index="1" phase="Setup" priority="5000"><![CDATA[
+      perform forward[Race.?]
+      ]]></eval>
+
+    </component>
+	
+	
+	  	  
+  <!-- Define various component sets associated with the components defined above.
+  -->
+
+  <!-- No compsets are auto-defined for the component -->
+
+  <!-- Attribute - all attributes derive from this compset -->
+  <compset
+    id="Attribute"
+    forceunique="yes">
+    <compref component="Attribute"/>
+    <compref component="Trait"/>
+    <compref component="CanAdvance"/>
+    </compset>
+
+  <!-- Skill - all skills derive from this compset -->
+  <compset
+    id="Skill">
+    <compref component="Skill"/>
+    <compref component="Trait"/>
+    <compref component="Domain"/>
+    <compref component="CanAdvance"/>
+    <compref component="UserSelect"/>
+	</compset>
+
+ <!-- CombTech - derive from this compset -->
+  <compset
+    id="CombTech">
+    <compref component="CombTech"/>
+	<compref component="Trait"/>
+    <compref component="SpecialTab"/>
+    <compref component="CanAdvance"/>
+    <compref component="UserSelect"/>
+    </compset>
+	
+  <!-- Magic - derive from this compset -->
+  <compset
+    id="Magic">
+    <compref component="Magic"/>
+	<compref component="Trait"/>
+	<compref component="ChiCost"/>
+    <compref component="SpecialTab"/>
+    <compref component="CanAdvance"/>
+    <compref component="Activation"/>
+    </compset>
+	
+  <!-- Tao - all abilities derive from this compset -->
+  <compset
+    id="Tao">
+    <compref component="Tao"/>
+	<compref component="TaoLink"/>
+    <compref component="Trait"/>
+    <compref component="CanAdvance"/>
+	<compref component="UserSelect"/>	
+    <compref component="Activation"/>	
+    </compset>
+
+  <!-- TaoEffect - all abilities derive from this compset -->
+  <compset
+    id="TaoEffect">
+	<compref component="TaoEffect"/>
+    <compref component="TaoLink"/>
+    <compref component="ChiCost"/>
+    <compref component="Trait"/>
+    <compref component="SpecialTab"/>
+	<compref component="UserSelect"/>
+    <compref component="Activation"/>
+    </compset>
+	
+  <!-- Combat Style - all abilities derive from this compset -->
+  <compset
+    id="CombStyle">
+    <compref component="CombStyle"/>
+	<compref component="StyleLink"/>
+    <compref component="Trait"/>
+    <compref component="CanAdvance"/>
+    </compset>
+
+  <!-- Martial Technique - all abilities derive from this compset -->
+  <compset
+    id="MartialTch">
+    <compref component="MartialTch"/>
+	<compref component="StyleLink"/>
+	<compref component="ChiCost"/>
+    <compref component="Trait"/>
+    <compref component="SpecialTab"/>
+    <compref component="CanAdvance"/>
+    </compset>
+	
+  <!-- GiftWk - all abilities derive from this compset -->
+  <compset
+    id="GiftWk">
+    <compref component="GiftWk"/>
+    <compref component="Trait"/>
+    <compref component="Domain"/>
+    <compref component="SpecialTab"/>
+    <compref component="CanAdvance"/>
+	<compref component="UserSelect"/>
+    </compset>  
+	
+  <!-- Power - all abilities derive from this compset -->
+  <compset
+    id="Power">
+    <compref component="Power"/>
+    <compref component="Trait"/>
+    <compref component="Domain"/>
+    <compref component="SpecialTab"/>
+	<compref component="UserSelect"/>
+    </compset>
+	
+  <!-- Trait - all derived traits are based on this compset -->
+  <compset
+    id="Trait">
+    <compref component="Derived"/>
+    <compref component="Trait"/>
+    </compset>
+
+  <!-- Race - all races derive from this compset -->
+  <compset
+    id="Race"
+    forceunique="yes">
+    <compref component="Race"/>
+    </compset>
+
+  <!-- Breath - all Breath of Life traits are based on this compset -->
+  <compset
+    id="Breath">
+	<compref component="Breath"/>
+    <compref component="Derived"/>
+    <compref component="Trait"/>
+    </compset>	
+	
+	
+  <!-- Entity for bootstrapping tao effects to taos -->
+   <entity
+	  id="entTao">
+	</entity>
+	
+  <!-- Entity for breath of life -->
+   <entity
+	  id="entBreath">
+	</entity>
+</document>

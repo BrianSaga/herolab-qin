@@ -1,0 +1,351 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!-- This is the definition file that provides the basis for everything else. All of
+      the Skeleton data files contain examples of the most common behaviors you'll
+      need and can be readily adapted to the game system you want to support. You'll
+      find inline comments throughout all of the Skeleton data files that describe
+      what is being done, as well as external documentation that outlines how
+      everything is structured and how all the pieces fit together. A detailed
+      example is also provided that outlines how to adapt these Skeleton data files
+      for use with the Savage Worlds game system.
+-->
+
+<document signature="Hero Lab Definition">
+
+  <!-- The "game" element is where you'll define the basics for the game system.
+  -->
+
+  <game
+    game="Qin: The Warring States"
+    publisher="7th Circle Games/Cubicle 7"
+    website="http://www.cubicle7.co.uk/"
+    copyright="2005"
+    legaloutput="TBD">
+    </game>
+
+  <!-- The "author" element is where you'll provide details about yourself as the
+        author of the data files.
+  -->
+
+  <author
+    author="Brian Houle"
+    email="houle.brian@gmail.com"
+    website="www.brianhoule.net">
+    </author>
+
+  <!-- The "release" element specifies the details for each new revision of the data
+        files that you make available to others. This makes it easy to track the
+        version of the data files in which problems occur and ensures that other
+        users can verify that they update to new versions when you publish them.
+  -->
+
+  <release
+    major="0"
+    minor="1"
+    required="4.1"
+    summary="HLExport will use this text automatically"><![CDATA[{b}{text clrglow}Qin: The Warring States{text clrreset}{/b}
+
+	These data files are an unofficial game aid produced by Brian Houle.
+	
+Qin is published by Le 7eme Cercle SARL. The title and
+trademark have been registered. Copyright 2005 Le 7eme Cercle
+All rights reserved. Le 7eme Cercle - 10 rue
+d'Alexandre 64600 Anglet, France
+http://www.7emecercle.com
+]]>
+    </release>
+
+  <!-- The "structure" element defines special structural details about the data files
+        and how Hero Lab should manage them.
+  -->
+
+  <structure
+    folder="qin"
+	 summarymin="115"
+	 summarymax="250"
+     combatpassterm="exchange">
+    </structure>
+
+  <!-- The "behavior" element specifies assorted behavioral aspects of the data files
+        that reflect the nuances of both the game system and the data files your create.
+  -->
+
+  <behavior>
+
+    <!-- Configure how the integrated dice roller should behave for this game system. -->
+
+    <diceroller mode="totals" dietype="10" quantity="2"/>
+
+    <!-- Define how each lead is displayed to the user when importing from a portfolio. -->
+
+    <leadsummary><![CDATA[
+      ~start with the race
+      var txt as string
+      txt = hero.findchild[Race].field[name].text
+      if (empty(txt) <> 0) then
+        txt = "No Race"
+        endif
+      @text &= txt
+
+      ~append the CP rating of the character
+      @text &= " - CP: " & hero.child[resAP].field[resMax].text
+      ]]></leadsummary>
+
+    <!-- Handle the start of a new combat -->
+
+    <newcombat><![CDATA[
+      ~reset the abandon state in case it's still set from the previous combat
+      herofield[acAbandon].value = 0
+      ]]></newcombat>
+	  
+    <newturn><![CDATA[
+
+      ]]></newturn>
+
+    <newpass><![CDATA[
+		~find out the last initiative pass needed by any actor
+		~Note that when determining the number of initiative passes, use the
+		~lower of the value at the start of the turn, and the current value. This
+		~is because when you gain initiative passes during a turn, they don't
+		~apply until next turn, but when you lose them, the loss happens
+		~immediately.
+		~NOTE: Make sure to skip characters that aren't actually part of combat.
+		
+		var lastpass as number
+		var passes as number
+		foreach actor in portfolio where "!combat.noncombat"
+			passes = eachpick.hero.child[trActions].field[trtFinal].value
+			lastpass = maximum(lastpass,passes)
+		nexteach
+
+		~if that's less than the current initiative pass, we're finished with
+		~this turn
+		
+		if (lastpass < state.combatpass) then
+			@complete = 1
+		endif
+
+		~if the hero is in noncombat mode, skipping their combat pass screws
+		~things up, so just skip them entirely. This is kinda a bug in Hero Lab,
+		~see case 3340 in fogbugz for full details.
+		doneif (hero.tagis[combat.noncombat] <> 0)
+
+		~work out how many combat passes are available to us this turn, using the
+		~same logic as above
+		passes = hero.child[trActions].field[trtFinal].value
+
+
+		~otherwise we have to go ahead with the pass - this actor gets skipped if
+		~it doesn't have enough initiative passes to act now, unless we have a
+		~delayed action saved up
+		if (state.combatpass > passes) then
+			if (herofield[acDelayed].value = 0) then
+				perform hero.combatskip
+				done
+			endif
+		endif
+
+		~ Actors with initiative 0 or less don't get to act
+		if (herofield[tactInit].value <= 0) then
+			perform hero.combatskip
+			done
+		endif
+      ]]></newpass>	  
+    <!-- Define how the initiative is auto-calculated by the Tactical Console. -->
+
+    <initiative><![CDATA[
+      ~calculate the primary initiative rating
+		var yin as number
+		var yang as number
+		
+		var min as number
+		var max as number
+		var yyd as number
+		
+		yin = random(10)
+		yang = random(10)
+		
+		max = maximum(yin, yang)
+		min = minimum(yin, yang)
+		yyd = max - min
+	  
+	  if (yyd = 0) then
+		yyd = 10 + max
+	  endif
+	  debug "*****" & hero.herofield[name].text
+	  debug "yyd=" & yyd
+	  debug "   min=" & min
+	  debug "   max=" & max
+      @initiative = yyd + hero.child[trInit].field[trtFinal].value
+      ~calculate the tiebreaker initiative rating
+      @tiebreaker = hero.child[attrWater].field[trtFinal].value
+      ]]></initiative>
+
+    </behavior>
+
+
+  <!-- Define an assortment of macros that will make writing scripts faster and easier. -->
+
+  <scriptmacro
+    name="trait"
+    param1="trait"
+    result="hero.child[#trait].field[trtFinal].value"/>
+  <scriptmacro
+    name="traitfound"
+    param1="trait"
+    result="hero.childfound[#trait].field[trtFinal].value"/>
+  <scriptmacro
+    name="traitbonus"
+    param1="trait"
+    result="hero.child[#trait].field[trtBonus].value"/>
+  <scriptmacro
+    name="traitinplay"
+    param1="trait"
+    result="hero.child[#trait].field[trtInPlay].value"/>
+  <scriptmacro
+    name="traituser"
+    param1="trait"
+    result="hero.child[#trait].field[trtUser].value"/>
+  <scriptmacro
+    name="sklfound"
+    param1="skill"
+    result="hero.childfound[#skill].field[sklRoll].value"/>
+  <scriptmacro
+    name="childname"
+    param1="child"
+    result="hero.childfound[#child].field[name].text"/>
+  <scriptmacro
+    name="resmax"
+    param1="resource"
+    result="hero.child[#resource].field[resMax].value"/>
+  <scriptmacro
+    name="resspent"
+    param1="resource"
+    result="hero.child[#resource].field[resSpent].value"/>
+  <scriptmacro
+    name="resleft"
+    param1="resource"
+    result="hero.child[#resource].field[resLeft].value"/>
+  <scriptmacro
+    name="resextra"
+    param1="resource"
+    result="hero.child[#resource].field[resExtra].value"/>
+  <scriptmacro
+    name="trkmax"
+    param1="tracker"
+    result="hero.child[#tracker].field[trkMax].value"/> 
+	
+  <!-- The "advancement" element controls whether serialized advancement logic is enabled
+        and how the advancement mechanisms should behave for the game system.
+  -->
+
+  <advancement
+    enable="yes">
+
+    <!-- Verify that the character can be transitioned to advancement mode -->
+
+    <canadvance><![CDATA[
+      var bullet as string
+      bullet = "{bmp bullet_red}{horz 4}"
+      @message = ""
+
+      ~perform tests to assure all starting resources have been assigned
+      if (#resleft[resAP] <> 0) then
+        @message &= bullet & "Aspect points must be assigned for the character.{br}"
+        endif
+      if (#resleft[resSkill] <> 0) then
+        @message &= bullet & "Skill points must be spent for the character.{br}"
+        endif
+      if (#resleft[resAbility] <> 0) then
+        @message &= bullet & "Tao, Combat Technique, and Magic points must be spent for the character.{br}"
+        endif
+      if (#resleft[resGftWk] <> 0) then
+        @message &= bullet & "A Gift and/or a Weakness must be selected for the character.{br}"
+        endif
+      ]]></canadvance>
+
+    <!-- Handle the transition to/from advancement mode -->
+
+    <transition><![CDATA[
+      if (state.iscreate <> 0) then
+        @message = "{b}{text clrprompt}Creation Phase{text clrreset}{/b}"
+        @message &= "{br}{br}"
+        @message &= "{align left}You have unlocked your character, thereby exiting the Character Advancement phase and moving back to the Character Creation phase. "
+        @message &= "{br}{br}"
+        @message &= "While unlocked, traits defined during character creation can be adjusted, as long as those traits have not yet been altered on the Advances tab. "
+        @message &= "Traits that already have advancements applied to them will remain locked unless those advancements are deleted. "
+        @message &= "{br}{br}"
+        @message &= "Lock your character and remove any advancements on a trait if you wish to revise the rating that trait was given during character creation. "
+      else
+        @message = "{b}{text clrprompt}Advancement Phase{text clrreset}{/b}"
+        @message &= "{br}{br}"
+        @message &= "{align left}You have locked your character creation traits. "
+        @message &= "{br}{br}"
+        @message &= "By locking your character creation traits, you have begun the Character Advancement phase of play. "
+        @message &= "While locked, you cannot alter traits defined during character creation. "
+        @message &= "Use the Advances tab while the character is locked to allocate advances to new abilities or to increase existing traits. "
+        @message &= "{br}{br}"
+        @message &= "Unlock the character to go back to the Character Creation phase. "
+        endif
+      ]]></transition>
+
+    </advancement>
+
+
+  <!-- The "phase" elements define the various evaluation stages that all processing of
+        scripts will be channeled through. Each phase identifies a stage, with the list
+        of phases being processed in the order specified below. Within each phase, the
+        priority value assigned controls the processing order.
+  -->
+
+  <phase
+    id="Initialize"
+    name="Initialization"
+    description="Anything that has to happen before everything else">
+    </phase>
+
+  <phase
+    id="Setup"
+    name="Setup"
+    description="Anything that has to be processed before normal processing gets underway">
+    </phase>
+
+  <phase
+    id="Effects"
+    name="Effects"
+    description="Apply derived effects that influence equipment modifiers and the like">
+    </phase>
+
+  <phase
+    id="PreTraits"
+    name="Pre-Traits"
+    description="Adjustments to traits before they are finalized">
+    </phase>
+
+  <!-- NOTE! All Health calculations are assumed to occur within the 5000-5999 priority range during this phase. -->
+  <phase
+    id="Traits"
+    name="Traits"
+    description="Finalization of trait values">
+    </phase>
+
+  <phase
+    id="Final"
+    name="Final"
+    description="Any last-minute processing that must happen after everything else">
+    </phase>
+
+  <phase
+    id="Validate"
+    name="Validation"
+    description="Validation tests that occur after all evaluation processing">
+    </phase>
+
+  <phase
+    id="Render"
+    name="Render"
+    description="Any processing that simply renders values for use by the UI or processes last-minute validation - no calculations">
+    </phase>
+
+
+  </document>

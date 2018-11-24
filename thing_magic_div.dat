@@ -1,0 +1,519 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!-- This file contains the assortment of skills for the game system. Note that each
+      skill is linked to an associated attribute for the character. This linkage allows
+      the value of the skill to easily incorporate the effects of the linked attribute
+      via a script on the component.
+-->
+
+<document signature="Hero Lab Data">
+<!--
+	***************************************************************
+		Divination Techniques
+	***************************************************************
+-->
+
+<!-- Deadly Omens -->
+	<thing
+		id="maOmens"
+		name="Deadly Omens"
+		compset="Magic"
+		isunique="yes"
+		description="The character focuses on a single thought, such as a birth, a person, the building of a road, or the death of an animal, in order to open his mind to the signs that emerge from it.\n\nBy performing a successful Test of {b}Wood + Divination, with an ST of 7{/b}, he will notice something unusual in his immediate environment, such as a tree with a particular shape, an animal behaving oddly, or an unexpected noise, that he may interpret as a good or bad omen. The higher the Success Margin, the clearer the sign and the more relevant the answer to the diviner’s inner questions.">
+		
+		<fieldval field="trtAbbrev" value="Omens"/>
+		<fieldval field="trtUser" value="1"/>
+		<fieldval field="maPrep" value="One minute"/>
+		<fieldval field="chiCost" value="4"/>
+		<fieldval field="maDur" value="Instantaneous"/>
+		
+
+		<tag group="Way" tag="Divination"/>
+		<link linkage="magicskill" thing="skDivin"/>
+    </thing>
+
+<!-- Cracking of the Gods -->
+	<thing
+		id="maCrack"
+		name="Cracking of the Gods"
+		compset="Magic"
+		isunique="yes"
+		description="The diviner lights a ritual fire and burns a blend of incense and spices. While breathing the smoke, he casts into the fire a turtle’s shell or a flat bone from a sheep or a stag. The heat causes the surface of the shell or bone to crack, forming pictograms, which may often be in an ancient or obsolete form.\n\nThe diviner can interpret these symbols and reveal a message by succeeding in a Test of Wood + Divination, with an ST of 7. The higher the Success Margin, the clearer the symbols and the easier they are to decipher.\n\nThere are no limitations on the content of a message, and no specific rules as to its form. In all cases the message will be vivid, yet vague and opaque. And often the character will not fully understand the warning of the gods until it is too late.">
+		<fieldval field="trtAbbrev" value="CoG"/>
+		<fieldval field="trtUser" value="2"/>
+		<fieldval field="maPrep" value="One double hour"/>
+		<fieldval field="chiCost" value="6"/>
+		
+
+		<tag group="Way" tag="Divination"/>
+		<link linkage="magicskill" thing="skDivin"/>	
+		
+		<!-- Requires Calligraphy 1 -->
+		<exprreq message="Calligraphy 1+ required."><![CDATA[
+			#traitfound[skCall] >= 1
+		]]></exprreq>
+    </thing>
+	
+<!-- Signs from the Stars -->
+	<thing
+		id="maSftS"
+		name="Signs from the Stars"
+		compset="Magic"
+		isunique="yes"
+		description="Using celestial maps, calendars and ancient astrological works, the diviner can produce a detailed horoscope for an individual on the basis of his date of birth.\n\nAn Expert diviner is able to see while he sleeps, receive visions in his dreams, and so observe snatches of past, present and future events. The images that come to him in dreams will be opaque and disordered, often no more than hazy visions of the forces at work in the universe.\n\nAfter considering whatever information is available on the individual, the diviner performs a Test of Earth + Divination. The ST will depend on the quantity and precision of the information available: it may be 5 where the person knows both his exact date and place of birth, but 13 where the person only knows what year he was born in. The horoscope will define in broad terms the person’s defining characteristics, and provide general information about the course that his life may follow, dates and periods likely to be auspicious and inauspicious, and the influences which will guide his destiny. Many people consult astrologers before getting married, to gain guidance from the stars on the best possible date for the wedding.">
+		
+		<fieldval field="trtAbbrev" value="SftS"/>
+		<fieldval field="trtUser" value="2"/>
+		<fieldval field="maPrep" value="One day"/>
+		<fieldval field="chiCost" value="5"/>
+		
+
+		<tag group="Way" tag="Divination"/>
+		<link linkage="magicskill" thing="skDivin"/>
+		
+
+		
+		<!-- Requires Calligraphy 1 -->
+		<exprreq message="Calligraphy 1+ required."><![CDATA[
+			#traitfound[skCall] >= 1
+		]]></exprreq>
+    </thing>
+
+<!-- The Oracle of Changes -->
+	<thing
+		id="maOracle"
+		name="The Oracle of Changes"
+		compset="Magic"
+		isunique="yes"
+		description="Following the ancient methodology set down in the Yi Jing, the diviner draws yarrow stalks in the presence of the person for whom he seeks to obtain a message, and uses these stalks to create a hexagram of continuous and broken lines. He then studies the pattern and arrangement of the lines in order to comprehend the message that they contain.\n\n After concentrating for a small hour, the diviner performs a Test of Earth + Divination, with an ST of 9. If successful, he understands the message and can answer the questions of the person consulting him. Provided that the procedure set out in the Book of Changes has been properly followed, and the diviner’s attempt to read the message has succeeded, the message should appear as a short and reasonably concrete phrase, such as 'Do not fight this person, make him your friend', or 'Do not act before you are ready'. The higher the Success Margin on the Test, the clearer the message and the more relevant it will be to the person’s questions.">
+		
+		<fieldval field="trtAbbrev" value="Chng"/>
+		<fieldval field="trtUser" value="3"/>
+		<fieldval field="maPrep" value="One small hour"/>
+		<fieldval field="chiCost" value="8"/>
+		
+
+		<tag group="Way" tag="Divination"/>
+		<link linkage="magicskill" thing="skDivin"/>
+
+		
+		
+		<!-- Requires Calligraphy 1 -->
+		<exprreq message="Calligraphy 1+ required."><![CDATA[
+			#traitfound[skCall] >= 1
+		]]></exprreq>
+    </thing>
+	
+<!-- Voices from the World of Dreams -->
+	<thing
+		id="maVoices"
+		name="Voices from the World of Dreams"
+		compset="Magic"
+		isunique="yes"
+		description="An Expert diviner is able to see while he sleeps, receive visions in his dreams, and so observe snatches of past, present and future events. The images that come to him in dreams will be opaque and disordered, often no more than hazy visions of the forces at work in the universe. Before going to sleep, the diviner meditates for a small hour and performs a Test of Earth + Divination, with an ST of 7. Where he succeeds, he will find in sleep the door to a world of visionary dreams. His dream will invariably concern something or somebody connected either to the diviner or to the place in which he is sleeping. He may for example sense a great threat, without knowing if the threat is yet to come or a shadow of the past. He may see a young woman commit suicide, but not know whether that in fact occurred in the spot where he sleeps, whether the fiancée of his most recent victim yearns to join him in the world beyond, or whether his own sister is destined to take her own life. The higher the Success Margin on the Test, the sharper the vision and the easier it is to interpret. The drawback of this technique is that a night disturbed by vivid, lifelike dreams is far from a perfect night’s rest. The character only regains Breath of Life and Chi at half the normal rate.">
+		
+		<fieldval field="trtAbbrev" value="Voic"/>
+		<fieldval field="trtUser" value="3"/>
+		<fieldval field="maPrep" value="One small hour"/>
+		<fieldval field="chiCost" value="6"/>
+		
+
+		<tag group="Way" tag="Divination"/>
+		<link linkage="magicskill" thing="skDivin"/>
+		
+		<!-- Requires Calligraphy 1 
+		<exprreq message="Calligraphy 1+ required."><![CDATA[
+			#traitfound[skCall] >= 1
+		]]></exprreq>
+		-->
+    </thing>
+
+<!-- The Mirror of Water -->
+	<thing
+		id="maMirWtr"
+		name="The Mirror of Water"
+		compset="Magic"
+		isunique="yes"
+		description="The diviner fills a basin or bowl with fresh water, and fixes his gaze on the still surface of the water to meditate on its meaning.\n\nIf he succeeds in a Test of Earth + Divination, with an ST of 11, images will start to appear on the water and gradually coalesce into coherent scenes of events that may occur in the near future. For example, the diviner may see himself set upon by state soldiers or kneeling before a king. The higher the Success Margin on the Test, the clearer the scenes will be, and the easier they will be to interpret.">
+		
+		<fieldval field="trtAbbrev" value="MrWr"/>
+		<fieldval field="trtUser" value="4"/>
+		<fieldval field="maPrep" value="One double hour"/>
+		<fieldval field="chiCost" value="10"/>
+		
+
+		<tag group="Way" tag="Divination"/>
+		<link linkage="magicskill" thing="skDivin"/>
+		
+		<!-- Requires Calligraphy 1 
+		<exprreq message="Calligraphy 1+ required."><![CDATA[
+			#traitfound[skCall] >= 1
+		]]></exprreq>
+		-->
+    </thing>
+	
+<!-- The Mirror of Blood -->
+	<thing
+		id="maMirBld"
+		name="The Mirror of Blood"
+		compset="Magic"
+		isunique="yes"
+		description="The diviner fills a basin or bowl with fresh water, and adds a few drops of the blood of a person whose future he would wish to see. He begins to meditate, fixing his gaze on the elaborate patterns formed by the blood in the water, and reflects on their meaning. If he succeeds in a Test of Earth + Divination, with an ST of 11, he will start to see the blood form images and scenes of events from the future of the relevant person. These will be dark scenes, for the Mirror of Blood reflects only great misfortunes, tragic events and terrible deaths. The higher the Success Margin on the Test, the clearer and more coherent the scenes presented to the diviner will be.">
+		
+		<fieldval field="trtAbbrev" value="MrBd"/>
+		<fieldval field="trtUser" value="4"/>
+		<fieldval field="maPrep" value="One double hour"/>
+		<fieldval field="chiCost" value="10"/>
+		
+
+		<tag group="Way" tag="Divination"/>
+		<link linkage="magicskill" thing="skDivin"/>
+		
+		<!-- Requires Calligraphy 1 
+		<exprreq message="Calligraphy 1+ required."><![CDATA[
+			#traitfound[skCall] >= 1
+		]]></exprreq>
+		-->
+    </thing>
+	
+	
+<!-- The Book of the Stars -->
+	<thing
+		id="maBkStrs"
+		name="The Book of the Stars"
+		compset="Magic"
+		isunique="yes"
+		description="Bagua is a map of the Heavens showing the major elemental influences, the arrangement of the various constellations, and the relationship between particular dates and astrological signs. By a detailed reading of the bagua, the diviner may study and understand the heavenly influences affecting a particular person. After succeeding in a Test of Earth + Divination, with an ST of 7, he will be able to inform that person of his relationship with the various Elements in the near future. For example, he may say that Water is inauspicious, or that Earth will support him. Statements taken from the Book of the Stars will be extremely vague, and it will be up to the player to interpret their meaning. But the higher his Success Margin, the more copious and detailed the information obtained. For instance, 'Water is inauspicious' may mean a variety of matters to a character, including a risk of drowning, the likelihood of floods destroying his crops, difficulties in drawing back his army, or even that someone is planning to poison him.">
+		
+		<fieldval field="trtAbbrev" value="BkSt"/>
+		<fieldval field="trtUser" value="1"/>
+		<fieldval field="maPrep" value="One day"/>
+		<fieldval field="chiCost" value="2"/>
+		
+
+		<tag group="Way" tag="Divination"/>
+		<tag group="User" tag="Geomancy"/>
+		
+		<link linkage="magicskill" thing="skDivin"/>
+
+		
+		<!-- Requires Calligraphy 1 -->
+		<exprreq message="Calligraphy 1+ required."><![CDATA[
+			#traitfound[skCall] >= 1
+		]]></exprreq>
+		
+    </thing>
+	
+<!-- Vision of the Taiji -->
+	<thing
+		id="maVnTj"
+		name="Vision of the Taiji"
+		compset="Magic"
+		isunique="yes"
+		description="By focusing his mind on any person, place or object, and performing a successful Test of Earth + Divination with an ST of 7, the diviner may perceive the distribution of Yin and Yang energies within it. If the energies are more or less in balance, then he notices nothing. But a significant imbalance always has a meaning : if a person is excessively Yang, for example, he may be violent or have a dominant personality. Ahouse filled with Yin energy may be haunted, or its inhabitants sick. The diviner might be able to obtain more information by using other Divination techniques, or his own powers of observation. But the Vision of the Taiji may give him a swift, intuitive advantage when faced with the unknown.">
+		
+		<fieldval field="trtAbbrev" value="VsTj"/>
+		<fieldval field="trtUser" value="1"/>
+		<fieldval field="maPrep" value="One minute"/>
+		<fieldval field="chiCost" value="3"/>
+		
+
+		<tag group="Way" tag="Divination"/>
+		<tag group="User" tag="Geomancy"/>
+		
+		<link linkage="magicskill" thing="skDivin"/>
+		
+		<!-- Requires Calligraphy 1 
+		<exprreq message="Calligraphy 1+ required."><![CDATA[
+			#traitfound[skCall] >= 1
+		]]></exprreq>
+		-->
+    </thing>
+
+<!-- Feel the Energy of the World -->
+	<thing
+		id="maFtEotW"
+		name="Feel the Energy of the World"
+		compset="Magic"
+		isunique="yes"
+		description="One of the first things an Apprentice diviner learns is to feel the energy of the Elements around him. By succeeding in a Test of relevant Aspect + Divination, with an ST of 7, he can for example sense whether there is a large body of water nearby, or whether a passer- by is concealing metal weapons underneath his clothes. He also becomes able to sense the dominant energies within a person. But a mere Apprentice has not yet learnt to distinguish between the internal and external forms of the Elements, so while he may sense Metal within a person, he will be unable to say if that is because the person is a great warrior or because he is carrying iron weapons. The range of the diviner’s elemental sense depends on his Success Margin. Each point in the Success Margin gives the diviner ten yards’ range.">
+		
+		<fieldval field="trtAbbrev" value="EnWo"/>
+		<fieldval field="trtUser" value="1"/>
+		<fieldval field="maPrep" value="One minute"/>
+		<fieldval field="chiCost" value="2"/>
+		
+
+		<tag group="Way" tag="Divination"/>
+		<tag group="User" tag="Geomancy"/>
+		
+		<link linkage="magicskill" thing="skDivin"/>
+		
+		<!-- Requires Calligraphy 1 
+		<exprreq message="Calligraphy 1+ required."><![CDATA[
+			#traitfound[skCall] >= 1
+		]]></exprreq>
+		-->
+    </thing>
+	
+<!-- Feel the Troubled Water -->
+	<thing
+		id="maFtTrWt"
+		name="Feel the Troubled Water"
+		compset="Magic"
+		isunique="yes"
+		description="The diviner is able to sense unnatural disturbances to energy flows. Where a particular places has been witness to a violation of the laws of Heaven, whether by the dead returning to the world of the living, the action of demons, or the performance of a rite by the followers of Gonggong, that place is cursed forever, becoming a place of darkness and great misfortune for any who chance to pass through it. By succeeding in a Test of Earth + Divination, with an ST of 7, the diviner can tell whether a particular location is cursed. But he will not be able to say what exactly occurred to create the curse.">
+		
+		<fieldval field="trtAbbrev" value="FtWt"/>
+		<fieldval field="trtUser" value="2"/>
+		<fieldval field="maPrep" value="One minute"/>
+		<fieldval field="chiCost" value="6"/>
+		
+
+		<tag group="Way" tag="Divination"/>
+		<tag group="User" tag="Geomancy"/>
+		
+		<link linkage="magicskill" thing="skDivin"/>
+		
+		<!-- Requires Calligraphy 1 
+		<exprreq message="Calligraphy 1+ required."><![CDATA[
+			#traitfound[skCall] >= 1
+		]]></exprreq>
+		-->
+    </thing>
+
+<!-- The Wall of the Five Guardians -->
+	<thing
+		id="maWotFG"
+		name="The Wall of the Five Guardians"
+		compset="Magic"
+		isunique="yes"
+		description="By invoking the protection of the Five Sacred Animals, Guardians of the Cardinal Points of the Universe, the diviner may create a barrier in his mind and use it to surround an area with a radius up to (Earth + Divination) yards. To prepare the Wall, the diviner must place various objects at the cardinal points of the area to be protected. In the center, he should place an object related to the Earth (such as a stone or a jade statue) ; to the North, an object related to Water (a bowl of water or a snowball) ; to the East, an object related to Wood (a plant or wooden tool) ; to the South, an object related to Fire (hot coals or a torch) ; and finally to the West, an object related to Metal (an iron weapon or a bronze tool). Next, the diviner must solemnly invoke each of the Five Guardians in turn and spend 8 Chi points. The barrier is formed : when it is crossed, for example by a person passing through it, the diviner is immediately made aware of precisely where the crossing took place. If he is asleep, he is immediately awakened to receive this information. The barrier lasts until it is crossed or the diviner leaves the area inside it.">
+		
+		<fieldval field="trtAbbrev" value="FivG"/>
+		<fieldval field="trtUser" value="2"/>
+		<fieldval field="maPrep" value="One small hour"/>
+		<fieldval field="chiCost" value="8"/>
+		
+
+		<tag group="Way" tag="Divination"/>
+		<tag group="User" tag="Geomancy"/>
+		
+		<link linkage="magicskill" thing="skDivin"/>
+		
+		<!-- Requires Calligraphy 1 
+		<exprreq message="Calligraphy 1+ required."><![CDATA[
+			#traitfound[skCall] >= 1
+		]]></exprreq>
+		-->
+    </thing>
+	
+<!-- The Eyes of Heaven and Earth -->
+	<thing
+		id="maEyesHvn"
+		name="The Eyes of Heaven and Earth"
+		compset="Magic"
+		isunique="yes"
+		description="An Expert diviner can use the lines and meridians along which energy flows through the world in order to locate a lost person or object. He must have a definite connection with the person or object. For a person, he must either have met him, or possess an item of his clothing, or have a member of the person’s family with him. For an object, it is enough that he has held it for a short time. The technique depends on appropriate meditation and a successful Earth + Divination Test. This enables the diviner to sense the approximate location of a person or object, to know the state, mountain range, or river mouth where they can be found. He should also be able to gain a vague sensory impression relating to their environment. If, say, a weapon is locked in a chest buried underground, the diviner will feel the crushing weight of earth on it. If a person is in a palace, the diviner will sense the rich marble of the walls, the metal of the guards’ weapons, the throngs of courtiers. The diviner cannot hope for a precise address, or a clear name, but the higher his Success Margin, the clearer the indication of location and the more distinct the impressions of the target’s environment.">
+		
+		<fieldval field="trtAbbrev" value="Eyes"/>
+		<fieldval field="trtUser" value="3"/>
+		<fieldval field="maPrep" value="One double hour"/>
+		<fieldval field="chiCost" value="12"/>
+		
+
+		<tag group="Way" tag="Divination"/>
+		<tag group="User" tag="Geomancy"/>
+		
+		<link linkage="magicskill" thing="skDivin"/>
+		
+		<!-- Requires Calligraphy 1 
+		<exprreq message="Calligraphy 1+ required."><![CDATA[
+			#traitfound[skCall] >= 1
+		]]></exprreq>
+		-->
+    </thing>
+	
+	
+<!-- On the Trail of the Dragon -->
+	<thing
+		id="maTrDrag"
+		name="On the Trail of the Dragon"
+		compset="Magic"
+		isunique="yes"
+		description="Whenever beings invested with heavenly essence, such as legends, immortals, phoenix and dragons, pass through a part of this world, they leave a trail that can be read by those who master the science of Divination. By succeeding in a Test of Earth + Divination, with an ST of 11, the diviner can analyze the energy flows in a particular location and identify whether such a being has passed through that place. The Success Margin determines the distance (in tens of miles) within which the diviner can sense the presence of a particular being.">
+		
+		<fieldval field="trtAbbrev" value="Trl"/>
+		<fieldval field="trtUser" value="4"/>
+		<fieldval field="maPrep" value="One small hour"/>
+		<fieldval field="chiCost" value="8"/>
+		
+
+		<tag group="Way" tag="Divination"/>
+		<tag group="User" tag="Geomancy"/>
+		
+		<link linkage="magicskill" thing="skDivin"/>
+		
+		<!-- Requires Calligraphy 1 
+		<exprreq message="Calligraphy 1+ required."><![CDATA[
+			#traitfound[skCall] >= 1
+		]]></exprreq>
+		-->
+    </thing>
+	
+<!-- The Ear of Nature -->
+	<thing
+		id="maEarNat"
+		name="The Ear of Nature"
+		compset="Magic"
+		isunique="yes"
+		description="One of the most significant roles of the diviner is to establish a connection with nature, commune with the spirits of the world, and so find answers to the questions of man. The diviner meditates for a small hour and performs a Test of relevant Aspect + Divination against an ST of 7. This establishes a connection and facilitates contact with an individual spirit that dwells in nature. The Aspect to be used in the Test depends on the kind of spirit to be contacted : Water for the spirit of a lake, Wood for a forest spirit, Earth for the spirit that guards the stone at the center of a village, and so on. The higher the Success Margin, the better-disposed the spirit will be to communicating with the mortal. Note that the simple spirits of the natural world have an understanding of life that has little in common with that of men, and that their vision of the world will be defined and limited by their place within it. For a plant knows little beyond the fact that night follows day and the order of the seasons, a stone has no notion of time, and neither can tell a human from a non-human, excepting maybe those humans who have learnt to speak with them. The information obtained by conversing with this sort of spirit will be as full as possible, but necessarily limited.">
+		
+		<fieldval field="trtAbbrev" value="ErNt"/>
+		<fieldval field="trtUser" value="1"/>
+		<fieldval field="maPrep" value="One small hour"/>
+		<fieldval field="chiCost" value="5"/>
+		
+
+		<tag group="Way" tag="Divination"/>
+		<tag group="User" tag="Communion"/>
+		
+		<link linkage="magicskill" thing="skDivin"/>
+		
+		<!-- Requires Calligraphy 1 
+		<exprreq message="Calligraphy 1+ required."><![CDATA[
+			#traitfound[skCall] >= 1
+		]]></exprreq>
+		-->
+    </thing>
+	
+<!-- On the Path of the Yellow Sources -->
+	<thing
+		id="maPath"
+		name="On the Path of the Yellow Sources"
+		compset="Magic"
+		isunique="yes"
+		description="With this technique, a diviner can sense a person's intimate connection with death, and gain an impression of how long the person has left to live. He can tell if the person is in danger, if his life hangs by a thread, or indeed if the person is fated to lead a long and peaceful life. While he can guess at when death might come, he cannot say how. This particular rite requires the presence of the relevant person, and a successful Test of Earth + Divination against an ST of 9. The key elements of the rite take only a matter of minutes, but many diviners like to impress laymen by adorning it with a range of arcane gestures and incantations.">
+		
+		<fieldval field="trtAbbrev" value="Path"/>
+		<fieldval field="trtUser" value="2"/>
+		<fieldval field="maPrep" value="Ten minutes"/>
+		<fieldval field="chiCost" value="8"/>
+		
+
+		<tag group="Way" tag="Divination"/>
+		<tag group="User" tag="Communion"/>
+		
+		<link linkage="magicskill" thing="skDivin"/>
+		
+		<!-- Requires Calligraphy 1 
+		<exprreq message="Calligraphy 1+ required."><![CDATA[
+			#traitfound[skCall] >= 1
+		]]></exprreq>
+		-->
+    </thing>
+	
+<!-- Dwelling-House of the Ancestors -->
+	<thing
+		id="maDwell"
+		name="Dwelling-House of the Ancestors"
+		compset="Magic"
+		isunique="yes"
+		description="The diviner can feel the presence of the souls of the departed. By performing a successful Test of Earth + Divination, with an ST of 7, he can locate a nearby tomb, guess the name of the deceased, and cross the tomb without disturbing anything. Certain less scrupulous diviners use this technique to profane the final resting places of the deceased without incurring their wrath. But a diviner can only distract the deceased’s attention from his own presence, not from that of another.">
+		
+		<fieldval field="trtAbbrev" value="Dwel"/>
+		<fieldval field="trtUser" value="2"/>
+		<fieldval field="maPrep" value="Five minutes"/>
+		<fieldval field="chiCost" value="5"/>
+		
+
+		<tag group="Way" tag="Divination"/>
+		<tag group="User" tag="Communion"/>		
+		
+		<link linkage="magicskill" thing="skDivin"/>
+
+		<!-- Requires Calligraphy 1 
+		<exprreq message="Calligraphy 1+ required."><![CDATA[
+			#traitfound[skCall] >= 1
+		]]></exprreq>
+		-->
+    </thing>
+
+<!-- Commune with the Gods of the World -->
+	<thing
+		id="maComm"
+		name="Commune with the Gods of the World"
+		compset="Magic"
+		isunique="yes"
+		description="Through prayer and proper observance of the correct rite, the diviner can converse with an earthly deity to ask for his blessing, ask him questions, or seek his advice. This requires a successful Test of Earth + Divination against an ST of 9. The deities that are accessible by this technique include the rural god of the land, the gods of the many towns and cities of the Zhongguo, the patron gods of professions and occupations, domestic gods that watch over particular dwellings, the godlike beings that inhabit the wonders of the natural world (such as Duke He of the Yellow River) and even the minor deities of the world of Heaven. All of these beings are less powerful and less visionary than the Gods of the Court of Heaven. Nonetheless, by their very nature, they are more closely involved in the world of men and therefore more capable of answering the diviner’s questions or pleas for assistance.">
+		
+		<fieldval field="trtAbbrev" value="Comm"/>
+		<fieldval field="trtUser" value="3"/>
+		<fieldval field="maPrep" value="One double hour"/>
+		<fieldval field="chiCost" value="12"/>
+		
+
+		<tag group="Way" tag="Divination"/>
+		<tag group="User" tag="Communion"/>
+		
+		<link linkage="magicskill" thing="skDivin"/>
+		
+		<!-- Requires Calligraphy 1 
+		<exprreq message="Calligraphy 1+ required."><![CDATA[
+			#traitfound[skCall] >= 1
+		]]></exprreq>
+		-->
+    </thing>
+	
+<!-- Commune with the Gods and Beings of Heaven -->
+	<thing
+		id="maCwGaB"
+		name="Commune with the Gods and Beings of Heaven"
+		compset="Magic"
+		isunique="yes"
+		description="Through prayer, offerings, purifying rites and the use of incense and consecrated substances, a Master diviner may be able to commune with a God of the Court of Heaven or a being of similar power, such as an immortal or a Dragon-King. If the celestial being so wishes, he may transmit an order or piece of advice to the diviner, or even answer one of his questions, provided that he has succeeded in a Test of Earth + Divination with an ST of 11. Each celestial deity must be addressed properly, using all of his many names and titles, and treated with the necessary deference. Communing with the Gods is not a matter to be taken lightly. These are beings of infinite age, whose concerns are far higher than the affairs of men, and who will resent being disturbed over a trifling matter. A God cannot be tricked into revealing more information than he wishes, and the word of a God is not to be challenged. A man must be content to entreat the Gods humbly for their guidance. Moreover, although the knowledge of the Gods is vast and their wisdom profound, few of them pay any great mind to the world of men ; as a result, it is not unknown for Gods to be ignorant or mistaken on earthly matters.">
+		
+		<fieldval field="trtAbbrev" value="GdBe"/>
+		<fieldval field="trtUser" value="4"/>
+		<fieldval field="maPrep" value="One double hour"/>
+		<fieldval field="chiCost" value="15"/>
+		
+
+		<tag group="Way" tag="Divination"/>
+		<tag group="User" tag="Communion"/>
+		<link linkage="magicskill" thing="skDivin"/>
+		
+		
+		<!-- Requires Calligraphy 1 
+		<exprreq message="Calligraphy 1+ required."><![CDATA[
+			#traitfound[skCall] >= 1
+		]]></exprreq>
+		-->
+    </thing>
+	
+<!-- Open the Gates of the Body -->
+	<thing
+		id="maOpGotB"
+		name="Open the Gates of the Body"
+		compset="Magic"
+		isunique="yes"
+		description="This rare and extremely potent technique permits a spirit or ancestor to appear in the real world and act directly in it. The diviner opens the gates of his body to a particular spirit, who enters, takes over, and inhabits his body, leaving the diviner himself in a semi-conscious state. For so long as the technique takes effect, the spirit has complete control of the body, speaking directly through its mouth, and behaving as if it were his own. While the spirit has access to many of his own powers, the extent to which he can use them will of course be restricted by the physical limitations of the body. For however great the powers of the spirit, he must act within the confines of his earthly form. A spirit can only inhabit a body for a period in hours equal to the diviner’s (Earth + Divination). At the end of this period, the spirit leaves the body and the diviner comes to, with only very vague memories of the possession.">
+		
+		<fieldval field="trtAbbrev" value="GtBd"/>
+		<fieldval field="trtUser" value="4"/>
+		<fieldval field="maPrep" value="Two double hours"/>
+		<fieldval field="chiCost" value="Minimum of 30 ; the diviner must spend all of his Chi in order to use this technique"/>
+		
+
+		<tag group="Way" tag="Divination"/>
+		<tag group="User" tag="Communion"/>
+		<link linkage="magicskill" thing="skDivin"/>
+
+		
+		<!-- Requires Calligraphy 1 
+		<exprreq message="Calligraphy 1+ required."><![CDATA[
+			#traitfound[skCall] >= 1
+		]]></exprreq>
+		-->
+    </thing>
+</document>

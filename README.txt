@@ -1,0 +1,1 @@
+This is a custom ruleset for the Hero Lab authoring kit. The ruleset allows you to build characters for Qin: The Warring States by Cubicle 7 and 7th Circle.

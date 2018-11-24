@@ -1,0 +1,713 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!-- This file contains the definition of the "Skills" tab panel. This tab is where
+      the user selects and adjusts the skills for the character.
+
+      All public visual elements used with this tab panel start with the prefix "sk"
+      to associate them with the tab.
+-->
+
+<document signature="Hero Lab Data">
+
+
+  <!-- skSkills portal
+        Presents a dynamic table where the user can add and adjust skills for the
+        character.
+
+        We use the "SimpleItem" template for selecting the skills, since all we need
+        is basic information. We use a custom template for showing the selected
+        skills to allow adjustment of the die type and any other customizations that
+        are needed (e.g. domains for the Knowledge skill).
+
+        We use an "additem" script to highlight whether more skill points can be
+        assigned. This requires that we specify the "addthing" referenced in the
+        script, which is the resource for tracking skill points.
+
+        We use "candidate" tag expression to exclude all skills that are expressly
+        hidden from user selection, such as those associated with arcane backgrounds.
+        All skills that are added to the character are displayed, including those
+        added via arcane backgrounds. We simply preclude their selection here.
+
+        We use a "titlebar" script to replace the default title on the choose form
+        with something that includes the summary information as helpful feedback to
+        the user.
+
+        We use a "headertitle" script to place a suitable title above the table. The
+        title includes an indication of how many skill points have been utilized and
+        how many remain, with appropriate color highlighting to prompt the user.
+  -->
+ <portal
+    id="skHdr"
+    style="lblNormal">
+	    <label
+			istitle="yes">
+				<labeltext><![CDATA[
+					@text = "Skills: " & hero.child[resSkill].field[resSummary].text
+				]]></labeltext>
+		</label>
+	</portal>
+
+
+  <portal
+    id="skSkills"
+    style="tblNormal">
+    <table_dynamic
+      component="Skill"
+      showtemplate="skPick"
+      choosetemplate="skThing"
+      addpick="resSkill"
+      descwidth="350">
+	  <list>!SkillType.Weapon</list>
+      <candidate inheritlist="yes">!Hide.Skill</candidate>
+      <titlebar><![CDATA[
+			@text = "Add a Non-weapon Skill"
+        ]]></titlebar>
+      <headertitle><![CDATA[
+        @text = "Non-weapon Skills:"
+        ]]></headertitle>
+      <additem><![CDATA[
+        ~if we're in advancement mode, we've been frozen, so display accordingly
+        if (state.iscreate = 0) then
+          @text = "{text clrgrey}Add/Increase Skills Via Advances Tab"
+          done
+          endif
+
+        ~get the color-highlighted "add" text
+        @text = "Add New Non-weapon Skill"
+        ]]></additem>
+      </table_dynamic>
+    </portal>  
+	
+  <portal
+    id="skSkillsWp"
+    style="tblNormal">
+    <table_dynamic
+      component="Skill"
+      showtemplate="skPickWp"
+      choosetemplate="skThing"
+      addpick="resSkill"
+      descwidth="350">
+	  <list>SkillType.Weapon</list>
+      <candidate inheritlist="yes">!Hide.Skill</candidate>
+      <titlebar><![CDATA[
+			@text = "Add a Weapon Skill"
+        ]]></titlebar>
+	  <description><![CDATA[
+			doneif (@ispick <> 0)
+			var tagstr as string
+			var replacestr as string
+			var src as string
+			src = ""
+			if (tagis[source.?] <> 0) then
+				src = sourcerefs[","]
+				src = "Source: " & src
+			endif
+			tagstr = tagnames[ComTchCost.?,","]
+			doneif (length(tagstr) = 0)
+			replacestr = "{br}" & chr(149) & chr(32) & chr(32) & chr(32)
+			tagstr = replace(tagstr, ",", replacestr,0)
+			@text &= "\n\n{B}Combat Techniques associated this skill:{/B}{br}" & chr(149) & chr(32) & chr(32) & chr(32) & tagstr & "{br}{br}" & src
+        ]]></description>
+      <headertitle><![CDATA[
+        @text = "Weapon Skills:"
+        ]]></headertitle>
+      <additem><![CDATA[
+        ~if we're in advancement mode, we've been frozen, so display accordingly
+        if (state.iscreate = 0) then
+          @text = "{text clrgrey}Add/Increase Skills Via Advances Tab"
+          done
+          endif
+
+        ~get the color-highlighted "add" text
+        @text = "Add New Weapon Skill"
+        ]]></additem>
+      </table_dynamic>
+    </portal>  
+
+	
+  <!-- skThing template
+        Displays the name of the skill, with its linked attribute at the right edge.
+  -->
+  <template
+    id="skThing"
+    name="Skill Thing"
+    compset="Skill"
+    marginhorz="3"
+    marginvert="2">
+
+    <portal
+      id="name"
+      style="lblNormal"
+      showinvalid="yes">
+      <label
+        field="name">
+        </label>
+      </portal>
+
+    <portal
+      id="attribute"
+      style="lblSecond">
+      <label>
+        <labeltext><![CDATA[
+		  if (islinkage[attribute] <> 0) then
+			@text = linkage[attribute].field[name].text
+          else
+			@text = ""
+		  endif
+		  ]]></labeltext>
+        </label>
+      </portal>
+
+    <position><![CDATA[
+      ~set up our height based on our tallest portal
+      height = portal[name].height 
+	
+      ~if this is a "sizing" calculation, we're done
+      doneif (issizing <> 0)
+
+      ~center the portals vertically
+      perform portal[name].centervert
+      perform portal[attribute].centervert
+	  
+      ~position the attribute portal on the far right
+      perform portal[attribute].alignedge[right,0]
+
+      ~position the name on the left and let it use all available space
+      portal[name].left = 0
+      portal[name].width = minimum(portal[name].width,portal[attribute].left - 8)
+	  
+      ]]></position>
+
+    </template>
+
+
+  <!-- skPickWP template
+        Displays a weapon skill within the table of skills. In addition to the name, an
+        incrementer is shown that allows the user to assign skill points to the
+        skill by adjusting the die type. Skills the require a domain display the
+        appropriate edit portal so the user can enter the domain. Skills can also
+        be deleted and have a mouse-over info icon.
+  -->
+  <template
+    id="skPickWp"
+    name="Skill Pick"
+    compset="Skill"
+    marginhorz="3"
+    marginvert="2">
+
+    <portal
+      id="value"
+      style="incrSimple">
+      <incrementer
+        field="trtUser">
+        </incrementer>
+      <mouseinfo><![CDATA[
+        if (hero.tagis[mode.creation] = 0) then
+          @text = "Skills must be modified via the Advances tab once the character is locked for play."
+        elseif (autonomous = 0) then
+          @text = "This trait has been improved via the Advances tab and cannot be modified further from here."
+        else
+          @text = "Allocate points to this skill by clicking on the arrows to increase/decrease the number of points assigned."
+          endif
+        ]]></mouseinfo>
+      </portal>
+
+    <portal
+      id="adjust"
+      style="lblSecond">
+      <label>
+        <labeltext><![CDATA[
+          if (field[sklRoll].value = 0) then
+            @text = "{text clrdisable}" & chr(150)
+          else
+            @text = field[sklRoll].value & "+YyD"
+            endif
+          ]]></labeltext>
+        </label>
+      <mouseinfo><![CDATA[
+        ~call TrtDerive
+        ]]></mouseinfo>
+      </portal>
+
+    <portal
+      id="name"
+      style="lblNormal"
+      showinvalid="yes">
+      <label
+        field="thingname">
+        </label>
+      </portal>
+
+    <portal
+      id="lblmenuar"
+      style="lblSecond">
+      <label
+        field="usrLabelAr">
+        </label>
+      </portal>
+
+    <portal
+      id="menuarray"
+      style="menuNormal">
+      <menu_array
+        field="usrSelect"
+        array="usrArray"
+        maxvisible="10">
+        </menu_array>
+      </portal>	  
+	  
+    <portal
+      id="lbldomain"
+      style="lblSecond">
+      <label
+        text="Spec:">
+        </label>
+      </portal>
+
+    <portal
+      id="domain"
+      style="editNormal">
+      <edit
+        field="domDomain">
+        </edit>
+      </portal>	 
+
+    <portal
+      id="combtech"
+      style="lblSecond">
+      <label>
+        <labeltext><![CDATA[
+			var ctstr as string
+			foreach pick in hero from CombTech
+				if (compare(idstring, eachpick.field[usrChosen1].chosen.idstring) = 0) then
+					if (empty(ctstr) <> 0) then
+						ctstr = eachpick.field[thingname].text
+					else
+						ctstr &= ", " & eachpick.field[thingname].text
+					endif
+				endif
+			nexteach
+			@text = ctstr
+          ]]></labeltext>
+        </label>
+      </portal>
+	  
+    <portal
+      id="attribute"
+      style="lblSecond">
+      <label>
+        <labeltext><![CDATA[
+			if (islinkage[attribute] <> 0) then
+				@text = "(" & linkage[attribute].field[trtAbbrev].text & ")"
+			else
+				@text = ""
+			endif
+          ]]></labeltext>
+        </label>
+      </portal>
+
+    <portal
+      id="info"
+      style="actInfo">
+      <action
+        action="info">
+        </action>
+      <mouseinfo/>
+      </portal>
+
+    <portal
+      id="delete"
+      style="actDelete"
+      tiptext="Click to delete this item">
+      <action
+        action="delete">
+        </action>
+      </portal>
+	  	  
+    <position><![CDATA[
+      ~set up our height based on our tallest portal
+	 height = portal[info].height * 1.75
+	 
+	   
+      ~if this is a "sizing" calculation, we're done
+      doneif (issizing <> 0)
+
+      ~freeze our value in advancement mode or if an advancement has modified us
+      ~Note: All freezing must be done *before* any positioning is performed.
+      if (state.iscreate = 0) then
+        portal[value].freeze = 1
+      elseif (autonomous = 0) then
+        portal[value].freeze = 1
+        endif
+
+      ~position our tallest portal at the top
+      portal[info].top = 0
+
+      ~position the other portals vertically
+       portal[name].top = 0
+       portal[domain].top = 0
+       portal[lbldomain].top = 0
+       portal[value].top = 0
+       portal[delete].top = 0
+       portal[adjust].top = 0
+       perform portal[combtech].alignedge[bottom,0]
+	   portal[attribute].top = 0
+	  
+      ~from user select
+	  ~ portal[lblmenuar].top = 0
+      ~ portal[menuarray].top = 0
+	  
+      ~position the delete portal on the far right
+      perform portal[delete].alignedge[right,0]
+
+      ~position the info portal to the left of the delete button
+      perform portal[info].alignrel[rtol,delete,-8]
+
+      ~position the attribute portal to the left of the info button
+      perform portal[attribute].alignrel[rtol,info,-8]
+
+      ~position the incrementer on the left
+      portal[value].left = 0
+
+      ~assume a standard width for the adjustment, since it can vary, then position
+      ~the adjustment to the right of the incrementer
+      portal[adjust].width = 35
+      perform portal[adjust].alignrel[ltor,value,6]
+
+      ~position the name next to the adjustment
+      perform portal[name].alignrel[ltor,adjust,8]
+
+	  portal[menuarray].width = 105
+	  perform portal[lblmenuar].alignrel[ltor,name,8]
+	  perform portal[menuarray].alignrel[ltor,lblmenuar,8]
+		 
+	  ~determine whether our portals are visible; we only show them if requested
+      ~Note: Remember that a non-empty tagexpr field indicates menu selection is used.
+      if (empty(field[usrArray].arraytext[0]) <> 0) then
+        portal[lblmenuar].visible = 0
+        portal[menuarray].visible = 0
+      elseif (field[usrLabelAr].isempty <> 0) then
+        portal[lblmenuar].visible = 0
+        endif
+	  	  
+      ~if we don't need a domain, hide it and let the name use all available space
+      if (tagis[User.NeedDomain] = 0) then
+        portal[lbldomain].visible = 0
+        portal[domain].visible = 0
+		
+		~position the attribute portal to the left of the info button
+		perform portal[combtech].alignrel[ltol,name,0]
+
+        portal[name].width = minimum(portal[name].width,portal[attribute].left - portal[name].left - 10)
+		
+		
+      ~otherwise, position the domain portals next to the name
+      ~RDS altered to make the name portal invivisible and shift the domain to the name position 
+      ~    to use it as a custom Skill name when a Custom Skill is chosen
+      else
+        
+          if (portal[menuarray].visible <> 0) then
+			perform portal[lbldomain].alignrel[ltor,menuarray,15]
+          else
+			perform portal[lbldomain].alignrel[ltor,name,15]
+		   endif
+		   perform portal[domain].alignrel[ltor,lbldomain,2]
+		   portal[domain].width = minimum(150,portal[attribute].left - portal[domain].left - 5)
+        endif
+
+      ~if the ability is auto-added, change its font to indicate that fact
+      if (candelete = 0) then
+        perform portal[name].setstyle[lblAuto]
+        endif
+
+      ]]></position>
+
+    </template> 
+	
+	<!-- skPick template
+        Displays a skill within the table of skills. In addition to the name, an
+        incrementer is shown that allows the user to assign skill points to the
+        skill by adjusting the die type. Skills the require a domain display the
+        appropriate edit portal so the user can enter the domain. Skills can also
+        be deleted and have a mouse-over info icon.
+  -->
+  <template
+    id="skPick"
+    name="Skill Pick"
+    compset="Skill"
+    marginhorz="3"
+    marginvert="2">
+
+    <portal
+      id="value"
+      style="incrSimple">
+      <incrementer
+        field="trtUser">
+        </incrementer>
+      <mouseinfo><![CDATA[
+        if (hero.tagis[mode.creation] = 0) then
+          @text = "Skills must be modified via the Advances tab once the character is locked for play."
+        elseif (autonomous = 0) then
+          @text = "This trait has been improved via the Advances tab and cannot be modified further from here."
+        else
+          @text = "Allocate points to this skill by clicking on the arrows to increase/decrease the number of points assigned."
+          endif
+        ]]></mouseinfo>
+      </portal>
+
+    <portal
+      id="adjust"
+      style="lblSecond">
+      <label>
+        <labeltext><![CDATA[
+          if (field[sklRoll].value = 0) then
+            @text = "{text clrdisable}" & chr(150)
+          else
+            @text = field[sklRoll].value & "+YyD"
+            endif
+          ]]></labeltext>
+        </label>
+      <mouseinfo><![CDATA[
+        ~call TrtDerive
+        ]]></mouseinfo>
+      </portal>
+
+    <portal
+      id="name"
+      style="lblNormal"
+      showinvalid="yes">
+      <label
+        field="thingname">
+        </label>
+      </portal>
+
+    <portal
+      id="lblmenuar"
+      style="lblSecond">
+      <label
+        field="usrLabelAr">
+        </label>
+      </portal>
+
+    <portal
+      id="menuarray"
+      style="menuNormal">
+      <menu_array
+        field="usrSelect"
+        array="usrArray"
+        maxvisible="10">
+        </menu_array>
+      </portal>	  
+	  
+    <portal
+      id="lbldomain"
+      style="lblSecond">
+      <label>
+		<labeltext><![CDATA[
+          @text = "Spec"
+        ]]></labeltext>
+	  </label>
+      </portal>
+
+    <portal
+      id="domain"
+      style="editNormal">
+      <edit
+        field="domDomain">
+        </edit>
+      </portal>	 
+	  
+    <portal
+      id="attribute"
+      style="lblSecond">
+      <label>
+        <labeltext><![CDATA[
+			if (islinkage[attribute] <> 0) then
+				@text = "(" & linkage[attribute].field[trtAbbrev].text & ")"
+			else
+				@text= ""
+			endif
+		  ]]></labeltext>
+        </label>
+      </portal>
+
+    <portal
+      id="info"
+      style="actInfo">
+      <action
+        action="info">
+        </action>
+      <mouseinfo/>
+      </portal>
+
+    <portal
+      id="delete"
+      style="actDelete"
+      tiptext="Click to delete this item">
+      <action
+        action="delete">
+        </action>
+      </portal>
+	  	  
+    <position><![CDATA[
+      ~set up our height based on our tallest portal
+	 height = portal[info].height
+	 
+	   
+      ~if this is a "sizing" calculation, we're done
+      doneif (issizing <> 0)
+
+      ~freeze our value in advancement mode or if an advancement has modified us
+      ~Note: All freezing must be done *before* any positioning is performed.
+      if (state.iscreate = 0) then
+        portal[value].freeze = 1
+      elseif (autonomous = 0) then
+        portal[value].freeze = 1
+        endif
+
+      ~position our tallest portal at the top
+      portal[info].top = 0
+
+      ~position the other portals vertically
+       perform portal[name].centervert
+       perform portal[domain].centervert
+       perform portal[lbldomain].centervert
+       perform portal[value].centervert
+       perform portal[delete].centervert
+       perform portal[adjust].centervert
+	   perform portal[attribute].centervert
+	  
+      ~from user select
+	  ~ perform portal[lblmenuar].centervert
+      ~ perform portal[menuarray].centervert
+	  
+      ~position the delete portal on the far right
+      perform portal[delete].alignedge[right,0]
+
+      ~position the info portal to the left of the delete button
+      perform portal[info].alignrel[rtol,delete,-8]
+
+      ~position the attribute portal to the left of the info button
+      perform portal[attribute].alignrel[rtol,info,-8]
+
+      ~position the incrementer on the left
+      portal[value].left = 0
+
+      ~assume a standard width for the adjustment, since it can vary, then position
+      ~the adjustment to the right of the incrementer
+      portal[adjust].width = 35
+      perform portal[adjust].alignrel[ltor,value,6]
+
+      ~position the name next to the adjustment
+      perform portal[name].alignrel[ltor,adjust,8]
+
+	  portal[menuarray].width = 105
+	  perform portal[lblmenuar].alignrel[ltor,name,8]
+	  perform portal[menuarray].alignrel[ltor,lblmenuar,8]
+		 
+	  ~determine whether our portals are visible; we only show them if requested
+      ~Note: Remember that a non-empty tagexpr field indicates menu selection is used.
+      if (empty(field[usrArray].arraytext[0]) <> 0) then
+        portal[lblmenuar].visible = 0
+        portal[menuarray].visible = 0
+      elseif (field[usrLabelAr].isempty <> 0) then
+        portal[lblmenuar].visible = 0
+        endif
+	  	  
+      ~if we don't need a domain, hide it and let the name use all available space
+      if (tagis[User.NeedDomain] = 0) then
+        portal[lbldomain].visible = 0
+        portal[domain].visible = 0
+		
+        portal[name].width = minimum(portal[name].width,portal[attribute].left - portal[name].left - 10)
+	  endif
+	  
+      ~otherwise, position the domain portals next to the name
+      ~RDS altered to make the name portal invivisible and shift the domain to the name position 
+      ~    to use it as a custom Skill name when a Custom Skill is chosen
+
+      if (tagis[Helper.CustomItem] <> 0) then
+	      portal[lbldomain].visible = 0
+	      portal[domain].visible = 1
+		  portal[name].visible = 0
+          portal[domain].left = portal[name].left
+	  else
+		  if (portal[menuarray].visible <> 0) then
+			perform portal[lbldomain].alignrel[ltor,menuarray,15]
+          else
+			perform portal[lbldomain].alignrel[ltor,name,15]
+		   endif
+			perform portal[domain].alignrel[ltor,lbldomain,4]
+        endif
+		portal[domain].width = minimum(150,portal[attribute].left - portal[domain].left - 5)
+      
+	  ~if the ability is auto-added, change its font to indicate that fact
+      if (candelete = 0) then
+        perform portal[name].setstyle[lblAuto]
+        endif
+
+      ]]></position>
+
+    </template>
+
+
+  <!-- skills layout
+        This layout orchestrates the display of the visual elements that comprise
+        the Skills tab. This amounts to a title at the top and a dynamic table below
+        where the user can add and adjust the skills he wants.
+
+        The logic for this layout is similar to (albeit much simpler than) the
+        logic for the Basics tab. So please refer to the Basics tab for more details.
+  -->
+  <layout
+    id="skills">
+	<portalref portal="skHdr" taborder="10"/>
+    <portalref portal="skSkills" taborder="20"/>
+	<portalref portal="skSkillsWp" taborder="30"/>
+	
+    <!-- This script sizes and positions the layout and its child visual elements. -->
+    <position><![CDATA[
+      ~freeze our skills table in advancement mode to disable adding new choices
+      ~Note: All freezing must be done *before* any positioning is performed.
+      if (state.iscreate = 0) then
+        portal[skSkills].freeze = 1
+		portal[skSkillsWp].freeze = 1
+        endif
+
+      ~both tables span the full width
+      portal[skSkills].width = width
+	  portal[skSkillsWp].width = width
+    
+
+      ~position and size the table to span the full layout; it will only use the
+      ~vertical space that it actually needs
+	  perform portal[skHdr].autoplace
+      perform portal[skSkills].autoplace[10]
+	  perform portal[skSkillsWp].autoplace[20]
+      ]]></position>
+
+    </layout>
+
+
+  <!-- skills panel
+        This is the "Skills" panel shown within Hero Lab. Since we want this panel
+        to appear after Basics and within the traits grouping, we assign it an
+        "order" of 120.
+
+        The logic for this panel is similar to the logic for the Basics panel, so
+        please refer to the Basics panel for more details.
+  -->
+  <panel
+    id="skills"
+    name="Skills"
+    marginhorz="5"
+    marginvert="5"
+    order="120">
+    <live>!HideTab.skills</live>
+    <layoutref layout="skills"/>
+    <position><![CDATA[
+      ]]></position>
+    </panel>
+
+
+  </document>

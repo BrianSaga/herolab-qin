@@ -1,0 +1,337 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!-- This file contains the definition of the "Taos" tab panel. This tab is where
+      the user selects and adjusts the skills for the character.
+
+      All public visual elements used with this tab panel start with the prefix "ta"
+      to associate them with the tab.
+-->
+
+<document signature="Hero Lab Data">
+
+
+  <!-- taTaos portal
+        Presents a dynamic table where the user can add and adjust skills for the
+        character.
+
+        We use the "SimpleItem" template for selecting the skills, since all we need
+        is basic information. We use a custom template for showing the selected
+        skills to allow adjustment of the die type and any other customizations that
+        are needed (e.g. domains for the Knowledge skill).
+
+        We use an "additem" script to highlight whether more skill points can be
+        assigned. This requires that we specify the "addthing" referenced in the
+        script, which is the resource for tracking skill points.
+
+        We use "candidate" tag expression to exclude all skills that are expressly
+        hidden from user selection, such as those associated with arcane backgrounds.
+        All skills that are added to the character are displayed, including those
+        added via arcane backgrounds. We simply preclude their selection here.
+
+        We use a "titlebar" script to replace the default title on the choose form
+        with something that includes the summary information as helpful feedback to
+        the user.
+
+        We use a "headertitle" script to place a suitable title above the table. The
+        title includes an indication of how many skill points have been utilized and
+        how many remain, with appropriate color highlighting to prompt the user.
+  -->
+  <portal
+    id="taTaos"
+    style="tblNormal">
+    <table_dynamic
+      component="TaoLink"
+      showtemplate="taPick"
+      choosetemplate="taThing"
+      addpick="resAbility"
+	  showsortset="Taos"
+	  choosesortset="Taos"
+      descwidth="350"
+	  alwaysupdate="yes">
+	  <list>!Hide.Tao &amp; !Hide.TaoEffect</list>
+      <candidate inheritlist="yes">!TaoEffect.?</candidate>
+      <titlebar><![CDATA[
+			@text = "Add a Tao - " & hero.child[resAbility].field[resSummary].text
+        ]]></titlebar>
+      <headertitle><![CDATA[
+        @text = "Taos: " & hero.child[resAbility].field[resSummary].text
+        ]]></headertitle>
+      <additem><![CDATA[
+        ~if we're in advancement mode, we've been frozen, so display accordingly
+        if (state.iscreate = 0) then
+          @text = "{text clrgrey}Add/Increase Taos Via Advances Tab"
+          done
+          endif
+
+        ~get the color-highlighted "add" text
+        @text = "Add New Tao"
+        ]]></additem>
+      </table_dynamic>
+    </portal>
+
+  <!-- taThing template
+        Displays the name of the skill, with its linked attribute at the right edge.
+  -->
+  <template
+    id="taThing"
+    name="Tao Thing"
+    compset="Tao"
+    marginhorz="3"
+    marginvert="2">
+
+    <portal
+      id="name"
+      style="lblNormal"
+      showinvalid="yes">
+      <label
+        field="name">
+        </label>
+      </portal>
+
+    <position><![CDATA[
+      ~set up our height based on our tallest portal
+     height = portal[name].height
+
+      ~if this is a "sizing" calculation, we're done
+      doneif (issizing <> 0)
+
+      ~center the portals vertically
+      perform portal[name].centervert
+      
+      ~position the name on the left and let it use all available space
+      portal[name].left = 0
+      
+      ]]></position>
+
+    </template>
+
+
+  <!-- taPick template
+        Displays a skill within the table of skills. In addition to the name, an
+        incrementer is shown that allows the user to assign skill points to the
+        skill by adjusting the die type. Skills the require a domain display the
+        appropriate edit portal so the user can enter the domain. Skills can also
+        be deleted and have a mouse-over info icon.
+  -->
+  <template
+    id="taPick"
+    name="Tao Pick"
+    compset="Tao"
+    marginhorz="3"
+    marginvert="2">
+
+    <portal
+      id="value"
+      style="incrSimple">
+      <incrementer
+        field="trtUser">
+        </incrementer>
+      <mouseinfo><![CDATA[
+        if (hero.tagis[mode.creation] = 0) then
+          @text = "Taos must be modified via the Advances tab once the character is locked for play."
+        elseif (autonomous = 0) then
+          @text = "This trait has been improved via the Advances tab and cannot be modified further from here."
+        else
+          @text = "Allocate points to this tao by clicking on the arrows to increase/decrease the number of points assigned."
+          endif
+        ]]></mouseinfo>
+      </portal>
+
+    <portal
+      id="adjust"
+      style="lblSecond">
+      <label>
+        <labeltext><![CDATA[
+          if (field[trtFinal].value = 0) then
+            @text = "{text clrdisable}" & chr(150)
+          else
+            @text = field[trtFinal].value
+            endif
+          ]]></labeltext>
+        </label>
+      <mouseinfo><![CDATA[
+        
+        ]]></mouseinfo>
+      </portal>
+
+	<portal 
+		id="active" 
+		style="chkNormal" 
+		showinvalid="yes"
+		tiptext="Click to acivate">
+		<checkbox 
+			field="actActive"/>
+	</portal>
+  
+    <portal
+      id="name"
+      style="lblNormal"
+      showinvalid="yes">
+      <label
+		field="thingname">
+      </label>
+      </portal>
+
+    <portal
+      id="efflevel"
+      style="lblSecond"
+      showinvalid="yes">
+      <label>
+		<labeltext><![CDATA[
+			if (tagis[TaoEffect.?] <> 0) then
+				@text = "Level " & tagvalue[Level.?] 
+			else
+				@text = ""
+			endif
+		]]></labeltext>
+      </label>
+      </portal>	  
+	  
+    <portal
+      id="info"
+      style="actInfo">
+      <action
+        action="info">
+        </action>
+      <mouseinfo/>
+      </portal>
+
+    <portal
+      id="delete"
+      style="actDelete"
+      tiptext="Click to delete this item">
+      <action
+        action="delete">
+        </action>
+      </portal>
+
+    <position><![CDATA[
+      ~set up our height based on our tallest portal
+      height = portal[info].height
+
+      ~if this is a "sizing" calculation, we're done
+      doneif (issizing <> 0)
+	  
+      ~freeze our value in advancement mode or if an advancement has modified us
+      ~Note: All freezing must be done *before* any positioning is performed.
+      if (state.iscreate = 0) then
+        portal[value].freeze = 1
+      elseif (autonomous = 0) then
+        portal[value].freeze = 1
+        endif
+
+      ~position our tallest portal at the top
+      portal[info].top = 0
+
+      ~position the other portals vertically
+      perform portal[name].centervert
+      perform portal[value].centervert
+	  perform portal[adjust].centervert
+      perform portal[delete].centervert
+	  perform portal[efflevel].centervert
+	  perform portal[active].centervert
+
+	  ~make the tao effect level invisible by default
+	  portal[efflevel].visible = 0
+	  
+	  ~no activation option on taos themselves
+	  if (tagis[Tao.?] <> 0) then
+		portal[active].visible = 0
+	  endif
+	  
+      ~position the delete portal on the far right
+      perform portal[delete].alignedge[right,0]
+
+      ~position the info portal to the left of the delete button
+      perform portal[info].alignrel[rtol,delete,-8]
+
+      ~position the incrementer on the left
+      portal[value].left = 0
+	  
+	  ~assume a standard width for the adjustment, since it can vary, then position
+      ~the adjustment to the right of the incrementer
+      portal[adjust].width = 20
+      perform portal[adjust].alignrel[ltor,value,6]
+
+	  ~position the checkbox next to the checkbox
+      perform portal[active].alignrel[ltor,value,8]
+	  
+      ~position the name next to the checkbox
+      perform portal[name].alignrel[ltor,active,4]
+	  
+	  ~handle tao effects
+	  if (tagis[Tao.?] = 0) then
+		perform portal[efflevel].alignrel[rtol,info,-15]
+		
+		~because this is a tao effect, there's no value, but there is a level
+		portal[value].visible = 0
+		portal[adjust].visible = 0
+		portal[efflevel].visible = 1
+	  endif
+
+      portal[name].width = minimum(portal[name].width,portal[info].left - 10)
+	  
+     ~if the ability is auto-added, change its font to indicate that fact
+      if (candelete = 0) then
+        perform portal[name].setstyle[lblAuto]
+        endif
+      ]]></position>
+
+    </template>
+
+
+  <!-- taos layout
+        This layout orchestrates the display of the visual elements that comprise
+        the Taos tab. This amounts to a title at the top and a dynamic table below
+        where the user can add and adjust the skills he wants.
+
+        The logic for this layout is similar to (albeit much simpler than) the
+        logic for the Basics tab. So please refer to the Basics tab for more details.
+  -->
+  <layout
+    id="taos">
+    <portalref portal="taTaos" taborder="10"/>
+
+    <!-- This script sizes and positions the layout and its child visual elements. -->
+    <position><![CDATA[
+      ~freeze our taos table in advancement mode to disable adding new choices
+      ~Note: All freezing must be done *before* any positioning is performed.
+      if (state.iscreate = 0) then
+        portal[taTaos].freeze = 1
+        endif
+
+      ~both tables span the full width
+      portal[taTaos].width = width
+    
+
+      ~position and size the table to span the full layout; it will only use the
+      ~vertical space that it actually needs
+      perform portal[taTaos].autoplace
+
+      ]]></position>
+
+    </layout>
+
+
+  <!-- taos panel
+        This is the "Taos" panel shown within Hero Lab. Since we want this panel
+        to appear after Basics and within the traits grouping, we assign it an
+        "order" of 120.
+
+        The logic for this panel is similar to the logic for the Basics panel, so
+        please refer to the Basics panel for more details.
+  -->
+  <panel
+    id="taos"
+    name="Taos"
+    marginhorz="5"
+    marginvert="5"
+    order="130">
+    <live>!HideTab.taos</live>
+    <layoutref layout="taos"/>
+    <position><![CDATA[
+      ]]></position>
+    </panel>
+
+
+  </document>

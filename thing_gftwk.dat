@@ -1,0 +1,645 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!-- This file contains the assortment of special abilities for the game system.
+      Abilities confer their effects through scripts that apply the necessary changes
+      to the appropriate traits.
+
+      Abilities influence traits, so all adjustments must be applied prior to when the
+      final trait value is calculated. The script timing used below (PreTraits/5000)
+      ensures that we satisfy this requirement. All abilities should be designated as
+      "unique" so that they can only be selected a single time by the user.
+-->
+
+<document signature="Hero Lab Data">
+
+  <!-- Agility of the Monkey Gift -->
+  <thing
+    id="gwAgMonkey"
+    name="Agility of the Monkey"
+    compset="GiftWk"
+    isunique="yes"
+    description="The character loves to climb and has no fear of heights. Once in every session he can immediately redo a Climbing Test, and choose between the two results.">
+	<tag group="User" tag="Gift"/>
+    <eval index="1" phase="PreTraits" priority="5000">
+      <before name="Calc trtFinal"/><![CDATA[
+      ]]></eval>
+    </thing>
+
+  <!-- Beloved of Nature Gift -->
+  <thing
+    id="gwBlNature"
+    name="Beloved of Nature"
+    compset="GiftWk"
+    isunique="yes"
+    description="The character has a natural affinity with one of the natural environments of the Zhongguo (choose one from forest, steppes, high plains, mountains, etc). Once in every session he can immediately redo a Survival Test connected to that environment, and choose between the two results.">
+	<tag group="User" tag="Gift"/>
+	<tag group="User" tag="NeedDomain"/>
+    </thing>	
+
+  <!-- Ease of the Courtier Gift -->
+  <thing
+    id="gwEsCourt"
+    name="Ease of the Coutier"
+    compset="GiftWk"
+    isunique="yes"
+    description="The character is at his ease in the upper echelons of state society. Once in every session he can immediately redo an Etiquette Test, and choose between the two results.">
+	<tag group="User" tag="Gift"/>
+    </thing>
+
+  <!-- Ease of the Courtier Gift -->
+  <thing
+    id="gwBlDragon"
+    name="Blessed of the Dragon-Kings"
+    compset="GiftWk"
+    isunique="yes"
+    description="The character is at home upon large expanses of water. Once in every session he can immediately redo a Navigation Test, and choose between the two results.">
+	<tag group="User" tag="Gift"/>
+    </thing>
+	
+  <!-- Unsettling Beauty Gift -->
+  <thing
+    id="gwUnBeauty"
+    name="Unsettling Beauty"
+    compset="GiftWk"
+    isunique="yes"
+    description="The character has a perfect physique, according to the prevailing standards of beauty in the Warring States. Once in every session he can immediately redo a Seduction Test, and choose between the two results.">
+	<tag group="User" tag="Gift"/>
+    </thing>
+
+  <!-- Luck of the Hare Gift -->
+  <thing
+    id="gwLkHare"
+    name="Luck of the Hare"
+    compset="GiftWk"
+    isunique="yes"
+    description="The character has outrageous good luck and fate often smiles on him. Once in every session he can immediately redo a Game Test, and choose between the two results.">
+	<tag group="User" tag="Gift"/>
+    </thing>
+	
+  <!-- Courage of the Tiger Gift -->
+  <thing
+    id="gwCoTiger"
+    name="Courage of the Tiger"
+    compset="GiftWk"
+    isunique="yes"
+    description="Little frightens this character. Once in every session he can immediately redo a Test to overcome fear (eg. of a supernatural creature) or to withstand intimidation, and choose between the two results.">
+	<tag group="User" tag="Gift"/>
+    </thing>
+
+  <!-- Breastplate of Bronze Gift -->
+  <thing
+    id="gwBpBronze"
+    name="Breastplate of Bronze"
+    compset="GiftWk"
+    isunique="yes"
+    description="The character has a tough, muscular body. Once in every session he can deduct his Metal value from damage caused by an attack, as if the blow had slightly missed its target.">
+	<tag group="User" tag="Gift"/>
+    </thing>
+
+  <!-- Acuity of the Kilin Gift -->
+  <thing
+    id="gwAcKilin"
+    name="Acuity of the Kilin"
+    compset="GiftWk"
+    isunique="yes"
+    description="The character notices details and spots connections between events and the physical elements associated with them. Once in every session he can immediately redo an Investigation Test, and choose between the two results.">
+	<tag group="User" tag="Gift"/>
+    </thing>	
+
+  <!-- Gift of Nezha Gift -->
+  <thing
+    id="gwGtNezha"
+    name="Gift of Nezha"
+    compset="GiftWk"
+    isunique="yes"
+    description="The character is almost ambidextrous, being almost at ease using his left hand as his right for everyday purposes. When handling an object with his weaker hand, his penalty is -1 instead of -3.">
+	<tag group="User" tag="Gift"/>
+    </thing>
+
+  <!-- Child of the Shadows Gift -->
+  <thing
+    id="gwCdShadow"
+    name="Child of the Shadows"
+    compset="GiftWk"
+    isunique="yes"
+    description="The character is an expert at finding a hiding place in his immediate environment. Once in every session he can immediately redo a Stealth Test, and choose between the two results.">
+	<tag group="User" tag="Gift"/>
+    </thing>
+
+  <!-- Favorite of Wen Chang Gift -->
+  <thing
+    id="gwFvWenCha"
+    name="Favorite of Wen Chang"
+    compset="GiftWk"
+    isunique="yes"
+    description="The character is widely read, and a quick learner. The player chooses one area of expertise from Law, Taoism, Bureaucracy and Literature. Once in every session the character can immediately redo a Test relating to this Skill, and choose between the two results.">
+		<fieldval field="usrLabelAr" value="Skill:"/>
+		<arrayval field="usrArray" index="0" value="Bureaucracy"/>
+		<arrayval field="usrArray" index="1" value="Law"/>
+		<arrayval field="usrArray" index="2" value="Literature"/>
+		<arrayval field="usrArray" index="3" value="Taoism"/>		
+	
+	<tag group="User" tag="Gift"/>
+   </thing>
+
+  <!-- Strength of the Ox Gift -->
+  <thing
+    id="gwStOx"
+    name="Strength of the Ox"
+    compset="GiftWk"
+    isunique="yes"
+    description="The character has immense physical strength. Once in every session he can immediately redo any Test relating to an action requiring great strength, such as lifting a harrow, carrying a boulder, tearing a nailed-down lid from a wooden crate, or breaking down a door, and choose between the two results.">
+	<tag group="User" tag="Gift"/>
+    </thing>	
+
+  <!-- Claws of the Tiger Gift -->
+  <thing
+    id="gwClTiger"
+    name="Claws of the Tiger"
+    compset="GiftWk"
+    isunique="yes"
+    description="The character was born with a blade in his hand. Once in every session he can add his Fire value to the damage he has caused with a blade.">
+	<tag group="User" tag="Gift"/>
+    </thing>		
+
+  <!-- Heir of Sun Zi Gift -->
+  <thing
+    id="gwHrSunZi"
+    name="Heir of Sun Zi"
+    compset="GiftWk"
+    isunique="yes"
+    description="The character has the strategic brilliance of the great generals of old. Once in every session he can immediately redo an Art of War Test, and choose between the two results.">
+	<tag group="User" tag="Gift"/>
+    </thing>
+
+  <!-- Inspiration of the Gods Gift -->
+  <thing
+    id="gwInGods"
+    name="Inspiration of the Gods"
+    compset="GiftWk"
+    isunique="yes"
+    description="The character has the soul of the artist. The player chooses which Skill this Gift applies to (Music, Singing, Painting, etc). Once in every session the character can immediately redo any relevant Test, and choose between the two results.">
+	<tag group="User" tag="Gift"/>
+	<tag group="User" tag="NeedDomain"/>
+    </thing>	
+
+  <!-- Inspiration of the Tao Gift -->
+  <thing
+    id="gwInTao"
+    name="Inspiration of the Tao"
+    compset="GiftWk"
+    isunique="yes"
+    description="The character is a master in every aspect of his chosen craft. The player chooses which field this Gift applies to. Once in every session the character can immediately redo a relevant Craft Test, and choose between the two results.">
+	<tag group="User" tag="Gift"/>
+	<tag group="User" tag="NeedDomain"/>
+    </thing>
+
+  <!-- Tongue of Tsai Chen Gift -->
+  <thing
+    id="gwTgTsaiCh"
+    name="Tongue of Tsai Chen"
+    compset="GiftWk"
+    isunique="yes"
+    description="The character is a skilled wordsmith and chooses his words with precision. Once in every session he can immediately redo an Eloquence Test, and choose between the two results.">
+	<tag group="User" tag="Gift"/>
+    </thing>		
+
+  <!-- Linguist Gift -->
+  <thing
+    id="gwLinguist"
+    name="Linguist"
+    compset="GiftWk"
+    isunique="yes"
+    description="The character is quick to learn the various languages and dialects of the Zhongguo. Once in every session he can immediately redo a Language Test, and choose between the two results.">
+	<tag group="User" tag="Gift"/>
+    </thing>
+	
+  <!-- Hand of the Monkey Gift -->
+  <thing
+    id="gwHdMonkey"
+    name="Hand of the Monkey"
+    compset="GiftWk"
+    isunique="yes"
+    description="The character is blessed with dexterity and sleight of hand. Once in every session he can immediately redo a Theft Test, and choose between the two results.">
+	<tag group="User" tag="Gift"/>
+    </thing>
+
+  <!-- Mask of the Demon Gift -->
+  <thing
+    id="gwMkDemon"
+    name="Mask of the Demon"
+    compset="GiftWk"
+    isunique="yes"
+    description="The character can take on a threatening appearance and find the weak point of his opposite number. Once in every session he can immediately redo an Intimidation Test, and choose between the two results.">
+	<tag group="User" tag="Gift"/>
+    </thing>	
+	
+  <!-- Memory of the Zhongguo Gift -->
+  <thing
+    id="gwMyZhongg"
+    name="Memory of the Zhongguo"
+    compset="GiftWk"
+    isunique="yes"
+    description="The character is well-versed in the history of the Warring States and the ancient dynasties. The player chooses which Skill this Gift applies to, from History, Legends and Heraldry. Once in every session he can immediately redo any relevant Test, and choose between the two results.">
+		<fieldval field="usrLabelAr" value="Skill:"/>
+		<arrayval field="usrArray" index="0" value="Heraldry"/>
+		<arrayval field="usrArray" index="1" value="History"/>
+		<arrayval field="usrArray" index="2" value="Legends"/>
+	
+	<tag group="User" tag="Gift"/>
+	
+    </thing>
+	
+  <!-- Spirit of Horses Gift -->
+  <thing
+    id="gwSpHorses"
+    name="Spirit of Horses"
+    compset="GiftWk"
+    isunique="yes"
+    description="The character is loved by horses, and has a unique feel for them. Once in every session he can immediately redo a Horsemanship Test, and choose between the two results.">
+	<tag group="User" tag="Gift"/>
+    </thing>
+	
+  <!-- Paw of the Bear Gift -->
+  <thing
+    id="gwPwBear"
+    name="Paw of the Bear"
+    compset="GiftWk"
+    isunique="yes"
+    description="The character possesses great skill in wielding blunt weapons. Once in every session he can add his Earth value to the damage he causes with such a weapon.">
+	<tag group="User" tag="Gift"/>
+    </thing>
+	
+  <!-- On The Shell of the Turtle Gift -->
+  <thing
+    id="gwShTurtle"
+    name="On The Shell of the Turtle"
+    compset="GiftWk"
+    isunique="yes"
+    description="The character loves water, and feels at home in any watery environment. Once in every session he can immediately redo a Swimming Test, and choose between the two results.">
+	<tag group="User" tag="Gift"/>
+    </thing>
+
+  <!-- Placidity of the Turtle Gift -->
+  <thing
+    id="gwPlTurtle"
+    name="Placidity of the Turtle"
+    compset="GiftWk"
+    isunique="yes"
+    description="The character is in complete control of his emotions. Once in every session he can immediately redo a Meditation Test, and choose between the two results.">
+	<tag group="User" tag="Gift"/>
+    </thing>
+	
+  <!-- Presence of the Phoenix Gift -->
+  <thing
+    id="gwPrPhoenx"
+    name="Presence of the Phoenix"
+    compset="GiftWk"
+    isunique="yes"
+    description="The character is deft in argument and grasps the issues at stake in any negotiations. Once in every session he can immediately redo a Diplomacy Test, and choose between the two results.">
+	<tag group="User" tag="Gift"/>
+    </thing>
+	
+  <!-- Eye of the Snake Gift -->
+  <thing
+    id="gwEySnake"
+    name="Eye of the Snake"
+    compset="GiftWk"
+    isunique="yes"
+    description="The character is a born actor. Once in every session he can immediately redo an Acting Test, and choose between the two results.">
+	<tag group="User" tag="Gift"/>
+    </thing>
+
+  <!-- Health of the Rat Gift -->
+  <thing
+    id="gwHlRat"
+    name="Health of the Rat"
+    compset="GiftWk"
+    isunique="yes"
+    description="The character has a strong constitution. Once in every session he can immediately redo a Resistance Test against either an illness or a poison, and choose between the two results.">
+	<tag group="User" tag="Gift"/>
+    </thing>	
+	
+  <!-- Sharp Senses Gift -->
+  <thing
+    id="gwShSenses"
+    name="Sharp Senses"
+    compset="GiftWk"
+    isunique="yes"
+    description="The character’s five senses are sharper than those of the common man. Once in every session he can immediately redo a Perception Test, and choose between the two results.">
+	<tag group="User" tag="Gift"/>
+    </thing>
+	
+  <!-- Sense of the Tao Gift -->
+  <thing
+    id="gwSeTao"
+    name="Sense of the Tao"
+    compset="GiftWk"
+    isunique="yes"
+    description="The character feels vividly the essence of the Tao. The player chooses which Skill this Gift applies to, from Internal Alchemy, External Alchemy, Divination and Exorcism. Once in every session he can immediately redo a relevant Test, and choose between the two results.">
+		<fieldval field="usrLabelAr" value="Skill:"/>
+		<arrayval field="usrArray" index="0" value="Internal Alchemy"/>
+		<arrayval field="usrArray" index="1" value="External Alchemy"/>
+		<arrayval field="usrArray" index="2" value="Divination"/>
+		<arrayval field="usrArray" index="3" value="Exorcism"/>			
+		<tag group="User" tag="Gift"/>
+    </thing>
+	
+  <!-- Feline Grace Gift -->
+  <thing
+    id="gwFlGrace"
+    name="Feline Grace"
+    compset="GiftWk"
+    isunique="yes"
+    description="The character is remarkably flexible, and in complete control of his body. Once in every session he can immediately redo an Acrobatics Test, and choose between the two results.">
+	<tag group="User" tag="Gift"/>
+    </thing>
+	
+  <!-- Audacity of the Phoenix Gift -->
+  <thing
+    id="gwAuPhoenx"
+    name="Audacity of the Phoenix"
+    compset="GiftWk"
+    isunique="yes"
+    description="The character has exceptional self-confidence. Once in every session he can immediately redo any Test whose ST is at least Very Difficult (11). He is bound by the second result.">
+	<tag group="User" tag="Gift"/>
+    </thing>
+	
+	
+  <!-- Alcoholic Weakness -->
+  <thing
+    id="gwAlcoholc"
+    name="Alcoholic"
+    compset="GiftWk"
+    isunique="yes"
+    description="The character needs to drink alcohol on a regular basis. He is so dependent on it that for each day that he fails to drink enough, his ST for all actions is increased by +1. An inebriated character suffers the same penalty until he sobers up.">
+	<tag group="User" tag="Weakness"/>
+    </thing>
+	
+  <!-- Amnesiac Weakness -->
+  <thing
+    id="gwAmnesiac"
+    name="Amnesiac"
+    compset="GiftWk"
+    isunique="yes"
+    description="The character cannot remember anything about his past. Whether through psychological shock or a serious injury, he has no idea who he is or where he comes from.">
+	<tag group="User" tag="Weakness"/>
+    </thing>
+	
+  <!-- Blessed by Chang-E Weakness -->
+  <thing
+    id="gwBlChangE"
+    name="Blessed by Chang-E"
+    compset="GiftWk"
+    isunique="yes"
+    description="The character is unusually attracted to persons of the opposite sex. He falls in love easily, and loves deeply, but his heart is soon won by another and he never manages to maintain a serious relationship.">
+	<tag group="User" tag="Weakness"/>
+    </thing>
+	
+  <!-- Loudmouth Weakness -->
+  <thing
+    id="gwLoudmth"
+    name="Loudmouth"
+    compset="GiftWk"
+    isunique="yes"
+    description="The character is an inveterate talker and oves to tell stories, often just for the pleasure of hearing his own voice. Often his mouth runs away with him. Once in every session, the GM may ask him to redo an Eloquence or Diplomacy Test.">
+	<tag group="User" tag="Weakness"/>
+    </thing>
+
+  <!-- Code of Honor Weakness -->
+  <thing
+    id="gwCodeHonr"
+    name="Code of Honor"
+    compset="GiftWk"
+    isunique="yes"
+    description="The character follows a personal and rigorous code of conduct, which he applies to all aspects of his life. He will not hear of anything that would require him to act against his convictions. He may for example refuse to take an enemy by surprise, or to lie. And he will tend to be intolerant of those whose lives are not as disciplined as his.">
+	<tag group="User" tag="Weakness"/>
+    </thing>
+
+  <!-- Curiosity of the Rat Weakness -->
+  <thing
+    id="gwCrRat"
+    name="Curiosity of the Rat"
+    compset="GiftWk"
+    isunique="yes"
+    description="The character cannot control his curiosity, and feels obliged to see what is happening, to interfere in others’ business, or to listen at keyholes, even when it means danger.">
+	<tag group="User" tag="Weakness"/>
+    </thing>	
+
+  <!-- Disgrace of Fu Xing Weakness -->
+  <thing
+    id="gwDgFuXing"
+    name="Disgrace of Fu Xing"
+    compset="GiftWk"
+    isunique="yes"
+    description="When a tile falls from a roof, and the players want to know who was underneath it at the time, this character saves them the effort of drawing lots. He is a disaster at games of chance. Once in every session, the GM may ask him to redo a Games Test. The GM may also arrange matters so that the character is regularly assaulted by the slings and arrows of outrageous fortune.">
+	<tag group="User" tag="Weakness"/>
+    </thing>	
+	
+  <!-- Mind of the Hare Weakness -->
+  <thing
+    id="gwMdHare"
+    name="Mind of the Hare"
+    compset="GiftWk"
+    isunique="yes"
+    description="The character is in another world, and easily surprised. Once in every session, the GM may ask him to redo a Perception Test.">
+	<tag group="User" tag="Weakness"/>
+    </thing>
+
+  <!-- Pride of the Rooster Weakness -->
+  <thing
+    id="gwPdRoostr"
+    name="Pride of the Rooster"
+    compset="GiftWk"
+    isunique="yes"
+    description="The character irritates everyone he meets with accounts of his real or imagined qualities. He is excessively proud and self-confident, and never refuses a challenge. He tends to be patronizing towards those he considers his inferiors, namely just about everybody.">
+	<tag group="User" tag="Weakness"/>
+    </thing>	
+
+  <!-- Air of the Snake Weakness -->
+  <thing
+    id="gwArSnake"
+    name="Air of the Snake"
+    compset="GiftWk"
+    isunique="yes"
+    description="The character exudes a chilling aura which earns him the distrust of others. Animals feel ill at ease in his presence : dogs bark, and horses snort. Once in every session, the GM may ask him to redo any Test relating to an animal (Horsemanship, Training etc).">
+	<tag group="User" tag="Weakness"/>
+    </thing>
+
+  <!-- Haunted Soul Weakness -->
+  <thing
+    id="gwHdSoul"
+    name="Haunted Soul"
+    compset="GiftWk"
+    isunique="yes"
+    description="The character’s nights are tormented by the visitations of a ghost, who murmurs opaque advice and deprives him of sleep. The ghost may be driven away by an exorcist, but will usually return after a week or two. The character regains energy at half the normal rate, receiving one Chi point for every two hours’ sleep, and one Breath of Life point for every two nights.">
+	<tag group="User" tag="Weakness"/>
+    </thing>		
+
+  <!-- Impetuosity of the Horse Weakness -->
+  <thing
+    id="gwImHorse"
+    name="Impetuosity of the Horse"
+    compset="GiftWk"
+    isunique="yes"
+    description="The character is hotblooded, quick to overreact to the slightest insult or provocation, and prone to violence. Once in every session, the GM may ask him to redo a Meditation Test.">
+	<tag group="User" tag="Weakness"/>
+    </thing>
+
+  <!-- Loyalty of the Dog Weakness -->
+  <thing
+    id="gwLyDog"
+    name="Loyalty of the Dog"
+    compset="GiftWk"
+    isunique="yes"
+    description="In friendship and in love, the character is loyal to a fault. He will do all in his power to come to the aid of his companions, and would never betray them. He is quick to excuse those who take advantage of him, and slow to reconsider his commitment to them.">
+	<tag group="User" tag="Weakness"/>
+    </thing>
+
+  <!-- Curse of the Five Poisons Weakness -->
+  <thing
+    id="gwCuFivePo"
+    name="Curse of the Five Poisons"
+    compset="GiftWk"
+    isunique="yes"
+    description="The character suffers from a rare disease that requires him to sleep at least ten hours a day. If he fails to do so, the STs for all of his actions are increased by +1 until he gets a proper night’s rest.">
+	<tag group="User" tag="Weakness"/>
+    </thing>
+	
+  <!-- Curse of Zhu Rong Weakness -->
+  <thing
+    id="gwCuZhuRon"
+    name="Curse of Zhu Rong"
+    compset="GiftWk"
+    isunique="yes"
+    description="The character is engaged in a personal quest for vengeance and will allow no-one to come between him and the object of his hatred. He is ready to abandon or betray any of his companions if he thinks it will bring him closer to his goal.">
+	<tag group="User" tag="Weakness"/>
+	<tag group="User" tag="NeedDomain"/>
+    </thing>
+
+  <!-- Sickly Weakness -->
+  <thing
+    id="gwSickly"
+    name="Sickly"
+    compset="GiftWk"
+    isunique="yes"
+    description="The character has a weak constitution and falls ill easily. Once in every session, the GM may ask him to redo a Resistance Test against a disease or a poison.">
+	<tag group="User" tag="Weakness"/>
+    </thing>	
+
+  <!-- Misogynist/Misandrist Weakness -->
+  <thing
+    id="gwMisog"
+    name="Misogynist/Misandrist"
+    compset="GiftWk"
+    isunique="yes"
+    description="The character is extremely intolerant of the opposite sex, demeaning them at every opportunity and never missing a chance to show his or her superiority over them. Once in every session, the GM may ask the character to redo a Test relating to a Skill in the social domain and involving an encounter with a member of the opposite sex.">
+	<tag group="User" tag="Weakness"/>
+    </thing>	
+
+  <!-- Naïve Weakness -->
+  <thing
+    id="gwNaive"
+    name="Naïve"
+    compset="GiftWk"
+    isunique="yes"
+    description="The character is gullible and finds it difficult to tell when people are lying. Once in every session, the GM may ask him to re-roll an Empathy Test.">
+	<tag group="User" tag="Weakness"/>
+    </thing>		
+	
+  <!-- Obsessive-compulsive Weakness -->
+  <thing
+    id="gwObCompul"
+    name="Obsessive-compulsive"
+    compset="GiftWk"
+    isunique="yes"
+    description="The majority of the character’s time is spent in the pursuit of a personal and rather peculiar quest. He may be obsessed with tasting local delicacies, keeping himself clean, or finding a missing loved one. Once in every session, when he is engaged in an activity unconnected with the object of his obsession, the GM may ask him to redo any Skill Test.">
+	<tag group="User" tag="Weakness"/>
+	<tag group="User" tag="NeedDomain"/>
+    </thing>
+	
+  <!-- Phobia Weakness -->
+  <thing
+    id="gwPhobia"
+    name="Phobia"
+    compset="GiftWk"
+    isunique="yes"
+    description="The character is terrified by an everyday object, being or phenomenon, such as blood, snakes, crowds, storms or the dark. Whenever the object of his phobia is around, the STs for all of his Tests are increased by +2.">
+	<tag group="User" tag="Weakness"/>
+	<tag group="User" tag="NeedDomain"/>
+    </thing>
+
+  <!-- Clown Weakness -->
+  <thing
+    id="gwClown"
+    name="Clown"
+    compset="GiftWk"
+    isunique="yes"
+    description="Whatever he does, people find it difficult to take the character seriously. Once in every session, the GM may ask him to re-roll a Bureaucracy or Diplomacy Test.">
+	<tag group="User" tag="Weakness"/>
+    </thing>
+
+  <!-- Wanted Weakness -->
+  <thing
+    id="gwWanted"
+    name="Wanted"
+    compset="GiftWk"
+    isunique="yes"
+    description="One or more of the states have put a price on the character’s head : state authorities and bounty hunters are on his trail, and his freedom is under constant threat.">
+	<tag group="User" tag="Weakness"/>
+	<tag group="User" tag="NeedDomain"/>
+    </thing>
+
+  <!-- Impure Blood Weakness -->
+  <thing
+    id="gwImBlood"
+    name="Impure Blood"
+    compset="GiftWk"
+    isunique="yes"
+    description="The character is visibly of barbarian or foreign stock. Many of the inhabitants of the Zhongguo will treat him with intolerance, mistrust or even hatred. Whether half-blood, Xiongnu, or from even further afield, he will find acceptance hard to come by.">
+	<tag group="User" tag="Weakness"/>
+	<tag group="User" tag="NeedDomain"/>
+    </thing>	
+
+  <!-- Lookalike Weakness -->
+  <thing
+    id="gwLookalik"
+    name="Lookalike"
+    compset="GiftWk"
+    isunique="yes"
+    description="The character closely resembles a well-known figure of the Zhongguo, which may bring him all kinds of difficulties.">
+	<tag group="User" tag="Weakness"/>
+	<tag group="User" tag="NeedDomain"/>
+    </thing>	
+
+  <!-- Hard of hearing Weakness -->
+  <thing
+    id="gwHdHearin"
+    name="Hard of hearing"
+    compset="GiftWk"
+    isunique="yes"
+    description="The character cannot hear very well. The GM can ask the player to redo any Perception Test involving hearing.">
+	<tag group="User" tag="Weakness"/>
+    </thing>
+
+  <!-- Timidity of the Kilin Weakness -->
+  <thing
+    id="gwTdKilin"
+    name="Timidity of the Kilin"
+    compset="GiftWk"
+    isunique="yes"
+    description="The character is shy, uneasy in company, and will never make the first move to get to know someone. Once in every session the GM may ask him to redo a Seduction or Intimidation Test.">
+	<tag group="User" tag="Weakness"/>
+    </thing>	
+
+  <!-- Short-sighted Weakness -->
+  <thing
+    id="gwShsightd"
+    name="Short-sighted"
+    compset="GiftWk"
+    isunique="yes"
+    description="The character has problems with his sight, and can only vaguely make out the details of his the world around him. The GM can ask him to redo any Perception Test involving his sight.">
+	<tag group="User" tag="Weakness"/>
+    </thing>
+	
+</document>

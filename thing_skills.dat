@@ -1,0 +1,1167 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!-- This file contains the assortment of skills for the game system. Note that each
+      skill is linked to an associated attribute for the character. This linkage allows
+      the value of the skill to easily incorporate the effects of the linked attribute
+      via a script on the component.
+-->
+
+<document signature="Hero Lab Data">
+<!--
+	***************************************************************
+		Metal Skills (Martial)
+	***************************************************************
+-->
+
+<!-- Art of War Skill -->
+	<thing
+		id="skAoW"
+		name="Art of War"
+		compset="Skill"
+		isunique="yes"
+		description="The character has studied the great battles of history and knows what strategies and maneuvers will bring the best out of his troops in the context of a pitched battle.">
+		<fieldval field="trtAbbrev" value="AoW"/>
+		<fieldval field="sklAlias" value="Art of War"/>
+
+		<!-- If this skill should be shown as an out-of-combat skill on the TacCon, assign this tag
+		<tag group="DashTacCon" tag="NonCombat"/>
+		-->
+
+		<!-- Specify the attribute to which this skill is linked -->
+		<link linkage="attribute" thing="attrMetal"/>
+	</thing>
+
+<!-- Bangshu Skill  -->
+	<thing
+		id="skBangshu"
+		name="Bangshu"
+		compset="Skill"
+		isunique="yes"
+		description="This Skill enables a character to use a long or short stick as a weapon.">
+		<fieldval field="trtAbbrev" value="Bsu"/>
+		<fieldval field="sklAlias" value="stick"/>
+		
+		<!-- Tags -->
+		<tag group="SkillType" tag="Weapon"/>
+		
+		<!-- Identify combat technique things and level -->
+		<tag group="ComTchCost" tag="ctCharge1"/>
+		<tag group="ComTchCost" tag="ctDblBlow1"/>
+		<tag group="ComTchCost" tag="ctHold1"/>
+		<tag group="ComTchCost" tag="ctTotBlk2"/>
+		<tag group="ComTchCost" tag="ctWhirl2"/>
+		<tag group="ComTchCost" tag="ctKnock2"/>
+		<tag group="ComTchCost" tag="ctCombin3"/>
+		<tag group="ComTchCost" tag="ctDblBlk3"/>
+		<tag group="ComTchCost" tag="ctMystif3"/>		
+		<tag group="ComTchCost" tag="ctDisarm4"/>
+		<tag group="ComTchCost" tag="ctStrang4"/>
+		<tag group="ComTchCost" tag="ctSuicAtk4"/>
+		<tag group="ComTchCost" tag="ctBlind4"/>
+		<tag group="ComTchCost" tag="ctTrap5"/>
+		<tag group="ComTchCost" tag="ctRepel5"/>
+		<tag group="ComTchCost" tag="ctFeint6"/>
+		<tag group="ComTchCost" tag="ctDirect6"/>
+		
+		<!-- Specify the attribute to which this skill is linked -->
+		<link linkage="attribute" thing="attrMetal"/>
+    </thing>
+
+<!-- Chuishu (mace) Skill  -->
+	<thing
+		id="skChuishu"
+		name="Chuishu"
+		compset="Skill"
+		isunique="yes"
+		description="This Skill involves the use of heavy blunt weapons such as hammers, mallets and maces.">
+		<fieldval field="trtAbbrev" value="Csu"/>
+		<fieldval field="sklAlias" value="mace"/>
+		
+		<!-- Tags -->
+		<tag group="SkillType" tag="Weapon"/>
+		
+		<!-- Identify combat technique things and level -->
+		<tag group="ComTchCost" tag="ctKnock1"/>
+		<tag group="ComTchCost" tag="ctHold2"/>
+		<tag group="ComTchCost" tag="ctCharge3"/>
+		<tag group="ComTchCost" tag="ctTotBlk3"/>
+		<tag group="ComTchCost" tag="ctCombin4"/>
+		<tag group="ComTchCost" tag="ctRepel4"/>
+		<tag group="ComTchCost" tag="ctTrap5"/>
+		<tag group="ComTchCost" tag="ctTwoWpns5"/>
+		<tag group="ComTchCost" tag="ctMounted5"/>
+		<tag group="ComTchCost" tag="ctDisarm6"/>
+		<tag group="ComTchCost" tag="ctDblBlow6"/>
+				
+		<!-- Specify the attribute to which this skill is linked -->
+		<link linkage="attribute" thing="attrMetal"/>
+    </thing>
+	
+<!-- Hand to Hand Skill  -->
+	<thing
+		id="skHand"
+		name="Hand to Hand"
+		compset="Skill"
+		isunique="yes"
+		description="This Skill covers a mix of boxing and wrestling, and the following principle applies: When at distance, strike with the foot and the fist; when in close combat, grip and throw.">
+		<fieldval field="trtAbbrev" value="Hnd"/>
+		<fieldval field="sklAlias" value="punches, kicks, throws"/>
+		
+		<!-- Tags -->
+		<tag group="SkillType" tag="Weapon"/>
+		
+		<!-- Identify combat technique things and level -->
+		<tag group="ComTchCost" tag="ctThrow1"/>
+		<tag group="ComTchCost" tag="ctBlind1"/>
+		<tag group="ComTchCost" tag="ctRedDis1"/>
+		<tag group="ComTchCost" tag="ctTrap2"/>
+		<tag group="ComTchCost" tag="ctStrang2"/>
+		<tag group="ComTchCost" tag="ctCharge3"/>
+		<tag group="ComTchCost" tag="ctDirect3"/>
+		<tag group="ComTchCost" tag="ctDisarm4"/>
+		<tag group="ComTchCost" tag="ctCombin4"/>
+		<tag group="ComTchCost" tag="ctWhirl4"/>
+		<tag group="ComTchCost" tag="ctMystif5"/>
+		<tag group="ComTchCost" tag="ctRepel6"/>
+		<tag group="ComTchCost" tag="ctDblBlow6"/>
+
+		
+		<!-- Specify the attribute to which this skill is linked -->
+		<link linkage="attribute" thing="attrMetal"/>
+    </thing>	
+
+<!-- Daoshu (dagger) Skill  -->
+	<thing
+		id="skDaoshu"
+		name="Daoshu"
+		compset="Skill"
+		isunique="yes"
+		description="All weapons which resemble daggers in size and shape, including short swords and hatchets, fall under this Skill.">
+		<fieldval field="trtAbbrev" value="Dao"/>
+		<fieldval field="sklAlias" value="dagger"/>
+		
+		<!-- Tags -->
+		<tag group="SkillType" tag="Weapon"/>
+		
+		<!-- Identify combat technique things and level -->
+		<tag group="ComTchCost" tag="ctTwoWpns1"/>		
+		<tag group="ComTchCost" tag="ctDirect1"/>		
+		<tag group="ComTchCost" tag="ctDblBlk2"/>		
+		<tag group="ComTchCost" tag="ctFeint2"/>		
+		<tag group="ComTchCost" tag="ctMystif2"/>		
+		<tag group="ComTchCost" tag="ctCombin3"/>		
+		<tag group="ComTchCost" tag="ctTotBlk3"/>		
+		<tag group="ComTchCost" tag="ctRedDis3"/>		
+		<tag group="ComTchCost" tag="ctSuicAtk4"/>		
+		<tag group="ComTchCost" tag="ctCharge4"/>		
+		<tag group="ComTchCost" tag="ctDisarm4"/>		
+		<tag group="ComTchCost" tag="ctDblBlow5"/>		
+		<tag group="ComTchCost" tag="ctTrap5"/>		
+		<tag group="ComTchCost" tag="ctStrang6"/>		
+		<tag group="ComTchCost" tag="ctBlind6"/>		
+		
+		<!-- Specify the attribute to which this skill is linked -->
+		<link linkage="attribute" thing="attrMetal"/>
+    </thing>	
+
+<!-- Dunshu (shield) Skill  -->
+	<thing
+		id="skDunshu"
+		name="Dunshu"
+		compset="Skill"
+		isunique="yes"
+		description="This Skill covers the use of the various types of shield.">
+		<fieldval field="trtAbbrev" value="Dun"/>
+		<fieldval field="sklAlias" value="shield"/>
+		
+		<!-- Tags -->
+		<tag group="SkillType" tag="Weapon"/>
+		
+		<!-- Identify combat technique things and level -->
+		<tag group="ComTchCost" tag="ctTrap1"/>
+		<tag group="ComTchCost" tag="ctTotBlk1"/>
+		<tag group="ComTchCost" tag="ctCharge2"/>
+		<tag group="ComTchCost" tag="ctRepel2"/>
+		<tag group="ComTchCost" tag="ctThrow2"/>
+		<tag group="ComTchCost" tag="ctDisarm3"/>
+		<tag group="ComTchCost" tag="ctDblBlk3"/>
+		<tag group="ComTchCost" tag="ctTwoWpns4"/>
+		<tag group="ComTchCost" tag="ctKnock5"/>
+		<tag group="ComTchCost" tag="ctDblBlow6"/>
+		
+		<!-- Specify the attribute to which this skill is linked -->
+		<link linkage="attribute" thing="attrMetal"/>
+    </thing>
+
+<!-- Gongshu (archery) Skill  -->
+	<thing
+		id="skGongshu"
+		name="Gongshu"
+		compset="Skill"
+		isunique="yes"
+		description="This Skill enables a character to use any type of longbow.">
+		<fieldval field="trtAbbrev" value="Gon"/>
+		<fieldval field="sklAlias" value="archery"/>
+		
+		<!-- Tags -->
+		<tag group="SkillType" tag="Weapon"/>
+
+		<!-- Identify combat technique things and level -->
+		<tag group="ComTchCost" tag="ctSnpSht1"/>		
+		<tag group="ComTchCost" tag="ctTrap1"/>		
+		<tag group="ComTchCost" tag="ctDblSht2"/>		
+		<tag group="ComTchCost" tag="ctLngSht2"/>		
+		<tag group="ComTchCost" tag="ctDblTrg3"/>		
+		<tag group="ComTchCost" tag="ctIndSht3"/>				
+		<tag group="ComTchCost" tag="ctMastrSk3"/>		
+		<tag group="ComTchCost" tag="ctCombin4"/>		
+		<tag group="ComTchCost" tag="ctRicoch4"/>		
+		<tag group="ComTchCost" tag="ctStrkThr4"/>			
+		<tag group="ComTchCost" tag="ctMtRngAt5"/>			
+		<tag group="ComTchCost" tag="ctDisRng6"/>			
+		
+		<!-- Specify the attribute to which this skill is linked -->
+		<link linkage="attribute" thing="attrMetal"/>
+    </thing>
+
+<!-- Improvisation Skill  -->
+	<thing
+		id="skImprov"
+		name="Improvisation"
+		compset="Skill"
+		isunique="yes"
+		description="A character can rely on this Skill to use everyday objects, such as a strip of cloth, a pair of chopsticks, or a fan, as effective weapons.">
+		<fieldval field="trtAbbrev" value="Impv"/>
+		<fieldval field="sklAlias" value="common objects"/>
+		
+		<!-- Tags -->
+		<tag group="SkillType" tag="Weapon"/>
+		
+		<!-- Specify the attribute to which this skill is linked -->
+		<link linkage="attribute" thing="attrMetal"/>
+    </thing>
+	
+<!-- Jianshu (fencing) Skill -->
+	<thing
+		id="skJianshu"
+		name="Jianshu"
+		compset="Skill"
+		isunique="yes"
+		description="This covers ability with all types of swords and sabers.">
+		<fieldval field="trtAbbrev" value="Jian"/>
+		<fieldval field="sklAlias" value="fencing"/>
+
+		<!-- Tags -->
+		<tag group="SkillType" tag="Weapon"/>
+
+		<!-- Identify combat technique things and level -->
+		<tag group="ComTchCost" tag="ctTrap1"/>		
+		<tag group="ComTchCost" tag="ctDirect1"/>		
+		<tag group="ComTchCost" tag="ctTotBlk1"/>		
+		<tag group="ComTchCost" tag="ctMounted1"/>		
+		<tag group="ComTchCost" tag="ctCharge2"/>		
+		<tag group="ComTchCost" tag="ctDblBlk2"/>		
+		<tag group="ComTchCost" tag="ctFeint2"/>		
+		<tag group="ComTchCost" tag="ctBlind2"/>		
+		<tag group="ComTchCost" tag="ctDblBlow3"/>		
+		<tag group="ComTchCost" tag="ctWhirl3"/>		
+		<tag group="ComTchCost" tag="ctDisarm3"/>		
+		<tag group="ComTchCost" tag="ctSuicAtk3"/>		
+		<tag group="ComTchCost" tag="ctMystif4"/>		
+		<tag group="ComTchCost" tag="ctHold4"/>		
+		<tag group="ComTchCost" tag="ctCombin4"/>		
+		<tag group="ComTchCost" tag="ctTwoWpns4"/>		
+		<tag group="ComTchCost" tag="ctRepel5"/>		
+		<tag group="ComTchCost" tag="ctKnock5"/>		
+		<tag group="ComTchCost" tag="ctStrang6"/>		
+		<tag group="ComTchCost" tag="ctRedDis6"/>		
+		
+		<!-- Specify the attribute to which this skill is linked -->
+		<link linkage="attribute" thing="attrMetal"/>
+    </thing>
+
+<!-- Throwing Skill -->
+	<thing
+		id="skThrow"
+		name="Throwing"
+		compset="Skill"
+		isunique="yes"
+		description="This Skill enables a character to throw weapons such as daggers, darts, or spears, and even to use everyday objects as missiles.">
+		<fieldval field="trtAbbrev" value="Thrw"/>
+		<fieldval field="sklAlias" value="thrown melee weapons"/>
+		
+		<!-- Tags -->
+		<tag group="SkillType" tag="Weapon"/>
+		
+		<!-- Identify combat technique things and level -->		
+		<tag group="ComTchCost" tag="ctSnpSht1"/>
+		<tag group="ComTchCost" tag="ctIndSht2"/>
+		<tag group="ComTchCost" tag="ctLngSht2"/>
+		<tag group="ComTchCost" tag="ctMastrSk2"/>
+		<tag group="ComTchCost" tag="ctRicoch2"/>
+		<tag group="ComTchCost" tag="ctCombin2"/>
+		<tag group="ComTchCost" tag="ctStrkThr3"/>
+		<tag group="ComTchCost" tag="ctDblSht4"/>
+		<tag group="ComTchCost" tag="ctDblTrg4"/>
+		
+		<!-- Specify the attribute to which this skill is linked -->
+		<link linkage="attribute" thing="attrMetal"/>
+    </thing>
+
+<!-- Qiangshu (spears, etc) Skill -->
+	<thing
+		id="skQiangsh"
+		name="Qiangshu"
+		compset="Skill"
+		isunique="yes"
+		description="This Skill covers not only spears, but also halberds and long axes.">
+		<fieldval field="trtAbbrev" value="Qia"/>
+		<fieldval field="sklAlias" value="spears, etc"/>
+		
+		<!-- Tags -->
+		<tag group="SkillType" tag="Weapon"/>
+
+		<!-- Identify combat technique things and level -->		
+		<tag group="ComTchCost" tag="ctCharge1"/>		
+		<tag group="ComTchCost" tag="ctHold1"/>		
+		<tag group="ComTchCost" tag="ctRepel1"/>		
+		<tag group="ComTchCost" tag="ctMounted1"/>		
+		<tag group="ComTchCost" tag="ctDblBlow2"/>		
+		<tag group="ComTchCost" tag="ctDblBlk2"/>		
+		<tag group="ComTchCost" tag="ctSuicAtk2"/>		
+		<tag group="ComTchCost" tag="ctTotBlk3"/>		
+		<tag group="ComTchCost" tag="ctDirect3"/>		
+		<tag group="ComTchCost" tag="ctWhirl3"/>		
+		<tag group="ComTchCost" tag="ctMystif4"/>		
+		<tag group="ComTchCost" tag="ctStrang4"/>		
+		<tag group="ComTchCost" tag="ctCombin4"/>		
+		<tag group="ComTchCost" tag="ctFeint5"/>		
+		<tag group="ComTchCost" tag="ctTrap5"/>		
+		<tag group="ComTchCost" tag="ctBlind5"/>		
+		<tag group="ComTchCost" tag="ctDisarm6"/>		
+		<tag group="ComTchCost" tag="ctKnock6"/>		
+		
+		<!-- Specify the attribute to which this skill is linked -->
+		<link linkage="attribute" thing="attrMetal"/>
+    </thing>	
+
+<!-- Nushu (crossbow) Skill -->
+	<thing
+		id="skNushu"
+		name="Nushu"
+		compset="Skill"
+		isunique="yes"
+		description="The crossbow is an peculiarly complex weapon: for it to be used effectively requires this Skill.">
+		<fieldval field="trtAbbrev" value="Nus"/>
+		<fieldval field="sklAlias" value="crossbows"/>
+		
+		<!-- Tags -->
+		<tag group="SkillType" tag="Weapon"/>
+		
+		<!-- Identify combat technique things and level -->		
+		<tag group="ComTchCost" tag="ctLngSht1"/>
+		<tag group="ComTchCost" tag="ctSnpSht1"/>
+		<tag group="ComTchCost" tag="ctCombin2"/>
+		<tag group="ComTchCost" tag="ctTrap2"/>
+		<tag group="ComTchCost" tag="ctMastrSk3"/>
+		<tag group="ComTchCost" tag="ctStrkThr3"/>
+		<tag group="ComTchCost" tag="ctRicoch4"/>
+		<tag group="ComTchCost" tag="ctMtRngAt4"/>
+		<tag group="ComTchCost" tag="ctDisarm5"/>
+		<tag group="ComTchCost" tag="ctIndSht6"/>
+		
+		<!-- Specify the attribute to which this skill is linked -->
+		<link linkage="attribute" thing="attrMetal"/>
+    </thing>	
+
+<!--
+	***************************************************************
+		Water Skills (Physical)
+	***************************************************************
+-->
+
+<!-- Acrobatics Skill -->
+	<thing
+		id="skAcrob"
+		name="Acrobatics"
+		compset="Skill"
+		isunique="yes"
+		description="This Skill is a measure of the person’s ability to perform complex and challenging physical maneuvers, such as dangerous jumps and balancing on tightropes. A character with this Skill can reduce by half the damage he suffers in a fall by doing an Acrobatics Test whose ST is equal to the distance fallen in yards.">
+		<fieldval field="trtAbbrev" value="Acro"/>
+
+		<!-- If this skill should be shown as an out-of-combat skill on the TacCon, assign this tag
+		<tag group="DashTacCon" tag="NonCombat"/>
+		-->
+
+		<!-- Specify the attribute to which this skill is linked -->
+		<link linkage="attribute" thing="attrWater"/>
+	</thing>
+
+<!-- Craft Skill -->
+	<thing
+		id="skCraft"
+		name="Craft"
+		compset="Skill"
+		isunique="no"
+		description="Choose which specific craft your character has learnt, from a wide range including pottery, rope-making, leatherwork, carpentry, weaving, bow-making, cooking, farming, animal-breeding, and many more.">
+		<fieldval field="trtAbbrev" value="Crft"/>
+		<fieldval field="shortname" value="Craft"/>
+		<tag group="User" tag="NeedDomain"/>
+
+		<!-- If this skill should be shown as an out-of-combat skill on the TacCon, assign this tag
+		<tag group="DashTacCon" tag="NonCombat"/>
+		-->
+
+		<!-- Specify the attribute to which this skill is linked -->
+		<link linkage="attribute" thing="attrWater"/>
+	</thing>
+
+<!-- Stealth Skill -->
+	<thing
+		id="skStealth"
+		name="Stealth"
+		compset="Skill"
+		isunique="yes"
+		description="Choose which specific craft your character has learnt, from a wide range including pottery, rope-making, leatherwork, carpentry, weaving, bow-making, cooking, farming, animal-breeding, and many more.">
+		<fieldval field="trtAbbrev" value="Ste"/>
+
+		<!-- If this skill should be shown as an out-of-combat skill on the TacCon, assign this tag
+		<tag group="DashTacCon" tag="NonCombat"/>
+		-->
+
+		<!-- Specify the attribute to which this skill is linked -->
+		<link linkage="attribute" thing="attrWater"/>
+	</thing>
+
+<!-- Horsemanship Skill -->
+	<thing
+		id="skHorse"
+		name="Horsemanship"
+		compset="Skill"
+		isunique="yes"
+		description="The character can ride horses and indeed any other animal that has been trained to carry people, such as camels and mules. He also knows how to take care of such animals, and to train them.">
+		<fieldval field="trtAbbrev" value="Hor"/>
+
+		<!-- If this skill should be shown as an out-of-combat skill on the TacCon, assign this tag
+		<tag group="DashTacCon" tag="NonCombat"/>
+		-->
+
+		<!-- Specify the attribute to which this skill is linked -->
+		<link linkage="attribute" thing="attrWater"/>
+	</thing>
+
+<!-- Climbing Skill -->
+	<thing
+		id="skClimb"
+		name="Climbing"
+		compset="Skill"
+		isunique="yes"
+		description="This Skill enables a character to climb walls and to shin up trees and ropes. The Success Threshold of the action will depend on the gradient, the presence of footholds, and any equipment the character might have to hand.">
+		<fieldval field="trtAbbrev" value="Cli"/>
+
+		<!-- If this skill should be shown as an out-of-combat skill on the TacCon, assign this tag
+		<tag group="DashTacCon" tag="NonCombat"/>
+		-->
+
+		<!-- Specify the attribute to which this skill is linked -->
+		<link linkage="attribute" thing="attrWater"/>
+	</thing>	
+
+<!-- Dodging Skill -->
+	<thing
+		id="skDodge"
+		name="Dodging"
+		compset="Skill"
+		isunique="yes"
+		description="This Skill is often used in combat where it is essential to avoid being hit by a blow or a missile. But it is also vital when a character wishes to get out of the way of an avalanche or the charge of a knight. Whether he was successful in dodging the threat or not, the character always ends up on the ground a few steps away from his original position.">
+		<fieldval field="trtAbbrev" value="Dod"/>
+
+		<!-- Specify the attribute to which this skill is linked -->
+		<link linkage="attribute" thing="attrWater"/>
+	</thing>	
+
+<!-- Forge Skill -->
+	<thing
+		id="skForge"
+		name="Forge"
+		compset="Skill"
+		isunique="yes"
+		description="This exceptionally important craft includes not only the ability to forge swords and spearheads, but also to create the specific metals needed to make weapons, armor and other objects. But before the Skill can be used, the character will need a workshop and the right tools.">
+		<fieldval field="trtAbbrev" value="For"/>
+		
+		<tag group="User" tag="Trained"/>
+		<tag group="DashTacCon" tag="NonCombat"/>
+		
+		<!-- Specify the attribute to which this skill is linked -->
+		<link linkage="attribute" thing="attrWater"/>
+	</thing>
+
+<!-- Theft Skill -->
+	<thing
+		id="skTheft"
+		name="Theft"
+		compset="Skill"
+		isunique="yes"
+		description="This Skill covers, in particular, pickpocketing, counterfeiting, and picking locks.">
+		<fieldval field="trtAbbrev" value="The"/>
+		
+		<!-- If this skill should be shown as an out-of-combat skill on the TacCon, assign this tag
+		<tag group="DashTacCon" tag="NonCombat"/>
+		-->
+		
+		<!-- Specify the attribute to which this skill is linked -->
+		<link linkage="attribute" thing="attrWater"/>
+	</thing>
+
+<!-- Swimming Skill -->
+	<thing
+		id="skSwim"
+		name="Swimming"
+		compset="Skill"
+		isunique="yes"
+		description="Includes the ability to stay afloat, tread water, move quickly across the surface of the water and to swim underwater.">
+		<fieldval field="trtAbbrev" value="Swi"/>
+		
+		<!-- If this skill should be shown as an out-of-combat skill on the TacCon, assign this tag
+		<tag group="DashTacCon" tag="NonCombat"/>
+		-->
+		
+		<!-- Specify the attribute to which this skill is linked -->
+		<link linkage="attribute" thing="attrWater"/>
+	</thing>
+
+<!-- Survival Skill -->
+	<thing
+		id="skSurv"
+		name="Survival"
+		compset="Skill"
+		isunique="no"
+		description="The character is comfortable in the wild and can survive there for long periods. He is skilled in tracking and hunting. Choose a particular environment, such as jungle, forests, deserts, oceans, or the steppes.">
+		<fieldval field="trtAbbrev" value="Sur"/>
+		<fieldval field="shortname" value="Surv"/>
+		<tag group="User" tag="NeedDomain"/>
+
+		<!-- If this skill should be shown as an out-of-combat skill on the TacCon, assign this tag
+		<tag group="DashTacCon" tag="NonCombat"/>
+		-->
+
+		<!-- Specify the attribute to which this skill is linked -->
+		<link linkage="attribute" thing="attrWater"/>
+	</thing>	
+	
+<!--
+	***************************************************************
+		Fire Skills (Social)
+	***************************************************************
+-->
+<!-- Art Skill -->
+	<thing
+		id="skArt"
+		name="Art"
+		compset="Skill"
+		isunique="no"
+		description="A character may have a specific type of artistic Skill, be it painting, sculpture, poetry, theater, or a type of your choice.">
+		<fieldval field="trtAbbrev" value="Art"/>
+		<fieldval field="shortname" value="Art"/>
+		<tag group="User" tag="NeedDomain"/>
+		<tag group="DashTacCon" tag="NonCombat"/>
+
+		<!-- Specify the attribute to which this skill is linked -->
+		<link linkage="attribute" thing="attrFire"/>
+	</thing>	
+
+<!-- Acting Skill -->
+	<thing
+		id="skAct"
+		name="Acting"
+		compset="Skill"
+		isunique="yes"
+		description="An actor can play roles not only on the stage but also in everyday life. A character with this Skill can use it to lie convincingly or to disguise himself as another.">
+		<fieldval field="trtAbbrev" value="Act"/>
+		<fieldval field="shortname" value="Act"/>
+		
+		<tag group="DashTacCon" tag="NonCombat"/>
+
+		<!-- Specify the attribute to which this skill is linked -->
+		<link linkage="attribute" thing="attrFire"/>
+	</thing>
+
+<!-- Trade Skill -->
+	<thing
+		id="skTrade"
+		name="Trade"
+		compset="Skill"
+		isunique="yes"
+		description="This is a broad Skill, involving both an understanding of the habits and ways of the merchant class and the ability to set up, manage and run a commercial concern. But it may also be useful in assessing the value of objects and haggling. Such situations operate as follows: each character performs an Opposition Test of Fire + Trade. The winner gains a price adjustment of 5% for every point in his margin of victory, up to a maximum of 30%.">
+		<fieldval field="trtAbbrev" value="Tra"/>
+		<fieldval field="shortname" value="Trade"/>
+		
+		<tag group="DashTacCon" tag="NonCombat"/>
+
+		<!-- Specify the attribute to which this skill is linked -->
+		<link linkage="attribute" thing="attrFire"/>
+	</thing>
+
+<!-- Dance Skill -->
+	<thing
+		id="skDance"
+		name="Dance"
+		compset="Skill"
+		isunique="yes"
+		description="The character knows the steps and moves involved in most of the popular and courtly dances of the Warring States.">
+		<fieldval field="trtAbbrev" value="Dan"/>
+		<fieldval field="shortname" value="Dnc"/>
+		
+		<tag group="DashTacCon" tag="NonCombat"/>
+
+		<!-- Specify the attribute to which this skill is linked -->
+		<link linkage="attribute" thing="attrFire"/>
+	</thing>	
+	
+<!-- Diplomacy Skill -->
+	<thing
+		id="skDipl"
+		name="Diplomacy"
+		compset="Skill"
+		isunique="yes"
+		description="This Skill reflects the character’s ability to broker compromises between parties in conflict situations, to deal with disagreements in the most peaceful manner possible by finding mutually acceptable solutions, and sometimes to escape from dangerous situations without resorting to violence.">
+		<fieldval field="trtAbbrev" value="Dip"/>
+		<fieldval field="shortname" value="Dipl"/>
+		
+		<tag group="DashTacCon" tag="NonCombat"/>
+
+		<!-- Specify the attribute to which this skill is linked -->
+		<link linkage="attribute" thing="attrFire"/>
+	</thing>
+	
+<!-- Eloquence Skill -->
+	<thing
+		id="skEloq"
+		name="Eloquence"
+		compset="Skill"
+		isunique="yes"
+		description="The character is persuasive in argument, and knows how to present and develop the right arguments in order to impose his point of view.">
+		<fieldval field="trtAbbrev" value="Elo"/>
+		<fieldval field="shortname" value="Eloq"/>
+		
+		<tag group="DashTacCon" tag="NonCombat"/>
+
+		<!-- Specify the attribute to which this skill is linked -->
+		<link linkage="attribute" thing="attrFire"/>
+	</thing>
+
+<!-- Etiquette Skill -->
+	<thing
+		id="skEtiq"
+		name="Etiquette"
+		compset="Skill"
+		isunique="yes"
+		description="Thanks to this Skill, a character will be comfortable in society, and know how to behave at court, at official ceremonies, and indeed in most social situations.">
+		<fieldval field="trtAbbrev" value="Eti"/>
+		<fieldval field="shortname" value="Etiq"/>
+		
+		<tag group="DashTacCon" tag="NonCombat"/>
+
+		<!-- Specify the attribute to which this skill is linked -->
+		<link linkage="attribute" thing="attrFire"/>
+	</thing>
+	
+<!-- Heraldry Skill -->
+	<thing
+		id="skHerald"
+		name="Heraldry"
+		compset="Skill"
+		isunique="yes"
+		description="This Skill involves knowledge of the emblems and symbols of the different states, army regiments and guilds.">
+		<fieldval field="trtAbbrev" value="Her"/>
+		<fieldval field="shortname" value="Herl"/>
+		
+		<tag group="DashTacCon" tag="NonCombat"/>
+
+		<!-- Specify the attribute to which this skill is linked -->
+		<link linkage="attribute" thing="attrFire"/>
+	</thing>
+	
+<!-- Intimidation Skill -->
+	<thing
+		id="skIntim"
+		name="Intimidation"
+		compset="Skill"
+		isunique="yes"
+		description="This Skill can be used to terrify others into action, whether through impressive physical strength or a threatening way with words. An attempt to intimidate another character may be countered with an Opposition Test, where the object of the attempt tries to resist through a simple Earth Test.">
+		<fieldval field="trtAbbrev" value="Int"/>
+		<fieldval field="shortname" value="Intim"/>
+		
+		<tag group="DashTacCon" tag="NonCombat"/>
+
+		<!-- Specify the attribute to which this skill is linked -->
+		<link linkage="attribute" thing="attrFire"/>
+	</thing>
+	
+<!-- Games Skill -->
+	<thing
+		id="skGames"
+		name="Games"
+		compset="Skill"
+		isunique="yes"
+		description="The character knows the rules and techniques of most popular games, whether card games, dice games, games of chance or games of skill, as well as the noble games of go and chess. He may also try to cheat, but if so the ST of his Test is increased by +1. If his opponents suspect something, they may perform an Opposition Test of Wood + Games to uncover his ruse.">
+		<fieldval field="trtAbbrev" value="Gam"/>
+		<fieldval field="shortname" value="Games"/>
+		
+		<tag group="DashTacCon" tag="NonCombat"/>
+
+		<!-- Specify the attribute to which this skill is linked -->
+		<link linkage="attribute" thing="attrFire"/>
+	</thing>
+	
+<!-- Languages Skill -->
+	<thing
+		id="skLang"
+		name="Languages"
+		compset="Skill"
+		isunique="no"
+		description="All characters speak their mother tongue fluently, and each new language acquired by a character represents a specific Skill. It may be the language of another state, a local dialect, a barbarian tongue or even a secret language.">
+		<fieldval field="trtAbbrev" value="Lang"/>
+		<fieldval field="shortname" value="Lang"/>
+		
+		<tag group="User" tag="NeedDomain"/>
+		<tag group="User" tag="Trained"/>
+		<tag group="DashTacCon" tag="NonCombat"/>
+
+		<!-- Specify the attribute to which this skill is linked -->
+		<link linkage="attribute" thing="attrFire"/>
+	</thing>
+	
+<!-- Music Skill -->
+	<thing
+		id="skMusic"
+		name="Music"
+		compset="Skill"
+		isunique="no"
+		description="The character plays an instrument, has an impressive command of the repertoire associated with that instrument, and even composes and performs his own pieces. Singing can be chosennas a specialty.">
+		<fieldval field="trtAbbrev" value="Mus"/>
+		<fieldval field="shortname" value="Music"/>
+		
+		<tag group="User" tag="NeedDomain"/>
+		<tag group="DashTacCon" tag="NonCombat"/>
+
+		<!-- Specify the attribute to which this skill is linked -->
+		<link linkage="attribute" thing="attrFire"/>
+	</thing>
+
+	<thing
+		id="skSeduc"
+		name="Seduction"
+		compset="Skill"
+		isunique="yes"
+		description="This Skill refers to the art of attracting the attention of others and of winning their love and desire. A character may use his physical, artistic or intellectual charms for the purposes of seduction.">
+		<fieldval field="trtAbbrev" value="Sed"/>
+		<fieldval field="shortname" value="Seduc"/>
+		
+		<tag group="DashTacCon" tag="NonCombat"/>
+
+		<!-- Specify the attribute to which this skill is linked -->
+		<link linkage="attribute" thing="attrFire"/>
+	</thing>
+	
+<!--
+	***************************************************************
+		Wood Skills (Mental)
+	***************************************************************
+-->
+<!-- Architecture Skill -->
+	<thing
+		id="skArch"
+		name="Architecture"
+		compset="Skill"
+		isunique="yes"
+		description="This Skill enables a character to plan and design different types of building in harmony with their environment and according to prevailing standards. It also enables a character to devise and draw up plans, and to construct fortifications.">
+		<fieldval field="trtAbbrev" value="Arc"/>
+		<fieldval field="shortname" value="Arch"/>
+		
+		<tag group="User" tag="Trained"/>
+		<tag group="DashTacCon" tag="NonCombat"/>
+
+		<!-- Specify the attribute to which this skill is linked -->
+		<link linkage="attribute" thing="attrWood"/>
+	</thing>
+	
+<!-- Bureaucracy Skill -->
+	<thing
+		id="skBur"
+		name="Bureaucracy"
+		compset="Skill"
+		isunique="yes"
+		description="The character knows how and where to find official information and documents, and knows how to work the administrative machinery of the states in order to attain his objectives. He understands the functions of the various ministries and royal authorities and the structure of the administrative hierarchies, knows the correct form of address for governors and mayors, and so on.">
+		<fieldval field="trtAbbrev" value="Bur"/>
+		<fieldval field="shortname" value="Bur"/>
+		
+		<tag group="User" tag="Trained"/>
+		<tag group="DashTacCon" tag="NonCombat"/>
+
+		<!-- Specify the attribute to which this skill is linked -->
+		<link linkage="attribute" thing="attrWood"/>
+	</thing>
+	
+<!-- Calligraphy Skill -->
+	<thing
+		id="skCall"
+		name="Calligraphy"
+		compset="Skill"
+		isunique="yes"
+		description="The character can read and write, and understands not just the meaning but also the delicate aesthetic of the complex written language of the states. His Skill is not just a medium for the communication and preservation of information, but also a means of artistic expression. It is also useful in deciphering ancient texts from the time of the old dynasties. And while most officials can read and write, such knowledge is extremely rare in other sectors of society.">
+		<fieldval field="trtAbbrev" value="Cal"/>
+		<fieldval field="shortname" value="Cal"/>
+		
+		<tag group="User" tag="Trained"/>
+		<tag group="DashTacCon" tag="NonCombat"/>
+
+		<!-- Specify the attribute to which this skill is linked -->
+		<link linkage="attribute" thing="attrWood"/>
+	</thing>
+	
+<!-- Herbalism Skill -->
+	<thing
+		id="skHerb"
+		name="Herbalism"
+		compset="Skill"
+		isunique="yes"
+		description="This Skill refers to the knowledge of plants, herbs and other natural products used by alchemists, physicians and pharmacists to create all manner of medicines, dyes and poisons. A character with this Skill can also recognize and identify plants in the wild, and analyze their properties.">
+		<fieldval field="trtAbbrev" value="Her"/>
+		<fieldval field="shortname" value="Herb"/>
+
+		<tag group="DashTacCon" tag="NonCombat"/>
+
+		<!-- Specify the attribute to which this skill is linked -->
+		<link linkage="attribute" thing="attrWood"/>
+	</thing>
+	
+<!-- History Skill -->
+	<thing
+		id="skHist"
+		name="History"
+		compset="Skill"
+		isunique="yes"
+		description="This Skill involves knowledge of the history of the Zhongguo, from its key events, to its reigning dynasties, to its founding myths.">
+		<fieldval field="trtAbbrev" value="His"/>
+		<fieldval field="shortname" value="Hist"/>
+
+		<tag group="DashTacCon" tag="NonCombat"/>
+
+		<!-- Specify the attribute to which this skill is linked -->
+		<link linkage="attribute" thing="attrWood"/>
+	</thing>
+	
+<!-- Investigation Skill -->
+	<thing
+		id="skInv"
+		name="Investigation"
+		compset="Skill"
+		isunique="yes"
+		description="Much sought-after among judges and police authorities, this Skill involves deciphering clues, making connections between different facts, and interrogating and torturing suspects. Any activity involving a search or an inquiry will rely heavily on this Skill.">
+		<fieldval field="trtAbbrev" value="Inv"/>
+		<fieldval field="shortname" value="Inves"/>
+
+		<tag group="DashTacCon" tag="NonCombat"/>
+
+		<!-- Specify the attribute to which this skill is linked -->
+		<link linkage="attribute" thing="attrWood"/>
+	</thing>
+
+<!-- Literature Skill -->
+	<thing
+		id="skLit"
+		name="Literature"
+		compset="Skill"
+		isunique="yes"
+		description="This Skill has two components: the ability to dream up vivid stories and commit them to text in clear and appealing language, and the knowledge of the classic works of the Warring States.">
+		<fieldval field="trtAbbrev" value="Lit"/>
+		<fieldval field="shortname" value="Lit"/>
+
+		<tag group="User" tag="Trained"/>
+		<tag group="DashTacCon" tag="NonCombat"/>
+
+		<!-- Specify the attribute to which this skill is linked -->
+		<link linkage="attribute" thing="attrWood"/>
+	</thing>	
+
+<!-- Law Skill -->
+	<thing
+		id="skLaw"
+		name="Law"
+		compset="Skill"
+		isunique="yes"
+		description="A character with this Skill understands both the laws and the legal systems of the different states, and can draft legal texts and grasp the basic principles of Legalism.">
+		<fieldval field="trtAbbrev" value="Law"/>
+		<fieldval field="shortname" value="Law"/>
+
+		<tag group="User" tag="Trained"/>
+		<tag group="DashTacCon" tag="NonCombat"/>
+
+		<!-- Specify the attribute to which this skill is linked -->
+		<link linkage="attribute" thing="attrWood"/>
+	</thing>	
+
+<!-- Medicine Skill -->
+	<thing
+		id="skMed"
+		name="Medicine"
+		compset="Skill"
+		isunique="yes"
+		description="Knowledge of prevailing medical principles and techniques can enable a character to establish diagnoses, treat illnesses, heal wounds, and understand what caused a death. This Skill includes first aid, acupuncture and massage.">
+		<fieldval field="trtAbbrev" value="Med"/>
+		<fieldval field="shortname" value="Med"/>
+
+		<tag group="User" tag="Trained"/>
+		<tag group="DashTacCon" tag="NonCombat"/>
+
+		<!-- Specify the attribute to which this skill is linked -->
+		<link linkage="attribute" thing="attrWood"/>
+	</thing>
+
+<!-- Navigation Skill -->
+	<thing
+		id="skNav"
+		name="Navigation"
+		compset="Skill"
+		isunique="yes"
+		description="The character understands the procedures and methods associated with the maintenance and running of a ship or boat, and can drive one.">
+		<fieldval field="trtAbbrev" value="Nav"/>
+		<fieldval field="shortname" value="Nav"/>
+
+		<tag group="User" tag="Trained"/>
+		<tag group="DashTacCon" tag="NonCombat"/>
+
+		<!-- Specify the attribute to which this skill is linked -->
+		<link linkage="attribute" thing="attrWood"/>
+	</thing>
+
+<!-- Perception Skill -->
+	<thing
+		id="skPer"
+		name="Perception"
+		compset="Skill"
+		isunique="yes"
+		description="This Skill covers the normal use of a character’s five senses, including any action involving listening, observing, or identifying flavors.">
+		<fieldval field="trtAbbrev" value="Per"/>
+		<fieldval field="shortname" value="Per"/>
+
+		<tag group="DashTacCon" tag="NonCombat"/>
+
+		<!-- Specify the attribute to which this skill is linked -->
+		<link linkage="attribute" thing="attrWood"/>
+	</thing>
+
+<!-- Learning Skill -->
+	<thing
+		id="skLearn"
+		name="Learning"
+		compset="Skill"
+		isunique="no"
+		description="The player must indicate in which field his character is an expert. It must be a specific and clearly-defined area, such as 'fashion', 'local history', 'names and achievements of the great heroes of old', 'forestry', 'philosophy', 'geography', or 'Xiongnu tribes'.">
+		<fieldval field="trtAbbrev" value="Lrn"/>
+		<fieldval field="shortname" value="Lrn"/>
+		
+		<tag group="User" tag="NeedDomain"/>
+		<tag group="DashTacCon" tag="NonCombat"/>
+
+		<!-- Specify the attribute to which this skill is linked -->
+		<link linkage="attribute" thing="attrWood"/>
+	</thing>
+	
+<!-- Science Skill -->
+	<thing
+		id="skScience"
+		name="Science"
+		compset="Skill"
+		isunique="yes"
+		description="This Skill involves expertise in areas as diverse as mathematics, physics, biology, chemistry and astrology.">
+		<fieldval field="trtAbbrev" value="Sci"/>
+		<fieldval field="shortname" value="Sci"/>
+		
+		<tag group="User" tag="Trained"/>
+		<tag group="DashTacCon" tag="NonCombat"/>
+
+		<!-- Specify the attribute to which this skill is linked -->
+		<link linkage="attribute" thing="attrWood"/>
+	</thing>
+	
+<!--
+	***************************************************************
+		Earth Skills (Mystical)
+	***************************************************************
+-->
+
+<!-- External Alchemy Skill -->
+	<thing
+		id="skExtAlch"
+		name="External Alchemy"
+		compset="Skill"
+		isunique="yes"
+		description="This refers to the science of transformation of matter and the search for immortality.">
+		<fieldval field="trtAbbrev" value="ExtA"/>
+		<fieldval field="shortname" value="ExtA"/>
+		
+		<tag group="User" tag="Trained"/>
+		<tag group="DashTacCon" tag="NonCombat"/>
+
+		<!-- Specify the attribute to which this skill is linked -->
+		<link linkage="attribute" thing="attrEarth"/>
+	</thing>
+	
+<!-- Internal Alchemy Skill -->
+	<thing
+		id="skIntAlch"
+		name="Internal Alchemy"
+		compset="Skill"
+		isunique="yes"
+		description="This is that branch of Taoist practice through which immortality can be attained by meditation and fusion with the forces of nature.">
+		<fieldval field="trtAbbrev" value="IntA"/>
+		<fieldval field="shortname" value="IntA"/>
+		
+		<tag group="User" tag="Trained"/>
+		<tag group="DashTacCon" tag="NonCombat"/>
+
+		<!-- Specify the attribute to which this skill is linked -->
+		<link linkage="attribute" thing="attrEarth"/>
+	</thing>
+	
+<!-- Divination Skill -->
+	<thing
+		id="skDivin"
+		name="Divination"
+		compset="Skill"
+		isunique="yes"
+		description="This includes the various methods through which mortal men can see the future and communicate with spirits and earthly deities. It also involves knowledge of feng shui, the science of harmony between human constructions and the forces of nature.">
+		<fieldval field="trtAbbrev" value="Div"/>
+		<fieldval field="shortname" value="Div"/>
+		
+		<tag group="User" tag="Trained"/>
+		<tag group="DashTacCon" tag="NonCombat"/>
+
+		<!-- Specify the attribute to which this skill is linked -->
+		<link linkage="attribute" thing="attrEarth"/>
+	</thing>
+	
+<!-- Empathy Skill -->
+	<thing
+		id="skEmp"
+		name="Empathy"
+		compset="Skill"
+		isunique="yes"
+		description="This Skill is one part psychology to one part intuition, and can be explained as the ability to understand the emotional situation of others, to feel what they are feeling, and to tell whether they are lying.">
+		<fieldval field="trtAbbrev" value="Emp"/>
+		<fieldval field="shortname" value="Emp"/>
+		
+		<tag group="DashTacCon" tag="NonCombat"/>
+
+		<!-- Specify the attribute to which this skill is linked -->
+		<link linkage="attribute" thing="attrEarth"/>
+	</thing>
+	
+<!-- Exorcism Skill -->
+	<thing
+		id="skExor"
+		name="Exorcism"
+		compset="Skill"
+		isunique="yes"
+		description="The Skill of Exorcism provides a way into the world of evil spirits, including ghosts, jiang shi and demons, and an understanding of the means necessary to fight them.">
+		<fieldval field="trtAbbrev" value="Exo"/>
+		<fieldval field="shortname" value="Exor"/>
+		
+		<tag group="User" tag="Trained"/>
+		<tag group="DashTacCon" tag="NonCombat"/>
+
+		<!-- Specify the attribute to which this skill is linked -->
+		<link linkage="attribute" thing="attrEarth"/>
+	</thing>
+
+<!-- Legends Skill -->
+	<thing
+		id="skLeg"
+		name="Legends"
+		compset="Skill"
+		isunique="yes"
+		description="The character knows the mythology and popular tales of the Warring States, and can use his knowledge to relate a particular legend to particular places, names or objects that he may come across. And many legends have more than a grain of truth.">
+		<fieldval field="trtAbbrev" value="Leg"/>
+		<fieldval field="shortname" value="Leg"/>
+		
+		<tag group="DashTacCon" tag="NonCombat"/>
+
+		<!-- Specify the attribute to which this skill is linked -->
+		<link linkage="attribute" thing="attrEarth"/>
+	</thing>
+	
+<!-- Meditation Skill -->
+	<thing
+		id="skMedit"
+		name="Meditation"
+		compset="Skill"
+		isunique="yes"
+		description="With this Skill, a character can clear his mind of all things, or unite his soul with nature, and thereby regenerate his inner power.">
+		<fieldval field="trtAbbrev" value="Mdt"/>
+		<fieldval field="shortname" value="Medit"/>
+		
+		<tag group="DashTacCon" tag="NonCombat"/>
+
+		<!-- Specify the attribute to which this skill is linked -->
+		<link linkage="attribute" thing="attrEarth"/>
+	</thing>
+	
+<!-- Taoism Skill -->
+	<thing
+		id="skTao"
+		name="Taoism"
+		compset="Skill"
+		isunique="yes"
+		description="This Skill involves a global understanding of the tenets of Taoist philosophy and the basic principles of Taoist religious belief.">
+		<fieldval field="trtAbbrev" value="Tao"/>
+		<fieldval field="shortname" value="Tao"/>
+		
+		<tag group="User" tag="Trained"/>
+		<tag group="DashTacCon" tag="NonCombat"/>
+
+		<!-- Specify the attribute to which this skill is linked -->
+		<link linkage="attribute" thing="attrEarth"/>
+	</thing>
+	
+<!-- Theology Skill -->
+	<thing
+		id="skTheo"
+		name="Theology"
+		compset="Skill"
+		isunique="yes"
+		description="This refers to knowledge of the theoretical bases of the main religions, their holy books and sacred rituals. It includes knowledge of the many gods and immortals of the World of Heaven, not just their names but their personalities, their powers and their domains of influence.">
+		<fieldval field="trtAbbrev" value="The"/>
+		<fieldval field="shortname" value="Theol"/>
+		
+		<tag group="DashTacCon" tag="NonCombat"/>
+
+		<!-- Specify the attribute to which this skill is linked -->
+		<link linkage="attribute" thing="attrEarth"/>
+	</thing>
+	
+	<!-- Custom Skill -->
+	<thing
+		id="skCustom"
+		name="- Custom Skill -"
+		compset="Skill"
+		isunique="no"
+		description="Custom skill.">
+		<fieldval field="trtAbbrev" value="Cst"/>
+		<fieldval field="shortname" value="Custom"/>
+		
+		<tag group="DashTacCon" tag="NonCombat"/>
+		<tag group="Helper" tag="CustomItem"/>
+
+		<!-- Specify the attribute to which this skill is linked
+		<link linkage="attribute" thing="attrEarth"/>
+		 -->
+		 <eval index="1" phase="Setup" priority="100"><![CDATA[
+			if (field[domDomain].isempty = 0) then
+				field[livename].text = field[domDomain].text
+			endif
+		]]></eval>
+	</thing>
+	
+</document>

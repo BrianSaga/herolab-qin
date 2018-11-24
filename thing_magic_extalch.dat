@@ -1,0 +1,799 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!-- This file contains the assortment of skills for the game system. Note that each
+      skill is linked to an associated attribute for the character. This linkage allows
+      the value of the skill to easily incorporate the effects of the linked attribute
+      via a script on the component.
+-->
+
+<document signature="Hero Lab Data">
+
+<!--
+	***************************************************************
+		External Alchemy Techniques
+	***************************************************************
+-->
+
+<!-- Purify the Field of Cinnabar -->
+	<thing
+		id="maPurify"
+		name="Purify the Field of Cinnabar"
+		compset="Magic"
+		isunique="yes"
+		description="Stagnant water and rotten fruit and meat have a significant Yin imbalance. By blending them with Yang substances, the alchemist can develop a potion capable of resolving any health problems linked to the consumption of food and drink.\n\n This potion can also be added directly to a questionable foodstuff or drink in order to protect the consumer against any possible ill-effects.">
+		<fieldval field="trtAbbrev" value="PfC"/>
+		
+		<fieldval field="trtUser" value="1"/>
+		<fieldval field="maPrep" value="Three double hours"/>
+		<fieldval field="maPrepST" value="7"/>
+		<fieldval field="maDur" value="Instantaneous"/>
+		<fieldval field="chiCost" value="6"/>
+		<fieldval field="maImprove" value="N/A"/>
+		
+
+		<tag group="Way" tag="ExtAlchemy"/>
+		<tag group="User" tag="Potion"/>
+		
+<link linkage="magicskill" thing="skExtAlch"/>
+ <!-- Uncomment for prerequisites
+		<exprreq message="Calligraphy 1+ required."><![CDATA[
+			#traitfound[skCall] >= 1
+		]]></exprreq>
+		-->
+    </thing>
+
+<!-- The Silence of the Lake -->
+	<thing
+		id="maSilence"
+		name="The Silence of the Lake"
+		compset="Magic"
+		isunique="yes"
+		description="This extremely potent potion acts on the senses, weighing them down and plunging the target into a deep sleep. It can be administered to a person either by adding it to his food or drink, or throwing it at him to make him breathe the fumes. The victim must perform a Resistance Test with an ST of 5 plus any increase due to an extra Chi investment. If he fails the Test, he loses consciousness immediately. For every hour that he remains unconscious, the ST for the Resistance Test falls by 1. When it reaches 0, the victim comes to. If anyone tries to help the victim by trying to wake him up, the victim can attempt another Resistance Test against the current ST. If he succeeds, he wakes up.">
+		<fieldval field="trtAbbrev" value="SotL"/>
+		
+		<fieldval field="trtUser" value="1"/>
+		<fieldval field="maPrep" value="Six double hours"/>
+		<fieldval field="maPrepST" value="7"/>
+		<fieldval field="maDur" value="Instantaneous"/>
+		<fieldval field="chiCost" value="4"/>
+		<fieldval field="maImprove" value="For each extra Chi point used, the ST for the victim’s Resistance Test is increased by 1, up to a maximum equal to the alchemist’s External Alchemy Level."/>
+		
+
+		<tag group="Way" tag="ExtAlchemy"/>
+		<tag group="User" tag="Potion"/>
+		
+<link linkage="magicskill" thing="skExtAlch"/>
+ <!-- Uncomment for prerequisites
+		<exprreq message="Calligraphy 1+ required."><![CDATA[
+			#traitfound[skCall] >= 1
+		]]></exprreq>
+		-->
+    </thing>	
+
+<!-- The Meeting of Tiger and Dragon -->
+	<thing
+		id="maMeeting"
+		name="The Meeting of Tiger and Dragon"
+		compset="Magic"
+		isunique="yes"
+		description="When a person is ill, there is a disturbance in his inner harmony and an imbalance between his Yin and Yang. This potion accelerates the flow of energies through the body and is thus conducive to the re-establishment of a harmonious balance.\n\n As soon as a sick character consumes the potion, the Interval between his Resistance Tests against the Virulence of the disease is halved. In addition, the character adds to the results of his Resistance Tests the Success Margin of the alchemist’s potion preparation Test, together with any increase due to an extra investment of Chi.">
+		<fieldval field="trtAbbrev" value="MoTD"/>
+		
+		<fieldval field="trtUser" value="1"/>
+		<fieldval field="maPrep" value="Six double hours"/>
+		<fieldval field="maPrepST" value="7"/>
+		<fieldval field="maDur" value="Until the disease is cured"/>
+		<fieldval field="chiCost" value="4"/>
+		<fieldval field="maImprove" value="For every 2 extra Chi points used, the alchemist increases the bonus on the patient’s Resistance Tests by 1."/>
+		
+
+		<tag group="Way" tag="ExtAlchemy"/>
+		<tag group="User" tag="Potion"/>
+		
+<link linkage="magicskill" thing="skExtAlch"/>
+ <!-- Uncomment for prerequisites
+		<exprreq message="Calligraphy 1+ required."><![CDATA[
+			#traitfound[skCall] >= 1
+		]]></exprreq>
+		-->
+    </thing>	
+	
+<!-- From Bud to Flower -->
+	<thing
+		id="maBudToFl"
+		name="From Bud to Flower"
+		compset="Magic"
+		isunique="yes"
+		description="The alchemist concocts a potion into which he concentrates all the energy of one Element. By taking the potion, a character adds that elemental energy to his own for the duration of the potion’s effects, until it disperses into the atmosphere.\n\n The practical effect is that the character taking the potion increases one of his Aspect values by 1. The Aspect value is chosen by the alchemist. This increase affects the character’s use of Taos and Magic, as well as the damage he inflicts and suffers. But it does not directly affect his Chi and Breath of Life totals. The potion carries with it the risk of a serious imbalance of vital energy, so must be consumed with great care. Acharacter cannot combine the effects of two potions designed to increase the same Aspect. And while it is possible to take two potions acting on different Aspects at the same time, drinking several may prove dangerous. Any character that consumes the potion must perform a Resistance Test whose ST is set out in the table below:\n1 Potion ST 7\n2 Potions ST 11\n3 Potions ST 15\n4 Potions ST 19\n\nShould the character fail in his Resistance Test, his relevant Aspect value falls by 1 for the duration of the potion’s effects. If he drinks several potions, and fails a Resistance Test, then all his relevant Aspect values are reduced, even if his earlier Resistance Tests were successful. If any of the character’s Aspect values fall to zero, then he  falls into a coma for the duration of the potion’s effects.">
+		<fieldval field="trtAbbrev" value="FBtF"/>
+		
+		<fieldval field="trtUser" value="2"/>
+		<fieldval field="maPrep" value="Two days"/>
+		<fieldval field="maPrepST" value="9"/>
+		<fieldval field="maDur" value="One hour per Skill Level in External Alchemy"/>
+		<fieldval field="chiCost" value="4"/>
+		<fieldval field="maImprove" value="Duration can be extended by one hour for every 3 Chi extra points used."/>
+		
+
+		<tag group="Way" tag="ExtAlchemy"/>
+		<tag group="User" tag="Potion"/>
+		
+<link linkage="magicskill" thing="skExtAlch"/>
+ <!-- Uncomment for prerequisites
+		<exprreq message="Calligraphy 1+ required."><![CDATA[
+			#traitfound[skCall] >= 1
+		]]></exprreq>
+		-->
+    </thing>
+	
+<!-- Feed the Clay Warrior -->
+	<thing
+		id="maFeedClay"
+		name="Feed the Clay Warrior"
+		compset="Magic"
+		isunique="yes"
+		description="This potion stimulates the flow of Chi through the vital organs and facilitates the recovery of lost Breath of Life. Any character who consumes the potion recovers a number of Breath of Life boxes equal to the alchemist’s External Alchemy Level plus any extra boxes due to any additional investment of Chi. It is impossible for a character to use this potion to go beyond his maximum Breath of Life.">
+		<fieldval field="trtAbbrev" value="Clay"/>
+		
+		<fieldval field="trtUser" value="2"/>
+		<fieldval field="maPrep" value="One day"/>
+		<fieldval field="maPrepST" value="7"/>
+		<fieldval field="maDur" value="Instantaneous"/>
+		<fieldval field="chiCost" value="4"/>
+		<fieldval field="maImprove" value="The potion regenerates one box of Breath of Life for each extra Chi point used."/>
+		
+
+		<tag group="Way" tag="ExtAlchemy"/>
+		<tag group="User" tag="Potion"/>
+		
+<link linkage="magicskill" thing="skExtAlch"/>
+ <!-- Uncomment for prerequisites
+		<exprreq message="Calligraphy 1+ required."><![CDATA[
+			#traitfound[skCall] >= 1
+		]]></exprreq>
+		-->
+    </thing>
+
+<!-- Arouse the Winds of Heaven and Earth -->
+	<thing
+		id="maArouse"
+		name="Arouse the Winds of Heaven and Earth"
+		compset="Magic"
+		isunique="yes"
+		description="The alchemist creates a potion into which he concentrates the energy of the Elements, together with a quantity of Chi, the universal source of life. Any character who consumes the potion immediately recovers Chi. He can even double his maximum Chi (but not go beyond), but once he uses these extra points, he cannot get them back again.">
+		<fieldval field="trtAbbrev" value="Aros"/>
+		
+		<fieldval field="trtUser" value="2"/>
+		<fieldval field="maPrep" value="One day"/>
+		<fieldval field="maPrepST" value="7"/>
+		<fieldval field="maDur" value="Instantaneous"/>
+		<fieldval field="chiCost" value="1 for every Chi point transfered"/>
+		<fieldval field="maImprove" value="N/A"/>
+		
+
+		<tag group="Way" tag="ExtAlchemy"/>
+		<tag group="User" tag="Potion"/>
+		
+<link linkage="magicskill" thing="skExtAlch"/>
+ <!-- Uncomment for prerequisites
+		<exprreq message="Calligraphy 1+ required."><![CDATA[
+			#traitfound[skCall] >= 1
+		]]></exprreq>
+		-->
+    </thing>	
+
+<!-- Freeze the River -->
+	<thing
+		id="maFreeze"
+		name="Freeze the River"
+		compset="Magic"
+		isunique="yes"
+		description="This formidable potion has the devastating effect of completely freezing the flow of Chi through the victim's body for a defined period of time. This happens whether the victim drinks the potion or merely breathes its fumes. The victim is paralyzed, his body becomes rigid and he suffers crippling cramps. He is unable to breathe properly or to move. It is said that if the Chi is frozen for too long, the victim will die, but no alchemist has yet achieved this.\n\n Any character who comes into contact with the potion must perform a Resistance Test with an ST of 7. If he succeeds, he suffers no ill-effects. If he fails, he becomes unable to do anything or spend any Chi for the duration of the effects of the potion.">
+		<fieldval field="trtAbbrev" value="Frz"/>
+		
+		<fieldval field="trtUser" value="2"/>
+		<fieldval field="maPrep" value="Three days"/>
+		<fieldval field="maDur" value="A number of rounds equal to the alchemist’sbExternal Alchemy Level"/>
+		<fieldval field="maPrepST" value="9"/>
+		<fieldval field="chiCost" value="4"/>
+		<fieldval field="maImprove" value="The ST of the Resistance Test imposed by the potion is increased by 1, or the potion’s effects prolonged by 1 round, for every 2 extra Chi points used."/>
+		
+
+		<tag group="Way" tag="ExtAlchemy"/>
+		<tag group="User" tag="Potion"/>
+		
+<link linkage="magicskill" thing="skExtAlch"/>
+ <!-- Uncomment for prerequisites
+		<exprreq message="Calligraphy 1+ required."><![CDATA[
+			#traitfound[skCall] >= 1
+		]]></exprreq>
+		-->
+    </thing>
+
+<!-- Torture of the Thousand Needles -->
+	<thing
+		id="maTorture"
+		name="Torture of the Thousand Needles"
+		compset="Magic"
+		isunique="yes"
+		description="This potion must be spread on the victim’s skin. Once in place, it reacts with air to burn like an acid. The more the victim moves, the more he refreshes the potion’s supply of air and the more corrosive it becomes. Those that know the offensive stench of the potion know also that the best way to deal with it is to stay still until its effects cease. In a combat situation, a character daubed with this potion loses one Breath of Life box at the start of each round during the Initiative Test. He also loses one Breath of Life box for each sudden movement he makes, even if the movement does not require an action. A box is lost for every attack, Active Defense, movement or free action produced by a Tao or Combat Technique. This continues until the potion’s effects are exhausted. In a non-combat situation, the potion causes a character to automatically lose a number of Breath of Life boxes equal to the number of rounds during which the potion takes effect. Many are too weak to control their body while their flesh is being burnt by a mysterious acid, but a victim who twitches, convulses or makes any movement suffers damage points equal to his Water value for each round that the potion takes effect. He will need to perform a Resistance Test with an ST of 9 to regain focus and control over his movements.">
+		<fieldval field="trtAbbrev" value="Frz"/>
+		
+		<fieldval field="trtUser" value="2"/>
+		<fieldval field="maPrep" value="One week"/>
+		<fieldval field="maDur" value="A number of rounds equal to the alchemist’s External Alchemy Level"/>
+		<fieldval field="maPrepST" value="9"/>
+		<fieldval field="chiCost" value="4"/>
+		<fieldval field="maImprove" value="The potion’s effects are prolonged by one round for every 2 extra Chi points used."/>
+		
+
+		<tag group="Way" tag="ExtAlchemy"/>
+		<tag group="User" tag="Potion"/>
+		
+<link linkage="magicskill" thing="skExtAlch"/>
+ <!-- Uncomment for prerequisites
+		<exprreq message="Calligraphy 1+ required."><![CDATA[
+			#traitfound[skCall] >= 1
+		]]></exprreq>
+		-->
+    </thing>	
+
+<!-- Disperse Venom -->
+	<thing
+		id="maDisperse"
+		name="Disperse Venom"
+		compset="Magic"
+		isunique="yes"
+		description="Where a person has taken poison, this potion reinforces his natural flow of Chi and assists the body’s natural defenses in fighting the toxins. The poison’s Virulence is reduced by a number of points equal to the alchemist’s External Alchemy Level, plus any extra points due to an additional investment of Chi. The victim of the poison gets to perform an extra Resistance Test against the reduced Virulence.">
+		<fieldval field="trtAbbrev" value="Disp"/>
+		
+		<fieldval field="trtUser" value="3"/>
+		<fieldval field="maPrep" value="Three days"/>
+		<fieldval field="maDur" value="Instantaneous"/>
+		<fieldval field="maPrepST" value="9"/>
+		<fieldval field="chiCost" value="4"/>
+		<fieldval field="maImprove" value="The poison’s Virulence is reduced by 1 for each extra Chi point used."/>
+		
+
+		<tag group="Way" tag="ExtAlchemy"/>
+		<tag group="User" tag="Potion"/>
+		
+<link linkage="magicskill" thing="skExtAlch"/>
+ <!-- Uncomment for prerequisites
+		<exprreq message="Calligraphy 1+ required."><![CDATA[
+			#traitfound[skCall] >= 1
+		]]></exprreq>
+		-->
+    </thing>
+
+<!-- Revive the Dead Branch -->
+	<thing
+		id="maRevive"
+		name="Revive the Dead Branch"
+		compset="Magic"
+		isunique="yes"
+		description="An alchemist may use this potion to stimulate and re-energize the flow of Chi to such an extent as to revive a dead limb, organ, or sense.\n\n In order to benefit from this potion, the limb, organ, or sense must not have been physically destroyed : an alchemist can give a man back his sight or his hearing, and heal the paralyzed, but cannot replace a severed arm or a lost eye.\n\n The character who consumes the potion feels life gradually return to the affected area : after a day, he will be able to use it once more.">
+		<fieldval field="trtAbbrev" value="Rev"/>
+		
+		<fieldval field="trtUser" value="3"/>
+		<fieldval field="maPrep" value="One month"/>
+		<fieldval field="maDur" value="Instantaneous"/>
+		<fieldval field="maPrepST" value="11"/>
+		<fieldval field="chiCost" value="10"/>
+		<fieldval field="maImprove" value="N/A"/>
+		
+
+		<tag group="Way" tag="ExtAlchemy"/>
+		<tag group="User" tag="Potion"/>
+		
+<link linkage="magicskill" thing="skExtAlch"/>
+ <!-- Uncomment for prerequisites
+		<exprreq message="Calligraphy 1+ required."><![CDATA[
+			#traitfound[skCall] >= 1
+		]]></exprreq>
+		-->
+    </thing>
+
+<!-- The Destructive Tide -->
+	<thing
+		id="maDestruct"
+		name="The Destructive Tide"
+		compset="Magic"
+		isunique="yes"
+		description="The Destructive Tide corrodes everything that it comes into contact with. It is carried in specially-designed ceramic gourds, and used as an offensive weapon.\n\n An opponent hit by the Devastating Water immediately loses a number of Breath of Life boxes equal to the alchemist’s (Wood + External Alchemy), plus any additional damage from an extra investment of Chi points. Armor offers no protection, and indeed is destroyed by the Water along with any clothing the character may be wearing. The Water tears through the skin, causing a hideous scar and, if the Games Master so wishes, a reduction in the victim’s Fire Level.">
+		<fieldval field="trtAbbrev" value="Des"/>
+		
+		<fieldval field="trtUser" value="3"/>
+		<fieldval field="maPrep" value="Three days"/>
+		<fieldval field="maDur" value="Instantaneous"/>
+		<fieldval field="maPrepST" value="10"/>
+		<fieldval field="chiCost" value="4"/>
+		<fieldval field="maImprove" value="The damage caused by the potion is increased by 1 for every 2 extra Chi points used, up to a maximum equal to twice the alchemist’s External Alchemy Level."/>
+		
+
+		<tag group="Way" tag="ExtAlchemy"/>
+		<tag group="User" tag="Potion"/>
+		
+<link linkage="magicskill" thing="skExtAlch"/>
+ <!-- Uncomment for prerequisites
+		<exprreq message="Calligraphy 1+ required."><![CDATA[
+			#traitfound[skCall] >= 1
+		]]></exprreq>
+		-->
+    </thing>
+
+<!-- Evil on the Air -->
+	<thing
+		id="maEvilAir"
+		name="Evil on the Air"
+		compset="Magic"
+		isunique="yes"
+		description="At this advanced Skill Level, the alchemist has mastered the ability of manufacturing a potion in gaseous form. His potions have the same effects, but take the form of a cloud of vapor which bursts forth from a broken flask to fill the air and affect anyone in the vicinity who inhales it. Where a vapor is used in an enclosed space, it affects all the people in that space. If used in an open-air environment sheltered from the wind, such as an alleyway, a deep valley or a dense forest, it takes effect within a threeyard radius of the point of impact. In a wide open space, the winds take it and it disperses harmlessly into the air. Since the vapor affects any and all within its reach, the alchemist must take careful precautions in order to protect himself from it. A simple damp cloth across the face will be sufficient to protect him in many cases, but not in all. The safest course is to arrange to be far away when the gas is released.">
+		<fieldval field="trtAbbrev" value="Evil"/>
+		
+		<fieldval field="trtUser" value="3"/>
+		<fieldval field="maPrep" value="Double the Preparation time of the potion to be vaporized"/>
+		<fieldval field="maDur" value="Same as the potion to be vaporized"/>
+		<fieldval field="maPrepST" value="ST of the potion to be vaporized + 2"/>
+		<fieldval field="chiCost" value="Double that of the potion to be vaporized"/>
+		<fieldval field="maImprove" value="Same as those of the potion to be vaporized"/>
+		
+
+		<tag group="Way" tag="ExtAlchemy"/>
+		<tag group="User" tag="Potion"/>
+		
+<link linkage="magicskill" thing="skExtAlch"/>
+ <!-- Uncomment for prerequisites
+		<exprreq message="Calligraphy 1+ required."><![CDATA[
+			#traitfound[skCall] >= 1
+		]]></exprreq>
+		-->
+    </thing>
+
+<!-- From Flower to Seed -->
+	<thing
+		id="maFlower"
+		name="From Flower to Seed"
+		compset="Magic"
+		isunique="yes"
+		description="Through this potion, the alchemist can breathe a phenomenal quantity of elemental energy into a person, while still avoiding a serious imbalance in that person's inner energy.\n\n A character who consumes the potion gains 2 in one of his Aspect values. This increase affects the character’s use of Taos and Magic, as well as the damage he inflicts and suffers. But it does not directly affect his Chi and Breath of Life totals. Acharacter may not combine two potions designed to increase the same Aspect. While he may take several potions acting on different Aspects at the same time, this can prove dangerous. Any character that consumes the potion must perform a Resistance Test whose ST is set out in the table below:\n 1 Potion ST 7\n 2 Potions ST 11\n 3 Potions ST 15\n 4 Potions ST 19\n\n Should the character fail in his Resistance Test, his relevant Aspect value falls by 2 for the duration of the potion’s effects. If he drinks several potions and fails a Resistance Test, then all the relevant Aspect values are reduced, even if he succeeded in an earlier Resistance Test. If any of the character’s Aspect values fall to zero, he falls into a coma for the duration of the potion’s effects.">
+		<fieldval field="trtAbbrev" value="FlSd"/>
+		
+		<fieldval field="trtUser" value="4"/>
+		<fieldval field="maPrep" value="One week"/>
+		<fieldval field="maDur" value="A number of small hours equal to the alchemist’s External Alchemy Level"/>
+		<fieldval field="maPrepST" value="11"/>
+		<fieldval field="chiCost" value="8"/>
+		<fieldval field="maImprove" value="The effects of the potion are prolonged by one hour for every 4 extra Chi points used."/>
+		
+
+		<tag group="Way" tag="ExtAlchemy"/>
+		<tag group="User" tag="Potion"/>
+		
+<link linkage="magicskill" thing="skExtAlch"/>
+ <!-- Uncomment for prerequisites
+		<exprreq message="Calligraphy 1+ required."><![CDATA[
+			#traitfound[skCall] >= 1
+		]]></exprreq>
+		-->
+    </thing>
+
+<!-- The Breath of Renewal -->
+	<thing
+		id="maBreath"
+		name="The Breath of Renewal"
+		compset="Magic"
+		isunique="yes"
+		description="With this potion, a character may expel that part of his vital principle which has been corrupted and replace it with a pure form. The potion eliminates any trace of disease, sideeffect or long-term injury, no matter how serious, from any person who consumes it. But the regenerative power of the potion does not extend to curing the plague, leprosy or any other incurable disease.">
+		<fieldval field="trtAbbrev" value="Brth"/>
+		
+		<fieldval field="trtUser" value="4"/>
+		<fieldval field="maPrep" value="One week"/>
+		<fieldval field="maDur" value="Instantaneous"/>
+		<fieldval field="maPrepST" value="11"/>
+		<fieldval field="chiCost" value="15"/>
+		<fieldval field="maImprove" value="N/A"/>
+		
+
+		<tag group="Way" tag="ExtAlchemy"/>
+		<tag group="User" tag="Potion"/>
+		
+<link linkage="magicskill" thing="skExtAlch"/>
+ <!-- Uncomment for prerequisites
+		<exprreq message="Calligraphy 1+ required."><![CDATA[
+			#traitfound[skCall] >= 1
+		]]></exprreq>
+		-->
+    </thing>
+	
+  <!-- The Powder of Thunder -->
+	<thing
+		id="maPowder"
+		name="The Powder of Thunder"
+		compset="Magic"
+		isunique="yes"
+		description="The Powder of Thunder is a unique formula both feared and respected by alchemists. While extremely dangerous to concoct, it is a priceless ally in combat.\n\n Even a Master Alchemist runs a very real risk of instant death when preparing the powder. If he fails the Test of Earth + External Alchemy, the powder explodes in his face, he suffers normal damage, and his laboratory may well be ruined.\n\n But if the alchemist succeeds, he gains a mighty weapon, with the power to destroy both opponents and objects alike. The Powder of Thunder generates a sudden explosion affecting anyone and anything within three yards. Anyone hit by such an explosion loses a number of Breath of Life boxes equal to the alchemist’s (Wood + External Alchemy), plus any additional damage from any extra Chi investment. Damage can be reduced by armor. The downside to the Powder of Thunder is that it needs to be set alight in order to take effect. This increases the risk that the alchemist will be caught in the explosion, and makes it very difficult to use the Powder in a combat situation.">
+		<fieldval field="trtAbbrev" value="Pwdr"/>
+		
+		<fieldval field="trtUser" value="4"/>
+		<fieldval field="maPrep" value="Three days"/>
+		<fieldval field="maDur" value="Instantaneous"/>
+		<fieldval field="maPrepST" value="13"/>
+		<fieldval field="chiCost" value="6"/>
+		<fieldval field="maImprove" value="The damage caused by the powder is increased by 1 point for every extra Chi point used."/>
+		
+
+		<tag group="Way" tag="ExtAlchemy"/>
+		<tag group="User" tag="Potion"/>
+		
+<link linkage="magicskill" thing="skExtAlch"/>
+ <!-- Uncomment for prerequisites
+		<exprreq message="Calligraphy 1+ required."><![CDATA[
+			#traitfound[skCall] >= 1
+		]]></exprreq>
+		-->
+    </thing>	
+<!-- Elixir -->
+	<thing
+		id="maElixir"
+		name="Elixir"
+		compset="Magic"
+		isunique="yes"
+		description="The Elixir channels the internal energy flows of a person who takes it in such a way that his energy flows in a perfect circuit, and none is dissipated. This protects the person from the effects of aging for a whole year. At the end of the year, the Elixir ceases to take effect and the process of aging recommences. The character may then use another Elixir.">
+		<fieldval field="trtAbbrev" value="Elxr"/>
+		
+		<fieldval field="trtUser" value="3"/>
+		<fieldval field="maPrep" value="One month"/>
+		<fieldval field="maDur" value="One year"/>
+		<fieldval field="maPrepST" value="13"/>
+		<fieldval field="chiCost" value="20"/>
+		<fieldval field="maImprove" value="N/A"/>
+		
+
+		<tag group="Way" tag="ExtAlchemy"/>
+		<tag group="User" tag="Elixir"/>
+		
+<link linkage="magicskill" thing="skExtAlch"/>
+ <!-- Uncomment for prerequisites
+		<exprreq message="Calligraphy 1+ required."><![CDATA[
+			#traitfound[skCall] >= 1
+		]]></exprreq>
+		-->
+    </thing>	
+
+<!-- Elixir Absolute -->
+	<thing
+		id="maElixirAb"
+		name="Elixir Absolute"
+		compset="Magic"
+		isunique="yes"
+		description="Elixir Absolute is a concentrated essence of the Elixir, able to regulate a person’s flow of Chi with a precision of an internal energy clock. A person who takes the Absolute does not age for ten years. Moreover, in theory he does not need to eat or drink, unless he spends his Chi and wishes to replenish it. At the end of the ten-year period, the process of aging recommences and the person once again needs to eat and drink. He may of course take another Absolute.">
+		<fieldval field="trtAbbrev" value="Elxr"/>
+		
+		<fieldval field="trtUser" value="4"/>
+		<fieldval field="maPrep" value="Three months"/>
+		<fieldval field="maDur" value="Ten years"/>
+		<fieldval field="maPrepST" value="15"/>
+		<fieldval field="chiCost" value="40"/>
+		<fieldval field="maImprove" value="N/A"/>
+		
+
+		<tag group="Way" tag="ExtAlchemy"/>
+		<tag group="User" tag="Elixir"/>
+		
+<link linkage="magicskill" thing="skExtAlch"/>
+ <!-- Uncomment for prerequisites
+		<exprreq message="Calligraphy 1+ required."><![CDATA[
+			#traitfound[skCall] >= 1
+		]]></exprreq>
+		-->
+    </thing>
+
+<!-- Fur of the Hare -->
+	<thing
+		id="maFurHare"
+		name="Fur of the Hare"
+		compset="Magic"
+		isunique="yes"
+		description="This ointment protects the user from the weather by maintaining his body at a constant temperature. The user becomes far more resistant to extremes of temperature.\n\nWhenever the user find himself in an environment involving extreme temperatures, such as the desert or the mountains, he obtains a bonus on his Resistance Tests equal to the alchemist’s External Alchemy Level plus any extra bonus from an extra Chi investment.">
+		<fieldval field="trtAbbrev" value="FrHr"/>
+		
+		<fieldval field="trtUser" value="1"/>
+		<fieldval field="maPrep" value="Three double hours"/>
+		<fieldval field="maDur" value="One day"/>
+		<fieldval field="maPrepST" value="5"/>
+		<fieldval field="chiCost" value="1"/>
+		<fieldval field="maImprove" value="The user receives a bonus of 1 on his Resistance Tests for each extra Chi point used."/>
+		
+
+		<tag group="Way" tag="ExtAlchemy"/>
+		<tag group="User" tag="Ointment"/>
+		
+<link linkage="magicskill" thing="skExtAlch"/>
+ <!-- Uncomment for prerequisites
+		<exprreq message="Calligraphy 1+ required."><![CDATA[
+			#traitfound[skCall] >= 1
+		]]></exprreq>
+		-->
+    </thing>
+
+<!-- Repel Vermin -->
+	<thing
+		id="maRlVerm"
+		name="Repel Vermin"
+		compset="Magic"
+		isunique="yes"
+		description="This thick paste, rich in plant and vegetable matter, exudes a strong aroma that is offensive to insects and small animals : ants, spiders, mosquitoes, even rats and snakes. Such beasts are literally repelled by the smell and will not approach any person covered in it. To humans, the smell is strong, certainly recognizable, but not inherently unpleasant.\n\nThe paste can also be burnt in an enclosed space such as a house or barn to prevent vermin from entering the space. This is often the best way to protect grain stocks from bugs and weevils.">
+		<fieldval field="trtAbbrev" value="RpVm"/>
+		
+		<fieldval field="trtUser" value="1"/>
+		<fieldval field="maPrep" value="Three double hours"/>
+		<fieldval field="maDur" value="One day"/>
+		<fieldval field="maPrepST" value="5"/>
+		<fieldval field="chiCost" value="2"/>
+		<fieldval field="maImprove" value="The effects of the ointment are prolonged by one day for every 2 extra Chi points used"/>
+		
+
+		<tag group="Way" tag="ExtAlchemy"/>
+		<tag group="User" tag="Ointment"/>
+		
+<link linkage="magicskill" thing="skExtAlch"/>
+ <!-- Uncomment for prerequisites
+		<exprreq message="Calligraphy 1+ required."><![CDATA[
+			#traitfound[skCall] >= 1
+		]]></exprreq>
+		-->
+    </thing>	
+
+<!-- Purify the River -->
+	<thing
+		id="maPurRiv"
+		name="Purify the River"
+		compset="Magic"
+		isunique="yes"
+		description="This tried-and-tested pharmaceutical lotion has long been known as one of the most effective of modern times. A person whose body is covered with it becomes impervious to external impurities and therefore completely resistant to disease. The lotion cannot cure an established disease, but should prevent the user catching a disease in the first place.\n\n One of the specificities of the lotion is that it works by penetrating deep into the skin. This means that it does not wash off, and normally lasts a week. Those who can afford regular applications can therefore be wellprotected against illness.\n\n For the duration of the location’s effects, the user obtains a bonus equal to the alchemist’s External Alchemy Level on his Resistance Tests against the Contagiousness of a disease.">
+		<fieldval field="trtAbbrev" value="PrRv"/>
+		
+		<fieldval field="trtUser" value="1"/>
+		<fieldval field="maPrep" value="One day"/>
+		<fieldval field="maDur" value="One day"/>
+		<fieldval field="maPrepST" value="7"/>
+		<fieldval field="chiCost" value="3"/>
+		<fieldval field="maImprove" value="The effect of the ointment is prolonged by a week for every 3 extra Chi points used"/>
+		
+
+		<tag group="Way" tag="ExtAlchemy"/>
+		<tag group="User" tag="Ointment"/>
+		
+<link linkage="magicskill" thing="skExtAlch"/>
+ <!-- Uncomment for prerequisites
+		<exprreq message="Calligraphy 1+ required."><![CDATA[
+			#traitfound[skCall] >= 1
+		]]></exprreq>
+		-->
+    </thing>
+	
+<!-- Hide of the Ox -->
+	<thing
+		id="maHideOx"
+		name="Hide of the Ox"
+		compset="Magic"
+		isunique="yes"
+		description="This is a smooth cream with an acrid odor. When applied to the skin, it takes on the appearance and texture of tanned leather, protecting the body of the user from attack.\n\n The user obtains two protection points against all sharp weapons, including daggers, swords and spears. This protection may be combined with armor. The user is not protected from heavy weapons such as sticks and maces.">
+		<fieldval field="trtAbbrev" value="Ox"/>
+		
+		<fieldval field="trtUser" value="2"/>
+		<fieldval field="maPrep" value="Three days"/>
+		<fieldval field="maDur" value="One day"/>
+		<fieldval field="maPrepST" value="9"/>
+		<fieldval field="chiCost" value="4"/>
+		<fieldval field="maImprove" value="N/A"/>
+		
+
+		<tag group="Way" tag="ExtAlchemy"/>
+		<tag group="User" tag="Ointment"/>
+		
+<link linkage="magicskill" thing="skExtAlch"/>
+ <!-- Uncomment for prerequisites
+		<exprreq message="Calligraphy 1+ required."><![CDATA[
+			#traitfound[skCall] >= 1
+		]]></exprreq>
+		-->
+    </thing>
+	
+<!-- Tame the Beast -->
+	<thing
+		id="maTameBst"
+		name="Tame the Beast"
+		compset="Magic"
+		isunique="yes"
+		description="This ointment is used in a similar way to Repel Vermin, and has similar effects. But it generates a different odor, and affects different animals. The meaty, poisonous odor repels large animals including dogs, wolves and bears. But it is also offensive to the human nose, increasing by +2 the ST of any social Test requiring the character to make a good impression (eg. Eloquence or Trade). Needless to say, any attempt at Seduction is out of the question.">
+		<fieldval field="trtAbbrev" value="TmBs"/>
+		
+		<fieldval field="trtUser" value="2"/>
+		<fieldval field="maPrep" value="One day"/>
+		<fieldval field="maDur" value="One day"/>
+		<fieldval field="maPrepST" value="7"/>
+		<fieldval field="chiCost" value="3"/>
+		<fieldval field="maImprove" value="The effects of the ointment are prolonged by one day for each extra Chi point used"/>
+		
+
+		<tag group="Way" tag="ExtAlchemy"/>
+		<tag group="User" tag="Ointment"/>
+		
+<link linkage="magicskill" thing="skExtAlch"/>
+ <!-- Uncomment for prerequisites
+		<exprreq message="Calligraphy 1+ required."><![CDATA[
+			#traitfound[skCall] >= 1
+		]]></exprreq>
+		-->
+    </thing>
+
+	<!-- Mend the Bucket at the Well -->
+	<thing
+		id="maMendBuck"
+		name="Mend the Bucket at the Well"
+		compset="Magic"
+		isunique="yes"
+		description="This thick paste is applied to a scratch or bruise in order to seal it, disinfect it and stimulate the flow of vital energy. In so doing, it can heal an affected area in a matter of hours.\n\nThe user recovers 2 Breath of Life boxes plus any extra boxes due to an extra investment of Chi. However, the ointment is only effective at Normal and Bruised Levels of Breath of Life, and has no effect once a character is Injured.">
+		<fieldval field="trtAbbrev" value="MdBt"/>
+		
+		<fieldval field="trtUser" value="2"/>
+		<fieldval field="maPrep" value="One day"/>
+		<fieldval field="maDur" value="One day"/>
+		<fieldval field="maPrepST" value="7"/>
+		<fieldval field="chiCost" value="2"/>
+		<fieldval field="maImprove" value="The user recovers one extra Breath of Life box for every 2 extra Chi points used, up to a maximum equal to the alchemist’s External Alchemy Level."/>
+		
+
+		<tag group="Way" tag="ExtAlchemy"/>
+		<tag group="User" tag="Ointment"/>
+		
+<link linkage="magicskill" thing="skExtAlch"/>
+ <!-- Uncomment for prerequisites
+		<exprreq message="Calligraphy 1+ required."><![CDATA[
+			#traitfound[skCall] >= 1
+		]]></exprreq>
+		-->
+    </thing>
+
+	<!-- Scent of the Lotus -->
+	<thing
+		id="maScentLts"
+		name="Scent of the Lotus"
+		compset="Magic"
+		isunique="yes"
+		description="This delicate cream has a subtle, delectable perfume which makes the user attractive and charismatic. Whenever the user tries to have a positive effect on a person, the STs of his Tests are reduced by 1 point. This only happens if the person can smell the perfume ; so it will work when having a discussion around a table, but not when delivering a speech to a crowd. The cream does not need to be spread over the entire body. A localized application on the throat or face should be enough.">
+		<fieldval field="trtAbbrev" value="Lots"/>
+		
+		<fieldval field="trtUser" value="3"/>
+		<fieldval field="maPrep" value="Thee days"/>
+		<fieldval field="maDur" value="One day"/>
+		<fieldval field="maPrepST" value="9"/>
+		<fieldval field="chiCost" value="4"/>
+		<fieldval field="maImprove" value="N/A"/>
+		
+
+		<tag group="Way" tag="ExtAlchemy"/>
+		<tag group="User" tag="Ointment"/>
+		
+<link linkage="magicskill" thing="skExtAlch"/>
+ <!-- Uncomment for prerequisites
+		<exprreq message="Calligraphy 1+ required."><![CDATA[
+			#traitfound[skCall] >= 1
+		]]></exprreq>
+		-->
+    </thing>
+
+	<!-- Eye of the Beloved -->
+	<thing
+		id="maEyeBel"
+		name="Eye of the Beloved"
+		compset="Magic"
+		isunique="yes"
+		description="This delightfully-scented cream rarely fails to arouse sexual desire in any receptive person (whether of the opposite or the same sex) who comes close enough to the user to be affected by the perfume. Aperson who falls under the spell of the Eye of the Beloved does not lose all independent thought and judgment, but will do all in his power to obtain the object of his desire. This ointment is extremely popular among courtesans.\n\n In its most basic form, the ointment only works when the user comes very close to his target, whether by whispering something in his ear, styling his hair, or entering the close combat zone. If the alchemist spends 10 Chi points, however, it will affect anyone within two yards. At 15 Chi points the area of impact is extended to five yards. Anyone within the gaze of the Eye of the Beloved acts exactly as if the user had obtained a Yin/Yang Balance in a Seduction Test.">
+		<fieldval field="trtAbbrev" value="EyeB"/>
+		
+		<fieldval field="trtUser" value="3"/>
+		<fieldval field="maPrep" value="One week"/>
+		<fieldval field="maDur" value="One day"/>
+		<fieldval field="maPrepST" value="11"/>
+		<fieldval field="chiCost" value="5/10/15"/>
+		<fieldval field="maImprove" value="N/A"/>
+		
+
+		<tag group="Way" tag="ExtAlchemy"/>
+		<tag group="User" tag="Ointment"/>
+		
+<link linkage="magicskill" thing="skExtAlch"/>
+ <!-- Uncomment for prerequisites
+		<exprreq message="Calligraphy 1+ required."><![CDATA[
+			#traitfound[skCall] >= 1
+		]]></exprreq>
+		-->
+    </thing>
+
+	<!-- Hide of the Stone -->
+	<thing
+		id="maHideSton"
+		name="Hide of the Stone"
+		compset="Magic"
+		isunique="yes"
+		description="This ointment thickens and toughens the skin of the user, making it less sensitive to pain and attack. For so long as the ointment takes effect, the user gains 3 protection points. It guards against all kinds of physical attack, including arrows, swords and hammers, but not poison or fire.">
+		<fieldval field="trtAbbrev" value="HdSt"/>
+		
+		<fieldval field="trtUser" value="4"/>
+		<fieldval field="maPrep" value="One week"/>
+		<fieldval field="maDur" value="One day"/>
+		<fieldval field="maPrepST" value="11"/>
+		<fieldval field="chiCost" value="6"/>
+		<fieldval field="maImprove" value="N/A"/>
+		
+
+		<tag group="Way" tag="ExtAlchemy"/>
+		<tag group="User" tag="Ointment"/>
+		
+<link linkage="magicskill" thing="skExtAlch"/>
+ <!-- Uncomment for prerequisites
+		<exprreq message="Calligraphy 1+ required."><![CDATA[
+			#traitfound[skCall] >= 1
+		]]></exprreq>
+		-->
+    </thing>
+
+	<!-- Soothe the Rage of the World -->
+	<thing
+		id="maSootheRg"
+		name="Soothe the Rage of the World"
+		compset="Magic"
+		isunique="yes"
+		description="This protective balm enables the user to confront the Elements when they are at their most dangerous, and to pass through them without suffering any harm. A user can walk through fire without feeling pain, across a fast-flowing river without being swept away by the current, and into the howl of a tornado without being carried off by the wind.\n\n In practice, the Success Margin of the Earth + External Alchemy Test is added to the result of any suitable Test involving fighting against an Element. If another character relies on Internal Alchemy or any other Magic to turn the power of the Elements against the user, the Success Margin of the Earth + External Alchemy Test is added to the ST of that character’s Test.">
+		<fieldval field="trtAbbrev" value="Sth"/>
+		
+		<fieldval field="trtUser" value="4"/>
+		<fieldval field="maPrep" value="One week"/>
+		<fieldval field="maDur" value="One day"/>
+		<fieldval field="maPrepST" value="11"/>
+		<fieldval field="chiCost" value="6"/>
+		<fieldval field="maImprove" value="The Success Margin of the Earth + External Alchemy Test is increased by 1 for each extra Chi point used."/>
+		
+
+		<tag group="Way" tag="ExtAlchemy"/>
+		<tag group="User" tag="Ointment"/>
+		
+<link linkage="magicskill" thing="skExtAlch"/>
+ <!-- Uncomment for prerequisites
+		<exprreq message="Calligraphy 1+ required."><![CDATA[
+			#traitfound[skCall] >= 1
+		]]></exprreq>
+		-->
+    </thing>
+
+	<!-- Breathe the Breath of the Dragon -->
+	<thing
+		id="maBrDragon"
+		name="Breathe the Breath of the Dragon"
+		compset="Magic"
+		isunique="yes"
+		description="This legendary cream is used to resist and repel the energy of fire. A person using the cream is impervious to fire and burns, and suffers no damage from them.\n\n The cream only protects those areas of the body to which it is applied. So if a person uses it on his hand, he may take hold of a burning object, but not walk through fire. Note also that a character’s hair, weapons and clothes may still be affected by the flames. And since it is impossible to apply cream to the inside of the mouth and nose, the ears or the eyes, a character who places his head in the grate risks ending up deaf, blind and suffocated. So while the ointment is powerful, it must be used with great care.">
+		<fieldval field="trtAbbrev" value="Sth"/>
+		
+		<fieldval field="trtUser" value="4"/>
+		<fieldval field="maPrep" value="One week"/>
+		<fieldval field="maDur" value="One day"/>
+		<fieldval field="maPrepST" value="13"/>
+		<fieldval field="chiCost" value="10"/>
+		<fieldval field="maImprove" value="N/A"/>
+		
+
+		<tag group="Way" tag="ExtAlchemy"/>
+		<tag group="User" tag="Ointment"/>
+		
+<link linkage="magicskill" thing="skExtAlch"/>
+ <!-- Uncomment for prerequisites
+		<exprreq message="Calligraphy 1+ required."><![CDATA[
+			#traitfound[skCall] >= 1
+		]]></exprreq>
+		-->
+    </thing>
+</document>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!-- This file contains all specifications pertaining to the operational control of
+      the data files. This includes usage pools, sources, sortsets, and other related
+      mechanisms.
+-->
+
+<document signature="Hero Lab Structure">
+
+  <sortset
+    id="CombStyle"
+    name="Combat Styles">
+    <sortkey isfield="no" id="StyleGroup" isascend="yes"/>
+    <sortkey isfield="no" id="CombStyle" isascend="yes"/>
+	<sortkey isfield="no" id="Level" isascend="yes"/>
+	<sortkey isfield="no" id="_Name_"/>
+    </sortset>
+		
+  </document>

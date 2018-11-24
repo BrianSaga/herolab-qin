@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!-- This file contains the assortment of special abilities for the game system.
+      Abilities confer their effects through scripts that apply the necessary changes
+      to the appropriate traits.
+
+      Abilities influence traits, so all adjustments must be applied prior to when the
+      final trait value is calculated. The script timing used below (PreTraits/5000)
+      ensures that we satisfy this requirement. All abilities should be designated as
+      "unique" so that they can only be selected a single time by the user.
+-->
+
+<document signature="Hero Lab Data">
+
+  <!-- Natural Weapons Power -->
+  <thing
+	id="pwNatWeapn"
+	name="Natural Weapons"
+	compset="Power"
+	isunique="no"
+	description="Creatures such as demons, yao and the undead possess natural weapons which can inflict deadly wounds. Such weapons include not just horns, claws, teeth and other sharp protrusions, but also breath of acid, fire and scalding vapors. Where the creature uses teeth, claws or horns in close combat, the damage caused by the Natural Weapon is added to the normal damage inflicted in the attack. Where the creature breathes fire, spits acid, or uses something of that kind, damage is calculated in the normal way.">
+ 
+    </thing>
+
+	<!-- Natural Armor Power -->
+    <thing
+		id="pwNatArm"
+		name="Natural Armor"
+		compset="Power"
+		isunique="yes"
+		description="Many creatures are protected from physical attack by some form of natural armor, be it superhuman muscle bulk, a shell from the world beyond, or a semiintangible physical form. Any protection provided by Natural Armor is subtracted from any damage inflicted on the creature.">
+	 
+		
+		
+		<eval index="1" phase="Final" priority="9000"><![CDATA[
+			~set the special tab name to include the value of this power
+			field[spcName].text = field[name].text & ": " & signed(field[trtFinal].value) & " protection"
+			
+			~update the protection trait
+			#traitfound[trProtect] += field[trtFinal].value
+		]]></eval>
+		
+
+		</thing>
+
+	<!-- Terror Power -->
+    <thing
+		id="pwTerror"
+		name="Terror"
+		compset="Power"
+		isunique="yes"
+		description="Some monsters are so terrifying by their physical presence and spiritual aura that they can paralyze humans with fear. A creature’s Terror value is the ST of the Resistance Test that a character must succeed in order to act normally in the presence of the creature. If the character fails, the difference between his result and the Terror value becomes a penalty on all his actions while confronted with the creature.">
+	 
+		</thing>
+
+	<!-- Shape-Shift Power -->
+    <thing
+		id="pwShape"
+		name="Shape-Shift"
+		compset="Power"
+		isunique="yes"
+		description="The ability to shift between different physical forms allows creatures like the yao to change into an animal or human form, or to take on a false identity. Usually a creature can only take on the specific forms listed in the description. This transformation takes only one action. According to the form they take, they may lose the ability to use certain Skills.">
+	 
+		</thing>
+		
+	<!-- Formlessness Power -->
+    <thing
+		id="pwFormless"
+		name="Formlessness"
+		compset="Power"
+		isunique="yes"
+		description="Some creatures, mainly ghosts, have the uncanny ability to transcend their bodily form and make their body indeterminate and intangible. This enables them to move freely and escape the blows of attackers. Acreature using the power of Formlessness does not feel any normal blows to his body, since they pass through his shadowy form. He can only be struck by certain magical weapons or with the aid of certain Exorcist techniques. The creature can also pass through physical obstacles such as walls, unless those obstacles have been granted magical protection.">
+	 
+		</thing>
+		
+	<!-- Invisibility Power -->
+    <thing
+		id="pwInvis"
+		name="Invisibility"
+		compset="Power"
+		isunique="yes"
+		description="The ability to disappear is widespread among ghosts, and not unknown among demons. An invisible creature cannot be seen with the naked eye, but its presence can still be detected by sound or smell. The creature’s Invisibility value becomes a penalty for any characters attempting to locate it or act against it ; in combat, it should be added to the creature’s Passive Defense score.">
+	 
+		</thing>
+		
+	<!-- Possession Power -->
+    <thing
+		id="pwPossess"
+		name="Possession"
+		compset="Power"
+		isunique="yes"
+		description="Those supernatural creatures who are frustrated with the limits of their physical form may be able to possess the body of a mortal human and use it to act in the world of the living. Acreature attempts to possess a character by performing an Opposition Test between its Possession value and its target’s Resistance (Metal + Earth). If the creature wins, it overcomes the will of its victim and can act through his body. It uses the victim’s Metal, Water and Fire values, but continues to use its own Wood and Earth values. It has all the normal abilities of its victim, including Gifts, Weaknesses, Skills, and Taos. The Opposition Test must be repeated once a day, and when the victim finally wins a Test, he expels the creature from his body and cannot be possessed by that creature for a whole year.">
+	 
+		</thing>		
+
+	<!-- Vampirism Power -->
+    <thing
+		id="pwVamp"
+		name="Vampirism"
+		compset="Power"
+		isunique="yes"
+		description="Some creatures have the capacity to steal the life force of their victims, sucking the life out of them to feed their own hunger, and slowly but surely killing their prey. A creature’s Vampirism value is the number of Chi points that the creature can steal from its victim by winning an Opposition Test between its own Earth value and the victim’s Resistance. This usually requires the creature to touch its victim. In combat, this action counts as an attack. A character whose Chi falls to zero after being drained by this power dies instantly.">
+	 
+		</thing>
+		 	
+</document>

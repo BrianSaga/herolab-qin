@@ -1,0 +1,610 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!-- This file contains the assortment of skills for the game system. Note that each
+      skill is linked to an associated attribute for the character. This linkage allows
+      the value of the skill to easily incorporate the effects of the linked attribute
+      via a script on the component.
+-->
+
+<document signature="Hero Lab Data">
+
+<!--
+	***************************************************************
+		Internal Alchemy Techniques
+	***************************************************************
+-->
+
+	<!-- The Sleep of the Woken -->
+	<thing
+		id="maSpWoken"
+		name="The Sleep of the Woken"
+		compset="Magic"
+		isunique="yes"
+		description="The practitioner is able to go without sleep by drawing on his inner energy to overcome tiredness.\n\n To achieve this, he must meditate for a small hour in order to relax his mind, and spend 5 Chi points to breathe stamina into his body. This enables him to spend the whole of the next night wide awake as if he had just awoken from a good night’s sleep.\n\n The technique has two important limitations. First, the practitioner may only use it for a maximum number of consecutive nights equal to his Internal Alchemy Level. After this time, he must again get a whole night’s sleep. Second, since the practitioner is not asleep, he cannot recover Chi or Breath of Life for so long as he stays awake.">
+		<fieldval field="trtAbbrev" value="SlWk"/>
+		
+		<fieldval field="trtUser" value="1"/>
+		<fieldval field="maPrep" value="One small hour"/>
+		<fieldval field="maDur" value="One night"/>
+		<fieldval field="maArea" value="The practitioner"/>
+		<fieldval field="chiCost" value="5"/>
+		<fieldval field="maImprove" value="N/A"/>
+		
+
+		<tag group="Way" tag="IntAlchemy"/>
+		
+<link linkage="magicskill" thing="skIntAlch"/>
+ <!-- Uncomment for prerequisites
+		<exprreq message="Calligraphy 1+ required."><![CDATA[
+			#traitfound[skCall] >= 1
+		]]></exprreq>
+		-->
+    </thing>	
+
+	<!-- Chi is the Breath of Life -->
+	<thing
+		id="maChiBrth"
+		name="Chi is the Breath of Life"
+		compset="Magic"
+		isunique="yes"
+		description="The apprentice practitioner has learnt enough about his own internal energy flows to understand that Chi and life are one and the same, the one breath of the body. Whenever the practitioner is ill or injured, he can use his Chi to regenerate his Breath of Life. This requires him to enter a deep meditative trance and to spend 2 Chi points for every 1 box of Breath of Life to be regenerated. He can only regenerate up to a maximum number of boxes equal to his (Earth + Internal Alchemy).">
+		<fieldval field="trtAbbrev" value="Chi"/>
+		
+		<fieldval field="trtUser" value="1"/>
+		<fieldval field="maPrep" value="One small hour"/>
+		<fieldval field="maDur" value="Instantaneous"/>
+		<fieldval field="maArea" value="The practitioner"/>
+		<fieldval field="chiCost" value="2 for each Breath of Life box to be regenerated"/>
+		<fieldval field="maImprove" value="N/A"/>
+		
+
+		<tag group="Way" tag="IntAlchemy"/>
+		
+<link linkage="magicskill" thing="skIntAlch"/>
+ <!-- Uncomment for prerequisites
+		<exprreq message="Calligraphy 1+ required."><![CDATA[
+			#traitfound[skCall] >= 1
+		]]></exprreq>
+		-->
+    </thing>
+
+	<!-- The Elixir of Healing -->
+	<thing
+		id="maElxHeal"
+		name="The Elixir of Healing"
+		compset="Magic"
+		isunique="yes"
+		description="A character who has fallen ill or taken poison can use his Chi both to identify the nature of his affliction and to generate within himself a natural and completely effective cure that eliminates all the effects of the disease or poison. First, the practitioner meditates in order to diagnose the cause of the imbalance in his internal harmony. This involves a Test of Wood + Internal Alchemy against an ST which will depend on the rarity of his affliction. He may, with the consent of the Games Master, add to his result a bonus based on any Skill Levels he might have in Medicine or Herbalism. If he passes the Test, he identifies at least partly the cause of his suffering.\n\n Next, using his own diagnosis or that provided by a physician, the practitioner meditates a second time to heal himself. This involves a Test of the relevant Aspect + Internal Alchemy, against an ST equal to the Virulence of the disease or poison, and spending a number of Chi points equal to the same Virulence value. The relevant Aspect is determined by the nature of the disease or poison. It will be Fire for 'hot' diseases, Water for “cold” diseases, Wood for plant-based poisons, and Earth or Metal for mineral-based poisons.\n\n If the practitioner passes the Test, the disease or poison is driven out of his body. If not, the effects could get worse, since the Virulence increases by the difference between his result and the ST.">
+		<fieldval field="trtAbbrev" value="Exr"/>
+		
+		<fieldval field="trtUser" value="1"/>
+		<fieldval field="maPrep" value="One small hour’s meditation to identify the problem, one double hour’s meditation to heal it"/>
+		<fieldval field="maDur" value="Instantaneous"/>
+		<fieldval field="maArea" value="The practitioner"/>
+		<fieldval field="chiCost" value="Equal to the Virulence of the disease or poison"/>
+		<fieldval field="maImprove" value="For every 2 extra Chi points that the practitioner spends during his meditation, he reduces by 1 any increase in Virulence resulting from a failed Test."/>
+		
+
+		<tag group="Way" tag="IntAlchemy"/>
+		
+<link linkage="magicskill" thing="skIntAlch"/>
+ <!-- Uncomment for prerequisites
+		<exprreq message="Calligraphy 1+ required."><![CDATA[
+			#traitfound[skCall] >= 1
+		]]></exprreq>
+		-->
+    </thing>
+	
+	<!-- Food for the Soul -->
+	<thing
+		id="maFoodSoul"
+		name="Food for the Soul"
+		compset="Magic"
+		isunique="yes"
+		description="The practitioner can feed his body using his own Chi and so go without food and water. All he need do is meditate for a small hour and spend 5 Chi points. He will then be able to go a whole day without food and water without feeling hunger or thirst and without his body suffering in any way. He may only do this up to a maximum number of consecutive days equal to his Internal Alchemy Level. After this time, he must eat at least one square meal.">
+		<fieldval field="trtAbbrev" value="Food"/>
+		
+		<fieldval field="trtUser" value="1"/>
+		<fieldval field="maPrep" value="One small hour"/>
+		<fieldval field="maDur" value="One day"/>
+		<fieldval field="maArea" value="The practitioner"/>
+		<fieldval field="chiCost" value="5"/>
+		<fieldval field="maImprove" value="N/A"/>
+		
+
+		<tag group="Way" tag="IntAlchemy"/>
+		
+<link linkage="magicskill" thing="skIntAlch"/>
+ <!-- Uncomment for prerequisites
+		<exprreq message="Calligraphy 1+ required."><![CDATA[
+			#traitfound[skCall] >= 1
+		]]></exprreq>
+		-->
+    </thing>
+	
+	<!-- The Union of Yin and Yang -->
+	<thing
+		id="maYinYang"
+		name="The Union of Yin and Yang"
+		compset="Magic"
+		isunique="yes"
+		description="Just as the union of Yin and Yang leads to the Tao, so the union between man and woman may lead to the source of the vital principle. Provided that it is not wasted, sexual pleasure can be a source of vitality. Whenever the practitioner has sexual relations, he may hold back the flow of the vital principle at the moment of climax and instead of releasing it, allow it to circulate through his body. He performs a Test of Earth + Internal Alchemy. The ST will depend on the circumstances : it will be 5 if the practitioner was prepared for the coupling and able to concentrate his mind on it beforehand, 7 for an unexpected and unprepared coupling, 9 if his concentration is broken by inappropriate feelings, and so on. Where he succeeds in the Test, he recovers a number of Chi points equal to his Success Margin (without going over his maximum). If he fails, however, he loses a number of Chi points equal to the difference between his result and the ST. Apractitioner may also have sexual relations without invoking the Union of Yin and Yang. In this case, he does not gain any Chi but does not risk losing any.">
+		<fieldval field="trtAbbrev" value="Union"/>
+		
+		<fieldval field="trtUser" value="1"/>
+		<fieldval field="maPrep" value="For so long as intercourse lasts"/>
+		<fieldval field="maDur" value="Instantaneous"/>
+		<fieldval field="maArea" value="The practitioner"/>
+		<fieldval field="chiCost" value="None"/>
+		<fieldval field="maImprove" value="N/A"/>
+		
+
+		<tag group="Way" tag="IntAlchemy"/>
+		
+<link linkage="magicskill" thing="skIntAlch"/>
+ <!-- Uncomment for prerequisites
+		<exprreq message="Calligraphy 1+ required."><![CDATA[
+			#traitfound[skCall] >= 1
+		]]></exprreq>
+		-->
+    </thing>
+	
+	<!-- Take the Breath Away -->
+	<thing
+		id="maTkBrth"
+		name="Take the Breath Away"
+		compset="Magic"
+		isunique="yes"
+		description="A Nei Dan practitioner can use his skills to dissipate the internal energy of another. He must first touch his target by succeeding in a Test of Water + Hand-to-Hand against the target’s Passive Defense score. In a combat situation, this is treated as an attack and so can be countered by an Active Defense. Should the practitioner manage to touch his target, he must then perform an Opposition Test of Earth + Internal Alchemy against the target’s Resistance. If he wins this Test, he deprives his victim of a number of Chi points equal to his Fire value, plus any extra points due to an extra investment of Chi in the action.\n\n The practitioner merely touches the victim, and does not cause him any damage. But if the attack causes the victim’s Chi to fall into the negative, then the victim will suffer damage according to the normal rules set out at p. 61. The maximum number of Chi points that the practitioner can use is equal to his (Earth + Internal Alchemy).">
+		<fieldval field="trtAbbrev" value="Take"/>
+		
+		<fieldval field="trtUser" value="2"/>
+		<fieldval field="maPrep" value="One action"/>
+		<fieldval field="maDur" value="Instantaneous"/>
+		<fieldval field="maArea" value="One person, touched"/>
+		<fieldval field="chiCost" value="4"/>
+		<fieldval field="maImprove" value="The victim loses 1 extra Chi point for every 2 extra Chi points used"/>
+		
+
+		<tag group="Way" tag="IntAlchemy"/>
+		
+<link linkage="magicskill" thing="skIntAlch"/>
+ <!-- Uncomment for prerequisites
+		<exprreq message="Calligraphy 1+ required."><![CDATA[
+			#traitfound[skCall] >= 1
+		]]></exprreq>
+		-->
+    </thing>
+	
+	<!-- The Inner Breath -->
+	<thing
+		id="maInrBrth"
+		name="The Inner Breath"
+		compset="Magic"
+		isunique="yes"
+		description="A normal person can hold his breath for a number of minutes equal to his Metal value before he starts to suffocate. The student of Nei Dan learns that Chi is as important to the body as air, and indeed can replace it. As a result, by spending 3 Chi points he can hold his breath for a minute longer than the standard time. At the end of that minute, he can spend another 3 points and obtain another minute. He can repeat this process for so long as he still has Chi points to spend.">
+		<fieldval field="trtAbbrev" value="InrB"/>
+		
+		<fieldval field="trtUser" value="2"/>
+		<fieldval field="maPrep" value="Instantaneous"/>
+		<fieldval field="maDur" value="Instantaneous"/>
+		<fieldval field="maArea" value="The practitioner"/>
+		<fieldval field="chiCost" value="3 per minute"/>
+		<fieldval field="maImprove" value="N/A"/>
+		
+
+		<tag group="Way" tag="IntAlchemy"/>
+		
+<link linkage="magicskill" thing="skIntAlch"/>
+ <!-- Uncomment for prerequisites
+		<exprreq message="Calligraphy 1+ required."><![CDATA[
+			#traitfound[skCall] >= 1
+		]]></exprreq>
+		-->
+    </thing>
+	
+	<!-- The Shared Breath -->
+	<thing
+		id="maShrBrth"
+		name="The Shared Breath"
+		compset="Magic"
+		isunique="yes"
+		description="For this technique, the practitioner must place his hands on the bare skin of the person to whom he wishes to transfer his Chi. For every 2 Chi points he spends, he gives 1 to the recipient, up to the recipient’s maximum. The maximum number of Chi points that the practitioner can use is equal to his (Earth + Internal Alchemy).">
+		<fieldval field="trtAbbrev" value="ShrB"/>
+		
+		<fieldval field="trtUser" value="2"/>
+		<fieldval field="maPrep" value="One action"/>
+		<fieldval field="maDur" value="Instantaneous"/>
+		<fieldval field="maArea" value="One person, touched"/>
+		<fieldval field="chiCost" value="2 for every Chi point to be transferred"/>
+		<fieldval field="maImprove" value="N/A"/>
+		
+
+		<tag group="Way" tag="IntAlchemy"/>
+		
+<link linkage="magicskill" thing="skIntAlch"/>
+ <!-- Uncomment for prerequisites
+		<exprreq message="Calligraphy 1+ required."><![CDATA[
+			#traitfound[skCall] >= 1
+		]]></exprreq>
+		-->
+    </thing>	
+	
+	<!-- Fan the Flames of Life -->
+	<thing
+		id="maFanFlame"
+		name="Fan the Flames of Life"
+		compset="Magic"
+		isunique="yes"
+		description="The practitioner is able both to transform his Chi into life force and to transfer that force to another. The practitioner places his hands on the bare skin of the person to whom he wishes to give Breath of Life. For every 4 Chi points he spends, he regenerates 1 of his patient’s Breath of Life boxes, up to a maximum of (Earth + Internal Alchemy) boxes per day.">
+		<fieldval field="trtAbbrev" value="ShrB"/>
+		
+		<fieldval field="trtUser" value="2"/>
+		<fieldval field="maPrep" value="One small hour"/>
+		<fieldval field="maDur" value="Instantaneous"/>
+		<fieldval field="maArea" value="One person, touched"/>
+		<fieldval field="chiCost" value="4 for every Breath of Life box to be regenerated"/>
+		<fieldval field="maImprove" value="N/A"/>
+		
+
+		<tag group="Way" tag="IntAlchemy"/>
+		
+<link linkage="magicskill" thing="skIntAlch"/>
+ <!-- Uncomment for prerequisites -->
+		<exprreq message="Chi is the Breath of Life required."><![CDATA[
+			#traitfound[maChiBrth] <> 0
+		]]></exprreq>
+		
+    </thing>
+	
+	<!-- The Healing Breath -->
+	<thing
+		id="maHlBrth"
+		name="The Healing Breath"
+		compset="Magic"
+		isunique="yes"
+		description="By physically examining a person suffering from a disease or poison, the practitioner can identify the nature of his affliction and use the patient’s own Chi to generate a natural and completely effective cure for all the effects of the disease or poison.\n\n First, the practitioner examines the patient by touching his skin with his hands, and meditating to isolate the cause of the internal imbalance. This involves a Test of Wood + Internal Alchemy against an ST which will depend on the rarity of the condition. He may, with the consent of the Games Master, add to his result a bonus based on any Skill Levels he might have in Medicine or Herbalism. If he passes the Test, he identifies at least partly the cause of his patient’s suffering.\n\n Next, the practitioner can use his own diagnosis or that provided by a physician as a basis for treatment. He must place his hands on the patient’s skin, meditate, perform a Test of the relevant Aspect + Internal Alchemy (against an ST equal to the Virulence of the disease or poison), and spend a number of Chi points equal to double the Virulence value. The relevant Aspect is determined by the nature of the disease or poison. It will be Fire for 'hot' diseases, Water for 'cold' diseases, Wood for plant-based poisons, and Earth or Metal for mineral-based poisons. If the practitioner succeeds in his Test, the disease or poison is driven out of his patient’s body. If not, the effects may well get worse, since the Virulence increases by twice the difference between his result and the ST.">
+		<fieldval field="trtAbbrev" value="HlBt"/>
+		
+		<fieldval field="trtUser" value="2"/>
+		<fieldval field="maPrep" value="One small hour’s meditation to identify the problem, one double hour’s meditation to heal it"/>
+		<fieldval field="maDur" value="Instantaneous"/>
+		<fieldval field="maArea" value="One person, touched"/>
+		<fieldval field="chiCost" value="Equal to double the Virulence of the disease or poison"/>
+		<fieldval field="maImprove" value="For every 2 extra Chi points that the practitioner spends during his meditation, he reduces by 1 an increase in Virulence resulting from a failed Test."/>
+		
+
+		<tag group="Way" tag="IntAlchemy"/>
+		
+<link linkage="magicskill" thing="skIntAlch"/>
+ <!-- Uncomment for prerequisites -->
+		<exprreq message="Elixir of Healing required."><![CDATA[
+			#traitfound[maElxHeal] <> 0
+		]]></exprreq>
+		
+    </thing>
+	
+	<!-- Bend Like The Reeds -->
+	<thing
+		id="maBend"
+		name="Bend Like The Reeds"
+		compset="Magic"
+		isunique="yes"
+		description="The practitioner can harmonize the flow of Chi through his body with the Element of Wood in order to take on its defining properties of flexibility and suppleness. He must spend 6 Chi points, meditate for a small hour, and perform a Test of Wood + Internal Alchemy with an ST of 7. The Success Margin in this Test becomes a bonus in any Test involving physical flexibility, such as untying himself, sliding between bars, and performing certain acrobatic feats. This lasts for the duration of the technique.">
+		<fieldval field="trtAbbrev" value="Bend"/>
+		
+		<fieldval field="trtUser" value="2"/>
+		<fieldval field="maPrep" value="One small hour"/>
+		<fieldval field="maDur" value="A number of double hours equal to the practitioner’s Wood value, plus any small hours earned by extra investment of Chi"/>
+		<fieldval field="maArea" value="The practitioner"/>
+		<fieldval field="chiCost" value="6"/>
+		<fieldval field="maImprove" value="The technique’s effects are prolonged by one small hour for every 3 extra Chi points spent during meditation."/>
+		
+
+		<tag group="Way" tag="IntAlchemy"/>
+		
+<link linkage="magicskill" thing="skIntAlch"/>
+ <!-- Uncomment for prerequisites 
+		<exprreq message="Elixir of Healing required."><![CDATA[
+			#traitfound[maElxHeal] <> 0
+		]]></exprreq>
+		-->
+    </thing>
+	
+	<!-- Solid As Steel -->
+	<thing
+		id="maSolid"
+		name="Solid As Steel"
+		compset="Magic"
+		isunique="yes"
+		description="The practitioner can harmonize the flow of Chi through his body with the Element of Wood in order to take on its defining properties of flexibility and suppleness. He must spend 6 Chi points, meditate for a small hour, and perform a Test of Wood + Internal Alchemy with an ST of 7. The Success Margin in this Test becomes a bonus in any Test involving physical flexibility, such as untying himself, sliding between bars, and performing certain acrobatic feats. This lasts for the duration of the technique.">
+		<fieldval field="trtAbbrev" value="SoSt"/>
+		
+		<fieldval field="trtUser" value="2"/>
+		<fieldval field="maPrep" value="One small hour"/>
+		<fieldval field="maDur" value="A number of double hours equal to the practitioner’s Wood value, plus any small hours earned by extra investment of Chi"/>
+		<fieldval field="maArea" value="The practitioner"/>
+		<fieldval field="chiCost" value="6"/>
+		<fieldval field="maImprove" value="The technique’s effects are prolonged by one small hour for every 3 extra Chi points spent during meditation."/>
+		
+
+		<tag group="Way" tag="IntAlchemy"/>
+		
+<link linkage="magicskill" thing="skIntAlch"/>
+ <!-- Uncomment for prerequisites 
+		<exprreq message="Elixir of Healing required."><![CDATA[
+			#traitfound[maElxHeal] <> 0
+		]]></exprreq>
+		-->
+    </thing>
+	
+	<!-- Imprison the Inner Force -->
+	<thing
+		id="maImprison"
+		name="Imprison the Inner Force"
+		compset="Magic"
+		isunique="yes"
+		description="The practitioner is able to disturb the flow of internal energy within any person that he touches, and so prevent that person from accessing and using his Chi. To imprison his target from within, the practitioner must first touch his target. In a combat situation, or any situation where the target does not consent, this means succeeding in a Test of Water + Hand-to-Hand against the target’s Passive Defense. If he manages to touch his target, he must then spend 6 Chi points and perform a Test of Earth + Internal Alchemy against the target’s Resistance. If the practitioner wins, then the victim will not be able to access his Chi (to use Taos, Magic etc) for a number of rounds equal to the difference between the results in the Opposition Test, plus any additional rounds due to any additional investment of Chi.">
+		<fieldval field="trtAbbrev" value="ImIn"/>
+		
+		<fieldval field="trtUser" value="3"/>
+		<fieldval field="maPrep" value="One action"/>
+		<fieldval field="maDur" value="A number of rounds equal to the difference between the two results in the Opposition Test"/>
+		<fieldval field="maArea" value="One person, touched"/>
+		<fieldval field="chiCost" value="6+"/>
+		<fieldval field="maImprove" value="The target’s Chi is trapped for one extra round for every 4 extra Chi points spent during the Opposition Test."/>
+		
+
+		<tag group="Way" tag="IntAlchemy"/>
+		
+<link linkage="magicskill" thing="skIntAlch"/>
+ <!-- Uncomment for prerequisites 
+		<exprreq message="Elixir of Healing required."><![CDATA[
+			#traitfound[maElxHeal] <> 0
+		]]></exprreq>
+		-->
+    </thing>
+	
+	<!-- Explore the Inner Worlds -->
+	<thing
+		id="maExplore"
+		name="Explore the Inner Worlds"
+		compset="Magic"
+		isunique="yes"
+		description="The practitioner is able to focus the power of his Chi in his mind and use it to connect with other minds and communicate with them.\n\n First, the practitioner must meditate for a double hour, to find inner peace and clear his mind of all things. This will permit him to connect with the mind of any person of his acquaintance within a radius of 100 x (Earth x Internal Alchemy) miles. In order to identify a specific mind among the many thousands across the Zhongguo, and establish a sufficient connection to read the thoughts in that mind, the practitioner must have seen or spoken to the person at least once. Next, he must spend 8 Chi points. Finally, he must succeed in a Test of Earth + Internal Alchemy, whose ST will be twice the target’s Earth value. Even where he succeeds in connecting to the mind of his target, the practitioner will only be able to read conscious, clear and easily accessible thoughts. It is only by spending more Chi that he will gain access to the deeper levels of the target’s mind, such as those that hold hidden thoughts, memories, unconscious thoughts, and so on. But at any level, he will be able to project his own thoughts and messages to the target’s mind, in the form of short phrases, sounds or images.\n\n Generally, people do not realize that their minds are being read, and assume that any thoughts that come into their head are their own, taking them to be the fruit of unconscious reflection or sudden intuition. However, there are some extraordinary individuals who are able to sense a mental connection, mainly Taoists highly skilled in Divination or Internal Alchemy, but occasionally others blessed with particularly sharp minds. To find out whether such a person senses the mental connection, the Games Master can make him perform a Test of Earth (+ Divination or Internal Alchemy) with an ST equal to the result of the practitioner’s Earth + Internal Alchemy Test. If the target wins, he senses that another mind is attempting to connect with his own and can try to close his mind to the interference and deny the connection by performing an Opposition Test of Earth against the practitioner.">
+		<fieldval field="trtAbbrev" value="ExWd"/>
+		
+		<fieldval field="trtUser" value="3"/>
+		<fieldval field="maPrep" value="One double hour"/>
+		<fieldval field="maDur" value="The duration of the connection"/>
+		<fieldval field="maArea" value="An acquaintance located less than 100 x (Earth + Internal Alchemy) miles away"/>
+		<fieldval field="chiCost" value="8"/>
+		<fieldval field="maImprove" value="The practitioner can read one level deeper into the mind of his target for every 4 extra Chi points spent during the mental connection."/>
+		
+
+		<tag group="Way" tag="IntAlchemy"/>
+		
+<link linkage="magicskill" thing="skIntAlch"/>
+ <!-- Uncomment for prerequisites 
+		<exprreq message="Elixir of Healing required."><![CDATA[
+			#traitfound[maElxHeal] <> 0
+		]]></exprreq>
+		-->
+    </thing>
+
+	<!-- Journey Beyond the Body -->
+	<thing
+		id="maJourney"
+		name="Journey Beyond the Body"
+		compset="Magic"
+		isunique="yes"
+		description="The practitioner’s mind is so finely balanced and harmonious that it is able to emerge from its bodily shell and journey alone through the world.\n\n The practitioner must first spend 10 Chi points and spend a double hour in deep meditation. Once freed of its dependence on the body, the mind moves without assistance, flying at the speed of thought and passing through all physical obstacles. It may not travel further than a distance in miles of ten times its body’s (Earth + Internal Alchemy), plus any additional distance resulting from an additional investment of Chi. The mind may return to its body at any time, but cannot remain out of the body for more than (Earth) small hours, at the end of which it automatically returns to the body.\n\n For the duration of his flight outside his body, the practitioner is able to see and hear normally, but cannot touch anything, nor communicate with anyone. He is invisible to all except those using the Exorcism technique Beyond the Veil. He moves virtually instantaneously within the limits of his distance from his body, and can move through obstacles such as doors, walls, and roofs unless they are protected against such intrusions.\n\n While the mind is in flight, the practitioner’s body appears as if in a deep sleep from which it is impossible to wake it. Should the body be killed, the mind instantly becomes a ghost, trapped at the spot where the body died.">
+		<fieldval field="trtAbbrev" value="Jrny"/>
+		
+		<fieldval field="trtUser" value="3"/>
+		<fieldval field="maPrep" value="One double hour"/>
+		<fieldval field="maDur" value="A number of small hours equal to the practitioner’s Earth value"/>
+		<fieldval field="maArea" value="A radius of 10 x (Earth + Internal Alchemy) miles around the practitioner"/>
+		<fieldval field="chiCost" value="10"/>
+		<fieldval field="maImprove" value="The practitioner’s mind can travel 10 miles further from his body for every 4 extra Chi points spent during meditation."/>
+		
+
+		<tag group="Way" tag="IntAlchemy"/>
+		
+<link linkage="magicskill" thing="skIntAlch"/>
+ <!-- Uncomment for prerequisites 
+		<exprreq message="Elixir of Healing required."><![CDATA[
+			#traitfound[maElxHeal] <> 0
+		]]></exprreq>
+		-->
+    </thing>
+	
+	<!-- The Stream That Flows Unseen -->
+	<thing
+		id="maStream"
+		name="The Stream That Flows Unseen"
+		compset="Magic"
+		isunique="yes"
+		description="The practitioner can harmonize the flow of Chi through his body with the Element of Water in order to share in its invisibility and transparency.\n\n He must spend 7 Chi points, meditate for a small hour, and perform a Test of Water + Internal Alchemy with an ST of 9. The Success Margin in this Test becomes a bonus in any Test involving subtlety or stealth, or a penalty in any attempt by another to spot him. This lasts for the duration of the technique.">
+		<fieldval field="trtAbbrev" value="Jrny"/>
+		
+		<fieldval field="trtUser" value="3"/>
+		<fieldval field="maPrep" value="One small hour"/>
+		<fieldval field="maDur" value="A number of double hours equal to the practitioner’s Water value, plus any small hours earned by extra investment of Chi"/>
+		<fieldval field="maArea" value="The practitioner"/>
+		<fieldval field="chiCost" value="7"/>
+		<fieldval field="maImprove" value="The technique’s effects are prolonged by one small hour for every 3 extra Chi points spent during meditation."/>
+		
+
+		<tag group="Way" tag="IntAlchemy"/>
+		
+<link linkage="magicskill" thing="skIntAlch"/>
+ <!-- Uncomment for prerequisites 
+		<exprreq message="Elixir of Healing required."><![CDATA[
+			#traitfound[maElxHeal] <> 0
+		]]></exprreq>
+		-->
+    </thing>
+	
+	<!-- Elemental Harmony -->
+	<thing
+		id="maElemHarm"
+		name="Elemental Harmony"
+		compset="Magic"
+		isunique="yes"
+		description="An Expert in Internal Alchemy can combine his own Chi with the force of an external Element, and use the resultant power to assist him in his work.\n\n First the practitioner must spend 6 Chi points and meditate for a small hour. Then he performs a Test of relevant Aspect + Internal Alchemy with an ST of 9. If he succeeds, he captures the power of his chosen Element. For a number of hours equal to his original value in the relevant Aspect, plus any small hours earned by extra investment of Chi, his Aspect value increases by 1, plus any additional increase earned by extra investment of Chi. This modified Aspect value should be used both in any Test involving the Aspect, and in calculating effects for which the Aspect value is relevant. This includes the use of Taos and Magic and the calculation of damage. Secondary Aspects are unaffected.">
+		<fieldval field="trtAbbrev" value="ElHm"/>
+		
+		<fieldval field="trtUser" value="3"/>
+		<fieldval field="maPrep" value="One double hour"/>
+		<fieldval field="maDur" value="A number of hours equal to the practitioner’s relevant Aspect value, plus any small hours earned from an additional investment of Chi."/>
+		<fieldval field="maArea" value="The practitioner"/>
+		<fieldval field="chiCost" value="6"/>
+		<fieldval field="maImprove" value="For every 3 extra Chi points used during meditation, the time during which the practitioner is in harmony with the Element is extended by one small hour, or his chosen Aspect value increased by 1."/>
+		
+
+		<tag group="Way" tag="IntAlchemy"/>
+		
+<link linkage="magicskill" thing="skIntAlch"/>
+ <!-- Uncomment for prerequisites 
+		<exprreq message="Elixir of Healing required."><![CDATA[
+			#traitfound[maElxHeal] <> 0
+		]]></exprreq>
+		-->
+    </thing>
+	
+	<!-- The Lightness of Fire -->
+	<thing
+		id="maLtFire"
+		name="The Lightness of Fire"
+		compset="Magic"
+		isunique="yes"
+		description="The practitioner can harmonize the flow of Chi through his body with the Element of Fire in order to take on its lightness and rapidity. He must spend 8 Chi points, meditate for a small hour, and perform a Test of Fire + Internal Alchemy with an ST of 9. If he succeeds, he becomes able to fly at the same speed as he can run for the duration of the technique. In combat, he is able to move a number of yards equal to his Fire value in one action. His body becomes shrouded in a fiery glow which the practitioner can give any form he chooses. If the practitioner is still flying when the technique ceases to have effect, he comes back to earth with a bump.">
+		<fieldval field="trtAbbrev" value="ElHm"/>
+		
+		<fieldval field="trtUser" value="4"/>
+		<fieldval field="maPrep" value="One small hour"/>
+		<fieldval field="maDur" value="A number of double hours equal to the practitioner’s Fire value, plus any small hours resulting from an additional investment of Chi."/>
+		<fieldval field="maArea" value="The practitioner"/>
+		<fieldval field="chiCost" value="8"/>
+		<fieldval field="maImprove" value="The effects of the technique are prolonged for one small hour for every 4 extra Chi points used during meditation."/>
+		
+
+		<tag group="Way" tag="IntAlchemy"/>
+		
+<link linkage="magicskill" thing="skIntAlch"/>
+ <!-- Uncomment for prerequisites 
+		<exprreq message="Elixir of Healing required."><![CDATA[
+			#traitfound[maElxHeal] <> 0
+		]]></exprreq>
+		-->
+    </thing>
+	
+	<!-- At One with the Earth -->
+	<thing
+		id="maOneEarth"
+		name="At One with the Earth"
+		compset="Magic"
+		isunique="yes"
+		description="The practitioner can harmonize the flow of Chi through his body with the Element of Earth in such a way as to be able to hide within Earth and move through it. He must spend 8 Chi points, meditate for a small hour, and perform a Test of Earth + Internal Alchemy with an ST of 9. If he succeeds, then for the duration of the technique he becomes able to bury himself and move underground. While underground, he continues to have some idea of events above ground. In order to use the technique, the practitioner must have both feet in contact with the ground (not on a wooden or stone floor). The act of burying his body takes an action, the body appearing to melt into the ground and leaving no trace except for a small mound. His body can move around underground at the same speed as it can run above ground. In combat, the practitioner is able to move a number of yards equal to his Earth value in one action. A character that has become One with the Earth cannot act on the surface of the ground, nor can those on the surface act on him. If the practitioner is still underground when the technique’s effects cease, he emerges suddenly from the ground.">
+		<fieldval field="trtAbbrev" value="OnEr"/>
+		
+		<fieldval field="trtUser" value="4"/>
+		<fieldval field="maPrep" value="One small hour"/>
+		<fieldval field="maDur" value="A number of double hours equal to the practitioner’s Earth value, plus any small hours resulting from an additional investment of Chi."/>
+		<fieldval field="maArea" value="The practitioner"/>
+		<fieldval field="chiCost" value="8"/>
+		<fieldval field="maImprove" value="The effects of the technique are prolonged for one small hour for every 4 extra Chi points used during meditation."/>
+		
+
+		<tag group="Way" tag="IntAlchemy"/>
+		
+<link linkage="magicskill" thing="skIntAlch"/>
+ <!-- Uncomment for prerequisites 
+		<exprreq message="Elixir of Healing required."><![CDATA[
+			#traitfound[maElxHeal] <> 0
+		]]></exprreq>
+		-->
+    </thing>
+	
+	<!-- Harness the Rage of the Elements -->
+	<thing
+		id="maHarness"
+		name="Harness the Rage of the Elements"
+		compset="Magic"
+		isunique="yes"
+		description="A Master of Internal Alchemy has the ability to transform part of his Chi into an Element of his choice, and project that Element from his body with such force as to strike an opponent.\n\n The practitioner spends 7 Chi points, chooses the Element that he wishes to use, then performs a Test of relevant Aspect + Internal Alchemy against the Passive Defense score of his target. In combat, this action counts as an attack, so the target can attempt an Active Defense. Where the practitioner succeeds, the rage of his elemental Chi strikes his victim, causing damage points equal to the practitioner’s Aspect value plus any additional damage due to an additional investment of Chi. The Rage of the Elements can take many forms. Here are just a few examples:\n\n Fire : tongue of flame, lightning bolt, heat cloud, fireball\n Water : high-pressure water jet, hailstones, ice daggers, water bubbles\n Wood : jagged leaves, corrosive sap, stakes\n Metal : razor blades, molten steel, needles\n Earth : stones, localized earthquake, lava">
+		<fieldval field="trtAbbrev" value="Hrns"/>
+		
+		<fieldval field="trtUser" value="4"/>
+		<fieldval field="maPrep" value="In combat, one action counts as an attack"/>
+		<fieldval field="maDur" value="Instantaneous"/>
+		<fieldval field="maArea" value="Practitioner’s field of vision"/>
+		<fieldval field="chiCost" value="7"/>
+		<fieldval field="maImprove" value="For every 3 extra Chi points spent by the practitioner during his attack, damage is increased by 1, up to a maximum equal to his relevant Aspect value."/>
+		
+
+		<tag group="Way" tag="IntAlchemy"/>
+		
+<link linkage="magicskill" thing="skIntAlch"/>
+ <!-- Uncomment for prerequisites 
+		<exprreq message="Elixir of Healing required."><![CDATA[
+			#traitfound[maElxHeal] <> 0
+		]]></exprreq>
+		-->
+    </thing>
+	
+	<!-- Shield of the Elements -->
+	<thing
+		id="maShieldEl"
+		name="Shield of the Elements"
+		compset="Magic"
+		isunique="yes"
+		description="A Nei Dan Master can harmonize his Chi with an Element of his choice and use it to protect himself from attack. The practitioner spends 7 Chi points, chooses an Element, and performs a Test of relevant Aspect + Internal Alchemy, whose ST is equal to the damage to be suffered. In a combat situation, this does not count as an action, and so the technique can even be performed after an Active Defense. If he is successful, the practitioner receives the protection of the Elements and reduces his damage by his relevant Aspect value, plus any extra reductions caused by an extra investment of Chi. The Shield of the Elements can take many forms. Here are just a few examples :\n\n Fire : body surrounded by a whirlwind of fire, body takes on the transparency of a flame\n Water : a watery ball surrounds the practitioner’s body, his flesh gains a second skin of ice\n Wood : the practitioner’s skin is covered by bark, his body bends like the reeds\n Metal : the practitioner’s body becomes hard as bronze, his flesh is protected by a skin of iron\n Earth : the practitioner’s flesh turns to rock, his body takes on the uncertain consistency of mud">
+		<fieldval field="trtAbbrev" value="Shld"/>
+		
+		<fieldval field="trtUser" value="4"/>
+		<fieldval field="maPrep" value="Instantaneous"/>
+		<fieldval field="maDur" value="Instantaneous"/>
+		<fieldval field="maArea" value="The practitioner"/>
+		<fieldval field="chiCost" value="7"/>
+		<fieldval field="maImprove" value="For every extra 3 Chi points that the practitioner spends when protecting himself, damage suffered is reduced by 1, up to a maximum protection equal to his relevant Aspect value."/>
+		
+
+		<tag group="Way" tag="IntAlchemy"/>
+		
+<link linkage="magicskill" thing="skIntAlch"/>
+ <!-- Uncomment for prerequisites 
+		<exprreq message="Elixir of Healing required."><![CDATA[
+			#traitfound[maElxHeal] <> 0
+		]]></exprreq>
+		-->
+    </thing>
+	
+	<!-- The Vital Principle -->
+	<thing
+		id="maVital"
+		name="The Vital Principle"
+		compset="Magic"
+		isunique="yes"
+		description="A highly-experienced fangshi may come so close to the secret of immortality as to be able to synthesize in his own body an embryo of pure life, enabling him to slow and even halt the aging process.\n\n The practitioner must enter a deep meditative trance and not emerge for a whole day. He must also spend 12 Chi points and perform a Test of Earth + Internal Alchemy with an ST of 13. If he succeeds, he manages to generate the vital principle within his body, and does not age for as many decades as points in his Success Margin, plus as many years as he has earned by an extra investment of Chi.\n\n When he has exhausted this stock of Vital Principle, he may of course attempt once again to formulate the embryo of immortality by his own magical means.">
+		<fieldval field="trtAbbrev" value="Vitl"/>
+		
+		<fieldval field="trtUser" value="4"/>
+		<fieldval field="maPrep" value="One day"/>
+		<fieldval field="maDur" value="A number of decades equal to the Success Margin"/>
+		<fieldval field="maArea" value="The practitioner"/>
+		<fieldval field="chiCost" value="12 +"/>
+		<fieldval field="maImprove" value="The aging process is halted for an extra year for every 6 extra Chi points spent during meditation."/>
+		
+
+		<tag group="Way" tag="IntAlchemy"/>
+		
+<link linkage="magicskill" thing="skIntAlch"/>
+ <!-- Uncomment for prerequisites 
+		<exprreq message="Elixir of Healing required."><![CDATA[
+			#traitfound[maElxHeal] <> 0
+		]]></exprreq>
+		-->
+    </thing>
+</document>

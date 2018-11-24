@@ -1,0 +1,552 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!-- This file contains the definitions of components associated directly with the
+      actor and its management.
+-->
+
+<document signature="Hero Lab Structure">
+
+  <!-- Actor component
+        Encapsulates all the details associated with every actor
+  -->
+  <component
+    id="Actor"
+    name="Actor"
+    autocompset="no"
+    ispublic="no">
+
+    <!-- Image to display in the TacCon -->
+    <field
+      id="acTacImage"
+      name="Image"
+      type="derived">
+      </field>
+
+    <!-- Number of hands of equipment the actor can use simultaneously -->
+    <field
+      id="acHands"
+      name="Hands Available"
+      type="derived"
+      defvalue="2">
+      </field>
+
+	<!-- Delayed actions -->
+    <field
+      id="acDelayed"
+      name="Delayed Actions"
+      type="derived"
+      defvalue="0">
+      </field>
+
+    <!-- Minimum (starting) health for the actor -->
+    <field
+      id="acBoLMin"
+      name="Min Health"
+      type="derived">
+      <!-- Calculate the base health value for the actor from its pieces. We have to
+            calculate the value from its pieces instead of just getting the net trait
+            value. This is because Health must be calculated BEFORE the final value
+            for derived traits, since derived traits may be influenced by the net health
+            (e.g. attack penalties after taking sufficient damage).
+      -->
+      <calculate phase="Traits" priority="5000" name="Calc acBoLMin"><![CDATA[
+        @value = #traitbonus[trBol] + #traitinplay[trBol]
+        ]]></calculate>
+      </field>
+
+    <!-- Bonus health for the actor -->
+    <field
+      id="acBoLBonus"
+      name="Bonus Health"
+      type="derived">
+      <!-- Calculate any health bonus that the actor receives from other sources.
+      -->
+      <calculate phase="Traits" priority="5000" name="Calc acBoLBonus"><![CDATA[
+        ~.... add any suitable code here to calculate this for the game system ....
+        @value = 0
+        ]]></calculate>
+      </field>
+	  	  
+    <!-- Maximum health for the actor -->
+    <field
+      id="acBoLMax"
+      name="Max Health"
+      type="derived">
+      <!-- Calculate the maximum health for the actor as the minimum plus any bonus.
+      -->
+      <calculate phase="Traits" priority="5002" name="Calc acBoLMax">
+        <after name="Calc acBoLMin"/>
+        <after name="Calc acBoLBonus"/><![CDATA[
+			@value = field[acBoLMin].value + field[acBoLBonus].value
+        ]]></calculate>
+      </field>
+	  
+    <!-- Current health -->
+    <field
+      id="acBoLNow"
+      name="Current Health"
+      type="derived">
+      <!-- Calculate the current health for the actor based on the maximum and any
+            actual damage that has been sustained.
+      -->
+      <calculate phase="Traits" priority="5100" name="Calc acBoLNow">
+        <after name="Calc acBoLMax"/><![CDATA[
+        @value = field[acBoLMax].value - hero.usagepool[DmgNet].value
+        ]]></calculate>
+      </field>
+	  
+    <!-- Movement penalty to ST from armor -->
+    <field
+      id="acMoveST"
+      name="Movement Penalty"
+      type="derived">
+      </field>
+	  
+    <!-- Health penalty to ST -->
+    <field
+      id="acBoLST"
+      name="ST Penalty"
+      type="derived"
+	  maxfinal="50">
+      <!-- Calculate any penalty adjustment applied due to substantial damage effects.
+            For example, if the actor has sustained enough damage, he might suffer
+            penalties on attack roles.
+      -->
+      <calculate phase="Traits" priority="10000" name="Calc acBoLST">
+        <after name="Calc acBoLNow"/><![CDATA[
+		var delta as number
+		var normal as number
+		var bruised as number
+		var slinjured as number
+		var seinjured as number
+		var fainjured as number
+			
+		normal = #traitfound[trBolNorm]
+		bruised = #traitfound[trBolBruis]
+		slinjured = #traitfound[trBolSlInj]
+		seinjured = #traitfound[trBolSeInj]
+		fainjured = #traitfound[trBolFaInj]
+		
+		delta = field[acBoLMax].value - field[acBoLNow].value 
+			
+		if (delta <= normal + bruised) then
+			@value = 0
+		elseif (delta <= normal + bruised + slinjured) then
+			@value = 1
+		elseif (delta <= normal + bruised + slinjured + seinjured) then
+			@value = 3
+		elseif (delta <= normal + bruised + slinjured + seinjured + fainjured) then
+			@value = 5
+		endif
+		
+        ]]></calculate>
+      <!-- Final value for display shows any negative value in red and ignores other values -->
+      <finalize><![CDATA[
+	  
+		var delta as number
+		var normal as number
+		var bruised as number
+		var slinjured as number
+		var seinjured as number
+		var fainjured as number
+			
+		normal = #traitfound[trBolNorm]
+		bruised = #traitfound[trBolBruis]
+		slinjured = #traitfound[trBolSlInj]
+		seinjured = #traitfound[trBolSeInj]
+		fainjured = #traitfound[trBolFaInj]
+				
+		delta = field[acBoLMax].value - field[acBoLNow].value
+		
+		if (delta <= normal) then
+          @text = "Normal (ST+" & @value & ")"
+        elseif (delta <= normal + bruised) then
+          @text = "{text clrwarning} Bruised (ST+" & @value & ")" 
+		elseif (delta <= normal + bruised + slinjured) then
+          @text = "{text clrwarning} Slightly Injured (ST+" & @value & ")" 
+		elseif (delta <= normal + bruised + slinjured + seinjured) then
+          @text = "{text clrwarning} Seriously Injured (ST+" & @value & ")" 
+		elseif (delta <= normal + bruised + slinjured + seinjured + fainjured) then
+          @text = "{text clrwarning} Fatally Injured (ST+" & @value & ")"
+		else
+			@text = ""
+        endif
+		  
+        ]]></finalize>
+      </field>	  
+	  
+    <!-- Health penalty adjustment due to damage effects -->
+    <field
+      id="acBoLPenal"
+      name="Health Penalty"
+      type="derived"
+      maxfinal="50">
+      <!-- Calculate any penalty adjustment applied due to substantial damage effects.
+            For example, if the actor has sustained enough damage, he might suffer
+            penalties on attack roles.
+      -->
+      <calculate phase="Traits" priority="5200" name="Calc acBoLPenal">
+        <after name="Calc acBoLNow"/><![CDATA[
+
+        ]]></calculate>
+      <!-- Final value for display shows any negative value in red and ignores other values -->
+      <finalize><![CDATA[
+        if (@value >= 0) then
+          @text = ""
+        else
+          @text = "{text clrwarning}(" & @value & "){text clrreset}"
+          endif
+        ]]></finalize>
+      </field>
+
+    <!-- Health summary for display -->
+    <field
+      id="acBoLSumm"
+      name="Health Summary"
+      type="derived"
+      maxfinal="50">
+      <!-- Calculate a value that is based on all the fields referenced by the
+            "finalize" script. This ensures that the field always changes if any of
+            its pieces changes, which triggers the finalized value to be updated.
+      -->
+      <calculate phase="Render" priority="1000">
+        <after name="Calc acBoLNow"/><![CDATA[
+        ~make sure this value consists of the elements that could cause the summary to change
+        @value = field[acBoLNow].value * 10000 + field[acBoLMax].value * 100 + field[acBoLPenal].value
+        ]]></calculate>
+      <!-- Final value for display show the current and maximum health, plus any
+            penalty value in parentheses.
+      -->
+      <finalize><![CDATA[
+        if (field[acBoLST].value < 1) then
+          @text = field[acBoLNow].value & " / " & field[acBoLMax].value
+		else
+		  @text = " {text clrwarning}" & field[acBoLNow].value & " / " & field[acBoLMax].value & "{text clrreset}"
+          endif
+        ]]></finalize>
+      </field>
+
+    <!-- Chi point summary for display -->
+    <field
+      id="acChiSumm"
+      name="Chi Summary"
+      type="derived"
+      maxfinal="50">
+      <!-- Calculate a value that is based on all the fields referenced by the
+            "finalize" script. This ensures that the field always changes if any of
+            its pieces changes, which triggers the finalized value to be updated.
+      -->
+      <calculate phase="Render" priority="1000"><![CDATA[
+        ~make sure this value consists of the elements that could cause the summary to change
+        @value = hero.child[trkChi].field[trkLeft].value * 100 + hero.child[trkChi].field[trkMax].value
+        ]]></calculate>
+      <!-- Final value for display shows the current and maximum power points.
+      -->
+      <finalize><![CDATA[
+        @text = hero.child[trkChi].field[trkUser].value & " / " & hero.child[trkChi].field[trkMax].value
+        ]]></finalize>
+      </field>
+	  
+    <!-- Starting Aspect points to allocate -->
+    <field
+      id="acStartAP"
+      name="Aspect Points"
+      type="user"
+      defvalue="14">
+      </field>
+
+    <!-- Starting skill points to allocate -->
+    <field
+      id="acStartSP"
+      name="Skill Points"
+      type="user"
+      defvalue="15">
+      </field>
+
+    <!-- Starting gift/weakness points to allocate -->
+    <field
+      id="acStartGW"
+      name="Gift/Weakness Points"
+      type="user"
+      defvalue="2">
+      </field>	  
+	  
+    <!-- Starting Ability points to allocate to Combat Techniques, Magic, and Taos -->
+    <field
+      id="acStartAbi"
+      name="Ability Points"
+      type="user"
+      defvalue="15">
+      </field>
+
+    <!-- Starting XP for the character -->
+    <field
+      id="acStartXP"
+      name="Starting XP"
+      type="user">
+      </field>
+
+	<!-- Starting Renown for the character -->
+    <field
+      id="acStartRen"
+      name="Starting Renown"
+      type="derived"
+	  defvalue="2">
+      </field>
+
+    <!-- Starting cash for the character -->
+    <field
+      id="acCashCfg"
+      name="Starting Cash"
+      type="user"
+      defvalue="100">
+      </field>
+
+    <!-- Net cash for the character -->
+    <field
+      id="acCashNet"
+      name="Starting Cash"
+      type="derived">
+      </field>
+
+    <!-- Character type - Hero, NPC, or other -->
+    <field
+      id="acType"
+      name="Character Type"
+      type="user"
+      style="menu"
+      defthing="typHero">
+      </field>
+
+    <!-- Whether character is abandoning his action in combat for benefits in the next turn  -->
+    <field
+      id="acAbandon"
+      name="Abandoning"
+      type="derived"
+      persistence="full">
+      </field>
+
+    <!-- Index of the last advancement for the character -->
+    <field
+      id="acLastAdv"
+      name="Last Advancement"
+      type="derived">
+      </field>
+	
+    <!-- Assign tags relating to important damage states -->
+    <eval index="2" phase="Final" priority="1100"><![CDATA[
+		~if no damage has been incurred, assign a tag to indicate that state
+		if (field[acBoLNow].value >= field[acBoLMax].value) then
+			perform hero.assign[Hero.NoDamage]
+		 ~if the hero is dead or otherwise out of combat, indicate that state
+		elseif (field[acBoLNow].value = 0) then
+			perform hero.assign[Hero.Dead]
+        endif
+	
+      ]]></eval>
+
+    <!-- Copy the first user image for use in the TacCon -->
+    <eval index="3" phase="Final" priority="1000"><![CDATA[
+      ~all heroes should be able to reroll initiative
+      perform hero.assign[Hero.RerollInit]
+
+      field[acTacImage].value = hero.findchild[UserImage,"TRUE",_CompSeq_].field[uimgImage].value
+      ]]></eval>
+
+    <!-- calculate the net cash possessed for the character -->
+    <eval index="4" phase="Effects" priority="5000"><![CDATA[
+      ~our net cash is our configured starting cash plus our accrued cash
+      field[acCashNet].value = field[acCashCfg].value + hero.usagepool[TotalCash].value
+      ]]></eval>
+
+    <!-- activate our selected character type -->
+    <eval index="5" phase="Setup" priority="5000"><![CDATA[
+	  ~Starting renown is highest skill level
+	    var highskill as number
+		call getHighSkl
+		field[acStartRen].value = highskill
+       
+	    perform field[acType].chosen.forward[CharType.?]
+      ]]></eval>
+
+    </component>
+
+
+  <!-- Personal component
+        Encapsulates all of the personal details tracked on the Personal tab
+  -->
+  <component
+    id="Personal"
+    name="Personal Info"
+    ispublic="no">
+
+    <!-- Age of the actor -->
+    <field
+      id="perAge"
+      name="Age"
+      type="user"
+      defvalue="25">
+      <!-- Bound the age to within the limits specified for the actor -->
+      <bound phase="Render" priority="10000"><![CDATA[
+        @minimum = field[perAgeMin].value
+        @maximum = field[perAgeMax].value
+        ]]></bound>
+      </field>
+
+    <!-- Minimum age of the actor -->
+    <field
+      id="perAgeMin"
+      name="Minimum Age"
+      type="derived"
+      defvalue="15">
+      </field>
+
+    <!-- Maximum age of the actor -->
+    <field
+      id="perAgeMax"
+      name="Maximum Age"
+      type="derived"
+      defvalue="75">
+      </field>
+
+    <!-- Height of the actor (in inches) -->
+    <field
+      id="perHeight"
+      name="Height"
+      type="user"
+      maxfinal="20"
+      defvalue="68">
+      <!-- Bound the age to within the limits specified for the actor -->
+      <bound phase="Render" priority="10000"><![CDATA[
+        @minimum = field[perHtMin].value
+        @maximum = field[perHtMax].value
+        ]]></bound>
+      <!-- Final value for display is converted from inches to feet and inches -->
+      <finalize><![CDATA[
+        ~calculate the height in terms of feet and inches
+        var feet as number
+        var inches as number
+        feet = @value / 12
+        feet = round(feet,0,-1)
+        inches = @value - (feet * 12)
+
+        ~synthesize appropriate text to display the height properly
+        @text = feet & "'"
+        if (inches <> 0) then
+          @text = @text & " " & inches & chr(34)
+          endif
+        ]]></finalize>
+      </field>
+
+    <!-- Minimum height of the actor -->
+    <field
+      id="perHtMin"
+      name="Minimum Height"
+      type="derived"
+      defvalue="36">
+      </field>
+
+    <!-- Maximum height of the actor -->
+    <field
+      id="perHtMax"
+      name="Maximum Height"
+      type="derived"
+      defvalue="96">
+      </field>
+
+    <!-- Weight of the actor (in pounds) -->
+    <field
+      id="perWeight"
+      name="Weight"
+      type="user"
+      maxfinal="20"
+      defvalue="160">
+      <!-- Bound the weight to within the limits specified for the actor -->
+      <bound phase="Render" priority="10000"><![CDATA[
+        @minimum = field[perWtMin].value
+        @maximum = field[perWtMax].value
+        ]]></bound>
+      <!-- Final value for display includes the "lb." suffix in a different font size -->
+      <finalize><![CDATA[
+        @text = @text & "lb."
+        ]]></finalize>
+      </field>
+
+    <!-- Minimum weight of the actor -->
+    <field
+      id="perWtMin"
+      name="Minimum Weight"
+      type="derived"
+      defvalue="30">
+      </field>
+
+    <!-- Maximum weight of the actor -->
+    <field
+      id="perWtMax"
+      name="Maximum Weight"
+      type="derived"
+      defvalue="500">
+      </field>
+
+    <!-- Gender of the actor (0=male, 1=female) -->
+    <field
+      id="perGender"
+      name="Gender"
+      type="user">
+      </field>
+
+    <!-- Hair color -->
+    <field
+      id="perHair"
+      name="Hair Color"
+      maxlength="25"
+      type="user">
+      </field>
+
+    <!-- Eye color -->
+    <field
+      id="perEyes"
+      name="Eye Color"
+      maxlength="25"
+      type="user">
+      </field>
+
+    <!-- Skin color -->
+    <field
+      id="perSkin"
+      name="Skin Color"
+      maxlength="25"
+      type="user">
+      </field>
+
+    <!-- Background description of the actor -->
+    <field
+      id="perInfo"
+      name="Background Text"
+      type="user"
+      maxlength="10000">
+      </field>
+
+    <eval index="1" phase="Setup" priority="1000"><![CDATA[
+      ~ Assign a tag if the user hasn't specified any background text
+      if (field[perInfo].isempty <> 0) then
+        perform assign[Helper.NoPersText]
+        endif
+      ]]></eval>
+
+    </component>
+
+
+  <!-- Define various component sets associated with the components defined above.
+  -->
+
+  <!-- The "Personal" compset is auto-defined for the component -->
+
+  <!-- Actor - all the collective one-shot details for the actor -->
+  <compset
+    id="Actor">
+    <compref component="Actor"/>
+    </compset>
+
+
+  </document>

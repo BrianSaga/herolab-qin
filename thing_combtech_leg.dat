@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!-- This file contains the assortment of skills for the game system. Note that each
+      skill is linked to an associated attribute for the character. This linkage allows
+      the value of the skill to easily incorporate the effects of the linked attribute
+      via a script on the component.
+-->
+
+<document signature="Hero Lab Data">
+
+<!--
+	***************************************************************
+		Close combat Techniques
+	***************************************************************
+	
+-->
+
+<!-- Suicide Attack (the ultimate sacrifice) -->
+	<thing
+		id="ctSuicAttk"
+		name="Suicide Attack"
+		compset="CombTech"
+		isunique="no"
+		description="Advancing against his opponent’s attack, the character counterattacks in the same movement without thinking of his own safety.{br}{br} If the opponent succeeds in an attack against him (the result of the attack Test overcoming the character’s Passive Defence), the character may choose to sacrifi ce an action as if he were carrying out an Active Defence. However, instead of blocking or dodging, he makes an attack at the same time as his opponent’s. The two attack Tests are decided at the same time and no Active Defence can, of course, be used by either of the fighters.">
+		<fieldval field="trtAbbrev" value="SuAtk"/>
+		<fieldval field="ctAlias" value="the ultimate sacrifice"/>
+		<fieldval field="usrCandid1" value="(Skill.skBangshu &amp; (fieldval:trtFinal &gt;= 4)) &#124; (Skill.skQiangsh &amp; (fieldval:trtFinal &gt;= 2)) &#124; (Skill.skDaoshu &amp; (fieldval:trtFinal &gt;= 4)) &#124; (Skill.skJianshu &amp; (fieldval:trtFinal &gt;= 3)) &#124; (Skill.skBianshu &amp; (fieldval:trtFinal &gt;= 6))"/>
+
+		<usesource source="qinLegends"/>
+
+		<!-- Verify we have at least one valid skill pick on the actor -->
+		<prereq message="Requires Bangshu 4+, Bianshu 6+ (see {i}Qin Legends{/i}), Qiangshu 2+, Daoshu 4+, or Jianshu 3+">
+			<validate><![CDATA[
+				validif (#traitfound[skBangshu] >= 4)
+				validif (#traitfound[skQiangsh] >= 2)
+				validif (#traitfound[skDaoshu] >= 4)
+				validif (#traitfound[skJianshu] >= 3)
+				validif (#traitfound[skBianshu] >= 6)
+			]]></validate>
+      </prereq>
+	</thing>
+	
+	<!-- Blinding (sand and sun) -->
+	<thing
+		id="ctBlind"
+		name="Blinding"
+		compset="CombTech"
+		isunique="no"
+		description="The character can use his weapon to blind his opponent, whether by dazzling him with the light of the sun refl ected off his blade, or by throwing dust into his eyes.{br}{br} If his attack Test succeeds, the character causes no damage at all but imposes on his opponent a penalty on all his Tests equal to his Margin of Success. This penalty lasts as long as the opponent does not use an action to rub his eyes or put himself out of the range of the dazzling. The target of this attack can always try an Active Defence against this Technique.">
+		<fieldval field="trtAbbrev" value="Blnd"/>
+		<fieldval field="ctAlias" value="sand and sun"/>
+		<fieldval field="usrCandid1" value="(Skill.skBangshu &amp; (fieldval:trtFinal &gt;= 4)) &#124; (Skill.skHand &amp; (fieldval:trtFinal &gt;= 1)) &#124; (Skill.skDaoshu &amp; (fieldval:trtFinal &gt;= 6)) &#124; (Skill.skJianshu &amp; (fieldval:trtFinal &gt;= 2)) &#124; (Skill.skQiangsh &amp; (fieldval:trtFinal &gt;= 5))"/>
+
+		<usesource source="qinLegends"/>		
+		
+		<!-- Verify we have at least one valid skill pick on the actor -->
+		<prereq message="Requires Bangshu 4+, Hand to Hand 1+, Daoshu 6, Qiangshu 5+, Daoshu 4+, or Jianshu 2+">
+			<validate><![CDATA[
+				validif (#traitfound[skBangshu] >= 4)
+				validif (#traitfound[skHand] >= 1)
+				validif (#traitfound[skQiangsh] >= 5)
+				validif (#traitfound[skDaoshu] >= 6)
+				validif (#traitfound[skJianshu] >= 2)
+			]]></validate>
+      </prereq>
+	</thing>	
+
+	<!-- Mounted Combat (the speed of the kilin) -->
+	<thing
+		id="ctMounted"
+		name="Mounted Combat"
+		compset="CombTech"
+		isunique="no"
+		description="Used to fighting on horseback, the character knows how to make the best use of his martial capabilities when he fi nds himself in the saddle.{br}{br} When he is on a horse, the character can use his martial skill to attack, even if his Level of Horsemanship is inferior to it - he is no longer limited by this rule. Similarly, the increase of the ST by +1 due to the use of a Technique does not apply either.">
+		<fieldval field="trtAbbrev" value="MtCom"/>
+		<fieldval field="ctAlias" value="the speed of the kilin"/>
+		<fieldval field="usrCandid1" value="(Skill.skChuishu &amp; (fieldval:trtFinal &gt;= 5)) &#124; (Skill.skJianshu &amp; (fieldval:trtFinal &gt;= 1)) &#124; (Skill.skQiangsh &amp; (fieldval:trtFinal &gt;= 1))"/>
+
+		<usesource source="qinLegends"/>		
+		
+		<!-- Verify we have at least one valid skill pick on the actor -->
+		<prereq message="Requires Chuishu 5+, Jianshu 1+, or Qiangshu 1+">
+			<validate><![CDATA[
+				validif (#traitfound[skChuishu] >= 5)
+				validif (#traitfound[skQiangsh] >= 1)
+				validif (#traitfound[skJianshu] >= 1)
+			]]></validate>
+      </prereq>
+	</thing>
+
+	<!-- Reducing the Distance (the boxer’s step) -->
+	<thing
+		id="ctRedDis"
+		name="Reducing the Distance"
+		compset="CombTech"
+		isunique="no"
+		description="Used to close quarter fighting, the character gets under his opponent’s guard to prevent his using his weapon effectively.{br}{br} The character uses a movement action to get under his opponent’s guard. This done, the two fighters can only use their bare hands (Hand-to-Hand skill) or small-sized weapons (Dagger skill), or suffer a penalty of -2 in all attack and defence Tests.{br}{br} Going back again to a normal distance requires the use of another movement action."> 		
+		<fieldval field="trtAbbrev" value="RdDis"/>
+		<fieldval field="ctAlias" value="the boxer's step"/>
+		<fieldval field="usrCandid1" value="(Skill.skHand &amp; (fieldval:trtFinal &gt;= 1)) &#124; (Skill.skJianshu &amp; (fieldval:trtFinal &gt;= 6)) &#124; (Skill.skDaoshu &amp; (fieldval:trtFinal &gt;= 3))"/>
+
+		<usesource source="qinLegends"/>		
+		
+		<!-- Verify we have at least one valid skill pick on the actor -->
+		<prereq message="Requires Hand to Hand 1+, Jianshu 6, or Daoshu 3+">
+			<validate><![CDATA[
+				validif (#traitfound[skHand] >= 1)
+				validif (#traitfound[skDaoshu] >= 3)
+				validif (#traitfound[skJianshu] >= 6)
+			]]></validate>
+      </prereq>
+	</thing>
+
+	<!-- Mounted Ranged Attack (the flight of the Kilin) -->
+	<thing
+		id="ctMtRngAt"
+		name="Mounted Combat - Ranged"
+		compset="CombTech"
+		isunique="no"
+		description="On horseback, the character knows how to make the best use of his raised position to deliver death blows.{br}{br} When he is on horseback, the character can use his martial skill to attack from a distance, even if his Level of Horsemanship is inferior to it - he is no longer limited by this rule. Similarly, the increase of the ST by + 1 due to the use of a Technique does not apply either."> 		
+		<fieldval field="trtAbbrev" value="MtRng"/>
+		<fieldval field="ctAlias" value="the flight of the Kilin"/>
+		<fieldval field="usrCandid1" value="(Skill.skGongshu &amp; (fieldval:trtFinal &gt;= 5)) &#124; (Skill.skNushu &amp; (fieldval:trtFinal &gt;= 4)) &#124; (Skill.skThrow &amp; (fieldval:trtFinal &gt;= 4)) &#124; (Skill.skBianshu &amp; (fieldval:trtFinal &gt;= 6))"/>
+		
+		<!-- Include an array to select whether this technique is for short or long thrown weapons -->
+		<fieldval field="usrLabelAr" value="Type:"/>
+		<arrayval field="usrArray" index="0" value="Ranged"/>
+		<arrayval field="usrArray" index="1" value="Thrown, short"/>
+		<arrayval field="usrArray" index="2" value="Thrown, long"/>		
+
+		<usesource source="qinLegends"/>		
+		
+		<!-- Verify we have at least one valid skill pick on the actor -->
+		<prereq message="Requires Bianshu 6+ (see {i}Qin Legends{/i}), Gongshu 5+, Nushu 4+, Throwing (if applied to short weapons) 5+, or Throwing (if applied to long weapons) 4+">
+			<validate><![CDATA[
+				validif (#traitfound[skGongshu] >= 5)
+				validif (#traitfound[skNushu] >= 4)
+				validif (#traitfound[skThrow] >= 4)
+				validif (#traitfound[skBianshu] >= 6)
+			]]></validate>
+      </prereq>
+	</thing>
+
+	<!-- Disarm (the way of peace) -->
+	<thing
+		id="ctDisRng"
+		name="Disarm - Ranged"
+		compset="CombTech"
+		isunique="no"
+		description="This Technique seeks to force the opponent to drop his weapon by shooting him in the hand, for example. The character, if he succeeds in his attack Test, causes no damage at all, but can fl ing his opponent’s weapon a distance equal to his Wood in yards. The target of this attack can always attempt an Active Defence against this Technique."> 		
+		<fieldval field="trtAbbrev" value="DsRng"/>
+		<fieldval field="ctAlias" value="the way of peace"/>
+		<fieldval field="usrCandid1" value="(Skill.skGongshu &amp; (fieldval:trtFinal &gt;= 6)) &#124; (Skill.skNushu &amp; (fieldval:trtFinal &gt;= 5)) &#124; (Skill.skThrow &amp; (fieldval:trtFinal &gt;= 5))"/>
+		
+		<!-- Include an array to select whether this technique is for short or long thrown weapons -->
+		<fieldval field="usrLabelAr" value="Type:"/>
+		<arrayval field="usrArray" index="0" value="Ranged"/>
+		<arrayval field="usrArray" index="1" value="Thrown, short"/>
+		<arrayval field="usrArray" index="2" value="Thrown, long"/>		
+
+		<usesource source="qinLegends"/>		
+		
+		<!-- Verify we have at least one valid skill pick on the actor -->
+		<prereq message="Requires Gongshu 6, Nushu 5+, Throwing (if applied to short weapons) 5+, or Throwing (if applied to long weapons) 6+">
+			<validate><![CDATA[
+				validif (#traitfound[skGongshu] >= 6)
+				validif (#traitfound[skNushu] >= 5)
+				validif (#traitfound[skThrow] >= 5)
+			]]></validate>
+      </prereq>
+	</thing>
+
+	<!-- Trap - Ranged (the patience of the falcon) -->
+	<thing
+		id="ctTrapRng"
+		name="Trap - Ranged"
+		compset="CombTech"
+		isunique="no"
+		description="The character prepares his shot so as to unleash his blow at the most opportune moment.{br}{br} The character decides on a target (which can be a person, a precise place, an object etc) and prepares his shot in anticipation of an event (his target draws a weapon, etc). He cannot use any action until this event. Then he unleashes his blow a fraction of a second before the other, preventing his fatal intention (the target, struck in the arm, is unable to draw his weapon, etc)."> 		
+		<fieldval field="trtAbbrev" value="TrRng"/>
+		<fieldval field="ctAlias" value="the patience of the falcon"/>
+		<fieldval field="usrCandid1" value="(Skill.skGongshu &amp; (fieldval:trtFinal &gt;= 6)) &#124; (Skill.skNushu &amp; (fieldval:trtFinal &gt;= 5)) &#124; (Skill.skThrow &amp; (fieldval:trtFinal &gt;= 5))"/>
+		
+		<!-- Include an array to select whether this technique is for short or long thrown weapons -->
+		<fieldval field="usrLabelAr" value="Type:"/>
+		<arrayval field="usrArray" index="0" value="Ranged"/>
+		<arrayval field="usrArray" index="1" value="Thrown, short"/>
+		<arrayval field="usrArray" index="2" value="Thrown, long"/>		
+
+		<usesource source="qinLegends"/>		
+		
+		<!-- Verify we have at least one valid skill pick on the actor -->
+		<prereq message="Requires Gongshu 1+, Nushu 2+, or Throwing (if applied to long weapons) 5+">
+			<validate><![CDATA[
+				validif (#traitfound[skGongshu] >= 6)
+				validif (#traitfound[skNushu] >= 5)
+				validif (#traitfound[skThrow] >= 5)
+			]]></validate>
+      </prereq>
+	</thing>
+
+</document>

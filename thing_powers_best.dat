@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!-- This file contains the assortment of special abilities for the game system.
+      Abilities confer their effects through scripts that apply the necessary changes
+      to the appropriate traits.
+
+      Abilities influence traits, so all adjustments must be applied prior to when the
+      final trait value is calculated. The script timing used below (PreTraits/5000)
+      ensures that we satisfy this requirement. All abilities should be designated as
+      "unique" so that they can only be selected a single time by the user.
+-->
+
+<document signature="Hero Lab Data">
+
+	  <!-- Animal Language Power -->
+	  <thing
+		id="pwAnimLang"
+		name="Animal Language"
+		compset="Power"
+		isunique="no"
+		description="All yao can speak and understand the language of their original species.">
+		<usesource source="qinBeast"/>
+		</thing>
+
+	<!-- Yao Immortality Power -->
+    <thing
+		id="pwImmort"
+		name="Immortality"
+		compset="Power"
+		isunique="yes"
+		description="The yao have reached a stage which allows them to no longer age. Their lifespan is theoretically infinite, although they can still die from wounds, illness, poison, etc. However, even in the case of infections and poisons, their resistance is much higher than that of a normal human: the Virulence of illnesses and poisons are halved when applied to a yao (round up).">
+	 
+		<usesource source="qinBeast"/>
+		
+		<!--
+		<eval index="1" phase="Final" priority="9000"><![CDATA[
+			~set the special tab name to include the value of this power
+			field[spcName].text = field[name].text & ": " & signed(field[trtFinal].value) & " protection"
+			
+			~update the protection trait
+			#traitfound[trProtect] += field[trtFinal].value
+		]]></eval>
+		-->
+
+		</thing>
+		
+<!-- Vulnerability to Exorcism Power -->
+		<thing
+			id="pwVulExo"
+			name="Vulnerability to Exorcism"
+			compset="Power"
+			isunique="no"
+			description="The techniques of Exorcism are very effective against the yao.">
+			<usesource source="qinBeast"/>
+			</thing>
+			
+<!-- Animal Trait Power -->
+		<thing
+			id="pwAnTrait"
+			name="Animal Trait"
+			compset="Power"
+			isunique="no"
+			description="Although most yao are capable of taking on an almost perfect human form, all keep a feature relating to their true nature: a yao-fox might have golden eyes, a yao-snake might have a hissing voice or cold skin, a yao-monkey might have their back or hands softly furred, etc. The yao learn to hide these features, or even profit from them in certain cases. There are also certain yao who, even in their human forms, remain strongly marked by their animal side and have particularly visible marks: a yao-buffalo might have horns, a yao-tiger might be marked with black stripes all over their body, a yao-rat might have a tail, etc.">
+			<usesource source="qinBeast"/>
+			<tag group="User" tag="NeedDomain"/>
+			</thing>
+		 	
+</document>

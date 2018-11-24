@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!-- This file contains the assortment of skills for the game system. Note that each
+      skill is linked to an associated attribute for the character. This linkage allows
+      the value of the skill to easily incorporate the effects of the linked attribute
+      via a script on the component.
+-->
+
+<document signature="Hero Lab Data">
+<!--
+	***************************************************************
+		Divination Techniques
+	***************************************************************
+-->
+
+<!-- The Sweet Fragrances of the Blue Lotus -->
+	<thing
+		id="maSwFrag"
+		name="The Sweet Fragrances of the Blue Lotus"
+		compset="Magic"
+		isunique="yes"
+		description="The lotus is a symbol of purity and its name is pronounced in the same way as the Chinese word for 'year'. The soothsayer picks a fresh flower of the blue lotus and must concentrate on it for at least a double hour. Then he pulls off the petals one by one, naming the different months of the year. Succeeding in a Test of Earth + Divination against an ST of 11, he detects the beneficial influences of each month to come of the present year. He has accurate visions of fortunate events and is able to say where they are likely to happen (region or town).">
+		<fieldval field="trtAbbrev" value="SwFrg"/>
+		<fieldval field="trtUser" value="5"/>
+		<fieldval field="maPrep" value="One double hour"/>
+		<fieldval field="chiCost" value="10"/>
+		
+		<usesource source="qinLegends"/>
+
+		<tag group="Way" tag="Divination"/>
+		<link linkage="magicskill" thing="skDivin"/>	
+		
+		<!-- Requires Calligraphy 1
+		<exprreq message="Calligraphy 1+ required."><![CDATA[
+			#traitfound[skCall] >= 1
+		]]></exprreq> 
+		-->
+    </thing>
+	
+<!-- Smoothing the Scales of the Dragon (Geomancy) -->
+	<thing
+		id="maSmScale"
+		name="Smoothing the Scales of the Dragon"
+		compset="Magic"
+		isunique="yes"
+		description="The geomancer can, by concentrating and offering incense, flowers and rare fruit, pacify and restore the power of a spirit or divinity that is troubled, or even wounded, in a precise place. The curses and the blemishes which stain this place are wiped out and it is again as pure as at the creation of the world. {br}{br}The soothsayer has to know, by whatever means, the name of the creature, the spirit or the guardian divinity of the place and to flatter it by showing humility. The soothsayer must then succeed in a Test of Earth + Divination against an ST of 11 in order to restore the upset balance.">
+		<fieldval field="trtAbbrev" value="SmScl"/>
+		<fieldval field="trtUser" value="6"/>
+		<fieldval field="maPrep" value="One day"/>
+		<fieldval field="chiCost" value="15"/>
+		
+		<usesource source="qinLegends"/>		
+
+		<tag group="Way" tag="Divination"/>
+		<tag group="User" tag="Geomancy"/>
+		
+		<link linkage="magicskill" thing="skDivin"/>	
+		
+		<!-- Requires Calligraphy 1
+		<exprreq message="Calligraphy 1+ required."><![CDATA[
+			#traitfound[skCall] >= 1
+		]]></exprreq> 
+		-->
+    </thing>
+	
+<!-- Exploring the Yellow Springs -->
+	<thing
+		id="maExpYelSp"
+		name="Exploring the Yellow Springs"
+		compset="Magic"
+		isunique="yes"
+		description="The soothsayer is able to descend, in thought, into Hell and see what has become of a dead person he once knew (he must have met him and know his true name). He must chew the leaves, white flowers and seeds of the white lotus while meditating near a place of death (grave, monument, etc). He then becomes disembodied and reaches in spirit the Yellow Springs where he simply has to say the name of the person he seeks. This person appears before him and he is able to speak to them and ask for any information he would like to have, but only to the extent of what this person is likely to know.{br}{br} The dead person, too, must be well disposed towards the soothsayer; if not, they do not answer. Nevertheless, they are obliged to appear and may in no way attack the soothsayer. The other creatures or spirits of the dead are unable to see the soothsayer, nor do him any harm.">
+		<fieldval field="trtAbbrev" value="ExSpr"/>
+		<fieldval field="trtUser" value="6"/>
+		<fieldval field="maPrep" value="Two small hours"/>
+		<fieldval field="chiCost" value="15"/>
+		<fieldval field="maImprove" value="By paying 3 extra Chi points, the soothsayer can learn what the next incarnation of the dead person will be."/>
+		
+		<usesource source="qinLegends"/>		
+
+		<tag group="Way" tag="Divination"/>
+		
+		<link linkage="magicskill" thing="skDivin"/>	
+		
+		<!-- Requires Calligraphy 1
+		<exprreq message="Calligraphy 1+ required."><![CDATA[
+			#traitfound[skCall] >= 1
+		]]></exprreq> 
+		-->
+    </thing>
+	
+<!-- Invoking the Celestial Creatures -->
+	<thing
+		id="maInvCelCr"
+		name="Invoking the Celestial Creatures"
+		compset="Magic"
+		isunique="yes"
+		description="The soothsayer can, by preparing sufficient offerings (perfumes, incense, sacred flowers, fruit and appropriate gifts), invoke a celestial creature and ask for his help for a whole day. {br}{br}Thus, he can call up a Kilin of fire, an ephemeral Nymph, a celestial Turtle, a powerful white Tiger, the scarlet Bird from the South, or even an imperial Lion. {br}{br}This creature is automatically well disposed towards him if the offerings are worthy of it and suitable to its nature (a weapon for a Tiger or a Lion, a sacred work for a Turtle, fine clothes for a Nymph, etc) but does nothing evil and nothing that it does not want to. The creature keeps its free will and will not obey an order which would harm either it or another innocent person. The services which can be asked of these creatures must also be in keeping with their natures; a white Tiger may agree to fight for the soothsayer, while a celestial Turtle can answer his questions about the laws of the universe and a Kilin could lead him, in the blink of an eye, wherever he wants to go in Zhongguo.">
+		<fieldval field="trtAbbrev" value="InCel"/>
+		<fieldval field="trtUser" value="6"/>
+		<fieldval field="maPrep" value="One small hour2"/>
+		<fieldval field="chiCost" value="20"/>
+		
+		<usesource source="qinLegends"/>		
+
+		<tag group="Way" tag="Divination"/>
+		
+		<link linkage="magicskill" thing="skDivin"/>	
+		
+		<!-- Requires Calligraphy 1
+		<exprreq message="Calligraphy 1+ required."><![CDATA[
+			#traitfound[skCall] >= 1
+		]]></exprreq> 
+		-->
+    </thing>
+</document>

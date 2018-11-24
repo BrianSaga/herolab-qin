@@ -1,0 +1,603 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!-- This file contains the assortment of miscellaneous gear/equipment for the game
+      system. Most gear is just mundane items, but a few confer special benefits via
+      scripts. There are also a few that can be used as generic entries that users can
+      customize without having to add new entries via the Editor.
+
+      The behaviors of each piece of gear are controlled via a combination of field
+      values, tags, and XML attributes. A brief summary of the most important of these
+      is provided below:
+
+      "stacking" attribute: controls the behavior of multiple pieces of the gear with
+          respect to merging separate pieces or always keeping them distinct
+      "private" attribute: controls whether the gear is made visible to the user within
+          the Editor when creating a new piece of gear as a copy of an existing thing
+      "isunique" attribute: controls whether the user can only ever add a single
+          instance of the thing to an actor versus adding multiple instances
+      "Equipment" tags: The "Helper.CustomItem" tag indicates gear that the user can
+          modify the name for
+      "thing" tags: The "thing.holder" tag indicates gear that can both be held within
+          other holders and can hold other gear, while the "thing.holder_top" tag
+          indicates gear that can only hold other (but cannot be held); omitting both
+          of these tags implies the gear can only be held by suitably flagged holders
+      "UserName" field: If the "Helper.CustomItem" tag is assigned, this field
+          provides the default name for the item until the user changes it
+-->
+
+<document signature="Hero Lab Data">
+
+  <!-- Customizable Gear gear -->
+  <thing
+    id="eqCustom"
+    name=" &#150; Custom Gear &#150;"
+    compset="Equipment"
+    stacking="new"
+    isprivate="yes"
+    description="This item can be customized to represent whatever you want.">
+    <fieldval field="UserName" value="New Gear"/>
+    <tag group="Helper" tag="CustomItem"/>
+    </thing>
+
+  <!-- Customizable Top-Holder gear -->
+  <thing
+    id="eqCustTop"
+    name=" &#150; Custom Location &#150;"
+    compset="Equipment"
+    stacking="never"
+    isprivate="yes"
+    holdable="no"
+    description="Use this item to represent a place to store your gear - for example, a house, or as buried treasure somewhere.">
+    <fieldval field="UserName" value="New Location"/>
+    <tag group="Helper" tag="CustomItem"/>
+    <tag group="thing" tag="holder_top"/>
+    </thing>
+
+  <!-- Customizable Holder gear -->
+  <thing
+    id="eqCustHold"
+    name=" &#150; Custom Container &#150;"
+    compset="Equipment"
+    stacking="solo"
+    isprivate="yes"
+    description="Use this item to represent a bag or other container in which gear can be carried around.">
+    <fieldval field="UserName" value="New Container"/>
+    <tag group="Helper" tag="CustomItem"/>
+    <tag group="thing" tag="holder"/>
+    </thing>
+
+
+  <!-- Sample Simple gear -->
+  <thing
+    id="eqSimple"
+    name="Sample Simple"
+    compset="Equipment"
+    description="Description goes here">
+    <fieldval field="grCost" value="100"/>
+    <fieldval field="gearWeight" value="1"/>
+    <!-- Define any script needed to confer the effects of the gear
+    <eval value="1" phase="PreTraits" priority="5000">
+      <before name="Calc trtFinal"/><![CDATA[
+      ~#traitbonus[attrWater] += 1
+      ]]></eval>
+    -->
+    </thing>
+
+  <!-- Sample Ammunition gear -->
+  <thing
+    id="eqAmmo"
+    name="Sample Ammo"
+    compset="Ammunition"
+    lotsize="20"
+    stacking="merge"
+    description="Description goes here.">
+    <fieldval field="grCost" value=".5"/>
+    <fieldval field="gearWeight" value=".1"/>
+    </thing>
+
+  <!-- Sample Container gear -->
+  <thing
+    id="eqContain"
+    name="Sample Container"
+    compset="Equipment"
+    description="Description goes here.">
+    <fieldval field="grCost" value="5"/>
+    <fieldval field="gearWeight" value="1"/>
+    <tag group="thing" tag="holder"/>
+    </thing>
+
+  <!-- Sample Stackable gear -->
+  <thing
+    id="eqStack"
+    name="Sample Stackable"
+    compset="Equipment"
+    stacking="merge"
+    description="Description goes here.">
+    <fieldval field="grCost" value="1"/>
+    <fieldval field="gearWeight" value="1"/>
+    </thing>
+
+  <!-- Dropped to Ground location - automatically bootstrapped to every hero -->
+  <thing
+    id="eqGround"
+    name="Dropped to Ground"
+    compset="Equipment"
+    isprivate="yes"
+    uniqueness="unique"
+    description="Any equipment dropped to the ground is held in this container.{br}You can move an item from one container to another by clicking the &quot;Gear&quot; button beside its info button.">
+    <tag group="Helper" tag="Bootstrap"/>
+    <tag group="thing" tag="holder_top"/>
+    <tag group="Print" tag="NoPrint"/>
+    </thing>
+
+<!-- 
+		******************** Qin *************************** 
+-->
+  <!-- Crockery gear -->
+  <thing
+    id="eqPlate"
+    name="Plate"
+    compset="Equipment"
+    stacking="merge"
+    description="">
+    <fieldval field="grCost" value="1"/>
+    <fieldval field="gearWeight" value="0"/>
+	<tag group="Gear" tag="Crockery"/>
+    </thing>
+
+  <thing
+    id="eqMetalCup"
+    name="Metal Cup"
+    compset="Equipment"
+    stacking="merge"
+    description="">
+    <fieldval field="grCost" value="10"/>
+    <fieldval field="gearWeight" value="0"/>
+	<tag group="Gear" tag="Crockery"/>
+    </thing>
+
+  <thing
+    id="eqDish"
+    name="Dish"
+    compset="Equipment"
+    stacking="merge"
+    description="">
+    <fieldval field="grCost" value="2"/>
+    <fieldval field="gearWeight" value="0"/>
+	<tag group="Gear" tag="Crockery"/>
+    </thing>	
+
+  <thing
+    id="eqWdCup"
+    name="Wooden cup"
+    compset="Equipment"
+    stacking="merge"
+    description="">
+    <fieldval field="grCost" value="2"/>
+    <fieldval field="gearWeight" value="0"/>
+	<tag group="Gear" tag="Crockery"/>
+    </thing>
+	
+  <thing
+    id="eqPan"
+    name="Pan"
+    compset="Equipment"
+    stacking="merge"
+    description="">
+    <fieldval field="grCost" value="2"/>
+    <fieldval field="gearWeight" value="0"/>
+	<tag group="Gear" tag="Crockery"/>
+    </thing>
+
+  <thing
+    id="eqSpoon"
+    name="Spoon"
+    compset="Equipment"
+    stacking="merge"
+    description="">
+    <fieldval field="grCost" value="2"/>
+    <fieldval field="gearWeight" value="0"/>
+	<tag group="Gear" tag="Crockery"/>
+    </thing>
+
+  <thing
+    id="eqCauld"
+    name="Cauldron"
+    compset="Equipment"
+    stacking="merge"
+    description="">
+    <fieldval field="grCost" value="4"/>
+    <fieldval field="gearWeight" value="0"/>
+	<tag group="Gear" tag="Crockery"/>    
+	</thing>
+	
+
+  <thing
+    id="eqKnife"
+    name="Knife"
+    compset="Equipment"
+    stacking="merge"
+    description="">
+    <fieldval field="grCost" value="3"/>
+    <fieldval field="gearWeight" value="0"/>
+	<tag group="Gear" tag="Crockery"/>
+    </thing>
+
+  <thing
+    id="eqBow"
+    name="Bow"
+    compset="Equipment"
+    stacking="merge"
+    description="">
+    <fieldval field="grCost" value="11"/>
+    <fieldval field="gearWeight" value="0"/>
+	<tag group="Gear" tag="Crockery"/>
+    </thing>
+
+  <thing
+    id="eqCleaver"
+    name="Cleaver"
+    compset="Equipment"
+    stacking="merge"
+    description="">
+    <fieldval field="grCost" value="5"/>
+    <fieldval field="gearWeight" value="0"/>
+	<tag group="Gear" tag="Crockery"/>
+    </thing>
+
+  <thing
+    id="eqCerCup"
+    name="Ceramic cup"
+    compset="Equipment"
+    stacking="merge"
+    description="">
+    <fieldval field="grCost" value="10"/>
+    <fieldval field="gearWeight" value="0"/>
+	<tag group="Gear" tag="Crockery"/>
+    </thing>
+
+  <thing
+    id="eqChopstks"
+    name="Chopsticks, pair"
+    compset="Equipment"
+    stacking="merge"
+    description="">
+    <fieldval field="grCost" value="1"/>
+    <fieldval field="gearWeight" value="0"/>
+	<tag group="Gear" tag="Crockery"/>
+    </thing>
+	
+<!-- CLOTHES -->
+  <thing
+    id="eqChgPaoL"
+    name="Chang pao, low quality"
+    compset="Equipment"
+    stacking="merge"
+    description="">
+    <fieldval field="grCost" value="8"/>
+    <fieldval field="gearWeight" value="0"/>
+	<tag group="Gear" tag="Clothing"/>
+    </thing>
+
+  <thing
+    id="eqChgPaoM"
+    name="Chang pao, avg quality"
+    compset="Equipment"
+    stacking="merge"
+    description="">
+    <fieldval field="grCost" value="18"/>
+    <fieldval field="gearWeight" value="0"/>
+	<tag group="Gear" tag="Clothing"/>
+    </thing>
+
+  <thing
+    id="eqChgPaoH"
+    name="Chang pao, high quality"
+    compset="Equipment"
+    stacking="merge"
+    description="">
+    <fieldval field="grCost" value="60"/>
+    <fieldval field="gearWeight" value="0"/>
+	<tag group="Gear" tag="Clothing"/>
+    </thing>
+
+  <thing
+    id="eqDressL"
+    name="Dress, low quality"
+    compset="Equipment"
+    stacking="merge"
+    description="">
+    <fieldval field="grCost" value="4"/>
+    <fieldval field="gearWeight" value="0"/>
+	<tag group="Gear" tag="Clothing"/>
+    </thing>	
+
+  <thing
+    id="eqDressM"
+    name="Dress, avg quality"
+    compset="Equipment"
+    stacking="merge"
+    description="">
+    <fieldval field="grCost" value="10"/>
+    <fieldval field="gearWeight" value="0"/>
+	<tag group="Gear" tag="Clothing"/>
+    </thing>
+	
+  <thing
+    id="eqDressH"
+    name="Dress, high quality"
+    compset="Equipment"
+    stacking="merge"
+    description="">
+    <fieldval field="grCost" value="25"/>
+    <fieldval field="gearWeight" value="0"/>
+	<tag group="Gear" tag="Clothing"/>
+    </thing>
+
+	<thing
+    id="eqOverCoaL"
+    name="Overcoat, low quality"
+    compset="Equipment"
+    stacking="merge"
+    description="">
+    <fieldval field="grCost" value="7"/>
+    <fieldval field="gearWeight" value="0"/>
+	<tag group="Gear" tag="Clothing"/>
+    </thing>
+
+	<thing
+    id="eqOverCoaM"
+    name="Overcoat, avg quality"
+    compset="Equipment"
+    stacking="merge"
+    description="">
+    <fieldval field="grCost" value="16"/>
+    <fieldval field="gearWeight" value="0"/>
+	<tag group="Gear" tag="Clothing"/>
+    </thing>
+
+	<thing
+    id="eqOverCoaH"
+    name="Overcoat, high quality"
+    compset="Equipment"
+    stacking="merge"
+    description="">
+    <fieldval field="grCost" value="45"/>
+    <fieldval field="gearWeight" value="0"/>
+	<tag group="Gear" tag="Clothing"/>
+    </thing>
+
+	<thing
+    id="eqBeltL"
+    name="Belt, low quality"
+    compset="Equipment"
+    stacking="merge"
+    description="">
+    <fieldval field="grCost" value="3"/>
+    <fieldval field="gearWeight" value="0"/>
+	<tag group="Gear" tag="Clothing"/>
+    </thing>
+
+	<thing
+    id="eqBeltM"
+    name="Belt, avg quality"
+    compset="Equipment"
+    stacking="merge"
+    description="">
+    <fieldval field="grCost" value="7"/>
+    <fieldval field="gearWeight" value="0"/>
+	<tag group="Gear" tag="Clothing"/>
+    </thing>
+
+	<thing
+    id="eqBeltH"
+    name="Belt, high quality"
+    compset="Equipment"
+    stacking="merge"
+    description="">
+    <fieldval field="grCost" value="15"/>
+    <fieldval field="gearWeight" value="0"/>
+	<tag group="Gear" tag="Clothing"/>
+    </thing>
+
+	<thing
+    id="eqCloakL"
+    name="Cloak, low quality"
+    compset="Equipment"
+    stacking="merge"
+    description="">
+    <fieldval field="grCost" value="4"/>
+    <fieldval field="gearWeight" value="0"/>
+	<tag group="Gear" tag="Clothing"/>
+    </thing>
+
+	<thing
+    id="eqCloakM"
+    name="Cloak, avg quality"
+    compset="Equipment"
+    stacking="merge"
+    description="">
+    <fieldval field="grCost" value="10"/>
+    <fieldval field="gearWeight" value="0"/>
+	<tag group="Gear" tag="Clothing"/>
+    </thing>
+
+	<thing
+    id="eqCloakH"
+    name="Cloak, high quality"
+    compset="Equipment"
+    stacking="merge"
+    description="">
+    <fieldval field="grCost" value="25"/>
+    <fieldval field="gearWeight" value="0"/>
+	<tag group="Gear" tag="Clothing"/>
+    </thing>
+
+	<thing
+    id="eqBootsL"
+    name="Boots, low quality"
+    compset="Equipment"
+    stacking="merge"
+    description="">
+    <fieldval field="grCost" value="5"/>
+    <fieldval field="gearWeight" value="0"/>
+	<tag group="Gear" tag="Clothing"/>
+    </thing>
+
+	<thing
+    id="eqBootsM"
+    name="Boots, avg quality"
+    compset="Equipment"
+    stacking="merge"
+    description="">
+    <fieldval field="grCost" value="12"/>
+    <fieldval field="gearWeight" value="0"/>
+	<tag group="Gear" tag="Clothing"/>
+    </thing>
+
+	<thing
+    id="eqBootsH"
+    name="Boots, high quality"
+    compset="Equipment"
+    stacking="merge"
+    description="">
+    <fieldval field="grCost" value="20"/>
+    <fieldval field="gearWeight" value="0"/>
+	<tag group="Gear" tag="Clothing"/>
+    </thing>
+
+	<thing
+    id="eqSandalsL"
+    name="Sandals, low quality"
+    compset="Equipment"
+    stacking="merge"
+    description="">
+    <fieldval field="grCost" value="1"/>
+    <fieldval field="gearWeight" value="0"/>
+	<tag group="Gear" tag="Clothing"/>
+    </thing>
+
+	<thing
+    id="eqSandalsM"
+    name="Sandals, avg quality"
+    compset="Equipment"
+    stacking="merge"
+    description="">
+    <fieldval field="grCost" value="5"/>
+    <fieldval field="gearWeight" value="0"/>
+	<tag group="Gear" tag="Clothing"/>
+    </thing>
+
+	<thing
+    id="eqSandalsH"
+    name="Sandals, high quality"
+    compset="Equipment"
+    stacking="merge"
+    description="">
+    <fieldval field="grCost" value="15"/>
+    <fieldval field="gearWeight" value="0"/>
+	<tag group="Gear" tag="Clothing"/>
+    </thing>
+
+	<thing
+    id="eqKerchL"
+    name="Kerchief, low quality"
+    compset="Equipment"
+    stacking="merge"
+    description="">
+    <fieldval field="grCost" value="2"/>
+    <fieldval field="gearWeight" value="0"/>
+	<tag group="Gear" tag="Clothing"/>
+    </thing>
+
+	<thing
+    id="eqKerchM"
+    name="Kerchief, avg quality"
+    compset="Equipment"
+    stacking="merge"
+    description="">
+    <fieldval field="grCost" value="8"/>
+    <fieldval field="gearWeight" value="0"/>
+	<tag group="Gear" tag="Clothing"/>
+    </thing>
+
+	<thing
+    id="eqKerchH"
+    name="Kerchief, high quality"
+    compset="Equipment"
+    stacking="merge"
+    description="">
+    <fieldval field="grCost" value="20"/>
+    <fieldval field="gearWeight" value="0"/>
+	<tag group="Gear" tag="Clothing"/>
+    </thing>
+
+	<thing
+    id="eqUnderL"
+    name="Underclothes, low quality"
+    compset="Equipment"
+    stacking="merge"
+    description="">
+    <fieldval field="grCost" value="4"/>
+    <fieldval field="gearWeight" value="0"/>
+	<tag group="Gear" tag="Clothing"/>
+    </thing>
+
+	<thing
+    id="eqUnderM"
+    name="Underclothes, avg quality"
+    compset="Equipment"
+    stacking="merge"
+    description="">
+    <fieldval field="grCost" value="10"/>
+    <fieldval field="gearWeight" value="0"/>
+	<tag group="Gear" tag="Clothing"/>
+    </thing>
+
+	<thing
+    id="eqUnderH"
+    name="Underclothes, high quality"
+    compset="Equipment"
+    stacking="merge"
+    description="">
+    <fieldval field="grCost" value="25"/>
+    <fieldval field="gearWeight" value="0"/>
+	<tag group="Gear" tag="Clothing"/>
+    </thing>
+
+	<thing
+    id="eqTunicL"
+    name="Tunic, low quality"
+    compset="Equipment"
+    stacking="merge"
+    description="">
+    <fieldval field="grCost" value="3"/>
+    <fieldval field="gearWeight" value="0"/>
+	<tag group="Gear" tag="Clothing"/>
+    </thing>
+
+	<thing
+    id="eqTunicM"
+    name="Tunic, avg quality"
+    compset="Equipment"
+    stacking="merge"
+    description="">
+    <fieldval field="grCost" value="9"/>
+    <fieldval field="gearWeight" value="0"/>
+	<tag group="Gear" tag="Clothing"/>
+    </thing>
+
+	<thing
+    id="eqTunicH"
+    name="Tunic, high quality"
+    compset="Equipment"
+    stacking="merge"
+    description="">
+    <fieldval field="grCost" value="20"/>
+    <fieldval field="gearWeight" value="0"/>
+	<tag group="Gear" tag="Clothing"/>
+    </thing>
+	
+<!-- Fabric -->
+
+</document>

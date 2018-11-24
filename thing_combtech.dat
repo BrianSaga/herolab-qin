@@ -1,0 +1,625 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!-- This file contains the assortment of skills for the game system. Note that each
+      skill is linked to an associated attribute for the character. This linkage allows
+      the value of the skill to easily incorporate the effects of the linked attribute
+      via a script on the component.
+-->
+
+<document signature="Hero Lab Data">
+
+<!--
+	***************************************************************
+		Close combat Techniques
+	***************************************************************
+	
+-->
+
+<!-- Knock-out -->
+	<thing
+		id="ctKnock"
+		name="Knock-out"
+		compset="CombTech"
+		isunique="no"
+		description="The character’s attack is designed to strike the opponent with such force that he falls unconscious.\n\nThe character must aim his blow at the head, or another crucial point such as the sternum or the liver, and strike with particular force. The ST is increased by +2 rather than the usual +1. The attacker calculates damage in the normal way and the victim performs a Metal Test. If the victim’s Test result is equal to or higher than the damage figure, he stays on his feet. If not, he is knocked out for (6 – Earth) minutes.">
+		<fieldval field="trtAbbrev" value="KO"/>
+		<fieldval field="ctAlias" value="the bear strike"/>
+		<fieldval field="usrCandid1" value="(Skill.skBangshu &amp; (fieldval:trtFinal &gt;= 2)) &#124; (Skill.skChuishu &amp; (fieldval:trtFinal &gt;= 2))"/>
+
+		<!-- Verify we have at least one valid skill pick on the actor -->
+		<prereq message="Requires Bangshu 2+ or Chuishu 2+">
+			<validate><![CDATA[
+				validif (#traitfound[skBangshu] >= 2)
+				validif (#traitfound[skChuishu] >= 2)
+			]]></validate>
+      </prereq>
+	</thing>
+
+<!-- Trap -->
+	<thing
+		id="ctTrap"
+		name="Trap"
+		compset="CombTech"
+		isunique="no"
+		description="The character can trap his opponent’s weapon either with his own weapon or against a piece of furniture, such as a table or a statue. This Technique may also be executed without a weapon, using Hand-to-Hand Skill. The opponent has three options:\n &#150;escape from the trap by using an action to let go of his weapon\n &#150;escape from the trap by performing a successful Opposition Test of Water\n &#150;attempt another action whose ST is increased by the Success Margin of the trapping Test.\n\nIf the trap is held, then starting from the next exchange the victim cannot have a higher initiative than the character using the Technique. If he obtains a lower initiative score then he uses that score, but if he obtains a higher score then he acts immediately after the character.\n\n The character using the Technique has four choices:\n &#150;use an action to hold his victim in the trap;\n &#150;use an action to release his victim from the trap;\n &#150;use an action to try to break his victim’s weapon by performing a successful Metal Test against a ST equal to the solidity of the weapon. Should he fail in such a Test, his victim escapes immediately; or\n &#150;attempt another action whose ST is increased by the Success Margin of the trapping Test.">
+		<fieldval field="trtAbbrev" value="Trap"/>
+		<fieldval field="ctAlias" value="the snared blade"/>
+		<fieldval field="usrCandid1" value="(Skill.skHand &amp; (fieldval:trtFinal &gt;= 2)) &#124; (Skill.skDunshu &amp; (fieldval:trtFinal &gt;= 1)) &#124; (Skill.skJianshu &amp; (fieldval:trtFinal &gt;= 1)) &#124; (Skill.skBianshu &amp; (fieldval:trtFinal &gt;= 2))"/>
+		
+		<!-- Verify we have at least one valid skill pick on the actor -->
+		<prereq message="Requires Bianshu 2+ (see {i}Qin Legends{/i}), Hand to Hand 2+, Dunshu 1+, or Jianshu 1+">
+			<validate><![CDATA[
+				validif (#traitfound[skHand] >= 2)
+				validif (#traitfound[skDunshu] >= 1)
+				validif (#traitfound[skJianshu] >= 1)
+				validif (#traitfound[skBianshu] >= 2)
+			]]></validate>
+      </prereq>	
+	</thing>	
+	
+<!-- Charge -->
+	<thing
+		id="ctCharge"
+		name="Charge"
+		compset="CombTech"
+		isunique="no"
+		description="The character launches himself at his opponent to strike him with his full weight and momentum. He may do this either by running or by falling onto his opponent.\n\nWhenever a character covers a distance in yards equal to his Water value before launching an attack, the damages caused by his attack are increased by +1.\n\nHowever, since time spent charging is time that a target can spend steeling himself for the collision, the target of a charge obtains a bonus of +1 on his Active Defense Test for each action that the character spends charging.">
+		<fieldval field="trtAbbrev" value="Cha"/>
+		<fieldval field="ctAlias" value="ox charge"/>
+		<fieldval field="usrCandid1" value="(Skill.skBangshu &amp; (fieldval:trtFinal &gt;= 1)) &#124; (Skill.skHand &amp; (fieldval:trtFinal &gt;= 3)) &#124; (Skill.skChuishu &amp; (fieldval:trtFinal &gt;= 3)) &#124;(Skill.skDaoshu &amp; (fieldval:trtFinal &gt;= 4)) &#124; (Skill.skDunshu &amp; (fieldval:trtFinal &gt;= 2)) &#124; (Skill.skJianshu &amp; (fieldval:trtFinal &gt;= 2)) &#124; (Skill.skQiangsh &amp; (fieldval:trtFinal &gt;= 1))"/>
+
+		<!-- Verify we have at least one valid skill pick on the actor -->
+		<prereq message="Requires Bangshu 1+, Hand to Hand 3+, Chuishu 3+, Daoshu 4+, Dunshu 2+, Jianshu 2+, or Qiangshu 1+">
+			<validate><![CDATA[
+				validif (#traitfound[skBangshu] >= 1)
+				validif (#traitfound[skHand] >= 3)
+				validif (#traitfound[skChuishu] >= 3)
+				validif (#traitfound[skDaoshu] >= 4)
+				validif (#traitfound[skDunshu] >= 2)
+				validif (#traitfound[skJianshu] >= 2)
+				validif (#traitfound[skQiangsh] >= 1)
+			]]></validate>
+      </prereq>			
+	</thing>
+	
+<!-- Combination -->
+	<thing
+		id="ctCombin"
+		name="Combination"
+		compset="CombTech"
+		isunique="no"
+		description="This special Technique enables a character to combine two other Techniques provided that they can both be executed with his weapon. It does not allow a character to use the same Technique twice in one attack. Use of this Technique increases the ST of the Test by +2 rather than the usual +1. This is additional to any increase imposed by the relevant Techniques.">
+		<fieldval field="trtAbbrev" value="Comb"/>
+		<fieldval field="ctAlias" value="the way of all possibility"/>
+		<fieldval field="usrCandid1" value="(Skill.skBangshu &amp; (fieldval:trtFinal &gt;= 3)) &#124; (Skill.skHand &amp; (fieldval:trtFinal &gt;= 4)) &#124; (Skill.skChuishu &amp; (fieldval:trtFinal &gt;= 4)) &#124; (Skill.skDaoshu &amp; (fieldval:trtFinal &gt;= 3)) &#124; (Skill.skGongshu &amp; (fieldval:trtFinal &gt;= 4)) &#124; (Skill.skJianshu &amp; (fieldval:trtFinal &gt;= 4)) &#124; (Skill.skNushu &amp; (fieldval:trtFinal &gt;= 2)) &#124; (Skill.skQiangsh &amp; (fieldval:trtFinal &gt;= 4)) &#124; (Skill.skThrow &amp; (fieldval:trtFinal &gt;= 2))"/>
+
+		<!-- Include an array to select whether this technique is for short or long thrown weapons -->
+		<fieldval field="usrLabelAr" value="Type:"/>
+		<arrayval field="usrArray" index="0" value="Ranged"/>
+		<arrayval field="usrArray" index="1" value="Thrown, short"/>
+		<arrayval field="usrArray" index="2" value="Thrown, long"/>
+		
+		<!-- Verify we have at least one valid skill pick on the actor -->
+		<prereq message="Requires Bangshu 3+, Hand to Hand 4+, Chuishu 4+, Daoshu 3+, Gongshu 4+, Jianshu 4+, Nushu 2+, Qiangshu 4+, Throwing (if applied to short weapons) +3, or Throwing (if applied to long weapons) 2+">
+			<validate><![CDATA[
+				validif (#traitfound[skBangshu] >= 3)
+				validif (#traitfound[skHand] >= 4)
+				validif (#traitfound[skChuishu] >= 4)
+				validif (#traitfound[skDaoshu] >= 3)
+				validif (#traitfound[skGongshu] >= 4)
+				validif (#traitfound[skJianshu] >= 4)
+				validif (#traitfound[skNushu] >= 2)
+				validif (#traitfound[skQiangsh] >= 1)
+				validif (#traitfound[skThrow] >= 2)
+			]]></validate>
+      </prereq>	
+	</thing>
+
+<!-- Double Blow -->
+	<thing
+		id="ctDblBlow"
+		name="Double Blow"
+		compset="CombTech"
+		isunique="no"
+		description="This Technique involves the character using a long weapon at great speed to inflict a double blow. With it, a character uses just one action to inflict two rapid blows on a single opponent, by striking with the tip and the handle of a spear, or the blade and the hilt of a sword. The ST for the first blow is increased by +1 and the ST for the second blow by +2 instead of the standard +1. The damage caused by the first blow is reduced by one point and the damage caused by the second blow is reduced by two points, down to a minimum of one damage point.">
+		<fieldval field="trtAbbrev" value="DbBl"/>
+		<fieldval field="ctAlias" value="the dragon's claw and tail"/>
+		<fieldval field="usrCandid1" value="(Skill.skBangshu &amp; (fieldval:trtFinal &gt;= 1)) &#124; (Skill.skJianshu &amp; (fieldval:trtFinal &gt;= 3)) &#124; (Skill.skQiangsh &amp; (fieldval:trtFinal &gt;= 2))"/>
+		
+		<!-- Verify we have at least one valid skill pick on the actor -->
+		<prereq message="Requires Bangshu 3+, Jianshu 4+, or Qiangshu 4+">
+			<validate><![CDATA[
+				validif (#traitfound[skBangshu] >= 1)
+				validif (#traitfound[skJianshu] >= 3)
+				validif (#traitfound[skQiangsh] >= 2)
+			]]></validate>
+      </prereq>	
+	</thing>
+	
+<!-- Direct Hit -->
+	<thing
+		id="ctDirect"
+		name="Direct Hit"
+		compset="CombTech"
+		isunique="no"
+		description="The object of this Technique is to strike the opponent at his weakest point. It is most often used to find chinks in the armor of men, in which case the protection given by the armor is reduced by two points, and can fall to zero. It may also be used against the natural armor of earthly and unearthly creatures, by aiming at the eyes or the joints.">
+		<fieldval field="trtAbbrev" value="DrHt"/>
+		<fieldval field="ctAlias" value="the sharp thorn"/>
+		<fieldval field="usrCandid1" value="(Skill.skHand &amp; (fieldval:trtFinal &gt;= 3)) &#124; (Skill.skDaoshu &amp; (fieldval:trtFinal &gt;= 1)) &#124; (Skill.skJianshu &amp; (fieldval:trtFinal &gt;= 1)) &#124; (Skill.skQiangsh &amp; (fieldval:trtFinal &gt;= 3)) &#124; (Skill.skBianshu &amp; (fieldval:trtFinal &gt;= 3))"/>
+		
+		<!-- Verify we have at least one valid skill pick on the actor -->
+		<prereq message="Requires Bianshu 3+ (see {i}Qin Legends{/i}), Hand to Hand 3+, Daoshu 1+, Jianshu 1+, or Qiangshu 3+">
+			<validate><![CDATA[
+				validif (#traitfound[skHand] >= 3)
+				validif (#traitfound[skDaoshu] >= 1)
+				validif (#traitfound[skJianshu] >= 1)
+				validif (#traitfound[skQiangsh] >= 3)
+				validif (#traitfound[skBianshu] >= 3)
+			]]></validate>
+      </prereq>
+	</thing>
+
+<!-- Disarm -->
+	<thing
+		id="ctDisarm"
+		name="Disarm"
+		compset="CombTech"
+		isunique="no"
+		description="The object of this Technique is to force one’s opponent to let go of his weapon. A character who succeeds in his Attack Test may either throw his opponent’s weapon a distance in yards equal to the character’s Water value, or capture the weapon, providing that he has a free hand. No damage is inflicted on the opponent, who may nonetheless attempt an Active Defense in order to frustrate the use of the Technique. The downside of this Technique is that where it fails, the opponent may immediately and without using an action attempt a simple counter-attack (without using any Taos or Combat Techniques).">
+		<fieldval field="trtAbbrev" value="Dsrm"/>
+		<fieldval field="ctAlias" value="the way of peace"/>
+		<fieldval field="usrCandid1" value="(Skill.skBangshu &amp; (fieldval:trtFinal &gt;= 4)) &#124; (Skill.skHand &amp; (fieldval:trtFinal &gt;= 4)) &#124; (Skill.skDaoshu &amp; (fieldval:trtFinal &gt;= 4)) &#124; (Skill.skDunshu &amp; (fieldval:trtFinal &gt;= 3)) &#124; (Skill.skJianshu &amp; (fieldval:trtFinal &gt;= 3)) &#124; (Skill.skBianshu &amp; (fieldval:trtFinal &gt;= 2))"/>
+		
+		<!-- Verify we have at least one valid skill pick on the actor -->
+		<prereq message="Requires Bangshu 4+, Bianshu 2+ (see {i}Qin Legends{/i}), Hand to Hand 4+, Daoshu 4+, Dunshu 3+, or Jianshu 3+">
+			<validate><![CDATA[
+				validif (#traitfound[skBangshu] >= 4)
+				validif (#traitfound[skHand] >= 4)
+				validif (#traitfound[skDaoshu] >= 4)
+				validif (#traitfound[skDunshu] >= 3)
+				validif (#traitfound[skJianshu] >= 3)
+				validif (#traitfound[skBianshu] >= 2)
+			]]></validate>
+      </prereq>
+	</thing>
+	
+<!-- Disarm -->
+	<thing
+		id="ctDblBlk"
+		name="Double Block"
+		compset="CombTech"
+		isunique="no"
+		description="The character uses his weapon with such rapidity that he is able to block two attacks in the same exchange. This Technique enables a character to block two blows in one Active Defense. So long as the two blows occur in the same exchange, they may come from different opponents. The ST of the first Active Defense is increased by +1 and the ST for the second is increased by +2 instead of the usual +1.">
+		<fieldval field="trtAbbrev" value="DbBk"/>
+		<fieldval field="ctAlias" value="halt the rain of blades"/>
+		<fieldval field="usrCandid1" value="(Skill.skBangshu &amp; (fieldval:trtFinal &gt;= 3)) &#124; (Skill.skDaoshu &amp; (fieldval:trtFinal &gt;= 2)) &#124; (Skill.skDunshu &amp; (fieldval:trtFinal &gt;= 3)) &#124; (Skill.skJianshu &amp; (fieldval:trtFinal &gt;= 2)) &#124; (Skill.skQiangsh &amp; (fieldval:trtFinal &gt;= 2))"/>
+		
+		<!-- Verify we have at least one valid skill pick on the actor -->
+		<prereq message="Requires Bangshu 3+, Daoshu 2+, Dunshu 3+, Jianshu 2+, or Qiangshu 2+">
+			<validate><![CDATA[
+				validif (#traitfound[skBangshu] >= 3)
+				validif (#traitfound[skDaoshu] >= 2)
+				validif (#traitfound[skDunshu] >= 3)
+				validif (#traitfound[skJianshu] >= 2)
+				validif (#traitfound[skQiangsh] >= 2)
+			]]></validate>
+      </prereq>
+	</thing>
+	
+<!-- Double Shot (teeth of the snake) -->
+	<thing
+		id="ctDblSht"
+		name="Double Shot"
+		compset="CombTech"
+		isunique="no"
+		description="The character can fire his weapon twice or throw two missiles in rapid succession at the same target in the same action. The ST for the first attack is increased by +1 and the second by +3 instead of the usual +1, and any damages are reduced by 1.">
+		<fieldval field="trtAbbrev" value="DbSh"/>
+		<fieldval field="ctAlias" value="teeth of the snake"/>
+		<fieldval field="usrCandid1" value="(Skill.skGongshu &amp; (fieldval:trtFinal &gt;= 2)) &#124; (Skill.skThrow &amp; (fieldval:trtFinal &gt;= 4))"/>
+
+		<!-- Include an array to select whether this technique is for short or long thrown weapons -->
+		<fieldval field="usrLabelAr" value="Type:"/>
+		<arrayval field="usrArray" index="0" value="Ranged"/>
+		<arrayval field="usrArray" index="1" value="Thrown, short"/>
+		
+		<!-- Verify we have at least one valid skill pick on the actor -->
+		<prereq message="Requires Gongshu 2+ or Throwing (if applied to short weapons) 4+">
+			<validate><![CDATA[
+				validif (#traitfound[skGongshu] >= 2)
+				validif (#traitfound[skThrow] >= 4)
+			]]></validate>
+      </prereq>
+	</thing>
+
+<!-- Double Target (the deadly breeze) -->
+	<thing
+		id="ctDblTrg"
+		name="Double Target"
+		compset="CombTech"
+		isunique="no"
+		description="The character can fire or throw at two distinct targets in the same action. After choosing two targets within his field of vision, he performs an Attack Test for each. The ST of each Test is increased by +2 instead of the usual +1, and any damages are reduced by 1.">
+		<fieldval field="trtAbbrev" value="DbTg"/>
+		<fieldval field="ctAlias" value="the deadly breeze"/>
+		<fieldval field="usrCandid1" value="(Skill.skGongshu &amp; (fieldval:trtFinal &gt;= 3)) &#124; (Skill.skThrow &amp; (fieldval:trtFinal &gt;= 4))"/>
+
+		<!-- Include an array to select whether this technique is for short or long thrown weapons -->
+		<fieldval field="usrLabelAr" value="Type:"/>
+		<arrayval field="usrArray" index="0" value="Ranged"/>
+		<arrayval field="usrArray" index="1" value="Thrown, short"/>
+		
+		<!-- Verify we have at least one valid skill pick on the actor -->
+		<prereq message="Requires Gongshu 3+ or Throwing (if applied to short weapons) 4+">
+			<validate><![CDATA[
+				validif (#traitfound[skGongshu] >= 3)
+				validif (#traitfound[skThrow] >= 4)
+			]]></validate>
+      </prereq>
+	</thing>
+
+<!-- Feint (false carelessness) -->
+	<thing
+		id="ctFeint"
+		name="Feint"
+		compset="CombTech"
+		isunique="no"
+		description="The character adopts a misleading guard in order to lull his opponent into a false sense of security and take advantage of the slightest error. The ST for any Active Defense Test by the character against this particular opponent is increased by +2 instead of the usual +1. Where he succeeds in such a Test he may subtract his Success Margin from his opponent’s Passive Defense score when he next attacks that opponent.">
+		<fieldval field="trtAbbrev" value="Fnt"/>
+		<fieldval field="ctAlias" value="false carelessness"/>
+		<fieldval field="usrCandid1" value="(Skill.skDaoshu &amp; (fieldval:trtFinal &gt;= 2)) &#124; (Skill.skJianshu &amp; (fieldval:trtFinal &gt;= 2))"/>
+		
+		<!-- Verify we have at least one valid skill pick on the actor -->
+		<prereq message="Requires Daoshu 2+ or Jianshu 2+">
+			<validate><![CDATA[
+				validif (#traitfound[skDaoshu] >= 2)
+				validif (#traitfound[skJianshu] >= 2)
+			]]></validate>
+      </prereq>
+	</thing>	
+
+<!-- Hold At Bay (the hedge of thorns) -->
+	<thing
+		id="ctHold"
+		name="Hold at Bay"
+		compset="CombTech"
+		isunique="no"
+		description="The character uses the length and full range of his weapon in order to maintain control of his personal space. Provided that his weapon is about the same size or longer than those of his opponents, the character may prevent them from getting close to him for the duration of an exchange. To use the Technique, the character must perform a successful Test of Metal + martial Skill, with an ST of 5 plus 1 for each additional opponent after the first. Where he succeeds, and any opponent tries to attack him, his Success Margin is added to the ST of the Attack Test. If the opponent’s attack fails, the opponent automatically receives damage points equal to the damage value of the character’s weapon. The character cannot do anything else while executing this Technique. As soon as he performs another action, such as an attack, an Active Defense, or a movement, the Technique ceases to have effect.">
+		<fieldval field="trtAbbrev" value="HaB"/>
+		<fieldval field="ctAlias" value="the hedge of thorns"/>
+		<fieldval field="usrCandid1" value="(Skill.skBangshu &amp; (fieldval:trtFinal &gt;= 1)) &#124; (Skill.skChuishu &amp; (fieldval:trtFinal &gt;= 2)) &#124; (Skill.skJianshu &amp; (fieldval:trtFinal &gt;= 4)) &#124; (Skill.skQiangsh &amp; (fieldval:trtFinal &gt;= 1)) &#124; (Skill.skBianshu &amp; (fieldval:trtFinal &gt;= 1))"/>
+		
+		<!-- Verify we have at least one valid skill pick on the actor -->
+		<prereq message="Requires Bangshu 1+, Bianshu 1+ (see {i}Qin Legends{/i}), Chuishu 2+, Jianshu 4+, or Qiangshu 1+">
+			<validate><![CDATA[
+				validif (#traitfound[skBangshu] >= 1)
+				validif (#traitfound[skChuishu] >= 2)
+				validif (#traitfound[skJianshu] >= 4)
+				validif (#traitfound[skQiangsh] >= 1)
+				validif (#traitfound[skBianshu] >= 1)
+			]]></validate>
+      </prereq>
+	</thing>	
+
+<!-- Indirect Shot (the curve of death) -->
+	<thing
+		id="ctIndSht"
+		name="Indirect Shot"
+		compset="CombTech"
+		isunique="no"
+		description="The character can fire a curved shot, whose trajectory is difficult to predict. This Technique can be used to bend a shot round one or more obstacles between the attacker and the target. Obstacles include people, trees, market stalls and so on. The ST of the Attack Test is increased by +1 for each obstacle (in addition to the usual +1). The target’s Passive Defense score is reduced by 2. The same is true for his result in any Active Defense Test.">
+		<fieldval field="trtAbbrev" value="InSh"/>
+		<fieldval field="ctAlias" value="the curve of death"/>
+		<fieldval field="usrCandid1" value="(Skill.skGongshu &amp; (fieldval:trtFinal &gt;= 3)) &#124; (Skill.skThrow &amp; (fieldval:trtFinal &gt;= 2))"/>
+
+		<!-- Include an array to select whether this technique is for short or long thrown weapons -->
+		<fieldval field="usrLabelAr" value="Type:"/>
+		<arrayval field="usrArray" index="0" value="Ranged"/>
+		<arrayval field="usrArray" index="1" value="Thrown, short"/>
+		<arrayval field="usrArray" index="2" value="Thrown, long"/>
+		
+		<!-- Verify we have at least one valid skill pick on the actor -->
+		<prereq message="Requires Gongshu 3+, Throwing (if applied to short weapons) 1+, or Throwing (if applied to long weapons) 2+">
+			<validate><![CDATA[
+				validif (#traitfound[skGongshu] >= 3)
+				validif (#traitfound[skThrow] >= 2)
+			]]></validate>
+		</prereq>
+	</thing>
+	
+<!-- Long Shot (the cry of the falcon) -->
+	<thing
+		id="ctLngSht"
+		name="Long Shot"
+		compset="CombTech"
+		isunique="no"
+		description="The character’s command of his weapon is so great that he suffers no penalty when firing or throwing from long range or extreme range.">
+		<fieldval field="trtAbbrev" value="LgSt"/>
+		<fieldval field="ctAlias" value="the cry of the falcon"/>
+		<fieldval field="usrCandid1" value="(Skill.skGongshu &amp; (fieldval:trtFinal &gt;= 2)) &#124; (Skill.skNushu &amp; (fieldval:trtFinal &gt;= 1)) &#124; (Skill.skThrow &amp; (fieldval:trtFinal &gt;= 2))"/>
+
+		<!-- Include an array to select whether this technique is for short or long thrown weapons -->
+		<fieldval field="usrLabelAr" value="Type:"/>
+		<arrayval field="usrArray" index="0" value="Ranged"/>
+		<arrayval field="usrArray" index="1" value="Thrown, short"/>
+		<arrayval field="usrArray" index="2" value="Thrown, long"/>
+		
+		<!-- Verify we have at least one valid skill pick on the actor -->
+		<prereq message="Requires Gongshu 3+, Throwing (if applied to short weapons) 1+, or Throwing (if applied to long weapons) 2+">
+			<validate><![CDATA[
+				validif (#traitfound[skGongshu] >= 3)
+				validif (#traitfound[skNushu] >= 1)
+				validif (#traitfound[skThrow] >= 2)
+			]]></validate>
+		</prereq>
+	</thing>
+	
+<!-- Masterstroke (the eye of the master) -->
+	<thing
+		id="ctMastrSk"
+		name="Masterstroke"
+		compset="CombTech"
+		isunique="no"
+		description="The character has a sharp eye and an unerring aim. At any distance up to the average range of his weapon, the character can pick out a particular element of his surroundings. He can then fire at it without spending time on concentrating or taking aim. If he aims at the chink in a piece of armor, and hits his target, the armor’s protection is reduced by two points and can fall to zero. The Technique can also be used against the natural armor of earthly and unearthly creatures, by aiming at the eyes or the joints.">
+		<fieldval field="trtAbbrev" value="MrSk"/>
+		<fieldval field="ctAlias" value="the eye of the master"/>
+		<fieldval field="usrCandid1" value="(Skill.skGongshu &amp; (fieldval:trtFinal &gt;= 3)) &#124; (Skill.skNushu &amp; (fieldval:trtFinal &gt;= 2)) &#124; (Skill.skThow &amp; (fieldval:trtFinal &gt;= 2))"/>
+
+		<!-- Include an array to select whether this technique is for short or long thrown weapons -->
+		<fieldval field="usrLabelAr" value="Type:"/>
+		<arrayval field="usrArray" index="0" value="Ranged"/>
+		<arrayval field="usrArray" index="1" value="Thrown, short"/>
+		<arrayval field="usrArray" index="2" value="Thrown, long"/>
+		
+		<!-- Verify we have at least one valid skill pick on the actor -->
+		<prereq message="Requires Gongshu 3+, Throwing (if applied to short weapons) 1+, or Throwing (if applied to long weapons) 2+">
+			<validate><![CDATA[
+				validif (#traitfound[skGongshu] >= 3)
+				validif (#traitfound[skNushu] >= 2)
+				validif (#traitfound[skThrow] >= 2)
+			]]></validate>
+		</prereq>
+	</thing>
+	
+<!-- Mystification (the torrent of blades) -->
+	<thing
+		id="ctMystif"
+		name="Mystification"
+		compset="CombTech"
+		isunique="no"
+		description="The character executes a complex sequence of moves and thrusts which confuses his opponent and makes it easier to get past his guard. Before using this Technique, the character must announce how many actions he is going to use. Then, during his Attack Test, he rolls not one but several Yin/Yang Dice, one for each action devoted to the Mystification. The Test is as follows : Metal + martial Skill + sum of results of Yin/Yang Dice.">
+		<fieldval field="trtAbbrev" value="Mysti"/>
+		<fieldval field="ctAlias" value="the torrent of blades"/>
+		<fieldval field="usrCandid1" value="(Skill.skBangshu &amp; (fieldval:trtFinal &gt;= 3)) &#124; (Skill.skDaoshu &amp; (fieldval:trtFinal &gt;= 2))  &#124; (Skill.skJianshu &amp; (fieldval:trtFinal &gt;= 4)) &#124; (Skill.skQiangsh &amp; (fieldval:trtFinal &gt;= 4)) &#124; (Skill.skBianshu &amp; (fieldval:trtFinal &gt;= 3))"/>
+		
+		<!-- Verify we have at least one valid skill pick on the actor -->
+		<prereq message="Requires Bangshu 3+, Bianshu 3+ (see {i}Qin Legends{/i}), Daoshu 2+, Jianshu 4+, or Qiangshu 4+">
+			<validate><![CDATA[
+				validif (#traitfound[skBangshu] >= 3)
+				validif (#traitfound[skDaoshu] >= 2)
+				validif (#traitfound[skJianshu] >= 4)
+				validif (#traitfound[skQiangsh] >= 4)
+				validif (#traitfound[skBianshu] >= 3)
+			]]></validate>
+		</prereq>
+	</thing>
+
+<!-- Repel (the advancing storm) -->
+	<thing
+		id="ctRepel"
+		name="Repel"
+		compset="CombTech"
+		isunique="no"
+		description="By advancing on his opponent, striking relentlessly and mercilessly, the character can force his opponent to retreat. Where the character’s Attack Test is a success, the opponent must immediately retreat a distance in yards equal to half the damage points inflicted. The distance is rounded up to the nearest yard, and there is a minimum retreat of one yard. If the opponent meets an obstacle preventing him from retreating the full distance, he suffers additional damage points equal to the number of yards he failed to retreat.">
+		<fieldval field="trtAbbrev" value="Repl"/>
+		<fieldval field="ctAlias" value="the advancing storm"/>
+		<fieldval field="usrCandid1" value="(Skill.skChuishu &amp; (fieldval:trtFinal &gt;= 4)) &#124; (Skill.skDunshu &amp; (fieldval:trtFinal &gt;= 2))  &#124; (Skill.skQiangsh &amp; (fieldval:trtFinal &gt;= 1))  &#124; (Skill.skBianshu &amp; (fieldval:trtFinal &gt;= 5))"/>
+
+		<!-- Verify we have at least one valid skill pick on the actor -->
+		<prereq message="Requires Chuishu 4+, Dunshu 2+, or Qiangshu 1+">
+			<validate><![CDATA[
+				validif (#traitfound[skChuishu] >= 4)
+				validif (#traitfound[skDunshu] >= 2)
+				validif (#traitfound[skQiangsh] >= 1)
+				validif (#traitfound[skBianshu] >= 5)
+			]]></validate>
+		</prereq>
+	</thing>
+	
+<!-- Ricochet (the blind assassin) -->
+	<thing
+		id="ctRicoch"
+		name="Ricochet"
+		compset="CombTech"
+		isunique="no"
+		description="The character can sense the presence of an opponent outside his field of vision, or either partially or completely protected by cover. He can then identify his target’s location and hit him by bouncing his shot off a hard, smooth surface. The ST for the Attack Test is increased by +2 rather than the usual +1. Any cover bonus that his target might have is reduced by 2.">
+		<fieldval field="trtAbbrev" value="Rico"/>
+		<fieldval field="ctAlias" value="the blind assassin"/>
+		<fieldval field="usrCandid1" value="(Skill.skGongshu &amp; (fieldval:trtFinal &gt;= 4)) &#124; (Skill.skNushu &amp; (fieldval:trtFinal &gt;= 4)) &#124; (Skill.skThrow &amp; (fieldval:trtFinal &gt;= 2))"/>
+
+		<!-- Include an array to select whether this technique is for short or long thrown weapons -->
+		<fieldval field="usrLabelAr" value="Type:"/>
+		<arrayval field="usrArray" index="0" value="Ranged"/>
+		<arrayval field="usrArray" index="1" value="Thrown, short"/>
+		<arrayval field="usrArray" index="2" value="Thrown, long"/>
+		
+		<!-- Verify we have at least one valid skill pick on the actor -->
+		<prereq message="Requires Gongshu 4+, Nushu 4+, Throwing (if applied to short weapons) 2+, or Throwing (if applied to long weapons) 4+">
+			<validate><![CDATA[
+				validif (#traitfound[skGongshu] >= 4)
+				validif (#traitfound[skNushu] >= 4)
+				validif (#traitfound[skThrow] >= 2)
+			]]></validate>
+		</prereq>
+	</thing>
+	
+<!-- Snapshot (the lightning of Heaven) -->
+	<thing
+		id="ctSnpSht"
+		name="Snapshot"
+		compset="CombTech"
+		isunique="no"
+		description="Provided that his weapon is ready, the character can attempt to fire off a round before his opponents have a chance to move. He obtains a bonus of +3 in the Initiative Test for the relevant exchange.">
+		<fieldval field="trtAbbrev" value="Snsh"/>
+		<fieldval field="ctAlias" value="the lightning of Heaven"/>
+		<fieldval field="usrCandid1" value="(Skill.skGongshu &amp; (fieldval:trtFinal &gt;= 1)) &#124; (Skill.skNushu &amp; (fieldval:trtFinal &gt;= 1)) &#124; (Skill.skThrow &amp; (fieldval:trtFinal &gt;= 1))"/>
+	
+		<!-- Include an array to select whether this technique is for short or long thrown weapons -->
+		<fieldval field="usrLabelAr" value="Type:"/>
+		<arrayval field="usrArray" index="0" value="Ranged"/>
+		<arrayval field="usrArray" index="1" value="Thrown, short"/>
+		<arrayval field="usrArray" index="2" value="Thrown, long"/>
+	
+		<!-- Verify we have at least one valid skill pick on the actor -->
+		<prereq message="Requires Gongshu 1+, Nushu 1+, or Throwing 1+ (if applied to short or long weapons)">
+			<validate><![CDATA[
+				validif (#traitfound[skGongshu] >= 1)
+				validif (#traitfound[skNushu] >= 1)
+				validif (#traitfound[skThrow] >= 1)
+			]]></validate>
+		</prereq>
+	</thing>
+	
+<!-- Strangle (the boa constrictor) -->
+	<thing
+		id="ctStrang"
+		name="Strangle"
+		compset="CombTech"
+		isunique="no"
+		description="The character uses either his weapon or his bare hands to exert pressure on his opponent’s throat. For damages caused by this Technique, see the rules on strangulation at p. 71.\n\n An opponent who is being strangled has two options :\n\n • try to escape by using an action to perform a successful Opposition Test of Water\n • attempt another action whose ST is increased by the Success Margin of the strangling Test.\n\n If the hold is maintained, then starting from the next exchange the victim cannot have a higher initiative than the character using the Technique. If he obtains a lower initiative score then he uses that score, but if he obtains a higher score then he acts immediately after the character.\n\n The character using the Technique has three choices :\n • use an action to maintain the stranglehold\n • use an action to release his victim from the stranglehold\n • attempt another action whose ST is increased by the Success Margin of the strangling Test.">
+		<fieldval field="trtAbbrev" value="Strg"/>
+		<fieldval field="ctAlias" value="the boa constrictor"/>
+		<!-- <fieldval field="usrCandid1" value="ctValid.ctStrangle"/> -->
+		<fieldval field="usrCandid1" value="(Skill.skBangshu &amp; (fieldval:trtFinal &gt;= 4)) &#124; (Skill.skHand &amp; (fieldval:trtFinal &gt;= 2)) &#124; (Skill.skQiangsh &amp; (fieldval:trtFinal &gt;= 4)) &#124; (Skill.skBianshu &amp; (fieldval:trtFinal &gt;= 1))"/>
+		
+		<!-- Verify we have at least one valid skill pick on the actor -->
+		<prereq message="Requires Bangshu 4+, Bianshu 1+ (see {i}Qin Legends{/i}), Hand to Hand 2+, or Qiangshu 4+ ">
+			<validate><![CDATA[
+				validif (#traitfound[skBangshu] >= 4)
+				validif (#traitfound[skHand] >= 2)
+				validif (#traitfound[skQiangsh] >= 4)
+				validif (#traitfound[skBianshu] >= 1)
+			]]></validate>
+		</prereq>
+	</thing>
+	
+<!-- Strike Through (eye of the needle) -->
+	<thing
+		id="ctStrkThr"
+		name="Strike Through"
+		compset="CombTech"
+		isunique="no"
+		description="The character can use one shot to hit two targets, one of which is less than (Metal) yards behind the other. A single Attack Test is performed, with an ST increased by +2 rather than the usual +1. The first target suffers normal damage. Damages for the second target are reduced by 3 and can fall to zero.\n\n Both targets can attempt an Active Defense. If the first target blocks the shot, then the whole attack is defeated and the second target is safe. If the first fails to block the shot, or chooses to dodge it, then the second is exposed and can attempt an Active Defense, with an ST increased by +2.">
+		<fieldval field="trtAbbrev" value="Strk"/>
+		<fieldval field="ctAlias" value="eye of the needle"/>
+		<fieldval field="usrCandid1" value="(Skill.skGongshu &amp; (fieldval:trtFinal &gt;= 4)) &#124; (Skill.skNushu &amp; (fieldval:trtFinal &gt;= 3)) &#124; (Skill.skThrow &amp; (fieldval:trtFinal &gt;= 3))"/>
+
+		<!-- Include an array to select whether this technique is for short or long thrown weapons -->
+		<fieldval field="usrLabelAr" value="Type:"/>
+		<arrayval field="usrArray" index="0" value="Ranged"/>
+		<arrayval field="usrArray" index="2" value="Thrown, long"/>
+		
+		<!-- Verify we have at least one valid skill pick on the actor -->
+		<prereq message="Requires Gongshu 4+, Nushu 2+, or Throwing (if applied to long weapons) 3+ ">
+			<validate><![CDATA[
+				validif (#traitfound[skGongshu] >= 4)
+				validif (#traitfound[skNushu] >= 3)
+				validif (#traitfound[skThrow] >= 3)
+			]]></validate>
+		</prereq>
+	</thing>
+	
+<!-- Throw (the way of the tornado) -->
+	<thing
+		id="ctThrow"
+		name="Throw"
+		compset="CombTech"
+		isunique="no"
+		description="The character uses his opponent’s weight and momentum in order to throw him off his balance and gain the upper hand.\n\n Where this Technique is used successfully, the victim falls to the ground but suffers no damage. But once on the ground, he cannot use Active Defense until he has got up again. And getting up requires an action.">
+		<fieldval field="trtAbbrev" value="Thro"/>
+		<fieldval field="ctAlias" value="the way of the tornado"/>
+		<fieldval field="usrCandid1" value="(Skill.skHand &amp; (fieldval:trtFinal &gt;= 1)) &#124; (Skill.skChuishu &amp; (fieldval:trtFinal &gt;= 3)) &#124; (Skill.skDaoshu &amp; (fieldval:trtFinal &gt;= 4)) &#124; (Skill.skDunshu &amp; (fieldval:trtFinal &gt;= 2)) &#124; (Skill.skJianshu &amp; (fieldval:trtFinal &gt;= 2)) &#124; (Skill.skQiangsh &amp; (fieldval:trtFinal &gt;= 1)) &#124; (Skill.skBianshu &amp; (fieldval:trtFinal &gt;= 4))"/>
+		
+		<!-- Verify we have at least one valid skill pick on the actor -->
+		<prereq message="Requires Bianshu 4+ (see {i}Qin Legends{/i}), Hand to Hand 1+, Chuishu 3+, Daoshu 4+, Dunshu 2+, Jianshu 2+, or Qiangshu 1+">
+			<validate><![CDATA[
+				validif (#traitfound[skHand] >= 1)
+				validif (#traitfound[skChuishu] >= 3)
+				validif (#traitfound[skDaoshu] >= 4)
+				validif (#traitfound[skDunshu] >= 2)
+				validif (#traitfound[skJianshu] >= 2)
+				validif (#traitfound[skQiangsh] >= 1)
+				validif (#traitfound[skBianshu] >= 4)
+			]]></validate>
+		</prereq>
+	</thing>
+
+<!-- Total Block (the citadel) -->
+	<thing
+		id="ctTotBlk"
+		name="Total Block"
+		compset="CombTech"
+		isunique="no"
+		description="The character adopts a special guard enabling him to concentrate all his power and energy on his defense.\n\n The character must state at the very beginning of a combat round, even before the Initiative Test, that he wishes to adopt this guard. He then performs a Test of Metal + relevant martial Skill, with a Success Threshold of 7. If he succeeds, then he adds his Success Margin to his result in any Active Defense Test for the rest of the combat or until he decides to drop the guard.\n\n However, for so long as the character maintains his Total Block, the same Success Margin is added to the ST of all of his attacks.">
+		<fieldval field="trtAbbrev" value="ToBk"/>
+		<fieldval field="ctAlias" value="the citadel"/>
+		<fieldval field="usrCandid1" value="(Skill.skBangshu &amp; (fieldval:trtFinal &gt;= 2)) &#124; (Skill.skChuishu &amp; (fieldval:trtFinal &gt;= 3)) &#124; (Skill.skDaoshu &amp; (fieldval:trtFinal &gt;= 3)) &#124; (Skill.skDunshu &amp; (fieldval:trtFinal &gt;= 1)) &#124; (Skill.skJianshu &amp; (fieldval:trtFinal &gt;= 1)) &#124; (Skill.skQiangsh &amp; (fieldval:trtFinal &gt;= 3)) &#124; (Skill.skBianshu &amp; (fieldval:trtFinal &gt;= 5))"/>
+		
+		<!-- Verify we have at least one valid skill pick on the actor -->
+		<prereq message="Requires Bangshu 2+, Chuishu 3+, Daoshu 3+, Dunshu 1+, Jianshu 1+, or Qiangshu 3+">
+			<validate><![CDATA[
+				validif (#traitfound[skBangshu] >= 2)
+				validif (#traitfound[skChuishu] >= 3)
+				validif (#traitfound[skDaoshu] >= 3)
+				validif (#traitfound[skDunshu] >= 1)
+				validif (#traitfound[skJianshu] >= 1)
+				validif (#traitfound[skQiangsh] >= 3)
+				validif (#traitfound[skBianshu] >= 5)
+			]]></validate>
+		</prereq>
+	</thing>
+
+<!-- Two Weapons (the whirlwind of blades) -->
+	<thing
+		id="ctTwoWpns"
+		name="Two Weapons"
+		compset="CombTech"
+		isunique="no"
+		description="The character wields two identical weapons, one in each hand, which give him a superior defense against attack.\n\n When using this Technique, the character’s Passive Defense score is increased by +1 for the duration of the exchange. Similarly, he receives a bonus of +1 in any Active Defense Tests he may perform in that exchange. However, the STs for his Attack Tests during the exchange receive the standard adjustment of +1.">
+		<fieldval field="trtAbbrev" value="TwWe"/>
+		<fieldval field="ctAlias" value="the whirlwind of blades"/>
+		<fieldval field="usrCandid1" value="(Skill.skDaoshu &amp; (fieldval:trtFinal &gt;= 1)) &#124; (Skill.skDunshu &amp; (fieldval:trtFinal &gt;= 4)) &#124; (Skill.skJianshu &amp; (fieldval:trtFinal &gt;= 4)) &#124; (Skill.skQiangsh &amp; (fieldval:trtFinal &gt;= 1))"/>
+		
+		<!-- Verify we have at least one valid skill pick on the actor -->
+		<prereq message="Requires Daoshu 1+, Dunshu 4+, Jianshu 4+, or Qiangshu 1+">
+			<validate><![CDATA[
+				validif (#traitfound[skDaoshu] >= 1)
+				validif (#traitfound[skDunshu] >= 4)
+				validif (#traitfound[skJianshu] >= 4)
+				validif (#traitfound[skQiangsh] >= 1)
+			]]></validate>
+		</prereq>
+	</thing>
+
+<!-- Whirlwind Block (the cyclone of blood) -->
+	<thing
+		id="ctWhirl"
+		name="Whirlwind Block"
+		compset="CombTech"
+		isunique="no"
+		description="The character’s defense is so focused and secure that he is able to defend and launch a surprise counterattack all in one movement.\n\n The character performs an Active Defense Test with an ST increased by +2 instead of the usual +1. If he fails in the block, then he cannot counter-attack. If he succeeds in the block, he can continue the same movement to perform an Attack Test with an ST increased by +2 instead of the usual +1. If the attack is successful, the damage is reduced by 2.\n\n Only one action is required for the block and counter-attack. But the Technique cannot be combined with another attack in the same exchange. This means that if the character has already carried out an attack, he cannot use the Technique in this exchange. And once he has used the Technique, he cannot carry out any attacks until the next exchange. He may of course use Active Defense, but without using this Technique.">
+		<fieldval field="trtAbbrev" value="WwBk"/>
+		<fieldval field="ctAlias" value="the cyclone of blood"/>
+		<fieldval field="usrCandid1" value="(Skill.skBangshu &amp; (fieldval:trtFinal &gt;= 2)) &#124; (Skill.skHand &amp; (fieldval:trtFinal &gt;= 4)) &#124; (Skill.skJianshu &amp; (fieldval:trtFinal &gt;= 3)) &#124; (Skill.skQiangsh &amp; (fieldval:trtFinal &gt;= 3)) &#124; (Skill.skBianshu &amp; (fieldval:trtFinal &gt;= 4))"/>
+		
+		<!-- Verify we have at least one valid skill pick on the actor -->
+		<prereq message="Requires Bangshu 2+, Bianshu 4+ (see {i}Qin Legends{/i}), Hand to Hand 4+, Dunshu 4+, Jianshu 4+, or Qiangshu 1+">
+			<validate><![CDATA[
+				validif (#traitfound[skBangshu] >= 2)
+				validif (#traitfound[skHand] >= 4)
+				validif (#traitfound[skJianshu] >= 4)
+				validif (#traitfound[skQiangsh] >= 1)
+				validif (#traitfound[skBianshu] >= 4)
+			]]></validate>
+		</prereq>
+	</thing>
+
+</document>

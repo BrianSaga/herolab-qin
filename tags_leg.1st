@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!-- This file contains the definitions of all tag groups and tags that are used
+      throughout the Skeleton data files. These elements relied upon by numerous
+      other facets of the data files and must be processed first during compilation,
+      so they are placed in a file with a ".1st" extension.
+-->
+
+<document signature="Hero Lab Structure">
+
+ <!-- LEGENDS -->
+
+<!-- This is primarily to sort Combat Styles and Martial Techniques properly -->
+	<group
+		id="StyleGroup">
+		<value id="WallBam"/>
+		<value id="MaceShak"/>
+		<value id="MortKiss"/>
+		<value id="CelLitSw"/>
+		<value id="ShrpArm"/>
+		<value id="Shell"/>
+	</group>
+
+<!-- Martial Techniques: Types of actions enabled by martial techniques -->
+	<group
+		id="Effect">
+		<value id="Action" name="Simple Action"/>
+		<value id="Attack" name="Attack Action"/>
+		<value id="Defense" name="Active Defense"/>
+	</group>
+		
+	</document>

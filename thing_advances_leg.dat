@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!-- This file contains the assortment of advances that can be selected by actors as
+      their experience accrues.
+-->
+
+<document signature="Hero Lab Data">
+
+  <!-- Legends -->
+	
+	
+	
+	
+  <!-- New Combat Style advance
+  -->
+  <thing
+    id="advCSNew"
+    name="Gain New Combat Style"
+    compset="Advance"
+    description="Select new Combat Style">
+    <fieldval field="advAction" value="New Combat Style"/>
+    <fieldval field="advDynamic" value="component.CombStyle"/>
+	
+	<!-- Available wih Qin Legends -->
+	<usesource source="qinLegends"/>
+	
+	
+	<!-- Available wih Qin Art of War -->
+	<usesource source="qinArtWar"/>	
+  
+	
+	<tag group="Advance" tag="AddNew"/>
+    <!-- Modify tagexpr to deny abilities that have already been added to the character -->
+    <eval index="1" phase="Render" priority="1000">
+      <before name="Assign Dynamic Tagexpr"/><![CDATA[
+      ~get the list of all abilities on the hero and assemble it as a list of precluded tags
+      var tagexpr as string
+      tagexpr = hero.tagids[CombStyle.?," & !"]
+      ~if there are any tags to exclude, append them to the tagexpr appropriately
+      field[advDynamic].text = splice(field[advDynamic].text,tagexpr," & !")
+      ]]></eval>
+
+	<!-- Set cost for advancement 
+		 We're doing this in the things because we'll get a live state timing error on the advance thing
+		 with the usesource element on combat styles and martial techniques otherwise.
+	-->
+	<eval index="2" phase="Setup" priority="4000"><![CDATA[
+
+		field[advCost].value = 6
+
+	]]></eval>	  
+	  
+    <!-- Attach the child entity for tracking the advance -->
+    <child entity="Advance">
+      <tag group="Advance" tag="MustChoose"/>
+      </child>
+    </thing>
+	
+<!-- Martial Technique Advance -->
+	<thing
+		id="advMTNew"
+		name="Gain New Martial Technique"
+		compset="Advance"
+		description="Select new Martial Technique">
+		<fieldval field="advAction" value="New Martial Technique"/>
+		<fieldval field="advDynamic" value="component.MartialTch"/>
+		
+		<!-- Available with Qin Legends -->
+		<usesource source="qinLegends"/>	
+		
+		
+		<!-- Available with Qin Art of War 	-->
+		<usesource source="qinArtWar"/>	
+		
+		
+		<tag group="Advance" tag="AddNew"/>
+		<!-- Modify tagexpr to deny abilities that have already been added to the character -->
+		<eval index="1" phase="Render" priority="1000">
+		  <before name="Assign Dynamic Tagexpr"/><![CDATA[
+		  ~get the list of all abilities on the hero and assemble it as a list of precluded tags
+		  var tagexpr as string
+		  tagexpr = hero.tagids[MartialTch.?," & !"]
+		  ~if there are any tags to exclude, append them to the tagexpr appropriately
+		  field[advDynamic].text = splice(field[advDynamic].text,tagexpr," & !")
+		  ]]></eval>
+
+		<!-- Set cost for advancement 
+			 We're doing this in the things because we'll get a live state timing error on the advance thing
+			 with the usesource element on combat styles and martial techniques otherwise.
+		-->
+		<eval index="2" phase="Setup" priority="4000"><![CDATA[
+			
+			foreach pick in gizmo
+				if (eachpick.tagis[MartialTch.?] <> 0) then
+					field[advCost].value = eachpick.field[chiCost].value * 2
+				endif
+			nexteach
+		]]></eval>	  
+		  
+		<!-- Attach the child entity for tracking the advance -->
+		<child entity="Advance">
+		  <tag group="Advance" tag="MustChoose"/>
+		  </child>
+    </thing>
+	
+</document>

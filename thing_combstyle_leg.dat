@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!-- This file contains the assortment of skills for the game system. Note that each
+      skill is linked to an associated attribute for the character. This linkage allows
+      the value of the skill to easily incorporate the effects of the linked attribute
+      via a script on the component.
+-->
+
+<document signature="Hero Lab Data">
+
+<!-- The style of the Wall of the Hundred Thousand Bamboos (Bangshu (stick)) -->
+	<thing
+		id="csWallBamb"
+		name="Wall of the Hundred Thousand Bamboos"
+		compset="CombStyle"
+		isunique="yes"
+		description="{B}History:{/B} Curiously, legend does not link this style to one of the great knights of former times. It recounts that its creator was only a simple pilgrim who travelled across the Zhongguo from temple to temple. History is silent on the spiritual quest of this simple man called Cheng. It has only retained from him his combat style. By nature he was peaceful, not at all inclined to seek quarrels with his neighbors, but Cheng nevertheless had, in the course of his wanderings, to face many dangers, not the least of which were highway robbers. Self taught, he developed a specific kind of combat using his long staff. {br}The basic principle of it remains simple: to stop attacking blows from hitting you. He succeeded very well since it is said that he retired at the age of seventy, founding a school, apparently at peace with himself and handing on his knowledge and wisdom to many disciples. This very defensive style has spread through all the Kingdoms and today still remains highly prized by travelers and those who are not aggressive.{br}{br}{B}Basis:{/B} At the start of a combat round, the character may carry out a Test of Metal + Bangshu against an ST of 9. If he succeeds, he can apply, until the end of the round in progress, a bonus to the value of his Passive Defence equal to his Level of Mastery in Bangshu. However, he is subject to an increase of +2 to the ST of all his attack Tests during the same period of time.">
+		<fieldval field="trtAbbrev" value="Wall"/>
+		
+		<!-- Available wih Qin Legends -->
+		<usesource source="qinLegends"/>
+		
+		<!-- Associate it with its combat style with this tag so we can sort them -->
+		<tag group="StyleGroup" tag="WallBam"/>
+		
+		<!-- Combat skill linkage -->
+		<link linkage="CombSkill" thing="skBangshu"/>
+		
+		<!-- Verify we have a valid weapon skill pick -->	
+		<exprreq message="Bangshu 1+ required."><![CDATA[
+			#traitfound[skBangshu] > 0
+		]]></exprreq>
+		
+	</thing>
+	
+<!-- The style of the Mace which Shakes the Ground (Chuishù (Mace)) -->
+	<thing
+		id="csMaceShak"
+		name="Mace which Shakes the Ground"
+		compset="CombStyle"
+		isunique="yes"
+		description="{B}History:{/B} Fong Po was a colossus, a veritable force of nature, born into a Xiongnu tribe. Captured while still a child in a reprisal raid planned by a Zhao noble, he grew up a slave in the heart of a permanent garrison built along the walls which guarded the northern frontier of the country. As a young man, his physical strength and great determination allowed him to join the ranks of the soldiers who had, for many years, been his family. His well developed body, together with the fact that he was forbidden to carry a sword, led him to choose the mace as his preferred weapon. He quickly showed an unmatched skill in this field, a gift which caused him to think about the best way to fight his companions, with their swords and lances. Less easy to handle, heavy and slow, the mace always got Fong Po into difficult situations against this type of opponent. So he devised a block: rather than attacking his enemy directly, it was better for him to take every advantage from his surroundings and situation. Thus was born the style of the Mace which Shakes the Ground. Fong Po needed almost nine years to work out the fundamentals of this style, encouraged by the officers of his garrison. He taught the basics to the other soldiers and mercenaries which allowed this style to be disseminated throughout the whole of Zhongguo. Legend tells that Fong Po disappeared one day from his barracks, leaving behind him twelve broken corpses and that he recovered, with his freedom, the lands of his forefathers. Others say that he died, being too confident, in a duel with a master of the Celestial Lightning Sword. {br}{br}Whatever the truth, the style of the Mace which Shakes the Ground continues to have followers across the Seven Kingdoms. {br}{br}{B}Basis:{/B} In the event of a Yin/Yang balance in an attack Test with a mace, the character may add his Level of Chuishu Mastery to the amount of damage that he inflicts with this weapon.">
+		<fieldval field="trtAbbrev" value="Mace"/>
+		
+		<!-- Available wih Qin Legends -->
+		<usesource source="qinLegends"/>
+		
+		<!-- Associate it with its combat style with this tag so we can sort them -->
+		<tag group="StyleGroup" tag="MaceShak"/>
+		
+		<!-- Combat skill linkage -->
+		<link linkage="CombSkill" thing="skChuishu"/>
+
+		<!-- Verify we have a valid weapon skill pick -->	
+		<exprreq message="Chuishu 1+ required."><![CDATA[
+			#traitfound[skChuishu] > 0
+		]]></exprreq>
+
+	</thing>
+	
+<!-- The Style of the Mortal Kiss of the Metal Butterfly (Daoshù (daggers)) -->
+	<thing
+		id="csMortKiss"
+		name="Mortal Kiss of the Metal Butterfly"
+		compset="CombStyle"
+		isunique="yes"
+		description="{B}History:{/B} Legend tells of the noble house of the Wujian which was wiped out in a terrible battle. All the men in the clan were killed; only defenceless women, widows and orphans were left. Their conqueror confined them in his palace and regularly took concubines for himself and his lieutenants from among them. They were forbidden to carry weapons, let alone study the combat arts. Imprisoned, they brooded over their revenge. One day, a new prisoner joined them. She had been captured in the local area and, being very beautiful, brought there to share the same fate; but, under this fragile exterior, there lay a formidable warrior. The daughter of a famous weapon master, long since dead, she possessed her father’s knowledge. She developed for her companions a secret technique, still prized today by women. To begin with, it allowed simple hair pins to be turned into fearsome weapons. Today, the Mortal Kiss of the Metal Butterfly is often executed with two daggers or knives, even if most of the movements are equally carried out with a single blade. In both cases, this style gives the impression that the warrior is engaging into a bloody dance against her enemies. {br}{br}{B}Basis:{/B} When the character fights with two daggers or knives, and uses the Two Weapons Technique, they gain +1 to damage.">
+		<fieldval field="trtAbbrev" value="MorKs"/>
+		
+		<!-- Available wih Qin Legends -->
+		<usesource source="qinLegends"/>
+		
+		<!-- Associate it with its combat style with this tag so we can sort them -->
+		<tag group="StyleGroup" tag="MortKiss"/>
+		
+		<!-- Combat skill linkage -->
+		<link linkage="CombSkill" thing="skDaoshu"/>
+
+		<!-- Verify we have a valid weapon skill pick -->	
+		<exprreq message="Daoshu 1+ required."><![CDATA[
+			#traitfound[skDaoshu] > 0
+		]]></exprreq>
+
+	</thing>
+	
+<!-- The style of the Celestial Lightning Sword (fencing) -->	
+	<thing
+		id="csCelLitSw"
+		name="Celestial Lightning Sword"
+		compset="CombStyle"
+		isunique="yes"
+		description="{B}History:{/B} Brought up to date by a brotherhood of knights from the south of Chu, this style stresses speed of execution and rapidity of movement against direct and crude force. This group, known as the Celestial Sons of Lightning, became famous when several of its members undertook various punitive actions against the mercenaries and looters who used to bring fire and death to this region of the Kingdom. Because of the local governor’s incompetence, and doubtless his corruption, the people lived in terror. Seven horsemen, dressed in yellow and wearing white masks, all of them first class fighters, attacked the brigands and very quickly put fear into the hearts of those who, up till then, were used to putting it into those who were weaker than them. This matter reached such proportions that the King of Chu, himself, ordered a commission of inquiry which brought to light the corruption of the local authorities. The governor was arrested and executed and the brigands were hunted down and dispersed. No one knew who these seven horsemen were. They disappeared as quickly as they had come. But, from time to time, these mysterious warriors come back to fight those who abuse their power over the people they are supposed to protect. Rumor has them as a brotherhood of law upholders and songs are starting to circulate about them. Their combat style, called the Celestial Lightning Sword, seems as old as the reign of the Yellow Emperor. It was thought lost, but it appears that some noble family traditions continue to teach it. {br}{br}{B}Basis:{/B} When the character announces the use of a Martial Technique from this school at the start of a combat round, he at once gains the initiative over all his opponents, but only for that combat round.">
+		<fieldval field="trtAbbrev" value="MorKs"/>
+		
+		<!-- Available wih Qin Legends -->
+		<usesource source="qinLegends"/>
+		
+		<!-- Associate it with its combat style with this tag so we can sort them -->
+		<tag group="StyleGroup" tag="CelLitSw"/>
+		
+		<!-- Combat skill linkage -->
+		<link linkage="CombSkill" thing="skJianshu"/>
+
+		<!-- Verify we have a valid weapon skill pick -->	
+		<exprreq message="Jianshu 1+ required."><![CDATA[
+			#traitfound[skJianshu] > 0
+		]]></exprreq>
+
+	</thing>
+	
+<!-- The style of the Sharp Armor of Wong Chen (Spears/Javelins) -->	
+	<thing
+		id="csShrpArm"
+		name="Sharp Armor of Wong Chen"
+		compset="CombStyle"
+		isunique="yes"
+		description="{B}History:{/B} Wong Chen was, according to legend, a fearsome warrior who lived during the height of the Zhou dynasty. He handled, with an unmatched skill, a heavy halberd, which he whirled around him as if it had been only a bamboo stick. A tireless traveler, Wong Chen roamed the country, everywhere seeking opponents of his own standard, in order to improve his martial skills. Undefeated in more than thirty contests, he made a not inconsiderable number of enemies. These enemies banded together and set an ambush for him on a bridge. Alone against some twenty opponents, he held them at bay with his heavy halberd, but, while he was repelling five of them facing him, another stabbed him in the back with his sword before immediately retreating. This tactic, which sapped his strength, could have brought him down if the hero had not had the presence of mind to throw himself into the river below. Wong Chen disappeared into the raging water and was thought to have perished, but he survived and spent the next year developing a combat tactic for this kind of situation. So it was that he invented the style of the Sharp Armor, and in the following month, made his reappearance. His old enemies quickly tracked him down to finish what they had started. Wong Chen, confident in his new techniques, won his first fight against twenty. Unable to read or write, he asked a scribe to set down this secret onto bamboo boards, making four copies. The King of Qi owned one but the whereabouts of the others are unknown, if indeed they still exist, for it is well known that a warrior using this style has not been seen for a very long time. {br}{br}{B}Basis:{/B} No opponent may benefit from a bonus for attacking the back or side of a character using the style of the Sharp Armor.">
+		<fieldval field="trtAbbrev" value="Sharp"/>
+		
+		<!-- Available wih Qin Legends -->
+		<usesource source="qinLegends"/>
+		
+		<!-- Associate it with its combat style with this tag so we can sort them -->
+		<tag group="StyleGroup" tag="ShrpArm"/>
+		
+		<!-- Combat skill linkage -->
+		<link linkage="CombSkill" thing="skQiangsh"/>
+
+		<!-- Verify we have a valid weapon skill pick -->	
+		<exprreq message="Qiangshu 1+ required."><![CDATA[
+			#traitfound[skQiangsh] > 0
+		]]></exprreq>
+
+	</thing>
+	
+<!-- The style of the Shell of Wood and Metal (Dunshu (Shield)) -->	 	
+	<thing
+		id="csShell"
+		name="Shell of Wood and Metal"
+		compset="CombStyle"
+		isunique="yes"
+		description="{B}History:{/B} Fu Xia, an officer of Qin, was renowned for his martial abilities and his great tactical intelligence. Commanding small troops of horsemen or infantry, he patrolled along the frontiers and often found himself entrusted with the search and capture of the bands of outlaws who infest these regions. Several times he was victorious leading a handful of men against vastly greater forces. Regularly using hit-and-run attacks, he learned how to develop a fighting style for his men, making the best use of their light equipment. With every soldier being a hardened fighter, Fu Xia sought to increase their defensive potential, concentrating on the possibilities offered by mastery of the shield used by the army.{br}{br} With larger and larger armies, the bulk of the infantry became less and less properly trained, with their officers preferring to issue long, easily handled weapons. So the style of the Shell of Wood and Metal only spread among the elite units of the various armies of Zhongguo. Fu Xia, in spite of all his victories, ended his life in disgrace for having refused to carry out orders, which he felt went against his conscience, but it is rumored that his confirmed Taoist convictions had attracted much hostility from his superiors. Some of his discharged comrades in arms brought the knowledge of this form of combat to the jiang hu where it enjoyed success in comparison to other, more offensive ones.{br}{br} In the present day, more than thirty years after being established, this school seems to have almost disappeared. However, in the greatest secrecy, several officers of the armies of the different Kingdoms continue to use this style and to teach it to a handful of handpicked disciples. These men, in spite of their different loyalties, consider themselves as part of the brotherhood of Fu Xia’s heirs. {br}{br}{B}Basis:{/B} Once a game, the character using a shield may retake a failed Block Test (Active Defence)">
+		<fieldval field="trtAbbrev" value="Shell"/>
+		
+		<!-- Available wih Qin Legends -->
+		<usesource source="qinLegends"/>
+		
+		<!-- Associate it with its combat style with this tag so we can sort them -->
+		<tag group="StyleGroup" tag="Shell"/>
+		
+		<!-- Combat skill linkage -->
+		<link linkage="CombSkill" thing="skDunshu"/>
+
+		<!-- Verify we have a valid weapon skill pick -->	
+		<exprreq message="Dunshu 1+ required."><![CDATA[
+			#traitfound[skDunshu] > 0
+		]]></exprreq>
+
+	</thing>
+
+</document>

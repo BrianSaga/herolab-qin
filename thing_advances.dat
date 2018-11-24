@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!-- This file contains the assortment of advances that can be selected by actors as
+      their experience accrues.
+-->
+
+<document signature="Hero Lab Data">
+
+
+  <!-- Advancement Details - shared by all advancements
+  -->
+  <thing
+    id="advDetails"
+    name="Advancement Details"
+    compset="AdvDetails">
+    </thing>
+
+
+  <!-- New Tao advance
+  -->
+  <thing
+    id="advTaoNew"
+    name="Gain a New Tao"
+    compset="Advance"
+    description="Select a new Tao.">
+    <fieldval field="advAction" value="New Tao"/>
+    <fieldval field="advDynamic" value="component.Tao"/>
+    <tag group="Advance" tag="AddNew"/>
+    <!-- Modify tagexpr to deny abilities that have already been added to the character -->
+    <eval index="1" phase="Render" priority="1000">
+      <before name="Assign Dynamic Tagexpr"/><![CDATA[
+      ~get the list of all abilities on the hero and assemble it as a list of precluded tags
+      var tagexpr as string
+      tagexpr = hero.tagids[Tao.?," & !"]
+      ~if there are any tags to exclude, append them to the tagexpr appropriately
+      field[advDynamic].text = splice(field[advDynamic].text,tagexpr," & !")
+      ]]></eval>
+
+	 <!-- No cost to add a new Tao because trtUser defaults to 0 to accommodate properly handling the Tao Effect bootstrap 
+		  Including the code for reference
+	 -->  
+	<eval index="2" phase="Setup" priority="4000"><![CDATA[
+		field[advCost].value = 0
+	]]></eval>	  
+	  
+    <!-- Attach the child entity for tracking the advance -->
+    <child entity="Advance">
+      <tag group="Advance" tag="MustChoose"/>
+      </child>
+    </thing>
+
+	
+  <!-- New Skill advance
+  -->
+  <thing
+    id="advSkilNew"
+    name="Gain a New Skill"
+    compset="Advance"
+    description="Select a new skill.">
+    <fieldval field="advAction" value="New Skill"/>
+    <fieldval field="advDynamic" value="component.Skill"/>
+    <tag group="Advance" tag="AddNew"/>
+    <!-- Modify tagexpr to deny abilities that have already been added to the character -->
+    <eval index="1" phase="Render" priority="1000">
+      <before name="Assign Dynamic Tagexpr"/><![CDATA[
+      ~get the list of all abilities on the hero and assemble it as a list of precluded tags
+      var tagexpr as string
+      tagexpr = hero.tagids[Skill.?," & !"]
+      ~if there are any tags to exclude, append them to the tagexpr appropriately
+      field[advDynamic].text = splice(field[advDynamic].text,tagexpr," & !")
+      ]]></eval>
+
+	<!-- Cost to advance to level 1 since it's adding new -->  
+	<eval index="2" phase="Setup" priority="4000"><![CDATA[
+		field[advCost].value = 4
+	]]></eval>	  
+    <!-- Attach the child entity for tracking the advance -->
+    <child entity="Advance">
+      <tag group="Advance" tag="MustChoose"/>
+      </child>
+    </thing>
+	
+  <!-- New Magic advance
+  -->
+  <thing
+    id="advMgcNew"
+    name="Gain New Magic"
+    compset="Advance"
+    description="Select new Magic">
+    <fieldval field="advAction" value="New Magic"/>
+    <fieldval field="advDynamic" value="component.Magic"/>
+    <tag group="Advance" tag="AddNew"/>
+    <!-- Modify tagexpr to deny abilities that have already been added to the character -->
+    <eval index="1" phase="Render" priority="1000">
+      <before name="Assign Dynamic Tagexpr"/><![CDATA[
+      ~get the list of all abilities on the hero and assemble it as a list of precluded tags
+      var tagexpr as string
+      tagexpr = hero.tagids[Magic.?," & !"]
+      ~if there are any tags to exclude, append them to the tagexpr appropriately
+      field[advDynamic].text = splice(field[advDynamic].text,tagexpr," & !")
+      ]]></eval>
+
+	<!-- Set cost for advancement 
+		 We're doing this in the things because we'll get a live state timing error on the advance thing
+		 with the usesource element on combat styles and martial techniques otherwise.
+	-->
+	<eval index="2" phase="Setup" priority="4000"><![CDATA[
+		
+		foreach pick in gizmo
+			if (eachpick.tagis[Magic.?] <> 0) then
+				~this linkage is not optional, so this check is redundant
+				if (eachpick.islinkage[magicskill] <> 0) then
+					field[advCost].value = eachpick.field[trtUser].value * 4
+				endif
+			endif
+		nexteach
+	]]></eval>
+	
+    <!-- Attach the child entity for tracking the advance -->
+    <child entity="Advance">
+      <tag group="Advance" tag="MustChoose"/>
+      </child>
+    </thing>
+
+ <!-- New Combat Technique advance
+  -->
+  <thing
+    id="advCTNew"
+    name="Gain New Combat Technique"
+    compset="Advance"
+    description="Select new Combat Technique">
+    <fieldval field="advCost" value="0"/>
+    <fieldval field="advAction" value="New Combat Technique"/>
+    <fieldval field="advDynamic" value="component.CombTech"/>
+    <tag group="Advance" tag="AddNew"/>
+    <!-- Modify tagexpr to deny abilities that have already been added to the character -->
+    <eval index="1" phase="Render" priority="1000">
+      <before name="Assign Dynamic Tagexpr"/><![CDATA[
+      ~get the list of all abilities on the hero and assemble it as a list of precluded tags
+      var tagexpr as string
+      tagexpr = hero.tagids[CombTech.?," & !"]
+      ~if there are any tags to exclude, append them to the tagexpr appropriately
+      field[advDynamic].text = splice(field[advDynamic].text,tagexpr," & !")
+      ]]></eval>
+
+	<!-- Set cost for advancement 
+		 We're doing this in the things because we'll get a live state timing error on the advance thing
+		 with the usesource element on combat styles and martial techniques otherwise.
+	-->
+	<eval index="2" phase="Setup" priority="4000"><![CDATA[
+		var tagval as number
+		var tagexpr as string
+		var idstr as string
+		var ischosen as number
+		var thisid as string
+		foreach pick in gizmo
+			if (eachpick.tagis[component.CombTech] <> 0) then
+				ischosen = eachpick.field[usrChosen1].ischosen
+				thisid = eachpick.idstring
+				if (ischosen <> 0) then
+					idstr = eachpick.field[usrChosen1].chosen.idstring
+				endif
+			endif
+		nexteach
+		foreach pick in hero from Skill where "SkillType.Weapon"
+			if (compare(idstr, eachpick.idstring) = 0) then
+				tagexpr = "ComTchCost." & thisid & "?"
+				tagval = eachpick.tagvaluestr[tagexpr]
+			endif
+		nexteach
+		field[advCost].value = tagval * 4
+	]]></eval>
+	
+    <!-- Attach the child entity for tracking the advance -->
+    <child entity="Advance">
+      <tag group="Advance" tag="MustChoose"/>
+      </child>
+    </thing>	
+	
+  <!-- Increase Skill advance
+  -->
+  <thing
+    id="advSkill"
+    name="Increase Skill"
+    compset="Advance"
+    description="Select a skill to increase by one.">
+    <fieldval field="advAction" value="Increase Skill"/>
+    <fieldval field="advDynamic" value="component.Skill &amp; !Helper.Maximum &amp; !Hide.Skill"/>
+    <tag group="Advance" tag="Increase"/>
+	
+	<!-- Set cost for advancement 
+		 We're doing this in the things because we'll get a live state timing error on the advance thing
+		 with the usesource element on combat styles and martial techniques otherwise.
+	-->
+	<eval index="1" phase="Setup" priority="4000"><![CDATA[
+		var newlevel as number
+		newlevel = 0
+		
+		foreach pick in gizmo
+			if (eachpick.islinkage[basis] = 0) then
+				newlevel = 1
+			else
+				newlevel = eachpick.linkage[basis].field[trtUser].value + 1
+			endif
+			
+			if (eachpick.tagis[Advance.Cumulative] <> 0) then
+				if (newlevel = 1) then
+					field[advCost].value = 4
+				elseif (newlevel = 2) then
+					field[advCost].value = 8
+				elseif (newlevel = 3) then
+					field[advCost].value = 12
+				elseif (newlevel = 4) then
+					field[advCost].value = 16
+				elseif (newlevel = 5) then
+					field[advCost].value = 20
+				elseif (newlevel = 6) then
+					field[advCost].value = 24
+				endif
+			endif
+		nexteach
+	]]></eval>
+	
+    <!-- Attach the child entity for tracking the advance -->
+    <child entity="Advance">
+      <tag group="Advance" tag="MustChoose"/>
+      </child>
+    </thing>
+
+  <!-- Increase Tao advance
+  -->
+  <thing
+    id="advTao"
+    name="Increase Tao"
+    compset="Advance"
+    description="Select a Tao to increase by one.">
+    <fieldval field="advAction" value="Increase Tao"/>
+    <fieldval field="advDynamic" value="component.Tao &amp; !Helper.Maximum &amp; !Hide.Tao"/>
+    <tag group="Advance" tag="Increase"/>
+
+	<!-- Set cost for advancement 
+		 We're doing this in the things because we'll get a live state timing error on the advance thing
+		 with the usesource element on combat styles and martial techniques otherwise.
+	-->
+	<eval index="1" phase="Setup" priority="4000"><![CDATA[
+		var newlevel as number
+		newlevel = 0
+		
+		foreach pick in gizmo
+			if (eachpick.islinkage[basis] = 0) then
+				newlevel = 1
+			else
+				newlevel = eachpick.linkage[basis].field[trtUser].value + 1
+			endif
+			
+			if (eachpick.tagis[Advance.Cumulative] <> 0) then
+				if (newlevel = 1) then
+					field[advCost].value = 4
+				elseif (newlevel = 2) then
+					field[advCost].value = 8
+				elseif (newlevel = 3) then
+					field[advCost].value = 12
+				elseif (newlevel = 4) then
+					field[advCost].value = 16
+				elseif (newlevel = 5) then
+					field[advCost].value = 20
+				elseif (newlevel = 6) then
+					field[advCost].value = 24
+				endif
+			endif
+		nexteach
+	]]></eval>
+	
+    <!-- Attach the child entity for tracking the advance -->
+    <child entity="Advance">
+      <tag group="Advance" tag="MustChoose"/>
+      </child>
+    </thing>	
+	
+	
+  <!-- Increase Aspect advance
+  -->
+  <thing
+    id="advAttrib"
+    name="Increase Aspect"
+    compset="Advance"
+    description="Select an Aspect to increase by one.">
+    <fieldval field="advAction" value="Increase Aspect"/>
+    <fieldval field="advDynamic" value="component.Attribute &amp; !Helper.Maximum &amp; !Hide.Attribute"/>
+    <tag group="Advance" tag="Increase"/>
+
+	<!-- Set cost for advancement 
+		 We're doing this in the things because we'll get a live state timing error on the advance thing
+		 with the usesource element on combat styles and martial techniques otherwise.
+	-->
+	<eval index="1" phase="Setup" priority="4000"><![CDATA[
+		var newlevel as number
+		newlevel = 0
+		
+		foreach pick in gizmo
+			if (eachpick.islinkage[basis] = 0) then
+				newlevel = 1
+			else
+				newlevel = eachpick.linkage[basis].field[trtUser].value + 1
+			endif
+			
+			field[advCost].value = newlevel * 5
+		nexteach
+	]]></eval>
+    
+	<!-- Attach the child entity for tracking the advance -->
+    <child entity="Advance">
+      </child>
+    </thing>
+
+	
+  </document>

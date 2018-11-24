@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!-- This file contains the assortment of weapons, armor, and shields for the game
+      system. The various effects of each piece of equipment are controlled entirely
+      through field values and a few tags. Scripts on the underlying components use
+      these characteristics to apply all the correct behaviors.
+-->
+
+<document signature="Hero Lab Data">
+
+
+<!-- ##################
+      Armor and Shields
+     ##################
+-->
+
+
+<!-- ##################
+      Melee Weapons - Qin Legends
+     ##################
+-->
+
+  <!-- Bian melee weapon -->
+  <thing
+    id="wpBian"
+    name="Bian"
+    compset="Melee"
+    description="The Bian whip, usually made of leather and about two yards long, is used to inflict stinging pain on those that it strikes. Used mainly by the overseers on the vast building sites of Zhongguo, it is sometimes found in the hands of martial experts with novel techniques.">
+    <fieldval field="shortname" value="Bian"/>
+    <fieldval field="wpBonus" value="0"/>
+    <fieldval field="wpDamage" value="2"/>
+    <fieldval field="grResil" value="5"/>
+    <fieldval field="wpSpecial" value=""/>
+    <fieldval field="grCost" value="25"/>
+    <fieldval field="gearWeight" value="0"/>
+
+	<usesource source="qinLegends"/>	
+	
+	<link linkage="wpnskill" thing="skBianshu"/>
+	
+	<!-- If this is a natural weapon, assign this tag
+    <tag group="Equipment" tag="Natural"/>
+    -->
+    <!-- If this is a two-handed weapon, assign this tag
+    <tag group="Equipment" tag="TwoHand"/>
+    -->
+	<!-- Required skill -->
+	<exprreq message="Bangshu skill 1+ required."><![CDATA[
+		#traitfound[skBianshu] >= 1
+	]]></exprreq>
+    </thing>
+
+  <!-- Flail melee weapon -->
+  <thing
+    id="wpFlail"
+    name="Flail"
+    compset="Melee"
+    description="The flail is made up of a mass of metal attached to the end of a long chain. It is a shock weapon, designed to break bones at a distance.">
+    <fieldval field="shortname" value="Flail"/>
+    <fieldval field="wpBonus" value="0"/>
+    <fieldval field="wpDamage" value="2"/>
+    <fieldval field="grResil" value="7"/>
+    <fieldval field="wpSpecial" value=""/>
+    <fieldval field="grCost" value="40"/>
+    <fieldval field="gearWeight" value="0"/>
+
+	<usesource source="qinLegends"/>	
+	
+	<link linkage="wpnskill" thing="skBianshu"/>
+	
+	<!-- If this is a natural weapon, assign this tag
+    <tag group="Equipment" tag="Natural"/>
+    -->
+    <!-- If this is a two-handed weapon, assign this tag
+    <tag group="Equipment" tag="TwoHand"/>
+    -->
+	<!-- Required skill -->
+	<exprreq message="Bianshu skill 1+ required."><![CDATA[
+		#traitfound[skBianshu] >= 1
+	]]></exprreq>
+    </thing>
+
+  <!-- Flying Guillotine melee weapon -->
+  <thing
+    id="wpFlyGuill"
+    name="Flying Guillotine"
+    compset="Melee"
+    description="A dangerous weapon and very difficult to master, the flying guillotine is an edged disc on the end of a long chain. As its name implies, its purpose is to decapitate the opponent from a distance.">
+    <fieldval field="shortname" value="Flail"/>
+    <fieldval field="wpBonus" value="0"/>
+    <fieldval field="wpDamage" value="3"/>
+    <fieldval field="grResil" value="7"/>
+    <fieldval field="wpSpecial" value=""/>
+    <fieldval field="grCost" value="50"/>
+    <fieldval field="gearWeight" value="0"/>
+
+	<usesource source="qinLegends"/>	
+	
+	<link linkage="wpnskill" thing="skBianshu"/>
+	
+	<!-- If this is a natural weapon, assign this tag
+    <tag group="Equipment" tag="Natural"/>
+    -->
+    <!-- If this is a two-handed weapon, assign this tag
+    <tag group="Equipment" tag="TwoHand"/>
+    -->
+	<!-- Required skill -->
+	<exprreq message="Bangshu skill 1+ required."><![CDATA[
+		#traitfound[skBianshu] >= 1
+	]]></exprreq>
+    </thing>
+	
+  <!-- Legendary object gizmo helper -->
+  <thing
+    id="loInfo"
+    name="Legendary Object Helper"
+    compset="LegObjInfo"
+    description="Legendary Object helper">
+	<fieldval field="usrChkText" value="Legendary object?"/>
+	
+    </thing>	
+	
+  </document> 

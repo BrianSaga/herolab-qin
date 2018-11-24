@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!-- This file contains the assortment of skills for the game system. Note that each
+      skill is linked to an associated attribute for the character. This linkage allows
+      the value of the skill to easily incorporate the effects of the linked attribute
+      via a script on the component.
+-->
+
+<document signature="Hero Lab Data">
+
+<!--
+	***************************************************************
+		Internal Alchemy Techniques
+	***************************************************************
+-->
+
+
+<!-- Sharing the Embryo of Immortality -->
+	<thing
+		id="maSharEmb"
+		name="Sharing the Embryo of Immortality"
+		compset="Magic"
+		isunique="yes"
+		description="The disciple knows how to create in himself an embryo of immortality so as to stop his ageing and be due from an extra investment of Chi. {br}{br}At the end of this period, the person can, of course, receive a new embryo of immortality, indeed synthesize it without help if, in the meantime, the secrets of Internal Alchemy have been learned.">
+		
+		<fieldval field="trtAbbrev" value="ShEmb"/>
+		<fieldval field="trtUser" value="6"/>
+		<fieldval field="maPrep" value="One day"/>
+		<fieldval field="maDur" value="The number of decades equal to half the Margin of Success"/>
+		<fieldval field="maArea" value="The person with whom the disciple has a sexual relationship."/>
+		<fieldval field="chiCost" value="15"/>
+		<fieldval field="maImprove" value="For each additional cost of 5 Chi points, at the time of meditation, the period when ageing stops is increased by one year."/>
+		
+		<usesource source="qinLegends"/>
+		
+		<tag group="Way" tag="IntAlchemy"/>
+		
+		<link linkage="magicskill" thing="skIntAlch"/>
+		
+		<!-- Uncomment for prerequisites -->
+		<exprreq message="The Vital Principle required."><![CDATA[
+			#traitfound[maVital] >= 1
+		]]></exprreq>
+    </thing>
+	
+<!-- Mastering Nature -->
+	<thing
+		id="maMastNat"
+		name="Mastering Nature"
+		compset="Magic"
+		isunique="yes"
+		description="Basing his spirit in surrounding nature, the disciple becomes capable of controlling it at his will.{br}{br} The disciple must meditate for fi ve minutes, sitting directly on the ground. He then spends 15 Chi points and his spirit melts into the ground and becomes the master of nature over a radius equal to ten times his Wood level, plus additional distance due to any extra investment of Chi.{br}{br} During a period in minutes equal to his level of (Earth + Internal Alchemy), the disciple controls the natural elements present in his sphere: he can move the branches and roots of trees, direct the will of animals, cause the ground to shake, speed up the fl ow of a river, make the wind blow, cause landslides, etc. Highly advanced men and animals in his sphere of action, such as the Yao, cannot, of course, be controlled in this way.">
+		
+		<fieldval field="trtAbbrev" value="MaNat"/>
+		<fieldval field="trtUser" value="5"/>
+		<fieldval field="maPrep" value="Five minutes"/>
+		<fieldval field="maDur" value="A period of minutes equal to (Earth + Alchemy) of the disciple"/>
+		<fieldval field="maArea" value="A radius equal to ten times the Wood level of the disciple, in yards"/>
+		<fieldval field="chiCost" value="15"/>
+		<fieldval field="maImprove" value="For each additional cost of 2 Chi points spent at the time of the meditation, the disciple’s control radius is increased by one yard."/>
+		
+		<usesource source="qinLegends"/>
+		
+		<tag group="Way" tag="IntAlchemy"/>
+		
+		<link linkage="magicskill" thing="skIntAlch"/>
+		
+		<!-- Uncomment for prerequisites 
+		<exprreq message="The Vital Principle required."><![CDATA[
+			#traitfound[maVital] >= 1
+		]]></exprreq>
+		-->
+    </thing>
+	
+<!-- Violating the Shrine of the Spirit -->
+	<thing
+		id="maVioShr"
+		name="Violating the Shrine of the Spirit"
+		compset="Magic"
+		isunique="yes"
+		description="The disciple is able to put his spirit into the body of another person, in order to take control of him. The disciple must spend a double hour meditating. Once total serenity has been attained, he can send his spirit to take over the body of a person whom he knows (from having seen, or spoken to, him at least once so as to be able to recognize him among the crowd of the spirits of the Zhongguo) if this person is less than sixty times (Earth + Internal Alchemy) miles away. He must then succeed in a Test of Wood + Internal Alchemy against an ST equal to twice the Earth of his target, and must spend 12 Chi points.{br}{br} In doing this, his spirit totally takes over the body of the target whose own spirit is put to sleep for a period equal to the disciple’s Earth level in small hours, plus the small hours which may come from an extra investment in Chi. From now on, it is the disciple who acts in the place of the possessed person, using their own Aspects, Skills, Taos etc.{br}{br} However, at the end of every small hour of possession, the spirit of the target threatens to reawaken: the disciple must carry out a Test in Opposition of Wood + Internal Alchemy against the Resistance of the target.{br}{br} When the possession ends, the target has no recollection or memory of what the practitioner used their body for.">
+		
+		<fieldval field="trtAbbrev" value="ViShr"/>
+		<fieldval field="trtUser" value="6"/>
+		<fieldval field="maPrep" value="One double hour"/>
+		<fieldval field="maDur" value="The number of small hours equal to the Earth level of the disciple or until expulsion"/>
+		<fieldval field="maArea" value="A known person located at less than sixty times (Earth + Internal Alchemy) miles."/>
+		<fieldval field="chiCost" value="12"/>
+		<fieldval field="maImprove" value="For each additional cost of 6 Chi points spent at the time of possession, this period is increased by one small hour."/>
+		
+		<usesource source="qinLegends"/>
+		
+		<tag group="Way" tag="IntAlchemy"/>
+		
+		<link linkage="magicskill" thing="skIntAlch"/>
+		
+		<!-- Uncomment for prerequisites 
+		<exprreq message="The Vital Principle required."><![CDATA[
+			#traitfound[maVital] >= 1
+		]]></exprreq>
+		-->
+    </thing>
+	
+<!-- Rejoining the Kunlun Mountains -->
+	<thing
+		id="maRejKunMt"
+		name="Rejoining the Kunlun Mountains"
+		compset="Magic"
+		isunique="yes"
+		description="The disciple must meditate for a whole week, without drinking, eating or sleeping. Spending 20 Chi points, he carries out a Test of Earth + Internal Alchemy against an ST of 15. If he succeeds, the disciple is able to transfer his spirit into the embryo of immortality that his body is hosting, and to bring this to maturity: from that time on, it is the perfect and immortal vehicle for his soul, no longer ageing, fearing neither hunger nor disease − but still being able to be wounded and even killed − although in this case, his wounds heal at the rate of one box of Breath of Life per minute without causing any pain.{br}{br} The few men who have reached this level quickly free themselves from earthly affairs and do not delay in joining the immortal domains − like the Kunlun Mountains or the Penglai Isles. In any case, since the end of the Yin dynasty, the immortals no longer have the right to walk in the world of men…">
+		
+		<fieldval field="trtAbbrev" value="ReKun"/>
+		<fieldval field="trtUser" value="6"/>
+		<fieldval field="maPrep" value="One week"/>
+		<fieldval field="maDur" value="Eternal"/>
+		<fieldval field="maArea" value="The disciple himself"/>
+		<fieldval field="chiCost" value="50"/>
+		<fieldval field="maImprove" value="From now on, the disciple knows how to merge with the eternity of the Tao. Transcending his body, he causes the embryo of immortality to mature until he forms from it his new body − a perfect and immortal body."/>
+		
+		<usesource source="qinLegends"/>
+		
+		<tag group="Way" tag="IntAlchemy"/>
+		
+		<link linkage="magicskill" thing="skIntAlch"/>
+		
+		<!-- Uncomment for prerequisites -->
+		<exprreq message="The Vital Principle required."><![CDATA[
+			#traitfound[maVital] >= 1
+		]]></exprreq>
+		
+    </thing>
+	
+<!-- Rejoining the Kunlun Mountains -->
+	<thing
+		id="maRejKun"
+		name="Rejoining the Kunlun Mountains"
+		compset="Magic"
+		isunique="yes"
+		description="The disciple must meditate for a whole week, without drinking, eating or sleeping. Spending 20 Chi points, he carries out a Test of Earth + Internal Alchemy against an ST of 15. If he succeeds, the disciple is able to transfer his spirit into the embryo of immortality that his body is hosting, and to bring this to maturity: from that time on, it is the perfect and immortal vehicle for his soul, no longer ageing, fearing neither hunger nor disease − but still being able to be wounded and even killed − although in this case, his wounds heal at the rate of one box of Breath of Life per minute without causing any pain.{br}{br} The few men who have reached this level quickly free themselves from earthly affairs and do not delay in joining the immortal domains − like the Kunlun Mountains or the Penglai Isles. In any case, since the end of the Yin dynasty, the immortals no longer have the right to walk in the world of men…">
+		
+		<fieldval field="trtAbbrev" value="ReKun"/>
+		<fieldval field="trtUser" value="6"/>
+		<fieldval field="maPrep" value="One week"/>
+		<fieldval field="maDur" value="Eternal"/>
+		<fieldval field="maArea" value="The disciple himself"/>
+		<fieldval field="chiCost" value="50"/>
+		<fieldval field="maImprove" value="From now on, the disciple knows how to merge with the eternity of the Tao. Transcending his body, he causes the embryo of immortality to mature until he forms from it his new body − a perfect and immortal body."/>
+		
+		<usesource source="qinLegends"/>
+		
+		<tag group="Way" tag="IntAlchemy"/>
+		
+		<link linkage="magicskill" thing="skIntAlch"/>
+		
+		<!-- Uncomment for prerequisites -->
+		<exprreq message="The Vital Principle required."><![CDATA[
+			#traitfound[maVital] >= 1
+		]]></exprreq>
+		
+    </thing>	
+</document>

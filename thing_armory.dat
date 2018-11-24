@@ -1,0 +1,639 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!-- This file contains the assortment of weapons, armor, and shields for the game
+      system. The various effects of each piece of equipment are controlled entirely
+      through field values and a few tags. Scripts on the underlying components use
+      these characteristics to apply all the correct behaviors.
+-->
+
+<document signature="Hero Lab Data">
+
+
+<!-- ##################
+      Armor and Shields
+     ##################
+-->
+
+  <!-- Thick clothing armor -->
+  <thing
+    id="armTkCloth"
+    name="Thick clothing"
+    compset="Armor"
+    description="Wearing several layers of thick clothing (at least a chang pao covered by a thick overcoat) may in itself slightly reduce the impact of a blow.">
+ 
+    <fieldval field="armProtect" value="1"/>
+    <fieldval field="grResil" value="0"/>
+    <fieldval field="grCost" value="0"/>
+    <fieldval field="gearWeight" value="0"/>
+	<child
+		entity="entLegObj">
+	</child>
+    </thing>
+
+  <!-- Fur and wool armor -->
+  <thing
+    id="armFurWool"
+    name="Fur and wool"
+    compset="Armor"
+    description="The heavy clothing of the barbarians of the steppes provides a rudimentary form of armor.">
+ 
+    <fieldval field="armProtect" value="2"/>
+    <fieldval field="grResil" value="0"/>
+    <fieldval field="grCost" value="0"/>
+    <fieldval field="gearWeight" value="0"/>
+	<child
+		entity="entLegObj">
+	</child>
+    </thing>	
+
+  <!-- Leather breastplate armor -->
+  <thing
+    id="armLtBtplt"
+    name="Leather breastplate"
+    compset="Armor"
+    description="The basic armor of a state soldier is a thick leather breastplate, which protects only the front of the body and thus encourages the soldier always to advance, and never to expose his back by attempting to flee.">
+ 
+    <fieldval field="armProtect" value="3"/>
+    <fieldval field="grResil" value="9"/>
+    <fieldval field="grCost" value="100"/>
+    <fieldval field="gearWeight" value="0"/>
+	<child
+		entity="entLegObj">
+	</child>
+    </thing>
+
+  <!-- Full leather armor -->
+  <thing
+    id="armFlLrArm"
+    name="Full leather armor"
+    compset="Armor"
+    description="Officers and mounted soldiers wear a full armor of thick leather, sometimes with some bronze reinforcement. It covers the whole of the torso, and sometimes even the arms and legs.">
+ 
+    <fieldval field="armProtect" value="4"/>
+    <fieldval field="grResil" value="11"/>
+    <fieldval field="grCost" value="500"/>
+    <fieldval field="gearWeight" value="0"/>
+	<child
+		entity="entLegObj">
+	</child>
+    </thing>
+
+  <!-- Reinforced leather armor -->
+  <thing
+    id="armReLrArm"
+    name="Reinforced leather armor"
+    compset="Armor"
+    description="This armor is reinforced by thick bronze plates, ensuring its user the best protection available. It is the preserve of the highest-ranking generals.">
+ 
+    <fieldval field="armProtect" value="5"/>
+    <fieldval field="grResil" value="13"/>
+    <fieldval field="grCost" value="1000"/>
+    <fieldval field="gearWeight" value="0"/>
+	<child
+		entity="entLegObj">
+	</child>
+    </thing>
+	
+  <!-- Large Shield -->
+  <thing
+    id="shdLarge"
+    name="Large Shield"
+    compset="Shield"
+    description="The large shield is as long and broad as a man, and made of wood reinforced with bronze. It is only used in infantry divisions as protection against enemy archers. It is simply too heavy and cumbersome to be used for anything else.">
+ 
+    <fieldval field="wpDamage" value="0"/>
+    <fieldval field="grResil" value="13"/>
+    <fieldval field="grCost" value="80"/>
+    <fieldval field="wpSpecial" value="The large shield is used to protect the user against missiles. It creates an obstacle which gives the user almost complete protection, increasing the attacker’s ST by +3. But while carrying the shield, the user’s capacity for movement is halved and he cannot attempt any other action since he needs both his hands to lift it."/>
+    <fieldval field="gearWeight" value="0"/>
+
+	<link linkage="wpnskill" thing="skDunshu"/>
+	
+	<!-- Required skill -->
+	<exprreq message="Dunshu skill 1+ required."><![CDATA[
+		#traitfound[skDunshu] >= 1
+	]]></exprreq>
+	<child
+		entity="entLegObj">
+	</child>	
+    </thing>
+
+  <!-- Small Shield -->
+  <thing
+    id="shdSmall"
+    name="Small Shield"
+    compset="Shield"
+    description="The small shield is generally round and made either of wicker or of wood. It is rarely used outside light infantry units.">
+ 
+    <fieldval field="wpDamage" value="1"/>
+    <fieldval field="grResil" value="9"/>
+    <fieldval field="grCost" value="45"/>
+    <fieldval field="wpSpecial" value="Whenever a character attempts an Active Defense using a shield and Dunshu Skill, he obtains a bonus of +1 on his Test."/>
+    <fieldval field="gearWeight" value="0"/>
+
+	<link linkage="wpnskill" thing="skDunshu"/>	
+	
+	<!-- Required skill -->
+	<exprreq message="Dunshu skill 1+ required."><![CDATA[
+		#traitfound[skDunshu] >= 1
+	]]></exprreq>
+	<child
+		entity="entLegObj">
+	</child>	
+    </thing>
+
+<!-- ##################
+      Melee Weapons
+     ##################
+-->
+
+
+  <!-- Unarmed Strike melee weapon -->
+  <thing
+    id="wpUnarmed"
+    name="Unarmed Strike"
+    compset="Melee"
+    description="Description goes here"
+    isunique="yes"
+    holdable="no">
+    <fieldval field="shortname" value="Unarmed"/>
+    <fieldval field="wpBonus" value="0"/>
+    <fieldval field="wpDamage" value="1"/>
+    <fieldval field="grResil" value="0"/>
+    <fieldval field="wpSpecial" value=""/>
+    <fieldval field="grCost" value="0"/>
+    <fieldval field="gearWeight" value="0"/>
+	
+	<link linkage="wpnskill" thing="skHand"/>
+	
+	<!-- Required skill -->
+	<exprreq message="Hand-to-hand skill 1+ required."><![CDATA[
+		#traitfound[skHand] >= 1
+	]]></exprreq>
+	<child
+		entity="entLegObj">
+	</child>	
+    </thing>
+
+  <!-- Bang melee weapon -->
+  <thing
+    id="wpBang"
+    name="Bang"
+    compset="Melee"
+    description="The combat stick or bang is generally made of wood and is anywhere between five feet and six feet long. It is popular among travelers, as it serves both as a walking-stick and as an instrument of defense. Its length and the possibility of striking with both ends makes it a very useful weapon.">
+    <fieldval field="shortname" value="Bang"/>
+    <fieldval field="wpBonus" value="0"/>
+    <fieldval field="wpDamage" value="2"/>
+    <fieldval field="grResil" value="7"/>
+    <fieldval field="wpSpecial" value=""/>
+    <fieldval field="grCost" value="9"/>
+    <fieldval field="gearWeight" value="0"/>
+
+	<link linkage="wpnskill" thing="skBangshu"/>
+	
+	<!-- If this is a natural weapon, assign this tag
+    <tag group="Equipment" tag="Natural"/>
+    -->
+    <!-- If this is a two-handed weapon, assign this tag
+    <tag group="Equipment" tag="TwoHand"/>
+    -->
+	<!-- Required skill -->
+	<exprreq message="Bangshu skill 1+ required."><![CDATA[
+		#traitfound[skBangshu] >= 1
+	]]></exprreq>
+	<child
+		entity="entLegObj">
+	</child>	
+    </thing>
+	
+  <!-- Xiao bang melee weapon -->
+  <thing
+    id="wpXiaoBang"
+    name="Xiao bang"
+    compset="Melee"
+    description="The short combat stick usually measures between two and three feet. It can be used on its own, as a club, or in pairs. Thanks to its small size, it is easy to carry and conceal.">
+    <fieldval field="shortname" value="XBng"/>
+    <fieldval field="wpBonus" value="0"/>
+    <fieldval field="wpDamage" value="1"/>
+    <fieldval field="grResil" value="5"/>
+    <fieldval field="wpSpecial" value=""/>
+    <fieldval field="grCost" value="6"/>
+    <fieldval field="gearWeight" value="0"/>   
+
+	<link linkage="wpnskill" thing="skBangshu"/>
+	
+	<!-- If this is a natural weapon, assign this tag
+    <tag group="Equipment" tag="Natural"/>
+    -->
+    <!-- If this is a two-handed weapon, assign this tag
+    <tag group="Equipment" tag="TwoHand"/>
+    -->
+	<!-- Required skill -->
+	<exprreq message="Bangshu skill 1+ required."><![CDATA[
+		#traitfound[skBangshu] >= 1
+	]]></exprreq>
+	<child
+		entity="entLegObj">
+	</child>	
+    </thing>
+
+  <!-- Ba chui melee weapon -->
+  <thing
+    id="wpBaChui"
+    name="Ba chui"
+    compset="Melee"
+    description="This weapon closely resembles the basic mace or chui,but its five-foot handle makes it a fearsome weapon indistance combat. In the right hands, its combination ofrange and power is deadly.">
+    <fieldval field="shortname" value="BaCh"/>
+    <fieldval field="wpBonus" value="0"/>
+    <fieldval field="wpDamage" value="3"/>
+    <fieldval field="grResil" value="9"/>
+    <fieldval field="wpSpecial" value=""/>
+    <fieldval field="grCost" value="35"/>
+    <fieldval field="gearWeight" value="0"/>
+
+	<link linkage="wpnskill" thing="skChuishu"/>	
+	
+	<!-- If this is a natural weapon, assign this tag
+    <tag group="Equipment" tag="Natural"/>
+    -->
+    <!-- If this is a two-handed weapon, assign this tag
+    <tag group="Equipment" tag="TwoHand"/>
+    -->
+	<!-- Required skill -->
+	<exprreq message="Chuishu skill 1+ required."><![CDATA[
+		#traitfound[skChuishu] >= 1
+	]]></exprreq>
+	<child
+		entity="entLegObj">
+	</child>	
+    </thing>
+
+  <!-- Chui melee weapon -->
+  <thing
+    id="wpChui"
+    name="Chui"
+    compset="Melee"
+    description="The mace is made up of a heavy cylinder of metal stuckonto a two-foot handle. It is used to shock opponents, butfew have the strength to wield it. Some mighty warriorsfight with one chui in each hand.">
+    <fieldval field="shortname" value="Chui"/>
+    <fieldval field="wpBonus" value="0"/>
+    <fieldval field="wpDamage" value="2"/>
+    <fieldval field="grResil" value="7"/>
+    <fieldval field="wpSpecial" value=""/>
+    <fieldval field="grCost" value="25"/>
+    <fieldval field="gearWeight" value="0"/>
+
+	<link linkage="wpnskill" thing="skChuishu"/>
+	
+	<!-- If this is a natural weapon, assign this tag
+    <tag group="Equipment" tag="Natural"/>
+    -->
+    <!-- If this is a two-handed weapon, assign this tag
+    <tag group="Equipment" tag="TwoHand"/>
+    -->
+	<!-- Required skill -->
+	<exprreq message="Chuishu skill 1+ required."><![CDATA[
+		#traitfound[skChuishu] >= 1
+	]]></exprreq>
+	<child
+		entity="entLegObj">
+	</child>	
+    </thing>
+	
+  <!-- Bishou melee weapon -->
+  <thing
+    id="wpBishou"
+    name="Bishou"
+    compset="Melee"
+    description="The bishou dagger is a subtle yet deadly weapon, usable both in close combat and distance combat. Its popularity among outlaws and assassins in the rougher neighborhoods of the towns has earned it a reputation as a dishonorable weapon.">
+    <fieldval field="shortname" value="Bish"/>
+    <fieldval field="wpBonus" value="0"/>
+    <fieldval field="wpDamage" value="1"/>
+    <fieldval field="grResil" value="5"/>
+    <fieldval field="wpSpecial" value=""/>
+    <fieldval field="grCost" value="15"/>
+    <fieldval field="gearWeight" value="0"/>
+    <fieldval field="thClose" value="5"/>
+    <fieldval field="thMedium" value="10"/>
+    <fieldval field="thLong" value="15"/>
+    <fieldval field="thExtreme" value="20"/>
+
+	<link linkage="wpnskill" thing="skDaoshu"/>
+	
+	<!-- If this is a natural weapon, assign this tag
+    <tag group="Equipment" tag="Natural"/>
+    -->
+    <!-- If this is a two-handed weapon, assign this tag
+    <tag group="Equipment" tag="TwoHand"/>
+    -->
+	<!-- Required skill -->
+	<exprreq message="Daoshu skill 1+ required."><![CDATA[
+		#traitfound[skDaoshu] >= 1
+	]]></exprreq>
+	<child
+		entity="entLegObj">
+	</child>	
+    </thing>
+	
+  <!-- Lurong melee weapon -->
+  <thing
+    id="wpLurong"
+    name="Lurong"
+    compset="Melee"
+    description="The short sword or lurong has a straight blade with one sharp edge which curves backwards. Its hilt enables it to be wielded with ease and rapidity. It is usually used in pairs, and mainly by the female adventurers of the jiang hu.">
+    <fieldval field="shortname" value="Lrng"/>
+    <fieldval field="wpBonus" value="0"/>
+    <fieldval field="wpDamage" value="2"/>
+    <fieldval field="grResil" value="7"/>
+    <fieldval field="wpSpecial" value=""/>
+    <fieldval field="grCost" value="40"/>
+    <fieldval field="gearWeight" value="0"/>
+    <fieldval field="thClose" value="6"/>
+    <fieldval field="thMedium" value="12"/>
+    <fieldval field="thLong" value="18"/>
+    <fieldval field="thExtreme" value="25"/>
+
+	<link linkage="wpnskill" thing="skDaoshu"/>
+	
+    <!-- If this is a natural weapon, assign this tag
+    <tag group="Equipment" tag="Natural"/>
+    -->
+    <!-- If this is a two-handed weapon, assign this tag
+    <tag group="Equipment" tag="TwoHand"/>
+    -->
+
+	<exprreq message="Daoshu skill 1+ required."><![CDATA[
+		#traitfound[skDaoshu] >= 1
+	]]></exprreq>
+	<child
+		entity="entLegObj">
+	</child>	
+    </thing>
+	
+  <!-- Jian melee weapon -->
+  <thing
+    id="wpJian"
+    name="Jian"
+    compset="Melee"
+    description="The sword, or jian, has a straight and flexible blade, with two sharp edges. It is light and easy to use, since either of its edges, and indeed its point, can be used in combat. It is considered a noble weapon, and thus frequently carried by scholars who study martial arts and by officers.">
+    <fieldval field="shortname" value="Jian"/>
+    <fieldval field="wpBonus" value="0"/>
+    <fieldval field="wpDamage" value="3"/>
+    <fieldval field="grResil" value="9"/>
+    <fieldval field="wpSpecial" value=""/>
+    <fieldval field="grCost" value="100"/>
+    <fieldval field="gearWeight" value="0"/>
+
+	<link linkage="wpnskill" thing="skJianshu"/>
+	
+	<!-- If this is a natural weapon, assign this tag
+    <tag group="Equipment" tag="Natural"/>
+    -->
+    <!-- If this is a two-handed weapon, assign this tag
+    <tag group="Equipment" tag="TwoHand"/>
+    -->
+	<exprreq message="Jianshu skill 1+ required."><![CDATA[
+		#traitfound[skJianshu] >= 1
+	]]></exprreq>
+	<child
+		entity="entLegObj">
+	</child>	
+	</thing>
+	
+  <!-- Dao melee weapon -->
+  <thing
+    id="wpDao"
+    name="Dao"
+    compset="Melee"
+    description="The saber, or dao, has a thick curved blade with one sharp edge used for attack. It is heavier than a sword. Originally used only by the Xiongnu barbarians, it was popularized by the riders of Zhao.">
+    <fieldval field="shortname" value="Dao"/>
+    <fieldval field="wpBonus" value="0"/>
+    <fieldval field="wpDamage" value="3"/>
+    <fieldval field="grResil" value="11"/>
+    <fieldval field="wpSpecial" value=""/>
+    <fieldval field="grCost" value="120"/>
+    <fieldval field="gearWeight" value="0"/>
+
+	<link linkage="wpnskill" thing="skJianshu"/>	
+	
+	<!-- If this is a natural weapon, assign this tag
+    <tag group="Equipment" tag="Natural"/>
+    -->
+    <!-- If this is a two-handed weapon, assign this tag
+    <tag group="Equipment" tag="TwoHand"/>
+    -->
+	<exprreq message="Jianshu skill 1+ required."><![CDATA[
+		#traitfound[skJianshu] >= 1
+	]]></exprreq>
+	<child
+		entity="entLegObj">
+	</child>	
+  </thing>
+	
+  <!-- Ji melee weapon -->
+  <thing
+    id="wpJi"
+    name="Ji"
+    compset="Melee"
+    description="The saber, or dao, has a thick curved blade with one sharp edge used for attack. It is heavier than a sword. Originally used only by the Xiongnu barbarians, it was popularized by the riders of Zhao.">
+    <fieldval field="shortname" value="Ji"/>
+    <fieldval field="wpBonus" value="0"/>
+    <fieldval field="wpDamage" value="3"/>
+    <fieldval field="grResil" value="9"/>
+    <fieldval field="wpSpecial" value=""/>
+    <fieldval field="grCost" value="50"/>
+    <fieldval field="gearWeight" value="0"/>
+
+	<link linkage="wpnskill" thing="skQiangsh"/>	
+	
+    <!-- If this is a natural weapon, assign this tag
+    <tag group="Equipment" tag="Natural"/>
+    -->
+    <!-- If this is a two-handed weapon, assign this tag
+    <tag group="Equipment" tag="TwoHand"/>
+    -->
+	<exprreq message="Qiangshu skill 1+ required."><![CDATA[
+		#traitfound[skQiangsh] >= 1
+	]]></exprreq>
+	<child
+		entity="entLegObj">
+	</child>	
+    </thing>
+	
+  <!-- Fu melee weapon -->
+  <thing
+    id="wpFu"
+    name="Fu"
+    compset="Melee"
+    description="The halberd, or fu, is made of a curved, single-edged blade fixed to a pole over five feet long. Opponents are struck with the edge of the blade. It is mainly used by soldiers on horseback and lancers on war chariots.">
+    <fieldval field="shortname" value="Fu"/>
+    <fieldval field="wpBonus" value="0"/>
+    <fieldval field="wpDamage" value="4"/>
+    <fieldval field="grResil" value="9"/>
+    <fieldval field="wpSpecial" value=""/>
+    <fieldval field="grCost" value="70"/>
+    <fieldval field="gearWeight" value="0"/>
+
+	<link linkage="wpnskill" thing="skQiangsh"/>		
+	
+    <!-- If this is a natural weapon, assign this tag
+    <tag group="Equipment" tag="Natural"/>
+    -->
+    <!-- If this is a two-handed weapon, assign this tag
+    <tag group="Equipment" tag="TwoHand"/>
+    -->
+	<exprreq message="Qiangshu skill 1+ required."><![CDATA[
+		#traitfound[skQiangsh] >= 1
+	]]></exprreq>
+	<child
+		entity="entLegObj">
+	</child>	
+    </thing>
+	
+  <!-- Qiang melee weapon -->
+  <thing
+    id="wpQiang"
+    name="Qiang"
+    compset="Melee"
+    description="The spear, or qiang, is a six-foot pole topped with a sharp metal spike. It is extremely common, used mainly in the military, but also by certain knights of the jiang hu.">
+    <fieldval field="shortname" value="Qiang"/>
+    <fieldval field="wpBonus" value="0"/>
+    <fieldval field="wpDamage" value="3"/>
+    <fieldval field="grResil" value="9"/>
+    <fieldval field="wpSpecial" value=""/>
+    <fieldval field="grCost" value="60"/>
+    <fieldval field="gearWeight" value="0"/>
+
+	<link linkage="wpnskill" thing="skQiangsh"/>		
+	
+    <!-- If this is a natural weapon, assign this tag
+    <tag group="Equipment" tag="Natural"/>
+    -->
+    <!-- If this is a two-handed weapon, assign this tag
+    <tag group="Equipment" tag="TwoHand"/>
+    -->
+	<exprreq message="Qiangshu skill 1+ required."><![CDATA[
+		#traitfound[skQiangsh] >= 1
+	]]></exprreq>
+    </thing>
+	
+  <!-- Yue melee weapon -->
+  <thing
+    id="wpYue"
+    name="Yue"
+    compset="Melee"
+    description="The axe, or yue, is another weapon requiring the use of both hands, being an axehead mounted on a six-foot handle with a sharp point.">
+    <fieldval field="shortname" value="Yue"/>
+    <fieldval field="wpBonus" value="0"/>
+    <fieldval field="wpDamage" value="4"/>
+    <fieldval field="grResil" value="9"/>
+    <fieldval field="wpSpecial" value=""/>
+    <fieldval field="grCost" value="60"/>
+    <fieldval field="gearWeight" value="0"/>
+
+	<link linkage="wpnskill" thing="skQiangsh"/>		
+	
+    <!-- If this is a natural weapon, assign this tag
+    <tag group="Equipment" tag="Natural"/>
+    -->
+    <!-- If this is a two-handed weapon, assign this tag
+    <tag group="Equipment" tag="TwoHand"/>
+    -->
+	<exprreq message="Qiangshu skill 1+ required."><![CDATA[
+		#traitfound[skQiangsh] >= 1
+	]]></exprreq>
+	<child
+		entity="entLegObj">
+	</child>	
+    </thing>
+	
+<!-- ##################
+      Ranged Weapons
+     ##################
+-->
+
+
+  <!-- Gong ranged weapon -->
+  <thing
+    id="wpGong"
+    name="Gong"
+    compset="Ranged"
+    description="The gong is the traditional longbow, used both in hunting and in war. It is an everyday item in all states of the Zhongguo.">
+    <fieldval field="shortname" value="Gong"/>
+    <fieldval field="wpBonus" value="0"/>
+    <fieldval field="wpDamage" value="3"/>
+    <fieldval field="wpClose" value="25"/>
+    <fieldval field="wpMedium" value="50"/>
+    <fieldval field="wpLong" value="75"/>
+    <fieldval field="wpExtreme" value="100"/>
+    <fieldval field="grResil" value="7"/>
+    <fieldval field="wpSpecial" value=""/>
+    <fieldval field="grCost" value="35"/>
+    <fieldval field="gearWeight" value="0"/>
+
+	<link linkage="wpnskill" thing="skGongshu"/>		
+	
+	<exprreq message="Gongshu skill 1+ required."><![CDATA[
+		#traitfound[skGongshu] >= 1
+	]]></exprreq>
+	<child
+		entity="entLegObj">
+	</child>	
+    </thing>
+
+  <!-- Xiao Gong ranged weapon -->
+  <thing
+    id="wpXiaoGong"
+    name="Xiao Gong"
+    compset="Ranged"
+    description="A shorter version of the gong, this weapon is mainly used over shorter distances and in cramped conditions where the longbow cannot be used.">
+    <fieldval field="shortname" value="XGong"/>
+    <fieldval field="wpBonus" value="0"/>
+    <fieldval field="wpDamage" value="2"/>
+    <fieldval field="wpClose" value="10"/>
+    <fieldval field="wpMedium" value="35"/>
+    <fieldval field="wpLong" value="40"/>
+    <fieldval field="wpExtreme" value="60"/>
+    <fieldval field="grResil" value="5"/>
+    <fieldval field="wpSpecial" value=""/>
+    <fieldval field="grCost" value="35"/>
+    <fieldval field="gearWeight" value="0"/>
+
+	<link linkage="wpnskill" thing="skGongshu"/>		
+	
+	<exprreq message="Gongshu skill 1+ required."><![CDATA[
+		#traitfound[skGongshu] >= 1
+	]]></exprreq>
+	<child
+		entity="entLegObj">
+	</child>	
+    </thing>
+	
+  <!-- Nu ranged weapon -->
+  <thing
+    id="wpNu"
+    name="Nu"
+    compset="Ranged"
+    description="The crossbow, or nu, is a complex machine involving a small, high-tension bow attached to a wooden cross. It is a fearsome and utterly deadly weapon, but reloading can be tricky and time-consuming. Use of the crossbow is strictly regulated: only soldiers are permitted to possess and use one.">
+    <fieldval field="shortname" value="Nu"/>
+    <fieldval field="wpBonus" value="0"/>
+    <fieldval field="wpDamage" value="5"/>
+    <fieldval field="wpClose" value="30"/>
+    <fieldval field="wpMedium" value="75"/>
+    <fieldval field="wpLong" value="125"/>
+    <fieldval field="wpExtreme" value="200"/>
+    <fieldval field="grResil" value="9"/>
+    <fieldval field="wpSpecial" value=""/>
+    <fieldval field="grCost" value="700"/>
+    <fieldval field="gearWeight" value="0"/>
+
+	<link linkage="wpnskill" thing="skNushu"/>		
+	
+	<exprreq message="Nushu skill 1+ required."><![CDATA[
+		#traitfound[skNushu] >= 1
+	]]></exprreq>
+	<child
+		entity="entLegObj">
+	</child>	
+    </thing>
+
+  </document>

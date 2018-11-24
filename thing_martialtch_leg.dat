@@ -1,0 +1,770 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!-- This file contains the assortment of skills for the game system. Note that each
+      skill is linked to an associated attribute for the character. This linkage allows
+      the value of the skill to easily incorporate the effects of the linked attribute
+      via a script on the component.
+-->
+
+<document signature="Hero Lab Data">
+
+<!-- The style of the Wall of the Hundred Thousand Bamboos(Bangshu (stick)) -->
+	<thing
+		id="mtBambFen"
+		name="The Bamboo Fence"
+		compset="MartialTch"
+		isunique="yes"
+		description="{B}Effects:{/B} (action) The character rapidly whirls his stick in front of him. All his opponents are held at bay and not one of them can safely attack the hero. Indeed, any enemy who attempts to penetrate the defensive circle to strike the character is automatically subjected to the number of damage points equal to the damage inflicted by the weapon (so rapidly does the stick sweep this zone) and is subjected to a penalty on his attack Test equal to the character’s Bangshu Level. However, the character cannot use any direct attack with his weapon as long as he is using this technique, nor add other Taos or Techniques, but he can defend himself and move normally. The only damage that he can inflict is that which the aggressors suffer when they attempt to strike him. The character may maintain this Technique as long as he likes, but must pay for the cost of it in Chi at the start of each use.{br}{br}{B}Secondary Effects:{/B} The rapid movements of the stick through the air cause swirls of vapor around the character.">
+		
+		<fieldval field="trtAbbrev" value="BmFnc"/>
+		<fieldval field="chiCost" value="4"/>
+		
+		<!-- Available wih Qin Legends -->
+		<usesource source="qinLegends"/>
+		
+		<!-- Associate it with its combat style with this tag so we can sort them -->
+		<tag group="StyleGroup" tag="WallBam"/>
+
+		<!-- What sort of action does this technique enable? -->
+		<tag group="Effect" tag="Action"/>
+
+		<!-- What level is this technique (mainly for display ordering) -->
+		<tag group="Level" tag="1"/>
+		
+		<!-- Each style is associated with a specific skill that must be identified -->
+		<link linkage="CombStyle" thing="csWallBamb"/>
+
+		<!-- Verify we have a valid combat style pick as well as other prereqs on the actor -->	
+		<prereq message="Requires Wall of the Hundred Thousand Bamboos, Bangshu 2+, Hold at Bay Technique, and Tao of the Ten Thousand Hands 1+">
+			<validate><![CDATA[
+				if (hero.tagis[CombStyle.csWallBamb] <> 0) then
+					if (#traitfound[skBangshu] >= 2) then
+						if (#traitfound[ctHold] >= 1) then
+							if (#traitfound[taThHnds] >= 1) then
+								@valid = 1
+							endif
+						endif
+					endif
+				endif
+			]]></validate>
+      </prereq>
+	</thing>
+
+	<thing
+		id="mtBambCit"
+		name="The Bamboo Citadel"
+		compset="MartialTch"
+		isunique="yes"
+		description="{B}Effects:{/B} (action) The character benefits during the turn from a free and automatically successful block, even against an attack Test having resulted in a Yin/Yang balance.{br}{br}{B}Secondary Effects:{/B} The block made, thanks to this Technique, proves so powerful that when the character blocks in this way, his direct opponent finds himself pushed backwards by the blocker’s Metal in yards.">
+		
+		<fieldval field="trtAbbrev" value="BmCit"/>
+		<fieldval field="chiCost" value="6"/>
+		
+		<!-- Available wih Qin Legends -->
+		<usesource source="qinLegends"/>
+		
+		<!-- Associate it with its combat style with this tag so we can sort them -->
+		<tag group="StyleGroup" tag="WallBam"/>
+
+		<!-- What sort of action does this technique enable? -->
+		<tag group="Effect" tag="Action"/>
+
+		<!-- What level is this technique (mainly for display ordering) -->
+		<tag group="Level" tag="2"/>
+		
+		<!-- Each style is associated with a specific skill that must be identified -->
+		<link linkage="CombStyle" thing="csWallBamb"/>
+
+		<!-- Verify we have a valid combat style pick as well as other prereqs on the actor -->	
+		<prereq message="Requires Wall of the Hundred Thousand Bamboos, Bangshu 3+, Total Block Technique, and Tao of the Invisible Shield 2+">
+			<validate><![CDATA[
+				if (hero.tagis[CombStyle.csWallBamb] <> 0) then
+					if (#traitfound[skBangshu] >= 3) then
+						if (#traitfound[ctTotBlk] >= 1) then
+							if (#traitfound[taInvShld] >= 2) then
+								@valid = 1
+							endif
+						endif
+					endif
+				endif
+			]]></validate>
+      </prereq>
+	</thing>	
+	
+	<thing
+		id="mtTempest"
+		name="Tempest in the Forest of Bamboo"
+		compset="MartialTch"
+		isunique="yes"
+		description="{B}Effects:{/B} (action) The character concentrates his chi in his weapon. He can, in the same combat round, block two different blows by succeeding in two Active Defence Tests which only count as a single defence action. Each block made thanks to this Technique allows the carrying out of a Test of Metal against an ST equal to the resilience of the blocked weapon. If it is successful, then this weapon shatters on impact.{br}{br}{B}Secondary Effects:{/B} On impact, the weapon emits a muted, solemn sound.">
+		
+		<fieldval field="trtAbbrev" value="TmpFr"/>
+		<fieldval field="chiCost" value="8"/>
+		
+		<!-- Available wih Qin Legends -->
+		<usesource source="qinLegends"/>
+		
+		<!-- Associate it with its combat style with this tag so we can sort them -->
+		<tag group="StyleGroup" tag="WallBam"/>
+
+		<!-- What sort of action does this technique enable? -->
+		<tag group="Effect" tag="Defense"/>
+
+		<!-- What level is this technique (mainly for display ordering) -->
+		<tag group="Level" tag="3"/>
+		
+		<!-- Each style is associated with a specific skill that must be identified -->
+		<link linkage="CombStyle" thing="csWallBamb"/>
+
+		<!-- Verify we have a valid combat style pick as well as other prereqs on the actor -->	
+		<prereq message="Requires Wall of the Hundred Thousand Bamboos, Bangshu 4+, Double Block Technique, and Tao of the Destructive Breath 3+">
+			<validate><![CDATA[
+				if (hero.tagis[CombStyle.csWallBamb] <> 0) then
+					if (#traitfound[skBangshu] >= 4) then
+						if (#traitfound[ctDblBlk] >= 1) then
+							if (#traitfound[taDesBrth] >= 3) then
+								@valid = 1
+							endif
+						endif
+					endif
+				endif
+			]]></validate>
+      </prereq>
+	</thing>
+
+<!-- The style of the Mace which Shakes the Ground (Chuishù (Mace)) -->
+	<thing
+		id="mtEarthqk"
+		name="Fong Po’s Earthquake"
+		compset="MartialTch"
+		isunique="yes"
+		description="{B}Effects:{/B} (action) The hero makes a Test of Metal + Chuishu against an ST of 9. He raises his mace high above his head and brings it down violently on the ground. This creates a shockwave which shakes the earth over a radius of (Metal x Chuishu Level) yards all around him. Everything, furniture and other objects standing on the ground are at once overturned. Every person in this area must carry out a Test of Water + Agility against an ST equal to the result of the character’s Test. If they fail, they fall down and must then use an action in order to get up.{br}{br}{B}Secondary Effects:{/B} The shock causes cracks in the ground, the character being the epicenter.">
+		
+		<fieldval field="trtAbbrev" value="EthQk"/>
+		<fieldval field="chiCost" value="6"/>
+		
+		<!-- Available wih Qin Legends -->
+		<usesource source="qinLegends"/>
+		
+		<!-- Associate it with its combat style with this tag so we can sort them -->
+		<tag group="StyleGroup" tag="MaceShak"/>
+
+		<!-- What sort of action does this technique enable? -->
+		<tag group="Effect" tag="Action"/>
+
+		<!-- What level is this technique (mainly for display ordering) -->
+		<tag group="Level" tag="1"/>
+		
+		<!-- Each style is associated with a specific skill that must be identified -->
+		<link linkage="CombStyle" thing="csMaceShak"/>
+
+		<!-- Verify we have a valid combat style pick as well as other prereqs on the actor -->	
+		<prereq message="Requires Mace which Shakes the Ground, Chuishu 2+, Tao of the Light Step 1+, and Tao of the Destructive Breath 2+">
+			<validate><![CDATA[
+				if (hero.tagis[CombStyle.csMaceShak] <> 0) then
+					if (#traitfound[skChuishu] >= 2) then
+						if (#traitfound[taLtStep] >= 1) then
+							if (#traitfound[taDesBrth] >= 2) then
+								@valid = 1
+							endif
+						endif
+					endif
+				endif
+			]]></validate>
+      </prereq>
+	</thing>	
+	
+	<thing
+		id="mtHammer"
+		name="The Hammer and the Anvil"
+		compset="MartialTch"
+		isunique="yes"
+		description="{B}Effects:{/B} (attack) Every blow struck with the mace delivers a considerable force. The shock becomes so powerful that, even if the opponent blocks this attack (successful Active Defence Test), he runs the risk of being knocked out. If an opponent performs a successful Active Defence against this attack he must then carry out a Resistance Test whose ST is the result of the attack Test. If he fails, he has been knocked out (refer to the Knock Out Technique for the effects); if not, he undergoes an increase of +2 to the ST of all his actions until the end of this combat. If the opponent does not manage to avoid the blow, the damage he suffers is increased by the character’s Chuishu Level.{br}{br}{B}Secondary Effects:{/B} At the shock, the mace resounds with a metallic sound and gives off a shower of sparks, whatever the surface it has struck.">
+		
+		<fieldval field="trtAbbrev" value="Hammr"/>
+		<fieldval field="chiCost" value="5"/>
+		
+		<!-- Available wih Qin Legends -->
+		<usesource source="qinLegends"/>
+		
+		<!-- Associate it with its combat style with this tag so we can sort them -->
+		<tag group="StyleGroup" tag="MaceShak"/>
+
+		<!-- What sort of action does this technique enable? -->
+		<tag group="Effect" tag="Attack"/>
+
+		<!-- What level is this technique (mainly for display ordering) -->
+		<tag group="Level" tag="2"/>
+		
+		<!-- Each style is associated with a specific skill that must be identified -->
+		<link linkage="CombStyle" thing="csMaceShak"/>
+
+		<!-- Verify we have a valid combat style pick as well as other prereqs on the actor -->	
+		<prereq message="Requires Mace which Shakes the Ground, Chuishu 3+, Knock Out Technique, and Tao of the Breath of Power 2+">
+			<validate><![CDATA[
+				if (hero.tagis[CombStyle.csMaceShak] <> 0) then
+					if (#traitfound[skChuishu] >= 3) then
+						if (#traitfound[ctKnock] >= 1) then
+							if (#traitfound[taBrPwr] >= 2) then
+								@valid = 1
+							endif
+						endif
+					endif
+				endif
+			]]></validate>
+      </prereq>
+	</thing>
+
+	<thing
+		id="mtComet"
+		name="Fong Po’s Comet"
+		compset="MartialTch"
+		isunique="yes"
+		description="{B}Effects:{/B} (attack) The character whirls his mace over his head then violently throws it towards his opponent by succeeding in a Test of Metal + Throw against the Passive Defence of his target. The range of this attack rises to a maximum of (Metal x 5) yards. If the target is struck, the damage sustained is increased by the Throw Level of the character. If he manages to avoid this blow thanks to an Active Defence, he still loses one action from those which he has remaining for this turn due to the shock.{br}{br}{B}Secondary Effects:{/B} At the moment of being thrown, the weapon glows red.">
+		
+		<fieldval field="trtAbbrev" value="Comet"/>
+		<fieldval field="chiCost" value="5"/>
+		
+		<!-- Available wih Qin Legends -->
+		<usesource source="qinLegends"/>
+		
+		<!-- Associate it with its combat style with this tag so we can sort them -->
+		<tag group="StyleGroup" tag="MaceShak"/>
+
+		<!-- What sort of action does this technique enable? -->
+		<tag group="Effect" tag="Attack"/>
+
+		<!-- What level is this technique (mainly for display ordering) -->
+		<tag group="Level" tag="3"/>
+		
+		<!-- Each style is associated with a specific skill that must be identified -->
+		<link linkage="CombStyle" thing="csMaceShak"/>
+
+		<!-- Verify we have a valid combat style pick as well as other prereqs on the actor -->	
+		<prereq message="Requires Mace which Shakes the Ground, Chuishu 4+, Throwing 2+, and Tao of the Thousand Bees 2+">
+			<validate><![CDATA[
+				if (hero.tagis[CombStyle.csMaceShak] <> 0) then
+					if (#traitfound[skChuishu] >= 4) then
+						if (#traitfound[skThrow] >= 2) then
+							if (#traitfound[taThBees] >= 2) then
+								@valid = 1
+							endif
+						endif
+					endif
+				endif
+			]]></validate>
+      </prereq>
+	</thing>
+
+<!-- The Style of the Mortal Kiss of the Metal Butterfly (Daoshù (daggers)) -->
+	<thing
+		id="mtBloodWng"
+		name="The Bloody Wings of the Metal Butterfly"
+		compset="MartialTch"
+		isunique="yes"
+		description="{B}Effects:{/B} (defence) In the course of a combat, as soon as the character is attacked, whether or not she succeeds with her Active Defence, she may at once attempt a counterattack (as a free bonus action) using her second weapon. She uses for this Test Metal + Daoshu but can apply neither Technique nor Tao to this counterattack.{br}{br}{B}Secondary Effects:{/B} At each counterattack, the opponent thinks he sees the shape of a metal butterfly as the characters’ blades cross.">
+		
+		<fieldval field="trtAbbrev" value="BlWng"/>
+		<fieldval field="chiCost" value="7"/>
+		
+		<!-- Available wih Qin Legends -->
+		<usesource source="qinLegends"/>
+		
+		<!-- Associate it with its combat style with this tag so we can sort them -->
+		<tag group="StyleGroup" tag="MortKiss"/>
+
+		<!-- What sort of action does this technique enable? -->
+		<tag group="Effect" tag="Defense"/>
+
+		<!-- What level is this technique (mainly for display ordering) -->
+		<tag group="Level" tag="1"/>
+		
+		<!-- Each style is associated with a specific skill that must be identified -->
+		<link linkage="CombStyle" thing="csMortKiss"/>
+
+		<!-- Verify we have a valid combat style pick as well as other prereqs on the actor -->	
+		<prereq message="Requires Mortal Kiss of the Metal Butterfly, Daoshu 2+, Two Weapons Technique, and Tao of the Ten Thousand Hands 2+">
+			<validate><![CDATA[
+				if (hero.tagis[CombStyle.csMortKiss] <> 0) then
+					if (#traitfound[skDaoshu] >= 2) then
+						if (#traitfound[ctTwoWpns] >= 1) then
+							if (#traitfound[taThHnds] >= 2) then
+								@valid = 1
+							endif
+						endif
+					endif
+				endif
+			]]></validate>
+      </prereq>
+	</thing>
+
+	<thing
+		id="mtBloodKss"
+		name="The Bloody Kiss of the Metal Butterfly"
+		compset="MartialTch"
+		isunique="yes"
+		description="{B}Effects:{/B} (attack) The character hits with an amazing speed and targets, without fail, a vital part of his opponent. This sudden attack often takes the victim by surprise. During the weapons exchange, whilst using this technique, the character immediately takes the initiative over their opponent and her attacks simply ignores the armor, if applicable, of the latter.{br}{br}{B}Secondary Effects:{/B} During this attack, the weapon’s blade becomes suddenly frozen and reflects a bluish light.">
+		
+		<fieldval field="trtAbbrev" value="BlWng"/>
+		<fieldval field="chiCost" value="7"/>
+		
+		<!-- Available wih Qin Legends -->
+		<usesource source="qinLegends"/>
+		
+		<!-- Associate it with its combat style with this tag so we can sort them -->
+		<tag group="StyleGroup" tag="MortKiss"/>
+
+		<!-- What sort of action does this technique enable? -->
+		<tag group="Effect" tag="Attack"/>
+
+		<!-- What level is this technique (mainly for display ordering) -->
+		<tag group="Level" tag="2"/>
+		
+		<!-- Each style is associated with a specific skill that must be identified -->
+		<link linkage="CombStyle" thing="csMortKiss"/>
+
+		<!-- Verify we have a valid combat style pick as well as other prereqs on the actor -->	
+		<prereq message="Requires Mortal Kiss of the Metal Butterfly, Daoshu 3+, Direct Hit Technique, and Tao of the Sudden Lightning 2+">
+			<validate><![CDATA[
+				if (hero.tagis[CombStyle.csMortKiss] <> 0) then
+					if (#traitfound[skDaoshu] >= 3) then
+						if (#traitfound[ctDirect] >= 1) then
+							if (#traitfound[taSdnLtng] >= 2) then
+								@valid = 1
+							endif
+						endif
+					endif
+				endif
+			]]></validate>
+      </prereq>
+	</thing>
+
+	<thing
+		id="mtBloodDnc"
+		name="The Bloody Dance of the Metal Butterfly"
+		compset="MartialTch"
+		isunique="yes"
+		description="{B}Effects:{/B} (attack) The character must be using two daggers or equivalent weapons. She pirouettes around her victim as her blades perform a fatal ballet. This attack carried out by the character enables her to inflict a number of blows equal to her Daoshu Level. She carries out a Test for each of them and none of these attacks is subject to the off (weaker) hand penalty. Each successful attack inflicts a number of damage points equal to (Water + the damage of the weapon).{br}{br}{B}Secondary Effects:{/B} Lines of blood mark out the mortal path of the daggers and hold the target character in a scarlet spider’s web.">
+		
+		<fieldval field="trtAbbrev" value="BlDnc"/>
+		<fieldval field="chiCost" value="10"/>
+		
+		<!-- Available wih Qin Legends -->
+		<usesource source="qinLegends"/>
+		
+		<!-- Associate it with its combat style with this tag so we can sort them -->
+		<tag group="StyleGroup" tag="MortKiss"/>
+
+		<!-- What sort of action does this technique enable? -->
+		<tag group="Effect" tag="Attack"/>
+
+		<!-- What level is this technique (mainly for display ordering) -->
+		<tag group="Level" tag="3"/>
+		
+		<!-- Each style is associated with a specific skill that must be identified -->
+		<link linkage="CombStyle" thing="csMortKiss"/>
+
+		<!-- Verify we have a valid combat style pick as well as other prereqs on the actor -->	
+		<prereq message="Requires Mortal Kiss of the Metal Butterfly, Daoshu 4+, Two Weapons Technique, Mystification Technique, and Tao of the Six Directions 2+">
+			<validate><![CDATA[
+				if (hero.tagis[CombStyle.csMortKiss] <> 0) then
+					if (#traitfound[skDaoshu] >= 4) then
+						if (#traitfound[ctTwoWpns] >= 1) then
+							if (#traitfound[ctMystif] >= 1) then
+								if (#traitfound[taSixDir] >= 2) then
+									@valid = 1
+								endif
+							endif
+						endif
+					endif
+				endif
+			]]></validate>
+      </prereq>
+	</thing>
+	
+<!-- The style of the Celestial Lightning Sword (fencing) -->	
+	<thing
+		id="mtLightStk"
+		name="The Lightning Strikes the Summit of the Mountain"
+		compset="MartialTch"
+		isunique="yes"
+		description="{B}Effects:{/B} (attack) The character quickly changes his sword from hand to hand and his attack goes through the guard of his opponent with great accuracy. The opponent is so surprised by this that his Passive Defence (and any attempts to use Active Defence) is decreased by an amount equal to the character’s Jianshu Level. The character is not subject to an off (weaker) hand penalty for this attack.{br}{br}{B}Secondary Effects:{/B} The sword blade shines with great intensity, seeming to reflect any nearby source of light, however small.">
+		
+		<fieldval field="trtAbbrev" value="LiStr"/>
+		<fieldval field="chiCost" value="4"/>
+		
+		<!-- Available wih Qin Legends -->
+		<usesource source="qinLegends"/>
+		
+		<!-- Associate it with its combat style with this tag so we can sort them -->
+		<tag group="StyleGroup" tag="CelLitSw"/>
+
+		<!-- What sort of action does this technique enable? -->
+		<tag group="Effect" tag="Attack"/>
+
+		<!-- What level is this technique (mainly for display ordering) -->
+		<tag group="Level" tag="1"/>
+		
+		<!-- Each style is associated with a specific skill that must be identified -->
+		<link linkage="CombStyle" thing="csCelLitSw"/>
+
+		<!-- Verify we have a valid combat style pick as well as other prereqs on the actor -->	
+		<prereq message="Requires Celestial Lightning Sword, Jianshu 2+, Feint Technique, and Tao of the Ten Thousand Hands 1+">
+			<validate><![CDATA[
+				if (hero.tagis[CombStyle.csCelLitSw] <> 0) then
+					if (#traitfound[skJianshu] >= 2) then
+						if (#traitfound[ctFeint] >= 1) then
+							if (#traitfound[taThHnds] >= 1) then
+								@valid = 1
+							else
+								debug "traitfound[taThHnds] failed"
+								@valid = 0
+							endif
+						else
+							debug "traitfound[ctFeint] failed"
+							@valid = 0
+						endif
+					else
+					    debug "traitfound[skJianshu] failed"
+						@valid = 0
+					endif
+				else
+					debug "hero.tagis[CombStyle.csCelLitSw] failed"
+					@valid = 0
+				endif
+			]]></validate>
+      </prereq>
+	</thing>
+
+	<thing
+		id="mtLightShk"
+		name="The Lightning Shakes the Mountain"
+		compset="MartialTch"
+		isunique="yes"
+		description="{B}Effects:{/B} (attack) This sudden attack causes a powerful shock and generates a wave in the opponent’s body, even if the blow is blocked by a successful Active Defence. The victim at once drops his weapon and must in addition succeed in a Resistance Test against the result of the attack Test or instantly lose one of his remaining actions for this combat turn.{br}{br}{B}Secondary Effects:{/B} A noise of thunder accompanies the blow.">
+		
+		<fieldval field="trtAbbrev" value="LiShk"/>
+		<fieldval field="chiCost" value="7"/>
+		
+		<!-- Available wih Qin Legends -->
+		<usesource source="qinLegends"/>
+		
+		<!-- Associate it with its combat style with this tag so we can sort them -->
+		<tag group="StyleGroup" tag="CelLitSw"/>
+
+		<!-- What sort of action does this technique enable? -->
+		<tag group="Effect" tag="Attack"/>
+
+		<!-- What level is this technique (mainly for display ordering) -->
+		<tag group="Level" tag="2"/>
+		
+		<!-- Each style is associated with a specific skill that must be identified -->
+		<link linkage="CombStyle" thing="csCelLitSw"/>
+
+		<!-- Verify we have a valid combat style pick as well as other prereqs on the actor -->	
+		<prereq message="Requires Celestial Lightning Sword, Jianshu 3+, Disarm Technique, and Tao of the Destructive Breath 2+">
+			<validate><![CDATA[
+				if (hero.tagis[CombStyle.csCelLitSw] <> 0) then
+					if (#traitfound[skJianshu] >= 3) then
+						if (#traitfound[ctDisarm] >= 1) then
+							if (#traitfound[taDesBrth] >= 2) then
+								@valid = 1
+							endif
+						endif
+					endif
+				endif
+			]]></validate>
+      </prereq>
+	</thing>
+
+	<thing
+		id="mtLightSpl"
+		name="The Lightning Splits the Mountain"
+		compset="MartialTch"
+		isunique="yes"
+		description="{B}Effects:{/B}(attack) The character stands on the ground and literally jumps on an opponent located less than (Earth x 3) yards from him, in any direction. This Martial Technique allows him to put in a mortal attack if it strikes home. The target, whose armor is not taken into account, takes damage to his Breath of Life equal to the Breath of Life level he is currently on.{br}{br}{B}Secondary Effects:{/B} The character’s feet sink a few centimetres where he is standing before jumping, even into the hardest ground.">
+		
+		<fieldval field="trtAbbrev" value="LiSpl"/>
+		<fieldval field="chiCost" value="9"/>
+		
+		<!-- Available wih Qin Legends -->
+		<usesource source="qinLegends"/>
+		
+		<!-- Associate it with its combat style with this tag so we can sort them -->
+		<tag group="StyleGroup" tag="CelLitSw"/>
+
+		<!-- What sort of action does this technique enable? -->
+		<tag group="Effect" tag="Attack"/>
+
+		<!-- What level is this technique (mainly for display ordering) -->
+		<tag group="Level" tag="3"/>
+		
+		<!-- Each style is associated with a specific skill that must be identified -->
+		<link linkage="CombStyle" thing="csCelLitSw"/>
+
+		<!-- Verify we have a valid combat style pick as well as other prereqs on the actor -->	
+		<prereq message="Requires Celestial Lightning Sword, Jianshu 4+, Direct Hit Technique, and Tao of the Six Directions 3+">
+			<validate><![CDATA[
+				if (hero.tagis[CombStyle.csCelLitSw] <> 0) then
+					if (#traitfound[skJianshu] >= 4) then
+						if (#traitfound[ctDirect] >= 1) then
+							if (#traitfound[taSixDir] >= 3) then
+								@valid = 1
+							endif
+						endif
+					endif
+				endif
+			]]></validate>
+      </prereq>
+	</thing>
+
+<!-- The style of the Sharp Armor of Wong Chen (Spears/Javelins) -->
+	<thing
+		id="mtClawWong"
+		name="The Claws of Wong Chen"
+		compset="MartialTch"
+		isunique="yes"
+		description="{B}Effects:{/B}(attack) When the character strikes with his weapon a wooden object about the same size and weight of a chair he can make a Test of Metal + Qiangshu (against an ST of 7). If successful, the object shatters violently and the pieces are projected in front of the warrior to a maximum distance of (Water x 2) yards. Any person within this area is automatically subjected to one damage point, plus one point per Qiangshu Level of the character. If the target has a big shield, they are subject to only the one damage point. {br}{br}{B}Secondary Effects:{/B} A halo of dust and debris surrounds the character when he destroys the object, transforming it into hundreds of projectiles.">
+		
+		<fieldval field="trtAbbrev" value="Claws"/>
+		<fieldval field="chiCost" value="6"/>
+		
+		<!-- Available wih Qin Legends -->
+		<usesource source="qinLegends"/>
+		
+		<!-- Associate it with its combat style with this tag so we can sort them -->
+		<tag group="StyleGroup" tag="ShrpArm"/>
+
+		<!-- What sort of action does this technique enable? -->
+		<tag group="Effect" tag="Attack"/>
+
+		<!-- What level is this technique (mainly for display ordering) -->
+		<tag group="Level" tag="1"/>
+		
+		<!-- Each style is associated with a specific skill that must be identified -->
+		<link linkage="CombStyle" thing="csShrpArm"/>
+
+		<!-- Verify we have a valid combat style pick as well as other prereqs on the actor -->	
+		<prereq message="Requires Sharp Armor of Wong Chen, Qianshu 2+, Tao of the Destructive Breath 2+, and Tao of the Thousand Bees 2+">
+			<validate><![CDATA[
+				if (hero.tagis[CombStyle.csShrpArm] <> 0) then
+					if (#traitfound[skQiangsh] >= 2) then
+						if (#traitfound[taDesBrth] >= 2) then
+							if (#traitfound[taThBees] >= 2) then
+								@valid = 1
+							endif
+						endif
+					endif
+				endif
+			]]></validate>
+      </prereq>
+	</thing>
+
+	<thing
+		id="mtMetalArm"
+		name="The Metal Armor of Wong Chen"
+		compset="MartialTch"
+		isunique="yes"
+		description="{B}Effects:{/B}(action) The character whirls his weapon around him at frightening speed. He then carries out a Test of Metal + Qiangshu against an ST of 9. For the remainder of this combat, his level of Passive Defence and the result of any Active Defence Tests are increased by a bonus equal to his margin of success. {br}{br}{B}Secondary Effects:{/B} The weapon whirling around the hero emits a sharp whistling.">
+		
+		<fieldval field="trtAbbrev" value="Armor"/>
+		<fieldval field="chiCost" value="7"/>
+		
+		<!-- Available wih Qin Legends -->
+		<usesource source="qinLegends"/>
+		
+		<!-- Associate it with its combat style with this tag so we can sort them -->
+		<tag group="StyleGroup" tag="ShrpArm"/>
+
+		<!-- What sort of action does this technique enable? -->
+		<tag group="Effect" tag="Action"/>
+
+		<!-- What level is this technique (mainly for display ordering) -->
+		<tag group="Level" tag="2"/>
+		
+		<!-- Each style is associated with a specific skill that must be identified -->
+		<link linkage="CombStyle" thing="csShrpArm"/>
+
+		<!-- Verify we have a valid combat style pick as well as other prereqs on the actor -->	
+		<prereq message="Requires Sharp Armor of Wong Chen, Qianshu 3+, Total Block Technique, and Tao of the Invisible Shield 2+">
+			<validate><![CDATA[
+				if (hero.tagis[CombStyle.csShrpArm] <> 0) then
+					if (#traitfound[skQiangsh] >= 3) then
+						if (#traitfound[ctTotBlk] >= 1) then
+							if (#traitfound[taInvShld] >= 2) then
+								@valid = 1
+							endif
+						endif
+					endif
+				endif
+			]]></validate>
+      </prereq>
+	</thing>
+
+	<thing
+		id="mtMoveWong"
+		name="Movement of Wong Chen"
+		compset="MartialTch"
+		isunique="yes"
+		description="{B}Effects:{/B}(action) The character starts to spin round at tremendous speed, enclosing himself in a protective sphere, whose extent is determined by his weapon. He moves in this way a maximum of (Water x 2) yards per combat round. No close combat attack may be made against him while he is moving in this way. However, attacks from a distance can strike him, but in this case he is considered protected by a cover of +2. When he uses this Technique, the character may no longer attack nor use other Taos while he is deploying this secret weapon. The character can maintain this Technique for as long as he wishes, but must pay the cost of it in Chi at the start of each use.{br}{br}{B}Secondary Effects:{/B} The character seems enclosed in the heart of a moving sphere of sharp blades.">
+		
+		<fieldval field="trtAbbrev" value="Move"/>
+		<fieldval field="chiCost" value="8"/>
+		
+		<!-- Available wih Qin Legends -->
+		<usesource source="qinLegends"/>
+		
+		<!-- Associate it with its combat style with this tag so we can sort them -->
+		<tag group="StyleGroup" tag="ShrpArm"/>
+
+		<!-- What sort of action does this technique enable? -->
+		<tag group="Effect" tag="Action"/>
+
+		<!-- What level is this technique (mainly for display ordering) -->
+		<tag group="Level" tag="3"/>
+		
+		<!-- Each style is associated with a specific skill that must be identified -->
+		<link linkage="CombStyle" thing="csShrpArm"/>
+
+		<!-- Verify we have a valid combat style pick as well as other prereqs on the actor -->	
+		<prereq message="Requires Sharp Armor of Wong Chen, Qianshu 4+, Total Block Technique, Hold at Bay Technique, and Tao of the Six Directions 1+">
+			<validate><![CDATA[
+				if (hero.tagis[CombStyle.csShrpArm] <> 0) then
+					if (#traitfound[skQiangsh] >= 4) then
+						if (#traitfound[ctTotBlk] >= 1) then
+							if (#traitfound[ctHold] >= 1) then
+								if (#traitfound[taSixDir] >= 1) then
+									@valid = 1
+								endif
+							endif
+						endif
+					endif
+				endif
+			]]></validate>
+      </prereq>
+	</thing>
+
+<!-- The style of the Shell of Wood and Metal (Dunshu (Shield)) -->	
+	<thing
+		id="mtSlide"
+		name="The Slide of Fu Xia"
+		compset="MartialTch"
+		isunique="yes"
+		description="{B}Effects:{/B}(action) Fu Xia developed this curious way of using his shield almost by chance. Caught in an ambush, he managed to flee by sliding on his shield down the snow-covered slope of the pass where he had been surprised. The character can move in this way standing on his shield down any slope, however steep, for a number of yards equal to (5 + Dunshu Level) per turn. In each turn during which he advances like this, he must succeed in a Test of Water + Acrobatics against an ST of 7 or in close combat in this position but may, however, use a throwing or shooting weapon with an increase of ST +1. Should he wish to cross a stretch of water in this way, this movement can no longer be added from turn to turn and he will have to stop his advance as soon as the turn ends after (5 + Dunshu) yards. Finally, such use reduces, permanently, by one point the resilience of the shield.{br}{br}{B}Secondary Effects:{/B} Showers of sparks shoot out from under the shield during this movement.">
+		
+		<fieldval field="trtAbbrev" value="Shell"/>
+		<fieldval field="chiCost" value="6"/>
+		
+		<!-- Available wih Qin Legends -->
+		<usesource source="qinLegends"/>
+		
+		<!-- Associate it with its combat style with this tag so we can sort them -->
+		<tag group="StyleGroup" tag="Shell"/>
+
+		<!-- What sort of action does this technique enable? -->
+		<tag group="Effect" tag="Action"/>
+
+		<!-- What level is this technique (mainly for display ordering) -->
+		<tag group="Level" tag="1"/>
+		
+		<!-- Each style is associated with a specific skill that must be identified -->
+		<link linkage="CombStyle" thing="csShell"/>
+
+		<!-- Verify we have a valid combat style pick as well as other prereqs on the actor -->	
+		<prereq message="Requires Shell of Wood and Metal, Dunshu 2+, Acrobatics 1+, Tao of the Six Directions 1+, and Tao of the Light Step 2+">
+			<validate><![CDATA[
+				if (hero.tagis[CombStyle.csShell] <> 0) then
+					if (#traitfound[skDunshu] >= 2) then
+						if (#traitfound[skAcrob] >= 1) then
+							if (#traitfound[taLtStep] >= 2) then
+								if (#traitfound[taSixDir] >= 1) then
+									@valid = 1
+								endif
+							endif
+						endif
+					endif
+				endif
+			]]></validate>
+      </prereq>
+	</thing>
+
+	<thing
+		id="mtLtStrike"
+		name="Lightning Strike of Fu Xia"
+		compset="MartialTch"
+		isunique="yes"
+		description="{B}Effects:{/B}(attack) The character may use his shield as a complete offensive weapon. This very distinctive kind of attack gives him the following advantages: he suffers no off hand penalty and every successful attack using the shield results in the opponent loosing one action from those they have remaining this round. In addition, the damage caused by such an attack is increased by +1.{br}{br}{B}Secondary Effects:{/B} The shield gives out a shimmering, metallic light.">
+		
+		<fieldval field="trtAbbrev" value="Shell"/>
+		<fieldval field="chiCost" value="6"/>
+		
+		<!-- Available wih Qin Legends -->
+		<usesource source="qinLegends"/>
+		
+		<!-- Associate it with its combat style with this tag so we can sort them -->
+		<tag group="StyleGroup" tag="Shell"/>
+
+		<!-- What sort of action does this technique enable? -->
+		<tag group="Effect" tag="Attack"/>
+
+		<!-- What level is this technique (mainly for display ordering) -->
+		<tag group="Level" tag="2"/>
+		
+		<!-- Each style is associated with a specific skill that must be identified -->
+		<link linkage="CombStyle" thing="csShell"/>
+
+		<!-- Verify we have a valid combat style pick as well as other prereqs on the actor -->	
+		<prereq message="Requires Shell of Wood and Metal, Dunshu 3+, Repel Technique, Tao of the Breath of Power 2+">
+			<validate><![CDATA[
+				if (hero.tagis[CombStyle.csShell] <> 0) then
+					if (#traitfound[skDunshu] >= 3) then
+						if (#traitfound[ctRepel] >= 1) then
+							if (#traitfound[taBrPwr] >= 2) then
+								@valid = 1
+							endif
+						endif
+					endif
+				endif
+			]]></validate>
+      </prereq>
+	</thing>
+
+	<thing
+		id="mtMovShad"
+		name="The Moving Shadow of Fu Xia"
+		compset="MartialTch"
+		isunique="yes"
+		description="{B}Effects:{/B}(defence) The rapid movements of his shield and the body feints performed by the character conceal his shape and make it difficult to be aimed at. All the shots directed at him during this combat round assume that the character is behind a big shield (ST +3 to the attack Test, large obstacle).{br}{br}{B}Secondary Effects:{/B} The shape of the character becomes blurred and is covered with unexplained shadows.">
+		
+		<fieldval field="trtAbbrev" value="Shell"/>
+		<fieldval field="chiCost" value="4"/>
+		
+		<!-- Available wih Qin Legends -->
+		<usesource source="qinLegends"/>
+		
+		<!-- Associate it with its combat style with this tag so we can sort them -->
+		<tag group="StyleGroup" tag="Shell"/>
+
+		<!-- What sort of action does this technique enable? -->
+		<tag group="Effect" tag="Defense"/>
+
+		<!-- What level is this technique (mainly for display ordering) -->
+		<tag group="Level" tag="3"/>
+		
+		<!-- Each style is associated with a specific skill that must be identified -->
+		<link linkage="CombStyle" thing="csShell"/>
+
+		<!-- Verify we have a valid combat style pick as well as other prereqs on the actor -->	
+		<prereq message="Requires Shell of Wood and Metal, Dunshu 4+ and Tao of the Hidden Shadow 1+">
+			<validate><![CDATA[
+				if (hero.tagis[CombStyle.csShell] <> 0) then
+					if (#traitfound[skDunshu] >= 4) then
+						if (#traitfound[taHdShadow] >= 1) then
+							@valid = 1
+						endif
+					endif
+				endif
+			]]></validate>
+      </prereq>
+	</thing>
+</document>

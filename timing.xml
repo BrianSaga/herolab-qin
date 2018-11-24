@@ -1,0 +1,990 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<document game="Qin: The Warring States">
+<unknowns>
+  </unknowns>
+<duplicates>
+  </duplicates>
+<errors>
+  </errors>
+<names>
+  <name name="Accrue Weight" full="Component Gear: Accrue Weight"/>
+  <name name="Assign Dynamic Tagexpr" full="Component Advance: Assign Dynamic Tagexpr"/>
+  <name name="Assign SpecialTab" full="Component SpecialTab: Assign SpecialTab"/>
+  <name name="Bound trtUser" full="Field trtUser: Bound trtUser"/>
+  <name name="Calc Renown Max" full="Thing resRenown: Calc Renown Max"/>
+  <name name="Calc XP Max" full="Thing resXP: Calc XP Max"/>
+  <name name="Calc acBoLBonus" full="Field acBoLBonus: Calc acBoLBonus"/>
+  <name name="Calc acBoLMax" full="Field acBoLMax: Calc acBoLMax"/>
+  <name name="Calc acBoLMin" full="Field acBoLMin: Calc acBoLMin"/>
+  <name name="Calc acBoLNow" full="Field acBoLNow: Calc acBoLNow"/>
+  <name name="Calc acBoLPenal" full="Field acBoLPenal: Calc acBoLPenal"/>
+  <name name="Calc acBoLST" full="Field acBoLST: Calc acBoLST"/>
+  <name name="Calc resLeft" full="Field resLeft: Calc resLeft"/>
+  <name name="Calc thNetAtk" full="Component WeapThrown: Calc thNetAtk"/>
+  <name name="Calc trkLeft" full="Field trkLeft: Calc trkLeft"/>
+  <name name="Calc trtFinal" full="Field trtFinal: Calc trtFinal"/>
+  <name name="Calc wpNetAtk" full="Component Shield: Calc wpNetAtk"/>
+  <name name="Calc wpNetAtk" full="Component WeapRange: Calc wpNetAtk"/>
+  <name name="Calc wpNetAtk" full="Component WeapMelee: Calc wpNetAtk"/>
+  <name name="Check Hands" full="Thing valHands: Check Hands"/>
+  <name name="Deduct cost" full="Component Advance: Deduct cost"/>
+  <name name="Derived trtFinal" full="Component Derived: Derived trtFinal"/>
+  <name name="Equip Armor" full="Component Armor: Equip Armor"/>
+  <name name="Equip Shield" full="Component Shield: Equip Shield"/>
+  <name name="Equipped" full="Component Equippable: Equipped"/>
+  <name name="Modify ST" full="Component Armor: Modify ST"/>
+  <name name="Req Bootstrap" full="Child taSixDir: Req Bootstrap"/>
+  <name name="Req Bootstrap" full="Child taSixDir: Req Bootstrap"/>
+  <name name="Req Bootstrap" full="Child taSixDir: Req Bootstrap"/>
+  <name name="Req Bootstrap" full="Child taSixDir: Req Bootstrap"/>
+  <name name="Req Bootstrap" full="Child taSixDir: Req Bootstrap"/>
+  <name name="Req Bootstrap" full="Child taSixDir: Req Bootstrap"/>
+  <name name="Req Bootstrap" full="Child taSixDir: Req Bootstrap"/>
+  <name name="Req Bootstrap" full="Child taSixDir: Req Bootstrap"/>
+  <name name="Req Bootstrap" full="Child taSixDir: Req Bootstrap"/>
+  <name name="Req Bootstrap" full="Child taSixDir: Req Bootstrap"/>
+  <name name="Req Bootstrap" full="Child taSixDir: Req Bootstrap"/>
+  <name name="Req Bootstrap" full="Child taSixDir: Req Bootstrap"/>
+  <name name="Req Bootstrap" full="Child taSixDir: Req Bootstrap"/>
+  <name name="Req Bootstrap" full="Child taSixDir: Req Bootstrap"/>
+  <name name="Req Bootstrap" full="Child taSixDir: Req Bootstrap"/>
+  <name name="Req Bootstrap" full="Child taLtStep: Req Bootstrap"/>
+  <name name="Req Bootstrap" full="Child taLtStep: Req Bootstrap"/>
+  <name name="Req Bootstrap" full="Child taLtStep: Req Bootstrap"/>
+  <name name="Req Bootstrap" full="Child taLtStep: Req Bootstrap"/>
+  <name name="Req Bootstrap" full="Child taLtStep: Req Bootstrap"/>
+  <name name="Req Bootstrap" full="Child taLtStep: Req Bootstrap"/>
+  <name name="Req Bootstrap" full="Child taStrBdy: Req Bootstrap"/>
+  <name name="Req Bootstrap" full="Child taStrBdy: Req Bootstrap"/>
+  <name name="Req Bootstrap" full="Child taStrBdy: Req Bootstrap"/>
+  <name name="Req Bootstrap" full="Child taStrBdy: Req Bootstrap"/>
+  <name name="Req Bootstrap" full="Child taStrBdy: Req Bootstrap"/>
+  <name name="Req Bootstrap" full="Child taStrBdy: Req Bootstrap"/>
+  <name name="Req Bootstrap" full="Child taDesBrth: Req Bootstrap"/>
+  <name name="Req Bootstrap" full="Child taDesBrth: Req Bootstrap"/>
+  <name name="Req Bootstrap" full="Child taDesBrth: Req Bootstrap"/>
+  <name name="Req Bootstrap" full="Child taDesBrth: Req Bootstrap"/>
+  <name name="Req Bootstrap" full="Child taDesBrth: Req Bootstrap"/>
+  <name name="Req Bootstrap" full="Child taDesBrth: Req Bootstrap"/>
+  <name name="Req Bootstrap" full="Child taInsCreat: Req Bootstrap"/>
+  <name name="Req Bootstrap" full="Child taInsCreat: Req Bootstrap"/>
+  <name name="Req Bootstrap" full="Child taInsCreat: Req Bootstrap"/>
+  <name name="Req Bootstrap" full="Child taInsCreat: Req Bootstrap"/>
+  <name name="Req Bootstrap" full="Child taInsCreat: Req Bootstrap"/>
+  <name name="Req Bootstrap" full="Child taInsCreat: Req Bootstrap"/>
+  <name name="Req Bootstrap" full="Child taSdnLtng: Req Bootstrap"/>
+  <name name="Req Bootstrap" full="Child taSdnLtng: Req Bootstrap"/>
+  <name name="Req Bootstrap" full="Child taSdnLtng: Req Bootstrap"/>
+  <name name="Req Bootstrap" full="Child taSdnLtng: Req Bootstrap"/>
+  <name name="Req Bootstrap" full="Child taSdnLtng: Req Bootstrap"/>
+  <name name="Req Bootstrap" full="Child taSdnLtng: Req Bootstrap"/>
+  <name name="Req Bootstrap" full="Child taInvShld: Req Bootstrap"/>
+  <name name="Req Bootstrap" full="Child taInvShld: Req Bootstrap"/>
+  <name name="Req Bootstrap" full="Child taInvShld: Req Bootstrap"/>
+  <name name="Req Bootstrap" full="Child taInvShld: Req Bootstrap"/>
+  <name name="Req Bootstrap" full="Child taInvShld: Req Bootstrap"/>
+  <name name="Req Bootstrap" full="Child taInvShld: Req Bootstrap"/>
+  <name name="Req Bootstrap" full="Child taThHnds: Req Bootstrap"/>
+  <name name="Req Bootstrap" full="Child taThHnds: Req Bootstrap"/>
+  <name name="Req Bootstrap" full="Child taThHnds: Req Bootstrap"/>
+  <name name="Req Bootstrap" full="Child taThHnds: Req Bootstrap"/>
+  <name name="Req Bootstrap" full="Child taThHnds: Req Bootstrap"/>
+  <name name="Req Bootstrap" full="Child taThHnds: Req Bootstrap"/>
+  <name name="Req Bootstrap" full="Child taInEye: Req Bootstrap"/>
+  <name name="Req Bootstrap" full="Child taInEye: Req Bootstrap"/>
+  <name name="Req Bootstrap" full="Child taInEye: Req Bootstrap"/>
+  <name name="Req Bootstrap" full="Child taInEye: Req Bootstrap"/>
+  <name name="Req Bootstrap" full="Child taInEye: Req Bootstrap"/>
+  <name name="Req Bootstrap" full="Child taInEye: Req Bootstrap"/>
+  <name name="Req Bootstrap" full="Child taHdShadow: Req Bootstrap"/>
+  <name name="Req Bootstrap" full="Child taHdShadow: Req Bootstrap"/>
+  <name name="Req Bootstrap" full="Child taHdShadow: Req Bootstrap"/>
+  <name name="Req Bootstrap" full="Child taHdShadow: Req Bootstrap"/>
+  <name name="Req Bootstrap" full="Child taHdShadow: Req Bootstrap"/>
+  <name name="Req Bootstrap" full="Child taHdShadow: Req Bootstrap"/>
+  <name name="Req Bootstrap" full="Child taThBees: Req Bootstrap"/>
+  <name name="Req Bootstrap" full="Child taThBees: Req Bootstrap"/>
+  <name name="Req Bootstrap" full="Child taThBees: Req Bootstrap"/>
+  <name name="Req Bootstrap" full="Child taThBees: Req Bootstrap"/>
+  <name name="Req Bootstrap" full="Child taThBees: Req Bootstrap"/>
+  <name name="Req Bootstrap" full="Child taThBees: Req Bootstrap"/>
+  <name name="Req Bootstrap" full="Child taYinYang: Req Bootstrap"/>
+  <name name="Req Bootstrap" full="Child taYinYang: Req Bootstrap"/>
+  <name name="Req Bootstrap" full="Child taYinYang: Req Bootstrap"/>
+  <name name="Req Bootstrap" full="Child taYinYang: Req Bootstrap"/>
+  <name name="Req Bootstrap" full="Child taYinYang: Req Bootstrap"/>
+  <name name="Req Bootstrap" full="Child taYinYang: Req Bootstrap"/>
+  <name name="Req Bootstrap" full="Child taBrPwr: Req Bootstrap"/>
+  <name name="Req Bootstrap" full="Child taBrPwr: Req Bootstrap"/>
+  <name name="Req Bootstrap" full="Child taBrPwr: Req Bootstrap"/>
+  <name name="Req Bootstrap" full="Child taBrPwr: Req Bootstrap"/>
+  <name name="Req Bootstrap" full="Child taBrPwr: Req Bootstrap"/>
+  <name name="Req Bootstrap" full="Child taBrPwr: Req Bootstrap"/>
+  <name name="Req Bootstrap" full="Child taClMind: Req Bootstrap"/>
+  <name name="Req Bootstrap" full="Child taClMind: Req Bootstrap"/>
+  <name name="Req Bootstrap" full="Child taClMind: Req Bootstrap"/>
+  <name name="Req Bootstrap" full="Child taClMind: Req Bootstrap"/>
+  <name name="Req Bootstrap" full="Child taClMind: Req Bootstrap"/>
+  <name name="Req Bootstrap" full="Child taClMind: Req Bootstrap"/>
+  <name name="Req Bootstrap" full="Child taSrPres: Req Bootstrap"/>
+  <name name="Req Bootstrap" full="Child taSrPres: Req Bootstrap"/>
+  <name name="Req Bootstrap" full="Child taSrPres: Req Bootstrap"/>
+  <name name="Req Bootstrap" full="Child taSrPres: Req Bootstrap"/>
+  <name name="Req Bootstrap" full="Child taSrPres: Req Bootstrap"/>
+  <name name="Req Bootstrap" full="Child taSrPres: Req Bootstrap"/>
+  <name name="Save trtBonus" full="Component Tao: Save trtBonus"/>
+  <name name="Tag Gizmo" full="Component Tao: Tag Gizmo"/>
+  <name name="TaoEffect" full="Component TaoEffect: TaoEffect"/>
+  <name name="TaoEffect" full="Component MartialTch: TaoEffect"/>
+  </names>
+<dependencies>
+  <depends name="Component Equippable: Eval Script #2" phase="Initialization" priority="4000">
+    <before name="Component Equippable: Equipped" phase="Initialization" priority="5000"/>
+    </depends>
+  <depends name="Thing resAdvance: Eval Script #1" phase="Setup" priority="2000">
+    <after name="Thing resXP: Calc XP Max" phase="Setup" priority="1000"/>
+    </depends>
+  <depends name="Thing adjAttr: Eval Script #1" phase="Setup" priority="8000">
+    <before name="Field trtFinal: Calc trtFinal" phase="Traits" priority="3000"/>
+    </depends>
+  <depends name="Thing adjChi: Eval Script #1" phase="Setup" priority="8000">
+    <before name="Component Shield: Calc wpNetAtk" phase="Final" priority="7000"/>
+    </depends>
+  <depends name="Thing adjDerived: Eval Script #1" phase="Setup" priority="8000">
+    <before name="Field trtFinal: Calc trtFinal" phase="Traits" priority="3000"/>
+    </depends>
+  <depends name="Thing adjGift: Eval Script #1" phase="Setup" priority="8000">
+    <before name="Field trtFinal: Calc trtFinal" phase="Traits" priority="3000"/>
+    </depends>
+  <depends name="Thing adjLoAttr: Eval Script #1" phase="Setup" priority="8000">
+    <before name="Field trtFinal: Calc trtFinal" phase="Traits" priority="3000"/>
+    </depends>
+  <depends name="Thing adjLoChi: Eval Script #1" phase="Setup" priority="8000">
+    <before name="Component Shield: Calc wpNetAtk" phase="Final" priority="7000"/>
+    </depends>
+  <depends name="Thing adjLoDeriv: Eval Script #1" phase="Setup" priority="8000">
+    <before name="Field trtFinal: Calc trtFinal" phase="Traits" priority="3000"/>
+    </depends>
+  <depends name="Thing adjLoGift: Eval Script #1" phase="Setup" priority="8000">
+    <before name="Field trtFinal: Calc trtFinal" phase="Traits" priority="3000"/>
+    </depends>
+  <depends name="Thing adjLoSkill: Eval Script #1" phase="Setup" priority="8000">
+    <before name="Field trtFinal: Calc trtFinal" phase="Traits" priority="3000"/>
+    </depends>
+  <depends name="Thing adjLoWeak: Eval Script #1" phase="Setup" priority="8000">
+    <before name="Field trtFinal: Calc trtFinal" phase="Traits" priority="3000"/>
+    </depends>
+  <depends name="Thing adjLoWpn: Eval Script #1" phase="Setup" priority="8000">
+    <before name="Component Shield: Calc wpNetAtk" phase="Final" priority="7000"/>
+    </depends>
+  <depends name="Thing adjLoWpnDm: Eval Script #1" phase="Setup" priority="8000">
+    <before name="Component Shield: Calc wpNetAtk" phase="Final" priority="7000"/>
+    </depends>
+  <depends name="Thing adjLoWpnRs: Eval Script #1" phase="Setup" priority="8000">
+    <before name="Component Shield: Calc wpNetAtk" phase="Final" priority="7000"/>
+    </depends>
+  <depends name="Thing adjSkill: Eval Script #1" phase="Setup" priority="8000">
+    <before name="Field trtFinal: Calc trtFinal" phase="Traits" priority="3000"/>
+    </depends>
+  <depends name="Thing adjWeak: Eval Script #1" phase="Setup" priority="8000">
+    <before name="Field trtFinal: Calc trtFinal" phase="Traits" priority="3000"/>
+    </depends>
+  <depends name="Thing adjWeapon: Eval Script #1" phase="Setup" priority="8000">
+    <before name="Component Shield: Calc wpNetAtk" phase="Final" priority="7000"/>
+    </depends>
+  <depends name="Thing gwAgMonkey: Eval Script #1" phase="Pre-Traits" priority="5000">
+    <before name="Field trtFinal: Calc trtFinal" phase="Traits" priority="3000"/>
+    </depends>
+  <depends name="Field trtUser: Bound trtUser" phase="Traits" priority="1000">
+    <before name="Field trtFinal: Calc trtFinal" phase="Traits" priority="3000"/>
+    </depends>
+  <depends name="Component CombTech: Eval Script #3" phase="Traits" priority="1000">
+    <before name="Field resLeft: Calc resLeft" phase="Final" priority="1000"/>
+    <after name="Field trtUser: Bound trtUser" phase="Traits" priority="1000"/>
+    </depends>
+  <depends name="Thing trBalance: Eval Script #1" phase="Traits" priority="4000">
+    <before name="Component Derived: Derived trtFinal" phase="Traits" priority="6000"/>
+    <after name="Field trtFinal: Calc trtFinal" phase="Traits" priority="3000"/>
+    </depends>
+  <depends name="Thing trBol: Eval Script #1" phase="Traits" priority="4000">
+    <before name="Component Derived: Derived trtFinal" phase="Traits" priority="6000"/>
+    <after name="Field trtFinal: Calc trtFinal" phase="Traits" priority="3000"/>
+    </depends>
+  <depends name="Thing trChi: Eval Script #1" phase="Traits" priority="4000">
+    <before name="Component Derived: Derived trtFinal" phase="Traits" priority="6000"/>
+    <after name="Field trtFinal: Calc trtFinal" phase="Traits" priority="3000"/>
+    </depends>
+  <depends name="Thing trInit: Eval Script #1" phase="Traits" priority="4000">
+    <before name="Component Derived: Derived trtFinal" phase="Traits" priority="6000"/>
+    <after name="Field trtFinal: Calc trtFinal" phase="Traits" priority="3000"/>
+    </depends>
+  <depends name="Thing trPassDef: Eval Script #1" phase="Traits" priority="4000">
+    <before name="Component Derived: Derived trtFinal" phase="Traits" priority="6000"/>
+    <after name="Field trtFinal: Calc trtFinal" phase="Traits" priority="3000"/>
+    </depends>
+  <depends name="Thing trResist: Eval Script #1" phase="Traits" priority="4000">
+    <before name="Component Derived: Derived trtFinal" phase="Traits" priority="6000"/>
+    <after name="Field trtFinal: Calc trtFinal" phase="Traits" priority="3000"/>
+    </depends>
+  <depends name="Field acBoLMax: Calc acBoLMax" phase="Traits" priority="5002">
+    <after name="Field acBoLBonus: Calc acBoLBonus" phase="Traits" priority="5000"/>
+    <after name="Field acBoLMin: Calc acBoLMin" phase="Traits" priority="5000"/>
+    </depends>
+  <depends name="Thing trBolBruis: Eval Script #1" phase="Traits" priority="5050">
+    <before name="Component Derived: Derived trtFinal" phase="Traits" priority="6000"/>
+    <after name="Field trtFinal: Calc trtFinal" phase="Traits" priority="3000"/>
+    </depends>
+  <depends name="Thing trBolFaInj: Eval Script #1" phase="Traits" priority="5050">
+    <before name="Component Derived: Derived trtFinal" phase="Traits" priority="6000"/>
+    <after name="Field trtFinal: Calc trtFinal" phase="Traits" priority="3000"/>
+    </depends>
+  <depends name="Thing trBolNorm: Eval Script #1" phase="Traits" priority="5050">
+    <before name="Component Derived: Derived trtFinal" phase="Traits" priority="6000"/>
+    <after name="Field trtFinal: Calc trtFinal" phase="Traits" priority="3000"/>
+    </depends>
+  <depends name="Thing trBolSeInj: Eval Script #1" phase="Traits" priority="5050">
+    <before name="Component Derived: Derived trtFinal" phase="Traits" priority="6000"/>
+    <after name="Field trtFinal: Calc trtFinal" phase="Traits" priority="3000"/>
+    </depends>
+  <depends name="Thing trBolSlInj: Eval Script #1" phase="Traits" priority="5050">
+    <before name="Component Derived: Derived trtFinal" phase="Traits" priority="6000"/>
+    <after name="Field trtFinal: Calc trtFinal" phase="Traits" priority="3000"/>
+    </depends>
+  <depends name="Thing teClnsBld: Eval Script #2" phase="Traits" priority="5060">
+    <before name="Component Derived: Derived trtFinal" phase="Traits" priority="6000"/>
+    <after name="Field trtFinal: Calc trtFinal" phase="Traits" priority="3000"/>
+    </depends>
+  <depends name="Thing teCloakChi: Eval Script #2" phase="Traits" priority="5060">
+    <before name="Component Derived: Derived trtFinal" phase="Traits" priority="6000"/>
+    <after name="Field trtFinal: Calc trtFinal" phase="Traits" priority="3000"/>
+    </depends>
+  <depends name="Thing teHardhide: Eval Script #2" phase="Traits" priority="5060">
+    <before name="Component Derived: Derived trtFinal" phase="Traits" priority="6000"/>
+    <after name="Field trtFinal: Calc trtFinal" phase="Traits" priority="3000"/>
+    </depends>
+  <depends name="Thing teMetalBdy: Eval Script #2" phase="Traits" priority="5060">
+    <before name="Component Derived: Derived trtFinal" phase="Traits" priority="6000"/>
+    <after name="Field trtFinal: Calc trtFinal" phase="Traits" priority="3000"/>
+    </depends>
+  <depends name="Thing teNoPain: Eval Script #2" phase="Traits" priority="5060">
+    <before name="Component Derived: Derived trtFinal" phase="Traits" priority="6000"/>
+    <after name="Field trtFinal: Calc trtFinal" phase="Traits" priority="3000"/>
+    </depends>
+  <depends name="Thing teTotalImm: Eval Script #2" phase="Traits" priority="5060">
+    <before name="Component Derived: Derived trtFinal" phase="Traits" priority="6000"/>
+    <after name="Field trtFinal: Calc trtFinal" phase="Traits" priority="3000"/>
+    </depends>
+  <depends name="Field acBoLNow: Calc acBoLNow" phase="Traits" priority="5100">
+    <after name="Field acBoLMax: Calc acBoLMax" phase="Traits" priority="5002"/>
+    </depends>
+  <depends name="Field acBoLPenal: Calc acBoLPenal" phase="Traits" priority="5200">
+    <after name="Field acBoLNow: Calc acBoLNow" phase="Traits" priority="5100"/>
+    </depends>
+  <depends name="Field acBoLST: Calc acBoLST" phase="Traits" priority="10000">
+    <after name="Field acBoLNow: Calc acBoLNow" phase="Traits" priority="5100"/>
+    </depends>
+  <depends name="Component Attribute: Eval Script #2" phase="Traits" priority="10000">
+    <before name="Field resLeft: Calc resLeft" phase="Final" priority="1000"/>
+    <after name="Field trtUser: Bound trtUser" phase="Traits" priority="1000"/>
+    </depends>
+  <depends name="Component Magic: Eval Script #2" phase="Traits" priority="10000">
+    <before name="Field resLeft: Calc resLeft" phase="Final" priority="1000"/>
+    <after name="Field trtUser: Bound trtUser" phase="Traits" priority="1000"/>
+    </depends>
+  <depends name="Component Skill: Eval Script #2" phase="Traits" priority="10000">
+    <before name="Field resLeft: Calc resLeft" phase="Final" priority="1000"/>
+    <after name="Field trtUser: Bound trtUser" phase="Traits" priority="1000"/>
+    </depends>
+  <depends name="Component Tao: Eval Script #2" phase="Traits" priority="10000">
+    <before name="Field resLeft: Calc resLeft" phase="Final" priority="1000"/>
+    <after name="Field trtUser: Bound trtUser" phase="Traits" priority="1000"/>
+    </depends>
+  <depends name="Component Equippable: Eval Script #3" phase="Final" priority="5000">
+    <before name="Thing valHands: Check Hands" phase="Validation" priority="8000"/>
+    </depends>
+  <depends name="Field sklRoll: Calculate (Net Skill Roll)" phase="Final" priority="5000">
+    <after name="Field trtFinal: Calc trtFinal" phase="Traits" priority="3000"/>
+    </depends>
+  <depends name="Field acBoLSumm: Calculate (Health Summary)" phase="Render" priority="1000">
+    <after name="Field acBoLNow: Calc acBoLNow" phase="Traits" priority="5100"/>
+    </depends>
+  <depends name="Thing advCSNew: Eval Script #1" phase="Render" priority="1000">
+    <before name="Component Advance: Assign Dynamic Tagexpr" phase="Render" priority="2000"/>
+    </depends>
+  <depends name="Thing advCTNew: Eval Script #1" phase="Render" priority="1000">
+    <before name="Component Advance: Assign Dynamic Tagexpr" phase="Render" priority="2000"/>
+    </depends>
+  <depends name="Thing advMTNew: Eval Script #1" phase="Render" priority="1000">
+    <before name="Component Advance: Assign Dynamic Tagexpr" phase="Render" priority="2000"/>
+    </depends>
+  <depends name="Thing advMgcNew: Eval Script #1" phase="Render" priority="1000">
+    <before name="Component Advance: Assign Dynamic Tagexpr" phase="Render" priority="2000"/>
+    </depends>
+  <depends name="Thing advSkilNew: Eval Script #1" phase="Render" priority="1000">
+    <before name="Component Advance: Assign Dynamic Tagexpr" phase="Render" priority="2000"/>
+    </depends>
+  <depends name="Thing advTaoNew: Eval Script #1" phase="Render" priority="1000">
+    <before name="Component Advance: Assign Dynamic Tagexpr" phase="Render" priority="2000"/>
+    </depends>
+  </dependencies>
+<timing>
+  <phase phase="Initialization (0)">
+    <priority priority="1000">
+      <task name="Component Journal: Eval Script #1">
+        </task>
+      </priority>
+    <priority priority="1500">
+      <task name="Component Tao: Tag Gizmo">
+        </task>
+      </priority>
+    <priority priority="3000">
+      <task name="Component Attribute: Eval Script #1">
+        </task>
+      </priority>
+    <priority priority="4000">
+      <task name="Component Equippable: Eval Script #2">
+        </task>
+      </priority>
+    <priority priority="5000">
+      <task name="Component Equippable: Equipped">
+        </task>
+      <task name="Field grCost: Calculate (Cost)">
+        </task>
+      <task name="Thing trActions: Eval Script #1">
+        </task>
+      </priority>
+    <priority priority="9000">
+      <task name="Child taSixDir: Req Bootstrap">
+        </task>
+      </priority>
+    <priority priority="10000">
+      <task name="Component SpecialTab: Assign SpecialTab">
+        </task>
+      </priority>
+    </phase>
+  <phase phase="Setup (1)">
+    <priority priority="100">
+      <task name="Component Activation: Eval Script #3">
+        </task>
+      <task name="Component Adjustment: Eval Script #1">
+        </task>
+      <task name="Component AdvDetails: Eval Script #1">
+        </task>
+      <task name="Component Breath: Eval Script #3">
+        </task>
+      <task name="Component GiftWk: Eval Script #3">
+        </task>
+      <task name="Component Power: Eval Script #3">
+        </task>
+      <task name="Thing skCustom: Eval Script #1">
+        </task>
+      <task name="Thing teAbsEye: Eval Script #1">
+        </task>
+      <task name="Thing teAbsSeq: Eval Script #1">
+        </task>
+      <task name="Thing teBhndMask: Eval Script #1">
+        </task>
+      <task name="Thing teCelHand: Eval Script #1">
+        </task>
+      <task name="Thing teChiBlck: Eval Script #1">
+        </task>
+      <task name="Thing teChiDef: Eval Script #1">
+        </task>
+      <task name="Thing teClkShad: Eval Script #1">
+        </task>
+      <task name="Thing teClnsBld: Eval Script #1">
+        </task>
+      <task name="Thing teCloakChi: Eval Script #1">
+        </task>
+      <task name="Thing teContEner: Eval Script #1">
+        </task>
+      <task name="Thing teContFlw: Eval Script #1">
+        </task>
+      <task name="Thing teCtlMiss: Eval Script #1">
+        </task>
+      <task name="Thing teDarkVeil: Eval Script #1">
+        </task>
+      <task name="Thing teDefyGr1: Eval Script #1">
+        </task>
+      <task name="Thing teDefyGr2: Eval Script #1">
+        </task>
+      <task name="Thing teDefyGr3: Eval Script #1">
+        </task>
+      <task name="Thing teDefyGr4: Eval Script #1">
+        </task>
+      <task name="Thing teDefyGr5: Eval Script #1">
+        </task>
+      <task name="Thing teDistEye: Eval Script #1">
+        </task>
+      <task name="Thing teFearTyph: Eval Script #1">
+        </task>
+      <task name="Thing teFrstMove: Eval Script #1">
+        </task>
+      <task name="Thing teGntlBrz: Eval Script #1">
+        </task>
+      <task name="Thing teHardhide: Eval Script #1">
+        </task>
+      <task name="Thing teHiddenBd: Eval Script #1">
+        </task>
+      <task name="Thing teHndAct: Eval Script #1">
+        </task>
+      <task name="Thing teHndCrt: Eval Script #1">
+        </task>
+      <task name="Thing teHndIns: Eval Script #1">
+        </task>
+      <task name="Thing teHndMend: Eval Script #1">
+        </task>
+      <task name="Thing teHvnlyEye: Eval Script #1">
+        </task>
+      <task name="Thing teImpAnt: Eval Script #1">
+        </task>
+      <task name="Thing teImpShld: Eval Script #1">
+        </task>
+      <task name="Thing teImprvWpn: Eval Script #1">
+        </task>
+      <task name="Thing teInvisArm: Eval Script #1">
+        </task>
+      <task name="Thing teJumpStrt: Eval Script #1">
+        </task>
+      <task name="Thing teJupJdn1: Eval Script #1">
+        </task>
+      <task name="Thing teJupJdn2: Eval Script #1">
+        </task>
+      <task name="Thing teJupJdn3: Eval Script #1">
+        </task>
+      <task name="Thing teJupJdn4: Eval Script #1">
+        </task>
+      <task name="Thing teKnEye: Eval Script #1">
+        </task>
+      <task name="Thing teLegHand: Eval Script #1">
+        </task>
+      <task name="Thing teLibMnd: Eval Script #1">
+        </task>
+      <task name="Thing teMartSkl: Eval Script #1">
+        </task>
+      <task name="Thing teMaskDom: Eval Script #1">
+        </task>
+      <task name="Thing teMaskSer: Eval Script #1">
+        </task>
+      <task name="Thing teMaskTer: Eval Script #1">
+        </task>
+      <task name="Thing teMaskThEm: Eval Script #1">
+        </task>
+      <task name="Thing teMastEner: Eval Script #1">
+        </task>
+      <task name="Thing teMastFlux: Eval Script #1">
+        </task>
+      <task name="Thing teMastMiss: Eval Script #1">
+        </task>
+      <task name="Thing teMetalBdy: Eval Script #1">
+        </task>
+      <task name="Thing teMirror: Eval Script #1">
+        </task>
+      <task name="Thing teMstEner: Eval Script #1">
+        </task>
+      <task name="Thing teMultShld: Eval Script #1">
+        </task>
+      <task name="Thing teNoPain: Eval Script #1">
+        </task>
+      <task name="Thing teOuterEye: Eval Script #1">
+        </task>
+      <task name="Thing tePathGst: Eval Script #1">
+        </task>
+      <task name="Thing tePathShad: Eval Script #1">
+        </task>
+      <task name="Thing tePathSpid: Eval Script #1">
+        </task>
+      <task name="Thing tePerfBal: Eval Script #1">
+        </task>
+      <task name="Thing tePerfHarm: Eval Script #1">
+        </task>
+      <task name="Thing tePropel: Eval Script #1">
+        </task>
+      <task name="Thing teRockStdy: Eval Script #1">
+        </task>
+      <task name="Thing teRunLgJp1: Eval Script #1">
+        </task>
+      <task name="Thing teRunLgJp2: Eval Script #1">
+        </task>
+      <task name="Thing teRunLgJp3: Eval Script #1">
+        </task>
+      <task name="Thing teRunLgJp4: Eval Script #1">
+        </task>
+      <task name="Thing teRunLgJp5: Eval Script #1">
+        </task>
+      <task name="Thing teRunLgJp6: Eval Script #1">
+        </task>
+      <task name="Thing teScgStl: Eval Script #1">
+        </task>
+      <task name="Thing teSdnGust: Eval Script #1">
+        </task>
+      <task name="Thing teSdnQk: Eval Script #1">
+        </task>
+      <task name="Thing teSecVeil: Eval Script #1">
+        </task>
+      <task name="Thing teSeqDef: Eval Script #1">
+        </task>
+      <task name="Thing teShrpMnd: Eval Script #1">
+        </task>
+      <task name="Thing teShrpSns: Eval Script #1">
+        </task>
+      <task name="Thing teSndBld: Eval Script #1">
+        </task>
+      <task name="Thing teSndBrth: Eval Script #1">
+        </task>
+      <task name="Thing teSndHand: Eval Script #1">
+        </task>
+      <task name="Thing teSndStk: Eval Script #1">
+        </task>
+      <task name="Thing teSpeed: Eval Script #1">
+        </task>
+      <task name="Thing teStkDist: Eval Script #1">
+        </task>
+      <task name="Thing teStrBlck: Eval Script #1">
+        </task>
+      <task name="Thing teStrDef: Eval Script #1">
+        </task>
+      <task name="Thing teStrkLck: Eval Script #1">
+        </task>
+      <task name="Thing teSureFtd: Eval Script #1">
+        </task>
+      <task name="Thing teTenBlad: Eval Script #1">
+        </task>
+      <task name="Thing teThouBlad: Eval Script #1">
+        </task>
+      <task name="Thing teThrow: Eval Script #1">
+        </task>
+      <task name="Thing teTiptoe: Eval Script #1">
+        </task>
+      <task name="Thing teTotalImm: Eval Script #1">
+        </task>
+      <task name="Thing teTrqMnd: Eval Script #1">
+        </task>
+      <task name="Thing teUltAgil: Eval Script #1">
+        </task>
+      <task name="Thing teUnchGate: Eval Script #1">
+        </task>
+      <task name="Thing teVigil: Eval Script #1">
+        </task>
+      <task name="Thing teVisMnd: Eval Script #1">
+        </task>
+      <task name="Thing teWalkShad: Eval Script #1">
+        </task>
+      <task name="Thing teWallMsl: Eval Script #1">
+        </task>
+      <task name="Thing teWhrlMsl: Eval Script #1">
+        </task>
+      <task name="Thing teWillStl: Eval Script #1">
+        </task>
+      </priority>
+    <priority priority="1000">
+      <task name="Thing resRenown: Calc Renown Max">
+        </task>
+      <task name="Thing resXP: Calc XP Max">
+        </task>
+      <task name="Component Personal: Eval Script #1">
+        </task>
+      <task name="Thing attrEarth: Eval Script #1">
+        </task>
+      <task name="Thing attrFire: Eval Script #1">
+        </task>
+      <task name="Thing attrMetal: Eval Script #1">
+        </task>
+      <task name="Thing attrWater: Eval Script #1">
+        </task>
+      <task name="Thing attrWood: Eval Script #1">
+        </task>
+      <task name="Thing resAP: Eval Script #1">
+        </task>
+      <task name="Thing resAbility: Eval Script #1">
+        </task>
+      <task name="Thing resGftWk: Eval Script #1">
+        </task>
+      <task name="Thing resSkill: Eval Script #1">
+        </task>
+      </priority>
+    <priority priority="2000">
+      <task name="Thing resAdvance: Eval Script #1">
+        </task>
+      </priority>
+    <priority priority="3000">
+      <task name="Component CanAdvance: Eval Script #1">
+        </task>
+      <task name="Component CanAdvance: Eval Script #2">
+        </task>
+      <task name="Component CanAdvance: Eval Script #3">
+        </task>
+      </priority>
+    <priority priority="4000">
+      <task name="Thing advAttrib: Eval Script #1">
+        </task>
+      <task name="Thing advCSNew: Eval Script #2">
+        </task>
+      <task name="Thing advCTNew: Eval Script #2">
+        </task>
+      <task name="Thing advMTNew: Eval Script #2">
+        </task>
+      <task name="Thing advMgcNew: Eval Script #2">
+        </task>
+      <task name="Thing advSkilNew: Eval Script #2">
+        </task>
+      <task name="Thing advSkill: Eval Script #1">
+        </task>
+      <task name="Thing advTao: Eval Script #1">
+        </task>
+      <task name="Thing advTaoNew: Eval Script #2">
+        </task>
+      </priority>
+    <priority priority="5000">
+      <task name="Component Actor: Eval Script #5">
+        </task>
+      <task name="Component CombStyle: Eval Script #1">
+        </task>
+      <task name="Component CombTech: Eval Script #1">
+        </task>
+      <task name="Component GiftWk: Eval Script #1">
+        </task>
+      <task name="Component GiftWk: Eval Script #2">
+        </task>
+      <task name="Component Magic: Eval Script #1">
+        </task>
+      <task name="Component Power: Eval Script #2">
+        </task>
+      <task name="Component Race: Eval Script #1">
+        </task>
+      <task name="Component Skill: Eval Script #1">
+        </task>
+      <task name="Component Tao: Eval Script #1">
+        </task>
+      <task name="Component WeapMelee: Eval Script #1">
+        </task>
+      <task name="Component Advance: Deduct cost">
+        </task>
+      <task name="Component Armor: Equip Armor">
+        </task>
+      <task name="Component Shield: Equip Shield">
+        </task>
+      <task name="Component TaoEffect: TaoEffect">
+        </task>
+      </priority>
+    <priority priority="8000">
+      <task name="Thing adjAttr: Eval Script #1">
+        </task>
+      <task name="Thing adjChi: Eval Script #1">
+        </task>
+      <task name="Thing adjDerived: Eval Script #1">
+        </task>
+      <task name="Thing adjGift: Eval Script #1">
+        </task>
+      <task name="Thing adjLoAttr: Eval Script #1">
+        </task>
+      <task name="Thing adjLoChi: Eval Script #1">
+        </task>
+      <task name="Thing adjLoDeriv: Eval Script #1">
+        </task>
+      <task name="Thing adjLoGift: Eval Script #1">
+        </task>
+      <task name="Thing adjLoSkill: Eval Script #1">
+        </task>
+      <task name="Thing adjLoWeak: Eval Script #1">
+        </task>
+      <task name="Thing adjLoWpn: Eval Script #1">
+        </task>
+      <task name="Thing adjLoWpnDm: Eval Script #1">
+        </task>
+      <task name="Thing adjLoWpnRs: Eval Script #1">
+        </task>
+      <task name="Thing adjSkill: Eval Script #1">
+        </task>
+      <task name="Thing adjWeak: Eval Script #1">
+        </task>
+      <task name="Thing adjWeapon: Eval Script #1">
+        </task>
+      </priority>
+    <priority priority="9000">
+      <task name="Component SpecialTab: Eval Script #2">
+        </task>
+      </priority>
+    <priority priority="10000">
+      <task name="Component Custom: Eval Script #1">
+        </task>
+      <task name="Field adjUser: Bound (Adjust By)">
+        </task>
+      </priority>
+    </phase>
+  <phase phase="Effects (2)">
+    <priority priority="1000">
+      <task name="Component CanAdvance: Eval Script #4">
+        </task>
+      </priority>
+    <priority priority="5000">
+      <task name="Component Actor: Eval Script #4">
+        </task>
+      </priority>
+    <priority priority="10000">
+      <task name="Component Gear: Accrue Weight">
+        </task>
+      </priority>
+    </phase>
+  <phase phase="Pre-Traits (3)">
+    <priority priority="5000">
+      <task name="Thing gwAgMonkey: Eval Script #1">
+        </task>
+      </priority>
+    </phase>
+  <phase phase="Traits (4)">
+    <priority priority="1000">
+      <task name="Field trtUser: Bound trtUser">
+        </task>
+      <task name="Component CombTech: Eval Script #3">
+        </task>
+      </priority>
+    <priority priority="3000">
+      <task name="Field trtFinal: Calc trtFinal">
+        </task>
+      </priority>
+    <priority priority="4000">
+      <task name="Thing trBalance: Eval Script #1">
+        </task>
+      <task name="Thing trBol: Eval Script #1">
+        </task>
+      <task name="Thing trChi: Eval Script #1">
+        </task>
+      <task name="Thing trInit: Eval Script #1">
+        </task>
+      <task name="Thing trPassDef: Eval Script #1">
+        </task>
+      <task name="Thing trResist: Eval Script #1">
+        </task>
+      </priority>
+    <priority priority="5000">
+      <task name="Field acBoLBonus: Calc acBoLBonus">
+        </task>
+      <task name="Field acBoLMin: Calc acBoLMin">
+        </task>
+      </priority>
+    <priority priority="5002">
+      <task name="Field acBoLMax: Calc acBoLMax">
+        </task>
+      </priority>
+    <priority priority="5050">
+      <task name="Thing trBolBruis: Eval Script #1">
+        </task>
+      <task name="Thing trBolFaInj: Eval Script #1">
+        </task>
+      <task name="Thing trBolNorm: Eval Script #1">
+        </task>
+      <task name="Thing trBolSeInj: Eval Script #1">
+        </task>
+      <task name="Thing trBolSlInj: Eval Script #1">
+        </task>
+      </priority>
+    <priority priority="5060">
+      <task name="Thing teClnsBld: Eval Script #2">
+        </task>
+      <task name="Thing teCloakChi: Eval Script #2">
+        </task>
+      <task name="Thing teHardhide: Eval Script #2">
+        </task>
+      <task name="Thing teMetalBdy: Eval Script #2">
+        </task>
+      <task name="Thing teNoPain: Eval Script #2">
+        </task>
+      <task name="Thing teTotalImm: Eval Script #2">
+        </task>
+      </priority>
+    <priority priority="5100">
+      <task name="Field acBoLNow: Calc acBoLNow">
+        </task>
+      </priority>
+    <priority priority="5200">
+      <task name="Field acBoLPenal: Calc acBoLPenal">
+        </task>
+      </priority>
+    <priority priority="6000">
+      <task name="Component Derived: Derived trtFinal">
+        </task>
+      </priority>
+    <priority priority="10000">
+      <task name="Field acBoLST: Calc acBoLST">
+        </task>
+      <task name="Component Attribute: Eval Script #2">
+        </task>
+      <task name="Component Magic: Eval Script #2">
+        </task>
+      <task name="Component Skill: Eval Script #2">
+        </task>
+      <task name="Component Tao: Eval Script #2">
+        </task>
+      </priority>
+    </phase>
+  <phase phase="Final (5)">
+    <priority priority="1000">
+      <task name="Field resLeft: Calc resLeft">
+        </task>
+      <task name="Field trkLeft: Calc trkLeft">
+        </task>
+      <task name="Component Actor: Eval Script #3">
+        </task>
+      <task name="Component Advance: Eval Script #3">
+        </task>
+      <task name="Component Ammunition: Eval Script #1">
+        </task>
+      <task name="Thing trkChi: Eval Script #1">
+        </task>
+      </priority>
+    <priority priority="1100">
+      <task name="Component Actor: Eval Script #2">
+        </task>
+      </priority>
+    <priority priority="5000">
+      <task name="Component Equippable: Eval Script #3">
+        </task>
+      <task name="Component Trait: Eval Script #2">
+        </task>
+      <task name="Component WeaponBase: Eval Script #1">
+        </task>
+      <task name="Field sklRoll: Calculate (Net Skill Roll)">
+        </task>
+      </priority>
+    <priority priority="7000">
+      <task name="Component WeapThrown: Calc thNetAtk">
+        </task>
+      <task name="Component Shield: Calc wpNetAtk">
+        </task>
+      </priority>
+    <priority priority="9000">
+      <task name="Component Armor: Modify ST">
+        </task>
+      <task name="Thing pwNatArm: Eval Script #1">
+        </task>
+      </priority>
+    <priority priority="10000">
+      <task name="Component Advance: Eval Script #6">
+        </task>
+      <task name="Component Tao: Save trtBonus">
+        </task>
+      </priority>
+    </phase>
+  <phase phase="Validation (6)">
+    <priority priority="5000">
+      <task name="Component Resource: Eval Rule #1">
+        </task>
+      <task name="Component Resource: Eval Rule #2">
+        </task>
+      </priority>
+    <priority priority="8000">
+      <task name="Thing valHands: Check Hands">
+        </task>
+      <task name="Thing valAP: Eval Rule #1">
+        </task>
+      <task name="Thing valAP: Eval Rule #2">
+        </task>
+      <task name="Thing valAbility: Eval Rule #1">
+        </task>
+      <task name="Thing valAbility: Eval Rule #2">
+        </task>
+      <task name="Thing valArmor: Eval Rule #1">
+        </task>
+      <task name="Thing valRace: Eval Rule #1">
+        </task>
+      <task name="Thing valSP: Eval Rule #1">
+        </task>
+      <task name="Thing valSP: Eval Rule #2">
+        </task>
+      <task name="Thing valShields: Eval Rule #1">
+        </task>
+      </priority>
+    <priority priority="9000">
+      <task name="Component Domain: Eval Rule #1">
+        </task>
+      </priority>
+    <priority priority="10000">
+      <task name="Component Adjustment: Eval Rule #1">
+        </task>
+      <task name="Component Armor: Eval Rule #1">
+        </task>
+      <task name="Component Equippable: Eval Rule #1">
+        </task>
+      <task name="Component Equippable: Eval Rule #2">
+        </task>
+      <task name="Component Shield: Eval Rule #1">
+        </task>
+      <task name="Component UserSelect: Eval Rule #1">
+        </task>
+      </priority>
+    </phase>
+  <phase phase="Render (7)">
+    <priority priority="500">
+      <task name="Component Domain: Eval Script #1">
+        </task>
+      <task name="Component UserSelect: Eval Script #1">
+        </task>
+      </priority>
+    <priority priority="1000">
+      <task name="Component Adjustment: Eval Script #2">
+        </task>
+      <task name="Component Advance: Eval Script #4">
+        </task>
+      <task name="Component WeaponBase: Eval Script #2">
+        </task>
+      <task name="Field acBoLSumm: Calculate (Health Summary)">
+        </task>
+      <task name="Field acChiSumm: Calculate (Chi Summary)">
+        </task>
+      <task name="Field trkUser: Bound (User Value)">
+        </task>
+      <task name="Thing advCSNew: Eval Script #1">
+        </task>
+      <task name="Thing advCTNew: Eval Script #1">
+        </task>
+      <task name="Thing advMTNew: Eval Script #1">
+        </task>
+      <task name="Thing advMgcNew: Eval Script #1">
+        </task>
+      <task name="Thing advSkilNew: Eval Script #1">
+        </task>
+      <task name="Thing advTaoNew: Eval Script #1">
+        </task>
+      </priority>
+    <priority priority="2000">
+      <task name="Component Advance: Assign Dynamic Tagexpr">
+        </task>
+      <task name="Component WeapMelee: Eval Script #3">
+        </task>
+      <task name="Component WeapRange: Eval Script #2">
+        </task>
+      </priority>
+    <priority priority="5000">
+      <task name="Component Trait: Eval Script #1">
+        </task>
+      </priority>
+    <priority priority="9000">
+      <task name="Component Resource: Eval Script #1">
+        </task>
+      <task name="Component Resource: Eval Script #2">
+        </task>
+      </priority>
+    <priority priority="10000">
+      <task name="Field jrnSummary: Calculate (Summary)">
+        </task>
+      <task name="Field perAge: Bound (Age)">
+        </task>
+      <task name="Field perHeight: Bound (Height)">
+        </task>
+      <task name="Field perWeight: Bound (Weight)">
+        </task>
+      <task name="Field resAddItem: Calculate (Add Item Text)">
+        </task>
+      <task name="Field thRange: Calculate (Range)">
+        </task>
+      <task name="Field usrSource1: Calculate (Source for Menu #1 Choices)">
+        </task>
+      <task name="Field usrSource2: Calculate (Source for Menu #2 Choices)">
+        </task>
+      <task name="Field wpRange: Calculate (Range)">
+        </task>
+      </priority>
+    </phase>
+  </timing>
+</document>
